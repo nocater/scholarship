@@ -1,0 +1,40 @@
+.jMsgbox-background{
+	background-color: #ddd;
+}
+.jMsgbox-mainWrap{
+	border: #07509A 1px solid; background-color: #fff; overflow: hidden; vertical-align:top;
+}
+.jMsgbox-mainWrap input[type=text]{
+	border:1px solid #3c99f7;
+}
+.jMsgbox-mainWrap input[type=button]{
+	border:1px solid #3c99f7;
+	background-color:#9fcdfb;
+}
+.jMsgbox-headWrap{
+	border:1px solid #fff;
+	background-color:#07509A;
+	color:#fff;
+	padding:5px;
+}
+.jMsgbox-titleWrap{
+	font-size:12px;
+	font-weight:bold;
+}
+.jMsgbox-closeWrap{
+	color:#ccc;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+}
+.jMsgbox-closeWrap:hover{
+	text-decoration:none;
+	color:#fff;
+}
+.jMsgbox-closeWrap img{
+	border:none;
+}
+.jMsgbox-contentWrap{
+	padding:5px;
+	font-size:12px;
+}

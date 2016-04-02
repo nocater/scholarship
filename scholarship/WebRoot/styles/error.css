@@ -1,0 +1,31 @@
+/*edit by guoyuxi at 2010-07-13 with 去掉了背景图片*/
+body {margin:0 auto;padding:0;outline:none;background-color:#white;font: normal normal normal 12px "宋体";color:#333;}
+/*edit by guoyuxi at 2010-07-13 with 登录页样式*/
+img{border:0px;}
+input{border:1px solid #ADC1DB;}
+/*edit by guoyuxi at 2010-07-12 with 加入了自动换行功能*/
+td{font-size:12px;table-layout:fixed;WORD-BREAK:break-all;WORD-WRAP:break-word;}
+
+/*div, p, h1, h2, h3, ul, img{padding:0px; margin:0px;}
+ul{list-style-type:none;}*/
+
+.clear{clear:both;}
+
+#container{width:965px;height:auto;margin:0 auto;}
+
+.news-error{width:100%;height:36px;line-height:36px;background:url(../images/content_bj.gif) repeat-x;font-family:"宋体","",tahoma,san-serif;font-size:16px;color:black;font-weight:bold;text-indent:2em}
+
+.text-error{
+	font-family:Geneva, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:black;
+	line-height: 26px;
+}
+
+.news{width:100%;height:36px;background:url(../images/content_bj.gif) repeat-x;}
+.contenttext{float:left;color:#000; font-size:12px;text-align:left;margin-left:10px;margin-top:6px;}
+.contenttext1{float:right;color:#333;margin-right:10px;margin-top:10px;}
+.m-content{width:100%;background-color:#fff;}
+.cp-content{margin:auto;height:450px;width:517px;}
+
+.cp-content1{margin:auto;width:90%;padding-top:10px;}

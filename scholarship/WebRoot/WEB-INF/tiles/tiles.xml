@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "<DTDURL>/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	
+	<!-- scholarship tiles -->
+	<definition name="scholarship.layout" template="/pages/layout/frame.jsp">
+		<put-attribute name="title" value="Scholarship V1.0"/>
+		<put-attribute name="topFrame" value="/scholarship/frameHeader.action"/>
+		<put-attribute name="leftFrame" value="/scholarship/pages/account/accountMenu.jsp"/>
+		<put-attribute name="mainFrame" value="/scholarship/account/query.action"/>
+		<!-- <put-attribute name="leftFrame1" value="/fort/e-group/displayMenu.action"/>
+		<put-attribute name="mainFrame1" value="/fort/employee/query.action"/>
+		<put-attribute name="leftFrame2" value="/fort/r-group/displayMenu.action"/>
+		<put-attribute name="mainFrame2" value="/fort/resource/query.action"/>
+		<put-attribute name="leftFrame3" value="/fort/pages/audit/auditMenu.jsp"/>
+		<put-attribute name="mainFrame3" value="/fort/systemAudit/query.action"/>
+		<put-attribute name="leftFrame4" value="/fort/pages/worksheet/worksheetMenu.jsp"/>
+		<put-attribute name="mainFrame4" value="/fort/worksheet/workSheetAction!queryWorkSheetByUserId.action"/> -->
+		<put-attribute name="bottomFrame" value="/scholarship/frameBottom.action"/>
+	</definition>
+	
+	<definition name="scholarship.frameHeader" template="/pages/layout/top.jsp"/>
+	<definition name="scholarship.frameLeft" template="/pages/layout/left.jsp"/>
+	<definition name="scholarship.frameBottom" template="/pages/layout/footer.jsp"/>
+</tiles-definitions>

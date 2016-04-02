@@ -1,0 +1,337 @@
+@charset "utf-8";
+/* CSS Document */
+html{
+	margin:0px auto;
+    padding: 0px 0px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
+body{
+	margin:0px auto;
+	padding: 0px 0px;
+	background:url("/fort/images/login_img/login.jpg") 10% 10% repeat;
+	overflow:hidden;
+	}
+.login_con{
+	margin:200px auto;
+	padding:0px 0px;
+	background:url("/fort/images/login_img/log.png") 0% 0% no-repeat;
+	width:800px;
+	height:260px;
+	border:none;}
+
+
+.login_title{
+	padding:0px 0px;
+	margin:0px 0px;
+	position:relative ;
+	top:25px;
+	left:60px;
+	border:none;
+	width:200px;
+	height:30px;
+	}
+.login_input{
+	margin:0px 0px;
+	padding:0px 0px;
+	position:relative;
+	top:30px;
+	left:350px;
+	width:180px;
+	border:none;}
+.login_input ul{
+	margin:0px auto;
+	padding:0px 0px;
+	list-style:none;
+	width:180px;
+	border:none;
+	}
+.login_input ul li{
+	margin:4px 0px;
+	padding:0px 0px;
+	width:200px;
+	height:30px;
+	border:none;
+}
+.input{
+	padding: 0px 0px 0px 4px;
+	height:25px;
+	line-height: 25px; 
+	background:none 0% 0% no-repeat transparent; 
+	border:medium none transparent;
+	width:190px;
+	font-family: "幼圆","黑体", "宋体","Comic Sans MS",sans-serif;
+	font-size:14px;
+	color:#999999;
+    font-weight:bold;}
+.input_code{
+	padding: 0px 0px 0px 4px;
+	height:25px;
+	line-height: 25px;
+	background:none 0% 0% no-repeat transparent; 
+	border:none medium transparent;
+	width:110px;
+	font-family: "幼圆","黑体", "宋体","Comic Sans MS",sans-serif;
+	font-size:14px;
+    color:#999999;
+    font-weight:bold ;
+	}
+
+.login_msg_button{
+	margin:0px 0px;
+	padding:0px 0px;
+	position:relative;
+	top:35px;
+	left:300px;
+	width:250px;
+	height:50px;
+	}
+.inputsubmit{
+	margin:1px 1px;
+	padding:0px 0px;
+	border:none;
+	width:80px;
+	height:27px;
+	border:none;
+	background:url(/fort/images/login_img/button.png) 0% 0% no-repeat;}
+.inputsubmit_g{
+	border:none;
+	float:right;
+	margin:0px 0px;
+	padding:0px 0px;
+	width:82px;
+	height:29px;
+	background:url(/fort/images/login_img/button_bg.png) 0% 0% no-repeat;
+	}
+.login_button:hover{
+	cursor:hand ;
+	cursor:pointer;
+	}
+.login_help{
+	margin:0px 0px;
+	padding:0xp 0px;
+	color:#FFFFFF;
+	font-size:11px;
+	border:none;
+	height:27px;
+	float:left;}
+.login_input_click_input{
+    margin: 1px 1px 1px 1px;
+    padding: 0px 0px 0px 4px;
+    height:27px;
+    line-height: 25px; 
+    background:url(/fort/images/login_img/input_b.png) 0% 0%  no-repeat; 
+    border:medium none transparent;
+    width:190px;
+    font-family:"幼圆","黑体", "宋体","Comic Sans MS",sans-serif;
+    font-size:14px;
+    color:#999999;
+    font-weight:bold ;
+	}
+.login_input_click_li{
+	margin:5px 0px;
+    padding:0px 0px;
+    width:200px;
+    height:30px;
+    background:url(/fort/images/login_img/input_bg_b_b.png) 0% 0% no-repeat;
+    }
+.login_input_click_input_code{
+	margin: 1px 1px 1px 1px;
+    padding: 0px 0px 0px 4px;
+    height:27px;
+    line-height: 25px;
+    background:url(/fort/images/login_img/code_b_b.png) 0% 0% no-repeat; 
+    border:none medium  transparent;
+    width:195px;
+    font-family:"幼圆","黑体", "宋体","Comic Sans MS",sans-serif;
+    font-size:14px;
+    color:#999999;
+    font-weight:bold ;
+	}
+.img_code{
+	border:2px solid  #cae2ee;
+	position:relative ;
+    top:5px;
+    left:5px;
+}
+.img_code img{
+	cursor:hand ;
+    cursor:pointer;
+}
+.li_bg{
+	background:url(/fort/images/login_img/_input_bg_.png) 0% 0% no-repeat;
+}
+.li_bg_code{
+	background:url(/fort/images/login_img/code_b_bg.png) 0% 0% no-repeat;
+}
+
+.label_input{
+	font-family:"幼圆","黑体", "宋体","Comic Sans MS",sans-serif;
+    font-size:14px;
+    color:#999999;
+    font-weight:bold ;
+}
+.overDay_input{
+	font-family:"幼圆","黑体", "宋体","Comic Sans MS",sans-serif;
+    font-size:16px;
+    color:#999999;
+    font-weight:bold ;
+}
+.actionmessage
+{
+	margin:0px 0px;
+    padding:5px 0px 0px 0px;
+    font-family:"幼圆","黑体", "宋体","Comic Sans MS",sans-serif;
+    font-size:12px;
+    font-weight:bold ;
+    position:relative;
+    top:35px;
+    left:363px;
+    width:175px;
+    height:20px;
+	color: red;
+	text-align: center;
+}
+
+.dynamic_OTP{
+	margin:0px 0px;
+    padding:0px 0px;
+    position:absolute;
+    top:410px;
+    left:450px;
+    width:280px;
+    height:150px;
+    border:none medium  transparent;
+    background: #FFFFFF;
+    display: none;
+    z-index: 10;
+    background:  url(/fort/images/login_img/dynamic_OTP.png) 0 0 repeat;
+}
+
+.over_Day{
+	margin:0px 0px;
+    padding:0px 0px;
+    position:absolute;
+    top:200px;
+    left:450px;
+    width:400px;
+    height:240px;
+    border:none medium  transparent;
+    background: #FFFFFF;
+    display: none;
+    z-index: 10;
+    background:  url(/fort/images/login_img/overDay_OTP.png) 0 0 repeat;
+}
+
+
+.dynamic_OTP ul{
+	margin:35px auto;
+    padding:0px 0px;
+    list-style:none;
+    width:230px;
+    height:80px;
+    border:none medium  transparent;
+}
+
+.dynamic_OTP ul li{
+    margin:10px auto;
+    padding:0px 0px;
+    border:none medium  transparent;
+}
+
+.dynamic_li_bg{
+	background:url(/fort/images/login_img/dynamic_input.png) 0% 0% no-repeat;
+	width:200px;
+    height:30px;
+    
+}
+.dynamic_button_li{
+	padding:0px 0px;
+    margin:10px auto;
+	width:80px;
+    height:21px;
+    border:none medium  transparent;
+}
+.dynamic_button{
+	background:url(/fort/images/login_img/dynamic_button.png) 0% 0% no-repeat;
+	padding:0px 0px;
+	margin:0px auto;
+	border:none medium transparent;
+	width:80px;
+	height:25px;
+	color:#FFFFFF;
+}
+.dynamic_button:hover{
+    cursor:hand ;
+    cursor:pointer;
+    }
+
+.dynamic_OTP_close
+{
+    margin:0px 0px;
+    padding:0px 0px;
+    position: relative;
+    top:18px ;
+    left:254px;
+    width:12px;
+    height:11px;
+    cursor:hand ;
+    cursor:pointer;
+    border:none medium transparent;
+}
+
+.dynamic_OTP_title_t
+{
+    position:relative;
+    top:4px;
+    left:4px;
+}
+.dynamic_OTP_input
+{
+	margin: 5px 0px;
+	padding:0px 0px;
+	font-family: "幼圆","黑体", "宋体","Comic Sans MS",sans-serif;
+	font-size: 14px;
+}
+.dynamic_OTP_input ul{
+	list-style: none;
+	padding:0px 0px;
+	margin:0px 0px;
+}
+.dynamic_OTP_input ul li{
+	float: left;
+	margin:0px 5px;
+	padding:0px 0px;
+}
+.dynamic_OTP_button{
+    margin:5px 0px 5px 0px;
+    padding:5px 0px 0px 0px;
+	border-top: 1px solid #4477a6;
+	text-align: center;
+}
+.dynamic_OTP_button_b
+{
+	margin:0px 0px;
+	padding:0px 0px;
+	border:none;
+	width:58px;
+	height:21px;
+	background: url(/fort/images/dy_button.png) 0 0 repeat;
+	cursor:hand ;
+    cursor:pointer;
+}
+.galss_overlay{
+	padding:0px 0px;
+	maring:0px 0px;
+    overflow : hidden;
+    position:absolute;
+    top:0px;
+    left:0px; 
+    z-index:1;
+    background:#666666 url("/fort/images/ui_40x40-.png") 0 0 repeat;
+    opacity: .50;
+    filter:Alpha(Opacity=50); 
+    display: none;
+    border:none;
+    }

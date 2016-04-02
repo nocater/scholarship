@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	
+	<package name="college" extends="struts-default" namespace="/college">
+	
+		<action name="query" class="collegeAction" method="query">
+			<result name="success">/pages/college/collegeList.jsp</result>
+		</action>
+		
+		<action name="queryById" class="collegeAction" method="queryById">
+			<result name="success">/pages/college/collegeInfo.jsp</result>
+		</action>
+		
+		<action name="update" class="collegeAction" method="update">
+			<result name="success" type="redirect">/college/query.action?order=UPDATEDATE</result>
+		</action>
+		
+		<action name="execute" class="collegeAction" method="execute">
+			<result name="success" type="redirect">/college/query.action?order=UPDATEDATE</result>
+		</action>
+		
+		<action name="checkCollegeName" class="collegeAction" method="checkCollegeName"></action>
+	</package>
+	
+</struts>	

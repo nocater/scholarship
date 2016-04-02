@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+						"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- Some or all of these can be flipped to true for debugging -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.i18n.reload" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.configuration.xml.reload" value="false" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+	<constant name="struts.serve.static" value="true" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<!-- 动态方法调用开启，即支持棒字符——"!" -->
+	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true" /> -->
+
+	<constant name="struts.multipart.maxSize" value="200000000" />
+	<constant name="struts.multipart.saveDir" value=" /tmp/" />
+	
+	<!-- 账户/登录 -->
+	<include file="struts/account/struts-account.xml"></include>
+	<include file="struts/account/struts-login.xml"></include>
+	<!-- 角色 role-struts -->
+	<include file="struts/role/struts-role.xml"/>
+	<include file="struts/role/struts-role-selectCollege.xml"/>
+	<include file="struts/role/struts-role-selectGrade.xml"/>
+	<!-- 年级 grade-struts-->
+	<include file="struts/grade/struts-grade.xml"></include>
+	<!-- 学院 college-struts -->
+	<include file="struts/college/struts-college.xml"></include>
+	<!-- 奖金 scholarship-struts -->
+	<include file="struts/scholarship/struts-scholarship.xml"></include>
+	<!-- 审计 audit-struts -->
+	<include file="struts/audit/struts-audit.xml"></include>
+	<!-- 数据 datas-struts -->
+	<include file="struts/datas/struts-datas.xml"></include>
+	<!-- 审批 apply-struts -->
+	<include file="struts/apply/struts-apply.xml"></include>
+	<!-- 关于 -->
+	<include file="struts/about/struts-about.xml"></include>
+	
+	<!-- 页面框架 tiles-default -->
+	<package name="default" extends="tiles-default" namespace="/">
+		<action name="frame" class="frameAction" method="frame">
+			<!-- member.layout -->
+			<result name="success" type="tiles">scholarship.layout
+			</result>
+		</action>
+
+		<action name="frameHeader" class="frameAction" method="frameHeader">
+			<result type="tiles">scholarship.frameHeader</result>
+		</action>
+
+		<action name="frameBottom">
+			<result type="tiles">scholarship.frameBottom</result>
+		</action>
+	</package>
+</struts>    

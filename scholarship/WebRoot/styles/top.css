@@ -1,0 +1,7 @@
+.frameDh{ background:url(../images/dhBj.jpg) repeat-x left; height:31px; text-align:center;}
+.frameDh ul ,.bqmenu ul{list-style:none;}
+.frameDh ul li{ float:left; width:90px; color:#FFFFFF;}
+.frameDh ul li a:link{ color:#FFFFFF; text-decoration:none;}
+.frameDh ul li a:visited{text-decoration:none; color:#FFFFFF;}
+.frameDh ul li a:hover{ color:#faec06; text-decoration:underline;}
+.frameDh ul li a:active{ color:#FFFFFF;}

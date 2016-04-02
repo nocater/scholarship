@@ -1,0 +1,112 @@
+@charset "utf-8";
+/* CSS Document */
+
+.tree_ui_root{
+	padding:5px 5px;
+	margin:0px 0px;
+	overflow:hidden;
+	/* 调试
+	border:1px solid #000000;
+	*/
+	overflow-x:auto ;
+	overflow-y:auto ;
+	}
+.tree_ui_root ul{
+	padding:0px 0px;
+	margin:0 0 0 15px;
+	list-style:none;
+	line-height: 20px;
+	white-space:nowrap; 
+	/* 调试
+	border:1px solid #000000;
+	*/
+	}
+.tree_ui_root ul li{
+	padding:0px 0px;
+	margin:0px 0px;
+	line-height: 20px;
+	white-space:nowrap; 
+	/*调试
+	border:1px solid #000000;
+	*/
+	}
+
+/*图片 */
+.tree_ui_icon{
+	display: block; 
+	text-indent: -99999px; 
+	overflow: hidden; 
+	background-repeat: no-repeat;
+	/*调试
+	border:1px solid #000000;
+	*/
+	}
+.tree_ui_icon_bg_r{
+	padding:0px 0px;
+	margin:0px 0px;
+	background:url(../images/arrow_collapsed.gif) no-repeat 100% 100%;
+	width:18px;
+	height:19px;
+	}
+	
+.tree_ui_icon_bg_b{
+	padding:0px 0px;
+	margin:0px 0px;
+	background:url(../images/arrow_expanded.gif) no-repeat 100% 100%;
+	width:18px;
+	height:19px;
+	}
+
+.tree_ui_float{
+	float:left;
+	}
+.tree_ui_ti{
+	margin:0px 1px 0px 0px;
+	padding:0px 0px;
+	font-size:12px;
+	line-height:19px;
+	/*
+	border:1px solid;
+	*/
+}
+
+	
+.tree_ui_icon_bg_r,.tree_ui_icon_bg_b:hover{
+	cursor:hand;
+	cursor:pointer;
+	}
+.tree_ui_ti:hover{
+	cursor:hand;
+	cursor:pointer;
+	}
+
+.tree_ui_icon_bg_r:hover{
+	padding:0px 0px;
+	margin:0px 0px;
+	background:url(../images/arrow_collapsed_hover.gif) no-repeat 100% 100%;
+	width:18px;
+	height:19px;
+	}
+.tree_ui_icon_bg_b:hover{
+	padding:0px 0px;
+	margin:0px 0px;
+	background:url(../images/arrow_expanded_hover.gif) no-repeat 100% 100%;
+	width:18px;
+	height:19px;
+	}
+	
+.tree_ui_align{
+	vertical-align:0px;
+	height: 15px;
+	}
+.tree_ui_align_box{
+	vertical-align:-3px;	
+	height: 15px;
+	}
+.tree_ui_checkbox{
+	padding:0px 0px;
+	margin:0px 2px 0px 0px;
+	}
+.tree_ui_display_none{
+	display:none;
+	}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	
+	<package name="role" extends="struts-default" namespace="/role">
+	
+		<action name="query" class="roleAction" method="query">
+			<result name="success">/pages/role/roleList.jsp</result>
+		</action>
+		
+		<action name="queryById" class="roleAction" method="queryById">
+			<result name="success">/pages/role/roleInfo.jsp</result>
+		</action>
+		
+		<action name="update" class="roleAction" method="update">
+			<result name="success" type="redirect">/role/query?order=UPDATEDATE</result>
+			<!-- <result name="success">/pages/role/roleInfo.jsp</result> -->
+		</action>
+		
+		<action name="checkRoleName" class="roleAction" method="checkRoleName"/>
+		
+		<action name="search" class="roleAction" method="search">
+			<result name="success">/pages/role/roleList.jsp</result>
+		</action>
+		
+		<action name="execute" class="roleAction" method="execute">
+			<result name="success" type="redirect">/role/query?order=UPDATEDATE</result>
+		</action>
+	</package>
+	
+</struts>	

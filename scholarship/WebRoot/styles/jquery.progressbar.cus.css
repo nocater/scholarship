@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+.progressbar_area{position:absolute; width:350px; height:100px; top:25%; left:30%; border:1px solid #aaaaaa; background:#eeeeee; display:none;}
+.block{margin-top:25px;}
+#progressbar{margin-left:20px; width:90%;}
+.loading_area{float:center; text-align:center; margin-top:10px;  font-style:normal;}
+.ui-progressbar-value { background-image: url(/fort/images/pbar-ani.gif);}
+
+		

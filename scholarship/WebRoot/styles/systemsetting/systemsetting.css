@@ -1,0 +1,468 @@
+/* global styles*/
+* { margin:0; padding:0;}
+body {font-family:"宋体";font-size: 13px;margin:0 auto;}
+img {border:0;}
+A {COLOR: blue; TEXT-DECORATION: none;}
+A:hover {COLOR: #blue; TEXT-DECORATION: underline;}
+hr {height:1px;border:none;border-top:1px solid Black;margin:0 0 3px 0;*margin:0 0 -11px 0;float:none;*float:left;display:block;}
+input {height:20px;}
+/* global styles*/
+
+/* util styles*/
+.hand{cursor:pointer;}
+.wrap{table-layout:fixed; word-break: break-all; overflow:hidden;}
+.clear{ clear:both;}
+.weight {font-weight:800;}
+.readonly {background:#cccccc;}
+.dotted {border-bottom: 1px dotted black;}
+.btn1{ background:url(../images/btn_back_x1.png) no-repeat; width:39px; height:28px; border:none; cursor:pointer;}
+.btn2{ background:url(../images/btn_back_x2.png) no-repeat; width:59px; height:30px; border:none; cursor:pointer;}
+.btn4{ background:url(../images/btn_back_x4.png) no-repeat; width:94px; height:30px; border:none; cursor:pointer;}
+.btn4s{ background:url(../images/btn_back_x4s.png) no-repeat; width:89px; height:30px; border:none; cursor:pointer;}
+
+.ThinInput {border:1px solid #D2E8FA;}
+.hr_g {height:1px;border:none;border-top:1px solid gray;margin:0 0 3px 0;*margin:0 0 -11px 0;float:none;*float:left;display:block;}
+
+.hr_h {height:50px;border:none;border-top:1px solid gray;margin:0 0 3px 0;*margin:0 0 -11px 0;float:none;*float:left;display:block;}
+.setttinginfotd{
+	width:250px
+}
+.btn_list_execute
+{
+	width:45px;
+	height:25px;
+	text-align: center;
+	font-family:'Arial';
+	font-size: 13px;
+	color:#000000;
+	font-style:normal;
+	font-weight:normal;
+	text-decoration:none;
+}
+
+.btn_employee_list_sync_account
+{
+	width:80px;
+	height:25px;
+	cursor:pointer;
+}
+
+.btn_employee_list_adduser
+{
+	width:80px;
+	height:25px;
+	cursor:pointer;
+}
+.btn_list_width
+{
+	width:100px;
+	height:25px;
+	cursor:pointer;
+}
+
+.btn_detail_submit
+{
+	width:80px;
+	height:25px;
+	cursor:pointer;
+}
+
+.btn_detail_cancel
+{
+	width:80px;
+	height:25px;
+	cursor:pointer;
+}
+
+.btn_detail_add_del
+{
+	width:58px;
+	height:25px;
+	text-align: center;
+	font-family:'Arial';
+	font-size: 13px;
+	color:#000000;
+	font-style:normal;
+	font-weight:normal;
+	text-decoration:none;
+}
+
+.btn_detail_brwoser
+{
+	width:35px;
+	height:25px;
+	text-align: center;
+	font-family:'Arial';
+	font-size: 13px;
+	color:#000000;
+	font-style:normal;
+	font-weight:normal;
+	text-decoration:none;
+}
+
+.td_list_data
+{
+	word-break: break-all;
+	word-wrap:break-word;
+}
+
+.td_detail_separator
+{
+	height:10px;
+}
+
+.td_detail_title
+{
+	font-family:宋体;
+	color:#000000;
+	font-size:13px;
+}
+
+.td_employee_detail
+{
+	width: 80px;
+	font-family:宋体;
+	color:#000000;
+	font-size:13px;
+}
+.spansel{
+	background-color:#CCCCCC;
+}
+.fontStyle{
+	font-family:'Arial'; color:#000000; font-size:13px;
+	}
+
+.spanred{
+	color:red;
+}
+.r2title, .r2titler {
+    background: none repeat scroll 0 0 #5AA4D1;
+    color: #FFFFFF;
+    font-weight: bolder;
+    height: 25px;
+    line-height: 20px;
+    padding-bottom:3px;
+    padding-left: 20px;
+    text-align: left;
+}
+.r2tCont {
+    color: #7F7F7F;
+    line-height: 30px;
+    overflow-y:auto;
+    height:300px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.r3tCont{
+	 z-index:2;
+	 overflow-y:yes;
+	 top:360px;
+	 position:absolute; 
+	 margin-left:250px;
+	 width:80px;
+}
+
+/* util styles*/
+
+/* menu styles*/
+.MenuTable {border-top:1px solid #999999;}
+.MenuLink A{color:black; font-weight:800; TEXT-DECORATION: none;}
+.MenuLink A:hover {color:black; font-weight:800; TEXT-DECORATION: underline;}
+.MenuLinkGray A{color:gray; font-weight:800; TEXT-DECORATION: none;}
+.MenuLinkGray A:hover {color:black; font-weight:800; TEXT-DECORATION: underline;}
+.MenuSplit {color:white; font-weight:800;}
+/* menu styles*/
+/*个人设置消息提醒*/
+.news-success{width:80%;height:15px;line-height:15px;background:url(../images/content_bj.gif) repeat-x;font-family:"宋体","",tahoma,san-serif;font-size:16px;color:red;font-weight:bold;text-indent:2em}
+@CHARSET "UTF-8";
+body {
+    color: #000000;
+    font-family: "宋体";
+    font-size: 12px;
+}
+input, textarea, select, button,img, file {
+    font-size: 12px;
+    vertical-align: middle
+}
+.framDiv{
+	 border: 1px solid #5AA4D1;
+	 font-size: 12px;
+}
+
+.settingdivtable1{
+	 border: 1px solid #5AA4D1;
+	 font-size: 12px;
+	 height:170px;
+}
+
+.settingdivtable2{
+	 border: 1px solid #5AA4D1;
+	 font-size: 12px;
+	 height:120px;
+}
+.xuxian{width:100%;border:0px;border-bottom:1px dashed #a4a4a4;background:#FFFFFF; margin-bottom:4px;}
+.italic{font-style:italic;}
+.underline{text-decoration:underline;} 
+.caozuobox{
+	overflow:hidden;
+	border:1px solid #c1ddf1;
+	background:url(/fort/images/rightDh.jpg) repeat-x 0 0; 
+	
+	height:33px; 
+	line-height:30px;
+}
+.tab2 .biaocm {
+    background: none repeat scroll 0 0 #F3F9FF;
+}
+
+.sbox {
+    clear: both;
+    margin-bottom: 10px;
+    margin-top: 4px;
+    overflow: hidden;
+}
+.tab2 {
+    background: none repeat scroll 0 0 #D2E8FA;
+}
+.tab2 td {
+    background: none repeat scroll 0 0 #FFFFFF;
+    line-height: 28px;
+    text-align: center;
+}
+.tab2 .td_t {
+    background: none repeat scroll 0 0 #ffffff;
+    line-height: 28px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.tab2 .biaoti {
+    background: url("/fort/images/tdBg.jpg") repeat-x scroll 0 0 transparent;
+    height:28px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+.cont{ clear: both;overflow:hidden; border-top:none; zoom:1;}
+.btnstyle{
+	 background:url(/fort/images/btnbg.jpg) no-repeat; 
+	 border:none; 
+	 width:66px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+}
+.btnstyle1{/*执行按钮背景*/
+	 background:url(/fort/images/btnBj.jpg) no-repeat; 
+	 border:none; 
+	 width:40px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+}
+.btnstyle6{
+	 background:url(/fort/images/btn_tjyh2.jpg) no-repeat; 
+	 border:none; 
+	 width:82px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+}
+.btnstyle2{/*添加用户、角色等按钮背景*/
+	 background:url(/fort/images/btn_tjyh.jpg) no-repeat; 
+	 border:none; 
+	 width:82px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+	 text-align: right;
+	 vertical-align: middle;
+}
+
+.btnstyle3{/*添加指令、时间、地址对象，添加修改、同步计划按钮背景*/
+	 background:url(/fort/images/btn_tjyh1.jpg) no-repeat; 
+	 border:none; 
+	 width:99px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+	 text-align: right;
+	 vertical-align: middle;
+}
+.btnstyle4{/*停止服务启动服务按钮背景*/
+	 background:url(/fort/images/btnfoot.jpg) no-repeat; 
+	 border:none; 
+	 width:76px; 
+	 height:28px;
+	 cursor:pointer;
+	 color:#265D86;
+}
+.btnstyle5{/*修改用户、角色等按钮背景*/
+	 background:url(/fort/images/btn_xgyh.jpg) no-repeat; 
+	 border:none; 
+	 width:82px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+	 text-align: right;
+	 vertical-align: middle;
+}
+/*保存按钮背景*/
+.btnyh{
+	 background:url(/fort/images/btnOK.png) no-repeat; 
+	 border:none; 
+	 width:100px; 
+	 height:27px;
+	 cursor:pointer;
+	 font-family:微软雅黑;
+}
+
+/*功能按钮背景*/
+.btnyh2{
+	 background:url(/fort/images/btnSmall.png) no-repeat; 
+	 border:none; 
+	 width:56px; 
+	 height:22px;
+	 cursor:pointer;
+}
+/*功能按钮背景*/
+.btnyh3{
+	 background:url(/fort/images/btnSmallGray.png) no-repeat; 
+	 border:none; 
+	 width:56px; 
+	 height:22px;
+	 cursor:pointer;
+}
+/*功能按钮背景*/
+.btnyh4{
+	 background:url(/fort/images/btnSelect.png) no-repeat; 
+	 border:none; 
+	 width:60px; 
+	 height:27px;
+	 cursor:pointer;
+}
+.btnsave{/*保存按钮背景*/
+	background:url(/fort/images/btnSave.jpg) no-repeat; 
+	border:none;
+    width:66px; 
+    height:27px; 
+    border:none;
+    overflow:hidden;
+    cursor:pointer;
+    text-align: right;
+    color:#265D86;
+	vertical-align: middle;
+}
+.btncancel{/*取消*/
+    background:url(/fort/images/btnbgcancel.jpg) no-repeat; 
+   border:none;
+    width:66px; 
+    height:27px; 
+    border:none;
+    overflow:hidden;
+    cursor:pointer;
+    text-align: right;
+    color:#265D86;
+	vertical-align: middle;
+}
+
+.btnlock{
+	background:url(/fort/images/btnLocked.jpg) no-repeat; 
+	border:none; 
+	width:58px; 
+	height:21px;
+	cursor:pointer;
+	
+}
+/**/
+.btnactive{
+	background:url(/fort/images/btnLock.jpg) no-repeat; 
+	border:none; 
+	width:58px; 
+	height:21px;
+	cursor:pointer;
+}
+/*添加按钮背景*/
+.btnadd{
+	 background:url(/fort/images/btn1.jpg) no-repeat; 
+	 border:none; 
+	 width:58px; 
+	 height:21px;
+	 cursor:pointer;
+}
+/*修改按钮背景*/
+.btnedit{
+	 background:url(/fort/images/btnEdit.jpg) no-repeat; 
+	 border:none; 
+	 width:58px; 
+	 height:21px;
+	 cursor:pointer;
+}
+/*删除按钮背景*/
+.btndel{
+	 background:url(/fort/images/btnDel.jpg) no-repeat; 
+	 border:none; 
+	 width:58px; 
+	 height:21px;
+	 cursor:pointer;
+}
+/*复制按钮背景*/
+.btncopy{
+	 background:url(/fort/images/btnCopy.jpg) no-repeat; 
+	 border:none; 
+	 width:58px; 
+	 height:21px;
+	 cursor:pointer;
+}
+.btnchang{
+	background:url(/fort/images/chance.jpg) no-repeat; 
+	width:26px; 
+	height:19px; 
+	border:none;
+	cursor:pointer;	
+}
+/*保存，取消按钮上字体样式*/
+.btnValue{
+    color:#265D86;
+    position: relative;
+    left: -43px;
+    cursor: pointer;
+    top: 1px;
+}
+/*添加用户，角色等按钮上的字体样式*/
+.btnValueAdd1{
+	color:#265D86;	
+    position: relative;
+    cursor: pointer;
+    left: -62px;
+    top: 1px;
+}
+/*添加策略，计划等按钮上的字体样式*/
+.btnValueAdd2{
+	color:#265D86;	
+    position: relative;
+    cursor: pointer;
+    left: -82px;
+    top: 1px;
+}
+/*添加时间，地址对象等字体样式*/
+.btnValueAdd3{
+	color:#265D86;	
+    position: relative;
+    cursor: pointer;
+    left: -87px;
+    top: 1px;
+}
+
+/*关闭按钮样式*/
+.closeButton{
+	 margin-top:-5px;
+}
+
+.user_list { padding-left:3px; }
+.user_list ul {WIDTH: 665px; MARGIN-LEFT: 0px; PADDING-BOTTOM: 10px; MARGIN-BOTTOM: 10px; MARGIN-TOP: 5px; text-align: left;}
+.user_list ul li {font-size: 12px; display: block; FLOAT: left; WIDTH:150px; PADDING-LEFT: 0px; PADDING-RIGHT: 10px; line-height: 30px;}
+
+.rule_resource_item { line-height:30px;  }
+.rule_resource_item img {margin:3px; vertical-align:middle; }

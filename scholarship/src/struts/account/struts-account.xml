@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+
+	<package name="account" extends="struts-default" namespace="/account">
+
+		<action name="query" class="accountAction" method="query">
+			<result name="success">/pages/account/accountList.jsp</result>
+		</action>
+		
+		<action name="queryById" class="accountAction" method="queryById">
+			<result name="success">/pages/account/accountInfo.jsp</result>
+		</action>
+		
+		<action name="update" class="accountAction" method="update">
+			<result name="success" type="redirect">/account/query.action</result>
+			<result name="input">/pages/account/accountInfo.jsp</result>
+		</action>
+		
+		<action name="execute" class="accountAction" method="execute">
+			<result name="success" type="redirect">/account/query.action?order=UPDATEDATE</result>
+			<result name="input">/pages/account/accountInfo.jsp</result>
+		</action>
+		
+		<action name="checkAccountAccno" class="accountAction" method="checkAccountAccno"></action>
+	</package>
+	
+</struts>	

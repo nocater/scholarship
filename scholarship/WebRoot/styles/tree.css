@@ -1,0 +1,37 @@
+/* global styles*/
+* { margin:0; padding:0;}
+body{font-size:12px; font-family:"宋体";color:#000; margin:0 auto;}
+html{overflow-x:hidden; overflow-y:auto;}
+a{text-decoration:none; color:#000;}
+a:hover{text-decoration:none; color:#c00;}
+img {border:0;}
+/*A {COLOR: blue; TEXT-DECORATION: none;}
+A:hover {COLOR: #blue; TEXT-DECORATION: underline;}
+
+div {font-size:13px;}
+td {font-size:13px;}
+span {font-size:13px;}
+hr {height:1px;border:none;border-top:1px solid Black;margin:0 0 3px 0;*margin:0 0 -11px 0;float:none;*float:left;display:block;}
+*/
+/* global styles*/
+
+/* util styles*/
+.hand{cursor:pointer;}
+.wrap{table-layout:fixed; word-break: break-all; overflow:hidden;}
+.clear{ clear:both;}
+.weight {font-weight:800;}
+.readonly {background:#cccccc;}
+.dotted {border-bottom: 1px dotted black;}
+.btn1{ background:url(../images/btn_back_x1.png) no-repeat; width:39px; height:30px; border:none; cursor:pointer;}
+.btn2{ background:url(../images/btn_back_x2.png) no-repeat; width:59px; height:30px; border:none; cursor:pointer;}
+.btn4{ background:url(../images/btn_back_x4.png) no-repeat; width:94px; height:30px; border:none; cursor:pointer;}
+.btn4s{ background:url(../images/btn_back_x4s.png) no-repeat; width:89px; height:30px; border:none; cursor:pointer;}
+/* util styles*/
+
+/* tree styles*/
+.right{float:right;margin-top:8px;margin-right:10px;}
+.left{float:left;}
+.common_node{cursor:pointer;line-height:20px;padding-left:35px;}
+.root_tree_node{position;relative;display:block;padding-left:25px;line-height:25px;}
+.son_tree_node{position;relative;display:block;padding-left:25px;line-height:25px;}
+/* tree styles*/

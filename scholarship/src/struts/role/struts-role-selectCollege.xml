@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	
+	<package name="role-selectCollege" extends="struts-default" namespace="/role-selectCollege">
+		
+		<action name="queryAllCollegeAjax" class="selectCollegeAction" method="queryAllCollegeAjax"/>
+		
+		<action name="queryAll" class="collegeAction" method="queryAll">
+			<result name="success">/pages/role/selectCollege.jsp</result>
+		</action>
+		
+	</package>
+	
+</struts>	

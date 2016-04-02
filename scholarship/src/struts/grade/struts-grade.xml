@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	
+	<package name="grade" extends="struts-default" namespace="/grade">
+	
+		<action name="query" class="gradeAction" method="query">
+			<result name="success">/pages/grade/gradeList.jsp</result>
+		</action>
+		
+		<action name="queryGradesAjax" class="gradeAction" method="queryGradesAjax"/>
+		
+		<action name="queryById" class="gradeAction" method="queryById">
+			<result name="success">/pages/grade/gradeInfo.jsp</result>
+		</action>
+		
+		<action name="update" class="gradeAction" method="update">
+			<result name="success" type="redirect">/grade/query.action?order=UPDATEDATE</result>
+		</action>
+		
+		<action name="checkGradeName" class="gradeAction" method="checkGradeName"/>
+	</package>
+	
+</struts>	

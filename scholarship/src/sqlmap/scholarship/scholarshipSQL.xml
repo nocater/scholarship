@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 这里的namespace名字必须为执行该sql的dao地址  -->
+<mapper namespace="com.scholarship.dao.scholarship.impl.ScholarshipDaoImpl">
+	
+	<resultMap type="com.scholarship.module.scholarship.Scholarship" id="scholarship">
+        <result	property="id" 			column="id"			/>
+        <result property="category"		column="category"	/>
+        <result property="level" 		column="level"		/>
+		<result property="money" 		column="money"		/>
+    </resultMap>
+	
+	<select id="scholarship_queryAll" resultMap="scholarship">
+        <![CDATA[ 
+            SELECT * FROM scholarship WHERE 1=1
+        ]]>   
+    </select>
+    
+    <select id="scholarship_queryById" resultMap="scholarship">
+    	<![CDATA[
+    		SELECT * FROM scholarship WHERE ID=#{id}
+    	]]>
+    </select>
+    
+    <!-- 通过selectList 方法  和 sql resultType 实现返回List<String> -->
+    <select id="scholarship_queryCategories" resultType="String">
+    	<![CDATA[
+    		SELECT DISTINCT(CATEGORY) FROM scholarship ORDER BY CATEGORY
+    	]]>
+    </select>
+    
+    <!-- 添加如下代码会自动覆盖传如对象ID值   方法直接返回影响行数(如返回-2147482646 请修改defaultExecutorType不为BATCH)-->
+    <insert id="scholarship_insert" parameterType="scholarship" useGeneratedKeys="true" keyColumn="id">
+    	<![CDATA[
+    		INSERT INTO scholarship 
+			(category, level, money) 
+			VALUES (#{category}, 
+					#{level},
+					#{money})
+    	]]>
+    	<selectKey resultType="int" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    </insert>
+    
+    <update id="scholarship_update" parameterType="scholarship">
+    	<![CDATA[
+    		UPDATE scholarship 
+			SET 
+				CATEGORY=#{category},
+				LEVEL=#{level},
+				MONEY=#{money}
+			WHERE ID=#{id}
+    	]]>
+    </update>
+    
+    <delete id="scholarship_delete" parameterType="scholarship">
+    	<![CDATA[
+    		DELETE FROM scholarship
+    		WHERE ID=#{id}
+    	]]>
+    </delete>
+    
+    <delete id="scholarship_deleteById">
+    	<![CDATA[
+    		DELETE FROM scholarship
+    		WHERE ID=#{id}
+    	]]>
+    </delete>
+</mapper>

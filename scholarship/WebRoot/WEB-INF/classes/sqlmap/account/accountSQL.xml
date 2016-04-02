@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 这里的namespace名字必须为执行该sql的dao地址  -->
+<mapper namespace="com.scholarship.dao.account.impl.AccountDaoImpl">
+	
+	<resultMap type="com.scholarship.module.account.Account" id="account">
+        <result property="id" 			column="id"			/>
+		<result property="accno"		column="accno"		/>
+        <result property="name" 		column="name"		/>
+		<result property="password" 	column="password"	/>
+		<result property="sex" 			column="sex"		/>
+		<result	property="qq"			column="qq"			/>
+		<result	property="phone"		column="phone"		/>
+        <result property="email" 		column="email"		/>
+        <result property="createDate"	column="createdate"	/>
+        <result property="updateDate"	column="updatedate"	/>
+        <association property="role"	column="role_id" 	javaType="role" 	select="com.scholarship.dao.role.impl.RoleDaoImpl.role_queryById"/>
+        <association property="college"	column="college_id" javaType="college" 	select="com.scholarship.dao.college.impl.CollegeDaoImpl.college_queryById"/>
+        <association property="grade"	column="grade_id" 	javaType="grade" 	select="com.scholarship.dao.grade.impl.GradeDaoImpl.grade_queryById"/>
+    </resultMap>
+     
+	<select id="account_count" parameterType="java.util.HashMap" resultType="int">
+   		<![CDATA[
+   			SELECT COUNT(*) FROM account a WHERE 1=1
+   		]]>
+   		<!-- 过滤角色未分配的账户 -->
+   		<if test="roleId != null">
+   			<![CDATA[
+   			and (
+	   			a.college_id in (
+					select college_id from relation rel where rel.role_id = #{roleId}
+				)
+				
+				or a.grade_id in (
+					select grade_id from relation rel where rel.role_id = #{roleId}
+				)
+				
+				or a.grade_id in(
+					select id from grade where college_id in (select college_id from relation rel where rel.role_id = #{roleId})
+				)
+			)
+   			]]>
+   		</if>
+   		
+   		<if test="accno != null">
+   			<![CDATA[
+   			AND ACCNO LIKE CONCAT('%',#{accno},'%')
+   			]]>
+   		</if>
+   		<if test="name != null">
+   			<![CDATA[
+   			OR NAME LIKE CONCAT('%',#{name},'%')
+   			]]>
+   		</if>
+    </select>
+    
+    <select id="account_query" parameterType="java.util.HashMap" resultMap="account">
+    	<![CDATA[
+    		SELECT ID,ROLE_ID,COLLEGE_ID,GRADE_ID,ACCNO,NAME,PASSWORD,SEX,QQ,PHONE,EMAIL,CREATEDATE,UPDATEDATE  
+    		FROM account a WHERE 1=1
+    	]]>
+    	<!-- 过滤角色未分配的账户 -->
+    	<if test="roleId != null">
+   			<![CDATA[
+   			and (
+	   			a.college_id in (
+					select college_id from relation rel where rel.role_id = #{roleId}
+				)
+				
+				or a.grade_id in (
+					select grade_id from relation rel where rel.role_id = #{roleId}
+				)
+				
+				or a.grade_id in(
+					select id from grade where college_id in (select college_id from relation rel where rel.role_id = #{roleId})
+				)
+			)
+   			]]>
+   		</if>
+   		<if test="onlyStudent != null">
+   			<if test="onlyStudent==-1">
+   				<![CDATA[
+   					AND ROLE_ID = 2
+   				]]>
+   			</if>
+   			<if test="onlyStudent==1">
+   				<![CDATA[
+   					AND ROLE_ID != 2
+   				]]>
+   			</if>
+   		</if>
+   		<if test="collegeId != null and gradeId != 0">
+   			<![CDATA[
+   				AND COLLEGE_ID =#{collegeId}
+   			]]>
+   		</if>
+   		<if test="gradeId != null and gradeId != 0">
+   			<![CDATA[
+   				AND GRADE_ID =#{gradeId}
+   			]]>
+   		</if>
+    	<if test="accno != null">
+    		<![CDATA[
+   			AND ACCNO LIKE CONCAT('%',#{accno},'%')
+   			]]>
+   		</if>
+   		<if test="name != null">
+   			<![CDATA[
+   			OR NAME LIKE CONCAT('%',#{name},'%')
+   			]]>
+   		</if>
+   		<if test="order != null">
+   			<![CDATA[ 
+				ORDER BY ${order} DESC
+			]]>
+   		</if>
+   		
+    </select>
+    
+    <select id="account_queryByRole" resultMap="account" parameterType="role">
+    	<![CDATA[
+    		select * from account a where 1=1
+			
+			and a.college_id in (
+				select college_id from relation rel where rel.role_id = #{id}
+			)
+			
+			or a.grade_id in (
+				select grade_id from relation rel where rel.role_id = #{id}
+			)
+			
+			or a.grade_id in(
+				select grade_id from grade where college_id in (select college_id from relation rel where rel.role_id = #{id})
+			)
+    	]]>
+    	
+    </select>
+    
+    
+    <select id="account_queryAll" resultMap="account">
+    	<![CDATA[
+    		SELECT ID,ROLE_ID,COLLEGE_ID,GRADE_ID,ACCNO,NAME,PASSWORD,SEX,QQ,PHONE,EMAIL,CREATEDATE,UPDATEDATE 
+    		FROM account WHERE 1=1
+    	]]>
+    </select>
+    
+    <select id="account_queryByAccno" resultMap="account">
+    	<![CDATA[
+    		SELECT ID,ROLE_ID,COLLEGE_ID,GRADE_ID,ACCNO,NAME,PASSWORD,SEX,QQ,PHONE,EMAIL,CREATEDATE,UPDATEDATE  
+    		FROM account WHERE ACCNO=#{accno}
+    	]]>
+    </select>
+    
+    <select id="account_queryByName" resultMap="account">
+    	<![CDATA[
+    		SELECT ID,ROLE_ID,COLLEGE_ID,GRADE_ID,ACCNO,NAME,PASSWORD,SEX,QQ,PHONE,EMAIL,CREATEDATE,UPDATEDATE  
+    		FROM account WHERE NAME=#{name}
+    	]]>
+    </select>
+    
+    <select id="account_queryById" resultMap="account">
+    	<![CDATA[
+    		SELECT ID,ROLE_ID,COLLEGE_ID,GRADE_ID,ACCNO,NAME,PASSWORD,SEX,QQ,PHONE,EMAIL,CREATEDATE,UPDATEDATE 
+    		FROM account WHERE ID=#{id}
+    	]]>
+    </select>
+    
+    <insert id="account_insert" parameterType="account" useGeneratedKeys="true" keyColumn="id">
+    	<![CDATA[
+    		INSERT INTO account (ROLE_ID,COLLEGE_ID,GRADE_ID,ACCNO,NAME,PASSWORD,SEX,QQ,PHONE,EMAIL,CREATEDATE,UPDATEDATE)
+    		VALUES(#{role.id},
+    				#{college.id},
+    				#{grade.id},
+    				#{accno},
+    				#{name},
+    				#{password},
+    				#{sex},
+    				#{qq},
+    				#{phone},
+    				#{email},
+    				now(),
+    				now()
+    		)
+    	]]>
+    	<selectKey resultType="int" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    </insert>
+    
+    <update id="account_update" parameterType="account">
+    	<![CDATA[
+    		UPDATE account SET 	ROLE_ID=#{role.id},
+    							COLLEGE_ID=#{college.id},
+    							GRADE_ID=#{grade.id},
+    							ACCNO=#{accno},
+    							NAME=#{name},
+    							PASSWORD=#{password},
+    							SEX=#{sex},
+    							QQ=#{qq},
+    							PHONE=#{phone},
+    							EMAIL=#{email},
+    							UPDATEDATE=NOW()
+    		WHERE ID=#{id}
+    	]]>
+    </update>
+    
+    <delete id="account_delete" parameterType="account">
+    	<![CDATA[
+    		DELETE FROM account WHERE ID=#{id}
+    	]]>
+    </delete>
+    
+    <delete id="account_deleteById">
+    	<![CDATA[
+    		DELETE FROM account WHERE ID=#{id}
+    	]]>
+    </delete>
+</mapper>

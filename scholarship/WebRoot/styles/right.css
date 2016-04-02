@@ -1,0 +1,371 @@
+@CHARSET "UTF-8";
+body {
+    color: #000000;
+    font-family: "宋体";
+    font-size: 12px;
+}
+input, textarea, select, button,img, file , span{
+    font-size: 12px;
+    vertical-align: middle
+}
+.framDiv{
+	 border: 1px solid #5AA4D1;
+	 font-size: 12px;
+}
+.xuxian{width:100%;border:0px;border-bottom:1px dashed #a4a4a4;background:#FFFFFF; margin-bottom:4px;}
+/*.italic{font-style:italic;}*/
+.italic{font-style:normal;}
+.underline{text-decoration:underline;} 
+.caozuobox{
+	overflow:hidden;
+	border:1px solid #c1ddf1;
+	background:url(../images/rightDh.jpg) repeat-x 0 0; 
+	
+	height:33px; 
+	line-height:30px;
+}
+.tab2 .biaocm {
+    background: none repeat scroll 0 0 #F3F9FF;
+}
+
+.sbox {
+    clear: both;
+    margin-bottom: 10px;
+    margin-top: 4px;
+    overflow: hidden;
+}
+.tab2 {
+    background: none repeat scroll 0 0 #D2E8FA;
+}
+.tab2 td {
+    background: none repeat scroll 0 0 #FFFFFF;
+    line-height: 28px;
+   /*  text-align: center; */
+}
+.tab2 .td_t {
+    background: none repeat scroll 0 0 #ffffff;
+    line-height: 28px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.tab2 .biaoti {
+    background: url("../images/tdBg.jpg") repeat-x scroll 0 0 transparent;
+    height:28px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+.cont{ clear: both;overflow:hidden; border-top:none; zoom:1;}
+.btnstyle{
+	 background:url(../images/btnbg.jpg) no-repeat; 
+	 border:none; 
+	 width:66px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+}
+.btnstyle1{/*执行按钮背景*/
+	 background:url(../images/btnBj.jpg) no-repeat; 
+	 border:none; 
+	 width:40px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+}
+.btnstyle6{
+	 background:url(../images/btn_tjyh2.jpg) no-repeat; 
+	 border:none; 
+	 width:82px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+}
+.btnstyle2{/*添加用户、角色等按钮背景*/
+	 background:url(../images/btn_tjyh.jpg) no-repeat; 
+	 border:none; 
+	 width:82px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+	 text-align: right;
+	 vertical-align: middle;
+}
+
+.btnstyle_custom{/*添加用户、角色等按钮背景*/
+	 background:url(../images/add_acc.png) no-repeat; 
+	 border:none; 
+	 width:82px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+	 text-align: right;
+	 vertical-align: middle;
+}
+
+.btnstyle3{/*添加指令、时间、地址对象，添加修改、同步计划按钮背景*/
+	 background:url(../images/btn_tjyh1.jpg) no-repeat; 
+	 border:none; 
+	 width:99px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+	 text-align: right;
+	 vertical-align: middle;
+}
+.btnstyle4{/*停止服务启动服务按钮背景*/
+	 background:url(../images/btnfoot.jpg) no-repeat; 
+	 border:none; 
+	 width:76px; 
+	 height:28px;
+	 cursor:pointer;
+	 color:#265D86;
+}
+.btnstyle5{/*修改用户、角色等按钮背景*/
+	 background:url(../images/btn_xgyh.jpg) no-repeat; 
+	 border:none; 
+	 width:82px; 
+	 height:21px;
+	 cursor:pointer;
+	 color:#265D86;
+	 text-align: right;
+	 vertical-align: middle;
+}
+/*保存按钮背景*/
+.btnyh{
+	 background:url(../images/btnOK.png) no-repeat; 
+	 border:none; 
+	 width:100px; 
+	 height:27px;
+	 cursor:pointer;
+	 font-family:微软雅黑;
+}
+
+/*功能按钮背景*/
+.btnyh2{
+	 background:url(../images/btnSmall.png) no-repeat; 
+	 border:none; 
+	 width:56px; 
+	 height:22px;
+	 cursor:pointer;
+}
+/*功能按钮背景*/
+.btnyh3{
+	 background:url(../images/btnSmallGray.png) no-repeat; 
+	 border:none; 
+	 width:56px; 
+	 height:22px;
+	 cursor:pointer;
+}
+/*功能按钮背景*/
+.btnyh4{
+	 background:url(../images/btnSelect.png) no-repeat; 
+	 border:none; 
+	 width:60px; 
+	 height:27px;
+	 cursor:pointer;
+}
+/*功能按钮背景*/
+/*功能按钮背景*/
+.btnyh5{
+	 background:url(../images/btnSmall2.png) no-repeat; 
+	 border:none; 
+	 width:96px; 
+	 height:22px;
+	 cursor:pointer;
+}
+.btnsave{/*保存按钮背景*/
+	background:url(../images/btnSave.jpg) no-repeat; 
+	border:none;
+    width:66px; 
+    height:27px; 
+    border:none;
+    overflow:hidden;
+    cursor:pointer;
+    text-align: right;
+    color:#265D86;
+	vertical-align: middle;
+}
+.btncancel{/*取消*/
+    background:url(../images/btnbgcancel.jpg) no-repeat; 
+   border:none;
+    width:66px; 
+    height:27px; 
+    border:none;
+    overflow:hidden;
+    cursor:pointer;
+    text-align: right;
+    color:#265D86;
+	vertical-align: middle;
+}
+
+.btnlock{
+	background:url(../images/btnLocked.jpg) no-repeat; 
+	border:none; 
+	width:58px; 
+	height:21px;
+	cursor:pointer;
+	
+}
+/**/
+.btnactive{
+	background:url(../images/btnLock.jpg) no-repeat; 
+	border:none; 
+	width:58px; 
+	height:21px;
+	cursor:pointer;
+}
+/*添加按钮背景*/
+.btnadd{
+	 background:url(../images/btn1.jpg) no-repeat; 
+	 border:none; 
+	 width:58px; 
+	 height:21px;
+	 cursor:pointer;
+}
+/*修改按钮背景*/
+.btnedit{
+	 background:url(../images/btnEdit.jpg) no-repeat; 
+	 border:none; 
+	 width:58px; 
+	 height:21px;
+	 cursor:pointer;
+}
+/*删除按钮背景*/
+.btndel{
+	 background:url(../images/btnDel.jpg) no-repeat; 
+	 border:none; 
+	 width:58px; 
+	 height:21px;
+	 cursor:pointer;
+}
+/*复制按钮背景*/
+.btncopy{
+	 background:url(../images/btnCopy.jpg) no-repeat; 
+	 border:none; 
+	 width:58px; 
+	 height:21px;
+	 cursor:pointer;
+}
+
+.btnchang{
+	background:url(../images/chance.jpg) no-repeat; 
+	width:26px; 
+	height:19px; 
+	border:none;
+	cursor:pointer;	
+}
+/*保存，取消按钮上字体样式*/
+.btnValue{
+    color:#265D86;
+    position: relative;
+    left: -43px;
+    cursor: pointer;
+    top: 1px;
+}
+/*添加用户，角色等按钮上的字体样式*/
+.btnValueAdd1{
+	color:#265D86;	
+    position: relative;
+    cursor: pointer;
+    left: -62px;
+    top: 1px;
+}
+/*添加策略，计划等按钮上的字体样式*/
+.btnValueAdd2{
+	color:#265D86;	
+    position: relative;
+    cursor: pointer;
+    left: -82px;
+    top: 1px;
+}
+/*添加时间，地址对象等字体样式*/
+.btnValueAdd3{
+	color:#265D86;	
+    position: relative;
+    cursor: pointer;
+    left: -87px;
+    top: 1px;
+}
+
+/*关闭按钮样式*/
+.closeButton{
+	 margin-top:-5px;
+}
+
+.user_list { padding-left:3px; }
+.user_list ul {WIDTH: 665px; MARGIN-LEFT: 0px; PADDING-BOTTOM: 10px; MARGIN-BOTTOM: 10px; MARGIN-TOP: 5px; text-align: left;}
+.user_list ul li {font-size: 12px; display: block; FLOAT: left; WIDTH:150px; PADDING-LEFT: 0px; PADDING-RIGHT: 10px; line-height: 30px;}
+
+.rule_resource_item { line-height:30px;  }
+.rule_resource_item img {margin:3px; vertical-align:middle; }
+.right_content{
+   width:500px;
+   overflow-x:auto;
+   overflow-y:auto;
+   padding:0px 1px 0px 1px;
+   margin: 0px 2px 0px 2px;
+}
+.ui-overDlg{
+	position: absolute;
+	z-index:999;
+	width:200px;
+	display:none;
+	border: 2px solid #85b6e2;
+	background-color: #fff;
+	
+}
+.ui-overDlg ul{
+	list-style: none;	
+}
+.ui-overDlg ul li{
+	text-align: left;
+	padding: 10px 20px 2px;
+}
+.ui-overDlg-head{
+	color: #85b6e2;
+    font: bold 16px "Microsoft YaHei";
+    padding: 10px 20px 2px;
+}
+.ui-overDlg-border{
+	background-image: url("../images/pop_up_bg.png");
+	background-repeat:no-repeat;
+	background-color:rgba(0,0,0,0);
+    overflow: hidden;
+}
+.ui-overDlg-top-left-border{
+    background: url("../images/pop_up_bg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 4px;
+    overflow: hidden;
+   position: relative;
+   top:-3px;
+   left:-3px;
+}
+
+.ui-overDlg-top-right-border{
+    position: absolute;
+    top:-2px;
+    right:-5px;
+    background-position: -945px 0;
+     height: 5px;
+    width:  8px;
+}
+
+.ui-overDlg-bottom-left-border{
+     background: url("../images/pop_up_bg.png") no-repeat scroll 0 -4px rgba(0, 0, 0, 0);
+    height: 4px;
+    overflow: hidden;
+   position: relative;
+   bottom:-4px;
+   left:-2px;
+
+}
+.ui-overDlg-bottom-right-border{
+    position: absolute;
+    bottom:-2px;
+    right:-5px;
+    background-position: -945px -3px;
+     height: 5px;
+    width:  8px;
+
+}

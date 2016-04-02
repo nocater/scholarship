@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 这里的namespace名字必须为执行该sql的dao地址  -->
+<mapper namespace="com.scholarship.dao.role.impl.RoleDaoImpl">
+	
+	<resultMap type="com.scholarship.module.role.Role" id="role">
+        <result property="id" 			column="id"			/>  
+        <result property="name" 		column="name"		/>
+        <result property="memo" 		column="memo"		/>
+        <result property="createdate" 	column="createdate"	/>
+        <result	property="updatedate" 	column="updatedate"	/>
+        <association property="collegeList" column="id" select="role_queryColleges"/>
+        <association property="gradeList" 	column="id" select="role_queryGrades"/>
+    </resultMap>
+     
+    <select id="role_count" parameterType="java.util.HashMap" resultType="int">
+    		<![CDATA[
+    			SELECT COUNT(*) FROM role r WHERE 1=1
+    		]]>
+    		<if test="name != null">
+    			AND r.name LIKE CONCAT('%',#{name},'%')
+    		</if>
+    </select>
+     
+    <!-- 查询   $ 和  # 区别  -->
+	<select id="role_query"  parameterType="java.util.HashMap" resultMap="role">
+		SELECT * FROM role r WHERE 1=1 
+		<if test="name !=null">
+			<![CDATA[
+				AND r.name LIKE CONCAT('%',#{name},'%')  
+			]]>
+		</if>
+		<if test="order != null">
+			<![CDATA[ 
+				ORDER BY ${order} DESC
+			]]>
+		</if>
+	</select> 
+     
+	<select id="role_queryAll" resultMap="role">
+		<![CDATA[ 
+            SELECT ID,NAME,MEMO,CREATEDATE,UPDATEDATE FROM role 
+			WHERE 1=1
+        ]]>
+	</select>
+	
+	<select id="role_queryById" resultMap="role">
+		<![CDATA[ 
+            SELECT ID,NAME,MEMO,CREATEDATE,UPDATEDATE FROM role WHERE ID=#{id}
+        ]]>
+	</select>
+	
+	<select id="role_queryByName" resultMap="role">
+		<![CDATA[ 
+            SELECT ID,NAME,MEMO,CREATEDATE,UPDATEDATE FROM role WHERE NAME=#{name}
+        ]]>
+	</select>
+	
+	<!-- 按创建排序 -->
+	<select id="role_queryOrderbyCreate" resultMap="role">
+		<![CDATA[ 
+            SELECT ID,NAME,MEMO,CREATEDATE,UPDATEDATE FROM role ORDER BY CREATEDATE DESC
+        ]]>
+	</select>
+	
+	<!-- 按更新排序 -->
+	<select id="role_queryOrderbyUpdate" resultMap="role">
+		<![CDATA[ 
+            SELECT ID,NAME,MEMO,CREATEDATE,UPDATEDATE FROM role ORDER BY UPDATEDATE DESC
+        ]]>
+	</select>
+	
+	<!-- 添加如下代码会自动覆盖传如对象ID值   方法直接返回影响行数(如返回-2147482646 请修改defaultExecutorType不为BATCH)-->
+	<insert id="role_insert" parameterType="role" useGeneratedKeys="true" keyColumn="id">
+		<![CDATA[
+			INSERT INTO role (NAME,MEMO,CREATEDATE,UPDATEDATE) VALUES (#{name},#{memo},NOW(),NOW())
+		]]>
+		<selectKey resultType="int" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="role_update" parameterType="role">
+		<![CDATA[
+			UPDATE role SET NAME=#{name}, MEMO=#{memo} , UPDATEDATE=NOW() WHERE (ID=#{id})
+		]]>
+	</update>
+	
+	<delete id="role_delete" parameterType="role">
+		<![CDATA[
+			DELETE FROM role WHERE ID=#{id} 
+		]]>
+	</delete>
+	
+	<delete id="role_deleteById">
+		<![CDATA[
+			DELETE FROM role WHERE ID=#{id}
+		]]>
+	</delete>
+	
+	<!-- 查询角色关联的学院 -->
+	<select id="role_queryColleges" parameterType="role" resultType="college">
+		<![CDATA[
+			select * from college c where c.id in (
+					select college_id from relation r where r.role_id=#{id}
+					)
+		]]>
+	</select>
+	
+	<!-- 查询角色关联的班级 -->
+	<select id="role_queryGrades" parameterType="role" resultType="grade">
+		<![CDATA[
+			select * from grade g where g.id in (
+					select grade_id from relation r where r.role_id=#{id}
+					)
+		]]>
+	</select>
+	
+	<!-- 添加角色关联关系 -->
+	<insert id="role_insertRelation" parameterType="java.util.HashMap">
+		<![CDATA[
+			insert into relation (role_id,college_id,grade_id) 
+							values(#{role_id},#{college_id},#{grade_id})
+		]]>
+	</insert>
+	
+	<delete id="role_deleteRelation">
+		<![CDATA[
+			delete from relation where role_id=#{id}
+		]]>
+	</delete>
+</mapper>

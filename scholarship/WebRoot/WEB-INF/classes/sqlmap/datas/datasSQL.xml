@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 这里的namespace名字必须为执行该sql的dao地址  -->
+<mapper namespace="com.scholarship.dao.datas.impl.DatasDaoImpl">
+	
+	<resultMap type="com.scholarship.module.datas.Datas" id="datas">
+        <result property="id" 					column="id" />
+		<result property="college" 				column="college" />
+		<result property="major" 				column="major" />
+		<result property="grade" 				column="grade" />
+		<result property="year" 				column="year" />
+		<result property="type" 				column="type" />
+		<result property="name" 				column="name" />
+		<result property="sex" 					column="sex" />
+		<result property="idnumber" 			column="idnumber" />
+		<result property="bankcard" 			column="bankcard" />
+		<result property="area" 				column="area" />
+		<result property="address" 				column="address" />
+		<result property="distance" 			column="distance" />
+		<result property="name_grandfather" 	column="name_grandfather" />
+		<result property="name_grandmother" 	column="name_grandmother" />
+		<result property="in_grandfather" 		column="in_grandfather" />
+		<result property="in_grandmother" 		column="in_grandmother" />
+		<result property="health_grandfather" 	column="health_grandfather" />
+		<result property="health_grandmother" 	column="health_grandmother" />
+		<result property="name_father" 			column="name_father" />
+		<result property="name_mother" 			column="name_mother" />
+		<result property="in_father" 			column="in_father" />
+		<result property="in_mother" 			column="in_mother" />
+		<result property="career_father" 		column="career_father" />
+		<result property="career_mother" 		column="career_mother" />
+		<result property="health_father" 		column="health_father" />
+		<result property="health_mother" 		column="health_mother" />
+		<result property="others" 				column="others" />
+		<result property="in_family" 			column="in_family" />
+		<result property="out_main"				column="out_main" />
+		<result property="balance" 				column="balance" />
+		<result property="descripe" 			column="descripe" />
+		<result property="file" 				column="file" />
+		<result	property="accident"				column="accident"/>
+		<result	property="score_place"			column="score_place"/>
+		<result	property="quality_place"		column="quality_place"/>
+		<result property="memo" 				column="memo" />
+		<result property="createdate" 			column="createdate" />
+		<result property="updatedate" 			column="updatedate" />
+        <association property="account"	column="account_id" javaType="account" select="com.scholarship.dao.account.impl.AccountDaoImpl.account_queryById"/>
+    </resultMap>
+     
+    <select id="datas_count" parameterType="java.util.HashMap" resultMap="datas">
+    	<![CDATA[
+    		SELECT COUNT(*) FROM datas WHERE 1=1
+    	]]>
+    	<if test="name != null">
+    		<![CDATA[
+    			AND NAME LIKE CONCAT('%',#{name},'%')
+    		]]>
+    	</if>
+    	<if test="type != null">
+    		<![CDATA[
+    			AND TYPE = #{type}
+    		]]>
+    	</if>
+    	<if test="college != null">
+    		<![CDATA[
+    			AND COLLEGE LIKE CONCAT('%',#{college},'%')
+    		]]>
+    	</if>
+    	<if test="major != null">
+    		<![CDATA[
+    			AND MAJOR LIKE CONCAT('%',#{major},'%')
+    		]]>
+    	</if>
+    	<if test="grade != null">
+    		<![CDATA[
+    			AND GRADE LIKE CONCAT('%',#{grade},'%')
+    		]]>
+    	</if>
+    	<if test="accountId != null">
+    		<![CDATA[
+    			AND ACCOUNT_ID = #{accountId}
+    		]]>
+    	</if>
+    </select>
+	
+	<select id="datas_query" parameterType="java.util.HashMap" resultMap="datas">
+    	<![CDATA[
+    		SELECT * FROM datas WHERE 1=1
+    	]]>
+    	<if test="name != null">
+    		<![CDATA[
+    			AND NAME LIKE CONCAT('%',#{name},'%')
+    		]]>
+    	</if>
+    	<if test="type != null">
+    		<![CDATA[
+    			AND TYPE = #{type}
+    		]]>
+    	</if>
+    	<if test="college != null">
+    		<![CDATA[
+    			AND COLLEGE LIKE CONCAT('%',#{college},'%')
+    		]]>
+    	</if>
+    	<if test="major != null">
+    		<![CDATA[
+    			AND MAJOR LIKE CONCAT('%',#{major},'%')
+    		]]>
+    	</if>
+    	<if test="grade != null">
+    		<![CDATA[
+    			AND GRADE LIKE CONCAT('%',#{grade},'%')
+    		]]>
+    	</if>
+    	<if test="accountId != null">
+    		<![CDATA[
+    			AND ACCOUNT_ID = #{accountId}
+    		]]>
+    	</if>
+    	<if test="order != null">
+    		<![CDATA[
+    			ORDER BY ${order} DESC
+    		]]>
+    	</if>
+    </select>
+    
+    <select id="datas_queryById" resultMap="datas">
+    	SELECT * FROM datas WHERE ID=#{id}
+    </select>
+    
+    <insert id="datas_insert" parameterType="datas" useGeneratedKeys="true" keyColumn="id">
+    	<![CDATA[
+    		INSERT INTO datas (
+    			account_id,
+				college,
+				major,
+				grade,
+				year,
+				type,
+				name,
+				sex,
+				idnumber,
+				bankcard,
+				area,
+				address,
+				distance,
+				name_grandfather,
+				name_grandmother,
+				in_grandfather,
+				in_grandmother,
+				health_grandfather,
+				health_grandmother,
+				name_father,
+				name_mother,
+				in_father,
+				in_mother,
+				career_father,
+				career_mother,
+				health_father,
+				health_mother,
+				others,
+				in_family,
+				out_main,
+				balance,
+				descripe,
+				file,
+				accident,
+				score_place,
+				quality_place,
+				memo,
+				createdate,
+				updatedate
+			)
+			VALUES(
+				#{account.id},
+				#{college},
+				#{major},
+				#{grade},
+				#{year},
+				#{type},
+				#{name},
+				#{sex},
+				#{idnumber},
+				#{bankcard},
+				#{area},
+				#{address},
+				#{distance},
+				#{name_grandfather},
+				#{name_grandmother},
+				#{in_grandfather},
+				#{in_grandmother},
+				#{health_grandfather},
+				#{health_grandmother},
+				#{name_father},
+				#{name_mother},
+				#{in_father},
+				#{in_mother},
+				#{career_father},
+				#{career_mother},
+				#{health_father},
+				#{health_mother},
+				#{others},
+				#{in_family},
+				#{out_main},
+				#{balance},
+				#{descripe},
+				#{file},
+				#{accident},
+				#{score_place},
+				#{quality_place},
+				#{memo},
+				now(),
+				now()				
+			)
+    	]]>
+    	<selectKey resultType="int" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    </insert>
+    
+    <update id="datas_update" parameterType="datas">
+    	UPDATE datas 
+    			SET	
+    				account_id=#{account.id},
+					college=#{college},
+					major=#{major},
+					grade=#{grade},
+					year=#{year},
+					type=#{type},
+					name=#{name},
+					sex=#{sex},
+					idnumber=#{idnumber},
+					bankcard=#{bankcard},
+					area=#{area},
+					address=#{address},
+					distance=#{distance},
+					name_grandfather=#{name_grandfather},
+					name_grandmother=#{name_grandmother},
+					in_grandfather=#{in_grandfather},
+					in_grandmother=#{in_grandmother},
+					health_grandfather=#{health_grandfather},
+					health_grandmother=#{health_grandmother},
+					name_father=#{name_father},
+					name_mother=#{name_mother},
+					in_father=#{in_father},
+					in_mother=#{in_mother},
+					career_father=#{career_father},
+					career_mother=#{career_mother},
+					health_father=#{health_father},
+					health_mother=#{health_mother},
+					others=#{others},
+					in_family=#{in_family},
+					out_main=#{out_main},
+					balance=#{balance},
+					descripe=#{descripe},
+					file=#{file},
+					accident=#{accident},
+					score_place=#{score_place},
+					quality_place=#{quality_place},
+					memo=#{memo},
+					updatedate=NOW()
+		WHERE
+			ID=#{id}
+    </update>
+    
+    <delete id="datas_delete" parameterType="datas">
+    	DELETE FROM datas WHERE ID=#{id}
+    </delete>
+    
+    <delete id="datas_deleteById" parameterType="int">
+    	DELETE FROM datas WHERE ID=#{id}
+    </delete>
+    
+    <update id="datas_chengeType">
+    	UPDATE datas SET TYPE=#{type} WHERE ID=#{id}
+    </update>
+</mapper>

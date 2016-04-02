@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 这里的namespace名字必须为执行该sql的dao地址  -->
+<mapper namespace="com.scholarship.dao.college.impl.CollegeDaoImpl">
+	
+	<resultMap type="com.scholarship.module.college.College" id="college">
+        <result property="id" 			column="id"			/>  
+        <result property="name" 		column="name"		/>
+        <result property="memo"			column="memo"		/>
+        <result property="createdate" 	column="createdate"	/>
+        <result	property="updatedate" 	column="updatedate"	/>
+    </resultMap>
+     
+    <select id="college_count" parameterType="java.util.HashMap" resultType="int">
+    	<![CDATA[
+    		SELECT COUNT(*) FROM college WHERE 1=1
+    	]]>
+    	<if test="name != null">
+    		<![CDATA[
+    			AND NAME LIKE CONCAT('%',#{name},'%')
+    		]]>
+    	</if>
+    </select>
+    
+    <select id="college_query" parameterType="java.util.HashMap" resultMap="college">
+    	<![CDATA[
+    		SELECT * FROM college WHERE 1=1
+    	]]>
+    	<if test="name != null">
+    		<![CDATA[
+    			AND NAME LIKE CONCAT('%',#{name},'%')
+    		]]>
+    	</if>
+    	<if test="order != null">
+    		<![CDATA[
+    			ORDER BY ${order} DESC
+    		]]>
+    	</if>
+    </select>
+    
+	<select id="college_queryAll" resultMap="college">
+		<![CDATA[ 
+			SELECT * FROM college WHERE 1=1
+        ]]>
+	</select>
+	
+	<select id="college_queryById" resultMap="college">
+		<![CDATA[ 
+			SELECT * FROM college WHERE ID=#{id}
+        ]]>
+	</select>
+	
+	<select id="college_queryByName" resultMap="college">
+		<![CDATA[ 
+			SELECT * FROM college WHERE NAME=#{name}
+        ]]>
+	</select>
+	
+	<select id="college_queryByRole" parameterType="role" resultMap="college">
+		<![CDATA[
+			SELECT * FROM college WHERE ID IN (SELECT COLLEGE_ID FROM relation WHERE ROLE_ID=#{id})
+		]]>	
+	</select>
+	
+	<!-- 添加如下代码会自动覆盖传如对象ID值   方法直接返回影响行数(如返回-2147482646 请修改defaultExecutorType不为BATCH)-->
+	<insert id="college_insert" parameterType="college" useGeneratedKeys="true" keyColumn="id">
+		<![CDATA[
+			INSERT INTO college 
+			(NAME,MEMO,CREATEDATE,UPDATEDATE)
+			VALUES(	#{name},
+					#{memo},
+					NOW(),
+					NOW()
+			)
+		]]>
+		<selectKey resultType="int" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="college_update" parameterType="college">
+		<![CDATA[
+			UPDATE college
+			SET NAME=#{name},
+				MEMO=#{memo},
+				UPDATEDATE=NOW()
+			WHERE ID=#{id}
+		]]>
+	</update>
+	
+	<delete id="college_delete" parameterType="college">
+		<![CDATA[
+			DELETE FROM college WHERE ID=#{id}
+		]]>
+	</delete>
+	
+	<delete id="college_deleteById">
+		<![CDATA[
+			DELETE FROM college WHERE ID=#{id}
+		]]>
+	</delete>
+	
+</mapper>

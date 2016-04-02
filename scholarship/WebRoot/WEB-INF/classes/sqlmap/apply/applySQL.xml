@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 这里的namespace名字必须为执行该sql的dao地址  -->
+<mapper namespace="com.scholarship.dao.apply.impl.ApplyDaoImpl">
+	
+	<resultMap type="com.scholarship.module.apply.Apply" id="apply">
+        <result property="id" 					column="id" />
+		<result property="status" 				column="status" />
+		<result property="major" 				column="major" />
+		<result property="year" 				column="year" />
+		<result property="createDate" 			column="createdate" />
+		<result property="updateDate" 			column="updatedate" />
+        <association property="account"			column="account_id" 		javaType="account" 		select="com.scholarship.dao.account.impl.AccountDaoImpl.account_queryById"/>
+    	<association property="approve_Account"	column="approve_account_id" javaType="account" 		select="com.scholarship.dao.account.impl.AccountDaoImpl.account_queryById"/>
+    	<association property="scholarship"		column="scholarship_id" 	javaType="scholarship" 	select="com.scholarship.dao.scholarship.impl.ScholarshipDaoImpl.scholarship_queryById"></association>
+    </resultMap>
+     
+    <select id="apply_count" parameterType="java.util.HashMap" resultMap="apply">
+    	<![CDATA[
+    		SELECT COUNT(*) FROM apply ap WHERE 1=1
+    	]]>
+    	<if test="roleId != null">
+    	and (
+    			ap.account_id in(
+    					
+				SELECT id from account a where 
+				
+				a.college_id in (select college_id from relation rel where rel.role_id = 4)
+				
+				or a.grade_id in (select grade_id from relation rel where rel.role_id = 4)
+				
+				or a.grade_id in(select id from grade where college_id in (select college_id from relation rel where rel.role_id = 4)
+				)
+			)
+    	</if>
+    	<if test="accountId != null">
+    		<![CDATA[
+    			AND ACCOUNT_ID = #{accountId}
+    		]]>
+    	</if>
+    	<if test="status != null">
+    		<![CDATA[
+    			AND status = #{status}
+    		]]>
+    	</if>
+    	<if test="approveAccountId != null">
+    		<![CDATA[
+    			AND approve_accountId = #{approve_accountId}
+    		]]>
+    	</if>
+    	<if test="year != null">
+    		<![CDATA[
+    			AND year = #{year}
+    		]]>
+    	</if>
+    </select>
+	
+	<select id="apply_query" parameterType="java.util.HashMap" resultMap="apply">
+    	<![CDATA[
+    		SELECT * FROM apply ap WHERE 1=1
+    	]]>
+    	<if test="roleId != null">
+    	and (
+    			ap.account_id in(
+    					
+				SELECT id from account a where 
+				
+				a.college_id in (select college_id from relation rel where rel.role_id = #{roleId})
+				
+				or a.grade_id in (select grade_id from relation rel where rel.role_id = #{roleId})
+				
+				or a.grade_id in(select id from grade where college_id in (select college_id from relation rel where rel.role_id = #{roleId}))
+				)
+			)
+    	</if>
+    	<if test="accountId != null">
+    		<![CDATA[
+    			AND ACCOUNT_ID = #{accountId}
+    		]]>
+    	</if>
+    	<if test="status != null">
+    		<![CDATA[
+    			AND status = #{status}
+    		]]>
+    	</if>
+    	<if test="year != null">
+    		<![CDATA[
+    			AND year = #{year}
+    		]]>
+    	</if>
+    	<if test="approveAccountId != null">
+    		<![CDATA[
+    			AND approve_accountId = #{approve_accountId}
+    		]]>
+    	</if>
+    	<if test="order != null">
+    		<![CDATA[
+    			ORDER BY ${order} DESC
+    		]]>
+    	</if>
+    </select>
+    
+    <select id="apply_queryById" resultMap="apply">
+    	<![CDATA[
+    		SELECT * FROM apply WHERE ID=#{id}
+    	]]>
+    </select>
+    
+    <insert id="apply_insert" parameterType="apply" useGeneratedKeys="true" keyColumn="id">
+    	<![CDATA[
+    		INSERT INTO apply (
+    			account_id,
+    			status,
+    			year,
+    			approve_account_id,
+    			scholarship_id,
+				createdate,
+				updatedate
+			)
+			VALUES(
+				#{account.id},
+				#{status},
+				#{year},
+				#{approveAccount.id},
+				#{scholarship.id},
+				now(),
+				now()				
+			)
+    	]]>
+    	<selectKey resultType="int" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    </insert>
+    
+    <update id="apply_update" parameterType="apply">
+    	UPDATE apply 
+    			SET	
+    				account_id=#{account.id},
+    				status=#{status},
+    				year=#{year},
+    				approve_account_id=#{approve_Account.id},
+    				scholarship_id=#{scholarship.id},
+					updatedate=now()
+		WHERE
+			ID=#{id}
+    </update>
+    
+    <delete id="apply_delete" parameterType="apply">
+    	DELETE FROM apply WHERE ID=#{id}
+    </delete>
+    
+    <delete id="apply_deleteById" parameterType="int">
+    	DELETE FROM apply WHERE ID=#{id}
+    </delete>
+</mapper>

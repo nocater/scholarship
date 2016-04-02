@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+/* util styles*/
+.hand{cursor:pointer;}
+.wrap{table-layout:fixed; word-break: break-all; overflow:hidden;}
+.clear{ clear:both;}
+img{border:0;}
+.weight {font-weight:800;}
+.readonly {background:#cccccc;}
+.dotted {border-bottom: 1px dotted black;}
+.btn1{ background:url(../images/btn_back_x1.png) no-repeat; width:39px; height:30px; border:none; cursor:pointer;}
+.btn2{ background:url(../images/btn_back_x2.png) no-repeat; width:59px; height:30px; border:none; cursor:pointer;}
+.btn4{ background:url(../images/btn_back_x4.png) no-repeat; width:94px; height:30px; border:none; cursor:pointer;}
+.btn4s{ background:url(../images/btn_back_x4s.png) no-repeat; width:89px; height:30px; border:none; cursor:pointer;}
+
+.ThinInput {border:1px solid black;}
+.hr_g {height:1px;border:none;border-top:1px solid gray;margin:0 0 3px 0;*margin:0 0 -11px 0;float:none;*float:left;display:block;}
+
+.hr_h {height:50px;border:none;border-top:1px solid gray;margin:0 0 3px 0;*margin:0 0 -11px 0;float:none;*float:left;display:block;}
+/* util styles*/
+
+/* CSS Document */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th{padding:0; margin:0;} 
+fieldset,img{ margin:0; padding:0;border: 0;} 
+address,caption,cite,code,dfn,em,strong,th,var { font-style: normal; } 
+ol,ul {list-style: none;} 
+caption,th{text-align: left;} 
+h1,h2,h3,h4,h5,h6 { font-size: 100%; } 
+q:before,q:after{ content:;} 
+abbr,acronym {border: 0;}
+input,textarea,select,button,file{	font-size:12px; vertical-align:middle;}
+
+.clear{clear:both;height:1px; margin-bottom:-1px;*display:inline;overflow:hidden; }
+.cls:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.cls{display: inline-block;}
+
+body{font-size:12px; font-family:"宋体";color:#000; margin:0 auto;}
+html{overflow-x:hidden; overflow-y:auto;}
+a{text-decoration:none; color:#000;}
+a:hover{text-decoration:none; color:#c00;}
+
+/*-----------------------login.html-------------------------------------*/
+.container{ width:100%; margin:0 auto;}
+.lbjtop{ background:url(../images/lbjfooter.jpg) repeat-x left; height:82px;}
+.lbjmid{ background:#d8dce8;text-align:center; margin:0 auto;}
+.lbjfooter{background:url(../images/lbjfooter.jpg) repeat-x left; height:82px;}
+.lboxtop{ background:url(../images/lboxtop.jpg) no-repeat center; width:688px; height:60px; margin:0 auto;padding-top:10px; padding-left:10px;}
+.lboxmid{ background:url(../images/lboxmid.jpg) repeat-y center; padding-top:60px; padding-bottom:60px; text-align:center;}
+.lboxmid table tr{ padding-top:10px; padding-bottom:10px; font-size:14px; color:#5a6676; font-weight:bolder;}
+
+.lboxmid .inputtext{ border:none; border:1px solid #dfdfdf; font-size:12px; padding:2px; height:24px; width:200px;}
+.lboxmid .inputtext2{ border:none; border:1px solid #dfdfdf; font-size:12px; padding:2px; height:24px; width:100px;}
+.lboxmid .actmsg{ padding-top:10px; padding-bottom:10px; font-size:13px; color:#ff0000;}
+.lboxmid .inputsubmit{ background:url(../images/loginBtn.jpg) no-repeat; width:81px; height:29px; border:none; font-size:14px; color:#FFFFFF;}
+.lboxmid .lboxleft{ text-align:right; width:46%;}
+.lboxmid .lboxright{ text-align:left; width:54%;}
+
+.lboxfooter{ background:url(../images/lboxfooter.jpg) no-repeat center; height:32px; line-height:32px;}
+.lboxfooter table{}
+.lboxfootyy{ background:url(../images/lboxyy.jpg) no-repeat center; height:31px;}
+.logoleft{ width:199px; height:52px;float:left;}
+.logomid{ background:url(../images/lfenge.jpg) no-repeat; width:8px; height:70px;float:left; margin-top:-10px; margin-left:10px; margin-right:10px;}
+.logoright{ float:left; font-family:Geneva, Arial, Helvetica, sans-serif, "黑体"; font-size:22px; margin-left:4px; height:50px; line-height:50px; font-weight:bolder;}
+
+/*-----------------------login2.html-------------------------------------*/
+.container2{ width:100%; margin:0 auto; background:url(../images/loginBj2.jpg) repeat-x; height:613px;}
+
+.loginbox2{ margin:0 auto; width:399px; text-align:center;}
+.lbox2top{background:url(../images/login2top.png) no-repeat center; width:399px; height:198px; margin:0 auto; text-align:center;}
+.lbox2mid{ margin:0 auto; text-align:center; background:url(../images/login2mid.png) repeat-y center; width:399px; padding:6px 0;}
+.lbox2foot{background:url(../images/login2foot.png) no-repeat center; width:399px; height:27px;}
+.lbox2m{ margin:0 auto; padding-top:33px; width:100%;text-align:center;overflow-y:hidden;}
+.lbox2m .inputsubmit{background:url(../images/login2btn.png) no-repeat; width:64px; height:25px; border:none; font-size:12px; color:#476587; cursor:pointer;}
+.lbox2m .inputsubmit_g{background:url(../images/login2btn_g.png) no-repeat; width:64px; height:25px; border:none; font-size:12px; color:#999999; cursor:pointer;}
+.lbox2m .inputtext{ border:none; border:1px solid #b7d0ea; font-size:12px; padding:2px; height:22px; width:180px;}
+.lbox2m .inputtext2{ border:none; border:1px solid #b7d0ea; font-size:12px; padding:2px; height:22px; width:100px;}
+.lbox2m table tr{ padding-top:5px; padding-bottom:5px; font-size:12px; color:#4e6c95; font-weight:bolder;}
+.lbox2m .lboxleft{ text-align:right; width:34%;}
+.lbox2m .lboxright{ text-align:left; width:66%;}
+.lbox2m .lboxright span a:link{ color:#333; text-decoration:underline;}
+.lbox2m .lboxright span a:hover{ color:#FF0000;display:block;}
+.lbox2m .actmsg{ padding-top:10px; padding-bottom:10px; font-size:13px; color:#ff0000;}
+
+
+
+
+/*-----------------------frame.html-------------------------------------*/
+
+
+/*-----------------------top.html-------------------------------------*/
+#toplogo{width:300px; float:left;display:inline; margin-top:0;}
+.topinfo{ height:57px; text-align:right; width:350px; padding-top:8px;}
+.topL0{ width:100px; height:54px; border:none; text-align:right;padding-top:32px;color:#265d87; text-align:center; cursor:pointer;}
+.topL1{ background:url(../images/topL1.jpg) no-repeat bottom left; width:170px; height:54px; padding-left:30px; font-family:Arial, Helvetica, sans-serif; line-height:20px;}
+.topL2{background:url(../images/topL2.jpg) no-repeat bottom; width:89px; height:54px; border:none; padding-top:32px;color:#265d87; cursor:pointer;}
+.topL3{background:url(../images/topL3.jpg) no-repeat bottom; width:63px; height:54px; border:none; text-align:right;padding-top:32px;color:#265d87; text-align:center; cursor:pointer;}
+.topL4{ background:url(../images/zhang.jpg) no-repeat bottom right; width:130px; height:54px;font-family:Arial, Helvetica, sans-serif; line-height:20px;}
+.frameDh{ background:url(../images/dhBj.jpg) repeat-x left; height:31px; text-align:center;}
+.frameDh ul ,.bqmenu ul{list-style:none;}
+.frameDh ul li{ float:left; width:90px; color:#FFFFFF;}
+.frameDh ul li a:link{ color:#FFFFFF; text-decoration:none;}
+.frameDh ul li a:visited{text-decoration:none; color:#FFFFFF;}
+.frameDh ul li a:hover{ color:#faec06; text-decoration:underline;}
+.frameDh ul li a:active{ color:#FFFFFF;}
+.frameDhfoot{background:#cee3f5; height:30px;}
+.frameDhfoot ul{list-style:none;}
+.frameDhfoot ul li{ float:left; margin-left:20px; color:#000;}
+.frameDhfoot ul li a:link{ color:#b14500; text-decoration:underline;}
+/*-----------------------left.html-------------------------------------*/
+
+
+/*-----------------------bottom.html-------------------------------------*/
+
+
+/*-----------------------bar.html-------------------------------------*/
+
+/*-----------------------about.html-------------------------------------*/
+.aboutContainer{ width:100%; margin:0 auto; padding-top:30px;}
+.aboutBg{background:url(../images/about_bg.jpg) center no-repeat; padding-left:30px; padding-top:30px; height:400px;}
+.aboutInfo{padding-left:220px;padding-top:60px;}
+
+
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	
+	<package name="role-selectGrade" extends="struts-default" namespace="/role-selectGrade">
+		
+		<action name="queryAllGradeAjax" class="selectGradeAction" method="queryAllGradeAjax"/>
+		
+		<!-- iframe 显示选择班级方式
+		<action name="queryAll" class="gradeAction" method="queryAll">
+			<result name="success">/pages/role/selectGrade.jsp</result>
+		</action> -->
+		
+	</package>
+	
+</struts>	

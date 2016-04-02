@@ -1,0 +1,204 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0px;
+	font: 12pt;
+	text-decoration: none;
+}
+select {
+	font-size: 12px;
+	width: 100px;
+}
+table {
+	border: 1px;
+	border-collapse: separate;
+}
+
+td {
+	font: normal 12px;
+}
+
+img {
+	vertical-align: bottom;
+	border: 0px;
+}
+.topload{
+	float:left;
+	border: 1px solid silver;
+	
+}
+.leftload{
+float:left;
+
+}
+.rightload{
+float:right;
+
+}
+#upgrade{
+	top:3in; 
+	left:6in;
+	margin: 0px;
+	font: 10pt;
+	FONT-SIZE: 10pt;;
+	text-decoration: none;
+}
+#tablediv{
+width:800px;
+}
+#trdiv{
+width:100%;
+min-width :800px;
+padding-top :10px; padding-bottom:5px;
+border-bottom: 2px solid gray;
+}
+#tddiv{
+float:left;	
+padding-left:5px; padding-right:10px;
+}
+#tddiv_1{
+float:left;	
+padding-left:5px; padding-right:10px;
+width:100px;
+text-align :center;
+}
+#tddiv_2{
+float:left;	
+padding-left:5px; padding-right:10px;
+width:300px;
+text-align :center;
+}
+#tddiv_3{
+float:left;	
+padding-left:5px; padding-right:10px;
+width:100px;
+text-align :center;
+}
+#tddiv_4{
+float:left;	
+padding-left:5px; padding-right:10px;
+width:180px;
+text-align :center;
+}
+#tddiv_5{
+float:left;	
+padding-left:5px; padding-right:10px;
+width:100px;
+text-align :center;
+}
+#tddiv_6{
+float:left;	
+padding-left:5px; padding-right:10px;
+width:150px;
+text-align :center;
+}
+
+#itme{
+	width:100%;padding-top :3px; padding-bottom:5px;
+}
+#itme .subject{
+	float:left;
+	width:150px;
+	text-align:right;
+	padding-top :5px;
+	
+}
+#itme .connectnote{
+	float:left;
+	text-align:right;
+	padding-top :5px;
+	padding-left:5px;
+}
+#connect{
+	float:left;
+	text-align:right;
+	padding-top :10px;
+	padding-left:5px;
+}
+
+#itme .connect{
+	float:left;
+	text-align:left;
+}
+#itme .submit{
+	float:left;
+	width:350px;
+	text-align:center ;
+}
+#lineleft{
+float:left;
+}
+.tab1{
+float:left;width:200px;
+}
+.tab2{
+float:left;
+}
+#lineright{
+float:right;
+}
+
+#clientlist{
+float:left;padding-left:1cm;
+
+/*border: thick double lightsteelblue;*/
+}
+
+#leftloadtree{
+float:left;
+padding-left:10px; padding-right:10px;
+border-right: 2px solid silver;
+}
+
+#clearfloat{
+	float:left;width:100%;
+}
+#bottomload{
+float:left;
+padding-top :10px; padding-bottom:5px;
+}
+
+#text{
+float:left;
+}
+#clientmessage{
+float:left;
+}
+#groupmessage{
+float:left;
+}
+
+#bottomload .connect{
+	
+	width:350px;
+	text-align:center ;
+}
+#bottomload .connectmax{
+	
+	width:100%;
+}
+
+#policycontent{
+	float:left;
+	width:100%;
+	
+	padding:8px;		
+	
+}
+
+#grouppolicy{
+	float:left;
+	width:100%;	
+	padding:8px;		
+	
+}
+#clientpolicy{	
+	float:left;
+	width:100%;
+	padding:8px;		
+	
+}
+/* frame Left page */
+#frameleft {
+	background-color:#9999CC;
+}

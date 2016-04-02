@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	
+	<package name="scholarship" extends="struts-default" namespace="/scholarship">
+	
+		<action name="query" class="scholarshipAction" method="query">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+	</package>
+	
+</struts>	

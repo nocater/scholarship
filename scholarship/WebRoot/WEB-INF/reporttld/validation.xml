@@ -1,0 +1,83 @@
+<form-validation>
+   <global>
+      <constant>
+        <constant-name>phone</constant-name>
+        <constant-value>^\d{8}\d*$</constant-value>
+      </constant>         	   
+      <constant>
+        <constant-name>zip</constant-name>
+        <constant-value>^\d{6}\d*$</constant-value>
+      </constant>         	   
+   </global>
+   <formset>
+      <constant>
+        <constant-name>zip</constant-name>
+        <constant-value>^\d{6}\d*$</constant-value>
+      </constant>         	   
+      
+      <form name="checkoutForm">
+         <field 
+           property="name"
+           depends="required">
+           <arg0 key="label.name"/>           
+         </field>             
+         
+         <field 
+           property="address"
+           depends="required">
+           <arg0 key="label.address"/>
+         </field>             
+         
+         <field 
+           property="city"
+           depends="required">
+           <arg0 key="label.city"/>           
+         </field>         
+         
+         <field 
+           property="state"
+           depends="required,mask">
+           <arg0 key="label.state"/>
+           <var>
+	     <var-name>mask</var-name>
+	     <var-value>^[0-90-9]*$</var-value>
+           </var>
+         </field>         
+         
+         <field 
+           property="postalCode"
+           depends="required,mask">
+           <arg0 key="label.postalCode"/>
+           <var>
+             <var-name>mask</var-name>
+             <var-value>${zip}</var-value>
+           </var>         	   
+         </field>         
+         
+         <field 
+           property="country"
+           depends="required,mask">
+           <arg0 key="label.country"/>
+           <var>
+	     <var-name>mask</var-name>
+	     <var-value>^[a-zA-Z]*$</var-value>
+           </var>
+         </field>         
+         
+         <field 
+           property="phone"
+           depends="required,mask,minlength">
+           <arg0 key="label.phone"/>
+           <arg1 name="minlength" key="${var:minlength}" resource="false"/>
+           <var>
+             <var-name>mask</var-name>
+             <var-value>${phone}</var-value>
+           </var>
+           <var>
+               <var-name>minlength</var-name>
+               <var-value>7</var-value>
+           </var>    	   
+         </field>         
+      </form>            
+   </formset>   
+</form-validation>

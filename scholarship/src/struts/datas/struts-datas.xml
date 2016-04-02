@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+
+	<package name="datas" extends="struts-default" namespace="/datas">
+
+		<action name="query" class="datasAction" method="query">
+			<result name="success">/pages/datas/datasInfo.jsp</result>
+		</action>
+		
+		<action name="queryByAccount" class="datasAction" method="queryByAccount">
+			<result name="success">/pages/datas/datasInfo.jsp</result>
+		</action>
+		
+		<action name="update" class="datasAction" method="update">
+			<result name="success">/pages/datas/datasInfo.jsp</result>
+		</action>
+		
+		<action name="apply" class="datasAction" method="apply">
+			<result name="success">/pages/datas/datasInfo.jsp</result>
+		</action>
+	</package>
+	
+</struts>	
