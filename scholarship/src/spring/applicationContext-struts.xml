@@ -65,7 +65,8 @@
 		<property name="gradeService" ref="gradeService"/>
 		<property name="applyService" ref="applyService"/>
 	</bean>
-	<bean id="applyAction" class="com.scholarship.webapp.action.apply.ApplyAction">
+	<!-- scope="prototype" 是说线程安全性的 每次请求都是不同的action对象   不配置每次都是同一个action对象 -->
+	<bean id="applyAction" class="com.scholarship.webapp.action.apply.ApplyAction" scope="prototype">
 		<property name="applyService" ref="applyService"/>
 		<property name="accountService" ref="accountService"/>
 		<property name="datasService" ref="datasService"/>

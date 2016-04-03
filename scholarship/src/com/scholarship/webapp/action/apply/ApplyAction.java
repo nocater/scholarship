@@ -1,8 +1,13 @@
 package com.scholarship.webapp.action.apply;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.scholarship.module.account.Account;
 import com.scholarship.module.apply.Apply;
@@ -21,6 +26,8 @@ import com.scholarship.service.role.RoleService;
 import com.scholarship.service.scholarship.ScholarshipService;
 import com.scholarship.webapp.action.BaseAction;
 import com.util.StringUtil;
+import com.util.page.Page;
+import com.util.page.SearchResult;
 
 public class ApplyAction extends BaseAction {
 
@@ -58,6 +65,11 @@ public class ApplyAction extends BaseAction {
 	private String method;//执行类型
 	
 	private List<String> appliedMessageList;
+	private String keyword;
+	private String collegeId;
+	private String gradeId;
+	private String select_year;
+	private String select_status;
 	
 	public String query(){
 		String year = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
@@ -65,7 +77,29 @@ public class ApplyAction extends BaseAction {
 		//根据角色查询未审批
 		apply = new Apply();
 		apply.setYear(year);
-		applyList = applyService.query(role, apply);
+		//模糊查询 名字
+		if(StringUtil.isNotBlank(keyword)){
+			try {
+				keyword = java.net.URLDecoder.decode(keyword, "UTF-8");
+				account = new Account();
+				account.setName(keyword);
+				account.setAccno(keyword);
+				apply.setAccount(account);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		Integer cid=null;Integer gid=null;
+		if(StringUtil.isNotBlank(collegeId)&&!collegeId.trim().equals("0")){
+			cid=Integer.parseInt(collegeId);
+		}
+		if(StringUtil.isNotBlank(gradeId)&&!gradeId.trim().equals("0")){
+			gid=Integer.parseInt(gradeId);
+		}
+		applyList = applyService.query(role, apply,cid,gid,1,0);
+		
+		
 		accountList = new ArrayList<>();
 		datasList = new ArrayList<>();
 		appliedMessageList = new ArrayList<>();
@@ -145,6 +179,78 @@ public class ApplyAction extends BaseAction {
 				}
 			}
 		}
+		return SUCCESS;
+	}
+	
+	public String queryAllYears(){
+		HttpServletRequest request = super.getRequest();
+		Page page = null;
+		role = (Role) getSession().getAttribute("LOGON_ROLE");
+		
+		// 处理数据分页的起始条数
+		String startIndex = request.getParameter("startIndex");
+		if (StringUtil.isNotBlank(startIndex)) {
+			page = new Page(Page.DEFAULT_PAGE_SIZE, Integer.valueOf(startIndex));
+		} else {
+			page = new Page(Page.DEFAULT_PAGE_SIZE, 0);
+		}
+		
+		Map<String,String> map = new HashMap<String, String>();
+		
+		//根据角色查询
+		if(role!=null&&role.getId()!=1){
+			map.put("roleId", Integer.toString(role.getId()));
+		}
+		//模糊查询 名字
+		if(StringUtil.isNotBlank(keyword)){
+			try {
+				keyword = java.net.URLDecoder.decode(keyword, "UTF-8");
+				map.put("keyword",keyword);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		//筛选学院
+		if(StringUtil.isNotBlank(collegeId)&&!collegeId.trim().equals("0")){
+			map.put("collegeId", collegeId);
+		}
+		//筛选班级
+		if(StringUtil.isNotBlank(gradeId)&&!gradeId.trim().equals("0")){
+			map.put("gradeId", gradeId);
+		}
+		if(StringUtil.isNotBlank(select_year)){
+			map.put("year", select_year);
+		}
+		if(StringUtil.isNotBlank(select_status)){
+			map.put("status", select_status);
+		}
+		
+		//查询结果
+		SearchResult<Apply> sr = applyService.query(role, map, page);
+		if(sr!=null) {
+			applyList = (List<Apply>) sr.getList();
+			request.setAttribute("Page", sr.getPage());
+		}
+		
+		accountList = new ArrayList<>();
+		/*datasList = new ArrayList<>();
+		for(Apply a : applyList){
+			accountList.add(a.getAccount());
+			datasList.add(datasService.queryByAccount(a.getAccount(), "0"));//通过账户查询申请信息 0表示最新 1表示修改前备份
+		}*/
+		
+		//获取分配学院及班级
+		collegeList = collegeService.queryByRole(role);
+		gradeList = gradeService.queryByRole(role);
+		//获取奖学金		
+		scholarshipList = scholarshipService.queryAll();
+		
+		return SUCCESS;
+	}
+	
+	public String executeAllYears(){
+		this.execute();
 		return SUCCESS;
 	}
 	
@@ -340,6 +446,46 @@ public class ApplyAction extends BaseAction {
 
 	public void setAppliedMessageList(List<String> appliedMessageList) {
 		this.appliedMessageList = appliedMessageList;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getCollegeId() {
+		return collegeId;
+	}
+
+	public String getGradeId() {
+		return gradeId;
+	}
+
+	public void setCollegeId(String collegeId) {
+		this.collegeId = collegeId;
+	}
+
+	public void setGradeId(String gradeId) {
+		this.gradeId = gradeId;
+	}
+
+	public String getSelect_year() {
+		return select_year;
+	}
+
+	public String getSelect_status() {
+		return select_status;
+	}
+
+	public void setSelect_year(String select_year) {
+		this.select_year = select_year;
+	}
+
+	public void setSelect_status(String select_status) {
+		this.select_status = select_status;
 	}
 
 }

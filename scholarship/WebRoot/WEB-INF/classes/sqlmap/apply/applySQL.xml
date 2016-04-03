@@ -17,7 +17,7 @@
     	<association property="scholarship"		column="scholarship_id" 	javaType="scholarship" 	select="com.scholarship.dao.scholarship.impl.ScholarshipDaoImpl.scholarship_queryById"></association>
     </resultMap>
      
-    <select id="apply_count" parameterType="java.util.HashMap" resultMap="apply">
+    <select id="apply_count" parameterType="java.util.HashMap" resultType="int">
     	<![CDATA[
     		SELECT COUNT(*) FROM apply ap WHERE 1=1
     	]]>
@@ -27,11 +27,11 @@
     					
 				SELECT id from account a where 
 				
-				a.college_id in (select college_id from relation rel where rel.role_id = 4)
+				a.college_id in (select college_id from relation rel where rel.role_id = #{roleId})
 				
-				or a.grade_id in (select grade_id from relation rel where rel.role_id = 4)
+				or a.grade_id in (select grade_id from relation rel where rel.role_id = #{roleId})
 				
-				or a.grade_id in(select id from grade where college_id in (select college_id from relation rel where rel.role_id = 4)
+				or a.grade_id in(select id from grade where college_id in (select college_id from relation rel where rel.role_id = #{roleId}))
 				)
 			)
     	</if>
@@ -45,19 +45,109 @@
     			AND status = #{status}
     		]]>
     	</if>
+    	<if test="year != null">
+    		<![CDATA[
+    			AND year LIKE CONCAT('%',#{year},'%')
+    		]]>
+    	</if>
     	<if test="approveAccountId != null">
     		<![CDATA[
     			AND approve_accountId = #{approve_accountId}
     		]]>
     	</if>
-    	<if test="year != null">
+    	<if test="keyword != null">
+    		AND (
+    			(SELECT NAME FROM account a WHERE id=ap.account_id ) LIKE CONCAT('%',#{keyword},'%')
+    			OR (SELECT ACCNO FROM account a WHERE id=ap.account_id ) LIKE CONCAT('%',#{keyword},'%')
+    			)
+    	</if>
+    	<if test="statusMax != null">
     		<![CDATA[
-    			AND year = #{year}
+    			AND STATUS <= #{statusMax}
     		]]>
+    	</if>
+    	<if test="statusMin != null">
+    		<![CDATA[
+    			AND STATUS >= #{statusMin}
+    		]]>
+    	</if>
+    	<if test="collegeId != null">
+    		AND (SELECT COLLEGE_ID FROM account a WHERE a.id=ap.account_id) = #{collegeId}
+    	</if>
+    	<if test="gradeId != null">
+    		AND (SELECT GRADE_ID FROM account a WHERE a.id=ap.account_id) = #{gradeId}
     	</if>
     </select>
 	
 	<select id="apply_query" parameterType="java.util.HashMap" resultMap="apply">
+    	<![CDATA[
+    		SELECT * FROM apply ap WHERE 1=1
+    	]]>
+    	<if test="roleId != null">
+    	and (
+    			ap.account_id in(
+    					
+				SELECT id from account a where 
+				
+				a.college_id in (select college_id from relation rel where rel.role_id = #{roleId})
+				
+				or a.grade_id in (select grade_id from relation rel where rel.role_id = #{roleId})
+				
+				or a.grade_id in(select id from grade where college_id in (select college_id from relation rel where rel.role_id = #{roleId}))
+				)
+			)
+    	</if>
+    	<if test="accountId != null">
+    		<![CDATA[
+    			AND ACCOUNT_ID = #{accountId}
+    		]]>
+    	</if>
+    	<if test="status != null">
+    		<![CDATA[
+    			AND status = #{status}
+    		]]>
+    	</if>
+    	<if test="year != null">
+    		<![CDATA[
+    			AND year LIKE CONCAT('%',#{year},'%')
+    		]]>
+    	</if>
+    	<if test="approveAccountId != null">
+    		<![CDATA[
+    			AND approve_accountId = #{approve_accountId}
+    		]]>
+    	</if>
+    	<if test="keyword != null">
+    		AND (
+    			(SELECT NAME FROM account a WHERE id=ap.account_id ) LIKE CONCAT('%',#{keyword},'%')
+    			OR (SELECT ACCNO FROM account a WHERE id=ap.account_id ) LIKE CONCAT('%',#{keyword},'%')
+    			)
+    	</if>
+    	<if test="statusMax != null">
+    		<![CDATA[
+    			AND STATUS <= #{statusMax}
+    		]]>
+    	</if>
+    	<if test="statusMin != null">
+    		<![CDATA[
+    			AND STATUS >= #{statusMin}
+    		]]>
+    	</if>
+    	<if test="collegeId != null">
+    		AND (SELECT COLLEGE_ID FROM account a WHERE a.id=ap.account_id) = #{collegeId}
+    	</if>
+    	<if test="gradeId != null">
+    		AND (SELECT GRADE_ID FROM account a WHERE a.id=ap.account_id) = #{gradeId}
+    	</if>
+    	<if test="order != null">
+    		<![CDATA[
+    			ORDER BY ${order} DESC
+    		]]>
+    	</if>
+    </select>
+    
+    <!-- 未使用已扩展 -->
+    <select id="apply_queryAllYears" parameterType="java.util.HashMap" resultMap="apply">
     	<![CDATA[
     		SELECT * FROM apply ap WHERE 1=1
     	]]>
@@ -94,6 +184,12 @@
     		<![CDATA[
     			AND approve_accountId = #{approve_accountId}
     		]]>
+    	</if>
+    	<if test="keyword != null">
+    		AND (
+    			(SELECT NAME FROM account a WHERE id=ap.account_id ) LIKE CONCAT('%',#{keyword},'%')
+    			OR (SELECT ACCNO FROM account a WHERE id=ap.account_id ) LIKE CONCAT('%',#{keyword},'%')
+    			)
     	</if>
     	<if test="order != null">
     		<![CDATA[

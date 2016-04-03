@@ -15,6 +15,14 @@
 		<action name="execute" class="applyAction" method="execute">
 			<result name="success" type="redirect">/apply/query.action</result>
 		</action>
+		
+		<action name="queryAllYears" class="applyAction" method="queryAllYears">
+			<result name="success">/pages/apply/applyAllList.jsp</result>
+		</action>
+		
+		<action name="executeAllYears" class="applyAction" method="executeAllYears">
+			<result name="success" type="redirect">/apply/queryAllYears.action</result>
+		</action>
 	</package>
 	
 </struts>	

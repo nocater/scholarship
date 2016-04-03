@@ -9,7 +9,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.scholarship.dao.account.AccountDao;
 import com.scholarship.module.account.Account;
 import com.scholarship.module.college.College;
 import com.scholarship.module.grade.Grade;
@@ -64,7 +63,6 @@ public class AccountAction extends BaseAction {
 	
 	private String ids;
 	private String method;
-	
 	
 	public String query(){
 		HttpServletRequest request = super.getRequest();

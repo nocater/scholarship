@@ -157,7 +157,7 @@ public class DatasAction extends BaseAction {
 			apply.setAccount(datas.getAccount());
 			apply.setStatus(0);
 			apply.setYear(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
-			if(applyService.query(null, apply).size()>0) message = "您已提交申请，请勿重复提交。";
+			if(applyService.query(null, apply,null,null,null,null).size()>0) message = "您已提交申请，请勿重复提交。";
 			else applyService.inert(apply);
 		}
 		//查询数据 返回页面

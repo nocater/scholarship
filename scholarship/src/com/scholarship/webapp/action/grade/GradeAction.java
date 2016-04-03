@@ -52,7 +52,7 @@ public class GradeAction extends BaseAction{
 	}
 	
 	/***
-	 * 查询分配的班级
+	 * 查询分配的班级AJAX
 	 */
 	public void queryGradesAjax(){
 		String collegeId = (String)getRequest().getParameter("id");
