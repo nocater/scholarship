@@ -246,7 +246,7 @@
 														<c:if test="${grade.status eq 1}"> selected="" </c:if>
 													>激活</option>
 													<option value="-1"
-														<c:if test="${grade.status eq 0}"> selected="" </c:if>
+														<c:if test="${grade.status eq -1}"> selected="" </c:if>
 													>锁定</option>
 												</select>
 											</td>
@@ -309,7 +309,7 @@
 								<input type="button" class="btnyh" id="btnSave"
 									onclick="save();" value="保  存" />
 								<input type="button" class="btnyh" id="btnCancel"
-									onclick="window.location.href='${ctx}/college/query.action?order=${order}';"
+									onclick="window.location.href='${ctx}/grade/query.action?order=${order}';"
 									value="取  消" />
 								&nbsp;&nbsp;
 								<span class="spanred"></span>

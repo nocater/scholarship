@@ -61,7 +61,7 @@
 	    	});
 	    	
 	    	if(confirm("确定执行此操作？")){
-	    		location.href="${ctx}/account/execute.action?ids="+ids+"&method="+choose;
+	    		location.href="${ctx}/grade/execute.action?ids="+ids+"&method="+choose;
 	    	}
 		}
 		
@@ -115,7 +115,8 @@
 			  					<select style="width:100%;" id="status">
 				  					<option value="100">--更多操作--</option>
 				  					<option value="-1">删除班级</option>
-				  					<!-- <option value="1">复制班级</option> -->
+				  					<option value="1">批量激活</option>
+				  					<option value="2">批量锁定</option>
 			  					</select>	
 			  				</td>
 			  				<td width="1%"/>

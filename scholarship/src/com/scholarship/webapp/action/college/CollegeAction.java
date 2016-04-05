@@ -158,6 +158,9 @@ public class CollegeAction extends BaseAction{
 	}
 	
 	public void deleteById(int id){
+		College c = new College();
+		c.setId(id);
+		collegeService.deleteRelation(c);//删除关联
 		collegeService.deleteById(id);
 	}
 	

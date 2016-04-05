@@ -1,5 +1,6 @@
 package com.scholarship.service.grade.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,12 @@ public class GradeServiceImpl extends BaseServiceImpl implements GradeService {
 	}
 	
 	@Override
+	public List<Grade> query(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return gradeDao.query(map);
+	}
+	
+	@Override
 	public List<Grade> queryAll() {
 		// TODO Auto-generated method stub
 		return gradeDao.queryAll();
@@ -47,7 +54,12 @@ public class GradeServiceImpl extends BaseServiceImpl implements GradeService {
 	@Override
 	public List<Grade> queryByRole(Role role) {
 		// TODO Auto-generated method stub
-		if(role!=null&&role.getId()==1)return gradeDao.queryAll();
+		if(role!=null&&role.getId()==1) {
+			//只显示激活的班级
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("status", "1");
+			return gradeDao.query(map);
+		}
 		return gradeDao.queryByRole(role);
 	}
 	
@@ -99,6 +111,12 @@ public class GradeServiceImpl extends BaseServiceImpl implements GradeService {
 		gradeDao.deleteById(id);
 	}
 	
+	@Override
+	public void deleteRelation(Grade grade) {
+		// TODO Auto-generated method stub
+		gradeDao.deleteRelation(grade);
+	}
+	
 	public GradeDao getGradeDao() {
 		return gradeDao;
 	}
@@ -106,5 +124,4 @@ public class GradeServiceImpl extends BaseServiceImpl implements GradeService {
 	public void setGradeDao(GradeDao gradeDao) {
 		this.gradeDao = gradeDao;
 	}
-
 }

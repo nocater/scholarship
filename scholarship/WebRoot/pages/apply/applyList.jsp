@@ -100,7 +100,7 @@
   </head>
   
   <body>
-  	<s:form action="query" namespace="/account" method="post" theme="simple">
+  	<s:form action="query" namespace="/apply" method="post" theme="simple">
     <s:hidden name="order" id="order"/>
   	<div>
   		<table width="99%" border="0" cellspacing="0" cellpadding="0" style="margin-left: 4px; margin-top: 0px" align="center">
@@ -134,8 +134,8 @@
 			  				<td width="5%" valign="middle"><input type="text" id="keyword" name="keyword" value="${keyword}" /></td>
 			  				<td width="1%"/>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;"colspan="1"><img src="${ctx}/images/search.jpg"  class="hand" onclick="querys();" /></td>
-			  				<td/>
-			  				<td width="5%" valign="middle" align="center"><input type="button"  value="新窗口打开" class="btnstyle1" onclick="window.open('${ctx}/apply/query.action');" style="padding-top:1px;"/></td>
+			  				<td	width="1%"/>
+			  				<td width="5%" valign="middle" align="center"><input type="button"  value="宽屏" class="btnstyle1" onclick="window.open('${ctx}/pages/apply/applyListNewTab.jsp');" style="padding-top:1px;"/></td>
 			  				<td/>
 			  				<!-- <td valign="top"><span><a href="#">高级</a></span></td> -->
 			  				<!-- <td width="" valign="middle" style="padding-top:2px;"><span class="spanred">内置角色不可更改</span></td> -->

@@ -126,7 +126,7 @@
 		]]>
 	</insert>
 	
-	<delete id="role_deleteRelation">
+	<delete id="role_deleteRelation" parameterType="role">
 		<![CDATA[
 			delete from relation where role_id=#{id}
 		]]>

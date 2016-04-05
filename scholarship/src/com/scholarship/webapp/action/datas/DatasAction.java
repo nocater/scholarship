@@ -51,7 +51,7 @@ public class DatasAction extends BaseAction {
 		account = (Account) getSession().getAttribute("LOGON_ACCOUNT");
 		role = (Role) getSession().getAttribute("LOGON_ROLE");
 //		if(role.getId()!=2)return SUCCESS;//只有学生才能修改申请
-		
+
 		datas = datasService.queryByAccount(account,"0");
 		datas_old = datasService.queryByAccount(account,"1");
 		
@@ -125,17 +125,34 @@ public class DatasAction extends BaseAction {
 	public String update(){
 		account = new Account();
 		account.setId(accountId);
-		datas_old = datasService.queryByAccount(account,"1");
-		datas.setAccount(accountService.queryById(accountId));
+		datas_old = datasService.queryByAccount(account,"1");//修改前备份对象
+		account = accountService.queryById(accountId);
+		datas.setAccount(account);
 		
 		College college = null;
-		if(StringUtil.isNotBlank(collegeId)) 
-				college = collegeService.queryById(Integer.parseInt(collegeId));
-		if(college!=null) datas.setCollege(college.getName());
+		if(StringUtil.isNotBlank(collegeId))
+			college = collegeService.queryById(Integer.parseInt(collegeId));
+			//如果选择的学院和提交不一致，更新账户学院
+			if(account.getCollege().getId()!=college.getId()){
+				account.setCollege(college);
+				accountService.update(account);
+				getSession().removeAttribute("LOGON_ACCOUNT");
+				getSession().setAttribute("LOGON_ACCOUNT", account);//更新session
+			}
+		if(college!=null) {
+			datas.setCollege(college.getName());
+		}
 		
 		Grade grade = null;
 		if(StringUtil.isNotBlank(gradeId))
 			grade = gradeService.queryById(Integer.parseInt(gradeId));
+			//如果选择的学院和提交不一致，更新账户学院
+			if(account.getGrade().getId()!=grade.getId()){
+				account.setGrade(grade);
+				accountService.update(account);
+				getSession().removeAttribute("LOGON_ACCOUNT");
+				getSession().setAttribute("LOGON_ACCOUNT", account);//更新session
+			}
 		if(grade!=null){
 			datas.setGrade(grade.getName());
 			datas.setMajor(grade.getMajor());
@@ -158,7 +175,7 @@ public class DatasAction extends BaseAction {
 			apply.setStatus(0);
 			apply.setYear(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
 			if(applyService.query(null, apply,null,null,null,null).size()>0) message = "您已提交申请，请勿重复提交。";
-			else applyService.inert(apply);
+			else applyService.inert(apply);message = "申请已提交成功，请等待审批";
 		}
 		//查询数据 返回页面
 		this.query();

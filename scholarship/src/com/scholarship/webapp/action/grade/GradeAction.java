@@ -61,7 +61,9 @@ public class GradeAction extends BaseAction{
 			college.setId(Integer.parseInt(collegeId));
 			gradeList = gradeService.queryByCollege(college);
 		}else{
-			gradeList = gradeService.queryAll();
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("status", "1");
+			gradeList = gradeService.query(map);
 		}
 		
 		//JSON
@@ -126,7 +128,7 @@ public class GradeAction extends BaseAction{
 			page = new Page(Page.DEFAULT_PAGE_SIZE, 0);
 		}
 		
-		//查询学院
+		//查询班级
 		SearchResult<Grade> sr = gradeService.query(role, map, page);
 		gradeList = sr.getList();
 		request.setAttribute("Page", sr.getPage());
@@ -191,6 +193,39 @@ public class GradeAction extends BaseAction{
 		}
 	}
 	
+	/**
+	 * 执行
+	 */
+	public String execute(){
+		if(StringUtil.isNotBlank(ids)){
+			String[] arrays = ids.split(",");
+			
+			if(StringUtil.isNotBlank(method)){
+				if(method.equals("-1")){
+					//删除学院
+					for(int i = 0;i< arrays.length;i++){
+						this.deleteById(Integer.parseInt(arrays[i]));
+					}
+				}else if(method.equals("1")){
+					//批量激活
+					for(int i = 0;i< arrays.length;i++){
+						Grade g = gradeService.queryById(Integer.parseInt(arrays[i]));
+						g.setStatus(1);
+						this.updateGrade(g);
+					}
+				}else if(method.equals("2")){
+					//批量锁定
+					for(int i = 0;i< arrays.length;i++){
+						Grade g = gradeService.queryById(Integer.parseInt(arrays[i]));
+						g.setStatus(-1);
+						this.updateGrade(g);
+					}
+				}
+			}
+		}
+		return SUCCESS;
+	}
+	
 	public int insert(Grade g){
 		return gradeService.insert(g);
 	}
@@ -200,6 +235,9 @@ public class GradeAction extends BaseAction{
 	}
 	
 	public void deleteById(int id){
+		Grade g = new Grade();
+		g.setId(id);
+		gradeService.deleteRelation(g);//删除关联
 		gradeService.deleteById(id);
 	}
 	

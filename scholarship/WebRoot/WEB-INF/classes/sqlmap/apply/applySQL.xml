@@ -219,7 +219,7 @@
 				#{account.id},
 				#{status},
 				#{year},
-				#{approveAccount.id},
+				#{approve_Account.id},
 				#{scholarship.id},
 				now(),
 				now()				

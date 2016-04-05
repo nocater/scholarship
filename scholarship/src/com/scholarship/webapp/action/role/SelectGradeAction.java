@@ -1,7 +1,9 @@
 package com.scholarship.webapp.action.role;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -29,7 +31,9 @@ public class SelectGradeAction extends BaseAction {
 		 commons-beanutils 1.7.0 
 		 commons-collections 3.2 
 		 commons-logging 1.1.1 */
-		gradeList = gradeService.queryAll();
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("status", "1");
+		gradeList = gradeService.query(map);
 		JSONArray jsons = new JSONArray();
 		for(Grade grade:gradeList){
 			JSONObject obj = new JSONObject();

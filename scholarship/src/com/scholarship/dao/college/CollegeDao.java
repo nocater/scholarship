@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.scholarship.module.college.College;
+import com.scholarship.module.grade.Grade;
 import com.scholarship.module.role.Role;
 
 public interface CollegeDao {
@@ -17,4 +18,5 @@ public interface CollegeDao {
 	public void update(College college);
 	public void delete(College college);
 	public void deleteById(int id);
+	public void deleteRelation(College college);
 }

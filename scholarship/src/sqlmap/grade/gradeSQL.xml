@@ -120,12 +120,13 @@
 	<select id="grade_queryByRole" parameterType="role" resultMap="grade">
 		<![CDATA[
 			SELECT * FROM grade WHERE ID IN (SELECT GRADE_ID FROM relation rel WHERE rel.ROLE_ID = #{id})
+								AND STATUS != -1
 		]]>
 	</select>
 	
 	<select id="grade_queryByCollege" parameterType="college" resultMap="grade">
 		<![CDATA[
-			SELECT * FROM grade WHERE COLLEGE_ID=#{id}
+			SELECT * FROM grade WHERE COLLEGE_ID=#{id} AND STATUS != -1
 		]]>
 	</select>
 	
@@ -209,4 +210,9 @@
 		]]>
 	</delete>
 	
+	<delete id="grade_deleteRelation" parameterType="grade">
+		<![CDATA[
+			delete from relation where grade_id=#{id}
+		]]>
+	</delete>
 </mapper>

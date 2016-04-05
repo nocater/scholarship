@@ -10,6 +10,7 @@ import com.scholarship.module.role.Role;
 public interface GradeDao {
 	public int count(Map<?,?> map);
 	public List<Grade> query(Map<?,?> map, int startRow, int pageSize);
+	public List<Grade> query(Map<?,?> map);
 	public List<Grade> queryAll();
 	public List<Grade> queryByRole(Role role);
 	public Grade queryById(int id);
@@ -20,4 +21,5 @@ public interface GradeDao {
 	public void update(Grade grade);
 	public void delete(Grade grade);
 	public void deleteById(int id);
+	public void deleteRelation(Grade grade);
 }

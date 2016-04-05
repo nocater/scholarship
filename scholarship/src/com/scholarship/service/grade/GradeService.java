@@ -12,6 +12,7 @@ import com.util.page.SearchResult;
 public interface GradeService {
 	public int count(Map<String,String> map);
 	public SearchResult<Grade> query(Role role,Map<String,String> map,Page page);
+	public List<Grade> query(Map<String,String> map);
 	public List<Grade> queryAll();
 	public List<Grade> queryByRole(Role role);
 	public Grade queryById(int id);
@@ -22,4 +23,5 @@ public interface GradeService {
 	public void update(Grade grade);
 	public void delete(Grade grade);
 	public void deleteById(int id);
+	public void deleteRelation(Grade grade);
 }

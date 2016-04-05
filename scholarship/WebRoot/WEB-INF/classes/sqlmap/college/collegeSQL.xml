@@ -102,4 +102,9 @@
 		]]>
 	</delete>
 	
+	<delete id="college_deleteRelation" parameterType="college">
+		<![CDATA[
+			delete from relation where college_id=#{id}
+		]]>
+	</delete>
 </mapper>

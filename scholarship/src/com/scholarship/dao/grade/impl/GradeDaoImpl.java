@@ -27,6 +27,12 @@ public class GradeDaoImpl extends BaseDaoMyBatis implements GradeDao{
 	}
 	
 	@Override
+	public List<Grade> query(Map<?, ?> map) {
+		// TODO Auto-generated method stub
+		return super.sqlSession.selectList("grade_query", map);
+	}
+	
+	@Override
 	public List<Grade> queryAll() {
 		// TODO Auto-generated method stub
 		return super.sqlSession.selectList("grade_queryAll");
@@ -86,4 +92,9 @@ public class GradeDaoImpl extends BaseDaoMyBatis implements GradeDao{
 		super.sqlSession.delete("grade_deleteById", id);
 	}
 
+	@Override
+	public void deleteRelation(Grade grade) {
+		// TODO Auto-generated method stub
+		super.sqlSession.delete("grade_deleteRelation", grade);
+	}
 }

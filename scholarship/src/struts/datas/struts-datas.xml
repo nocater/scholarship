@@ -17,7 +17,7 @@
 		</action>
 		
 		<action name="update" class="datasAction" method="update">
-			<result name="success">/pages/datas/datasInfo.jsp</result>
+			<result name="success" type="redirect">/datas/query.action</result>
 		</action>
 		
 		<action name="apply" class="datasAction" method="apply">

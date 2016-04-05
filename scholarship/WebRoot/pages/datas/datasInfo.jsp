@@ -38,10 +38,10 @@
 				dataType:"json",
 				data:"id="+id,
 				success:function(result){
-					$("#sel-grade").empty();
-					$("#sel-grade").append("<option value='0'>--未选择--</option>");
+					$("#select-grade").empty();
+					$("#select-grade").append("<option value='0'>--未选择--</option>");
 					for(var i=0;i<result.length;i++){
-						$("#sel-grade").append("<option value="+result[i].id+">"+result[i].name+"</option>");
+						$("#select-grade").append("<option value="+result[i].id+">"+result[i].name+"</option>");
 					}
 				}
 			});

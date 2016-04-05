@@ -73,4 +73,10 @@ public class CollegeDaoImpl extends BaseDaoMyBatis implements CollegeDao {
 		return sqlSession.selectList("college_queryByRole",role);
 	}
 
+	@Override
+	public void deleteRelation(College college) {
+		// TODO Auto-generated method stub
+		super.sqlSession.delete("college_deleteRelation", college);
+	}
+
 }

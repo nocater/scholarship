@@ -87,7 +87,13 @@ public class CollegeServiceImpl extends BaseServiceImpl implements CollegeServic
 		// TODO Auto-generated method stub
 		collegeDao.deleteById(id);
 	}
-
+	
+	@Override
+	public void deleteRelation(College college) {
+		// TODO Auto-generated method stub
+		collegeDao.deleteRelation(college);
+	}
+	
 	public CollegeDao getCollegeDao() {
 		return collegeDao;
 	}
@@ -95,5 +101,4 @@ public class CollegeServiceImpl extends BaseServiceImpl implements CollegeServic
 	public void setCollegeDao(CollegeDao collegeDao) {
 		this.collegeDao = collegeDao;
 	}
-
 }

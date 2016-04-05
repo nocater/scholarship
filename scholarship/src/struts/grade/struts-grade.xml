@@ -23,6 +23,10 @@
 		</action>
 		
 		<action name="checkGradeName" class="gradeAction" method="checkGradeName"/>
+		
+		<action name="execute" class="gradeAction" method="execute">
+			<result name="success" type="redirect">/grade/query.action</result>
+		</action>
 	</package>
 	
 </struts>	
