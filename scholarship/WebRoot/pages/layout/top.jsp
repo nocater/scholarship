@@ -201,19 +201,23 @@
 					<ul>
 						<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
 						<li><a href="javascript:linkTo('datas');">奖/助学金</a></li>
-						<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-						<li><a href="javascript:linkTo('apply');">审批申请</a></li>
-						<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-						<li><a href="javascript:linkTo('account');">账户管理</a></li>
-						<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-						<li><a href="javascript:linkTo('role');">角色管理</a></li>
-						<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-						<li><a href="javascript:linkTo('college');">学院管理</a></li>
-						<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-						<li><a href="javascript:linkTo('grade');">班级管理</a></li>
-						<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-						<li><a href="javascript:linkTo('audit');">审计管理</a></li>
-						<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+						<c:if test="${sessionScope.LOGON_ROLE.id != 2}">
+							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+							<li><a href="javascript:linkTo('apply');">审批申请</a></li>
+							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+							<li><a href="javascript:linkTo('account');">账户管理</a></li>
+								<c:if test="${sessionScope.LOGON_ROLE.id eq 1}">
+									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+									<li><a href="javascript:linkTo('role');">角色管理</a></li>
+									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+									<li><a href="javascript:linkTo('college');">学院管理</a></li>
+									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+									<li><a href="javascript:linkTo('grade');">班级管理</a></li>
+									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+									<li><a href="javascript:linkTo('audit');">审计管理</a></li>
+									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+								</c:if>
+						</c:if>
 						<li><a href="javascript:linkTo('about');">关于产品</a></li>
 
 						<c:if test="${sessionScope.FORT_LOGON_ROLE.empView==1}">

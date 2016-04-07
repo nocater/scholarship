@@ -71,6 +71,8 @@ public class ApplyAction extends BaseAction {
 	private String select_year;
 	private String select_status;
 	
+	private String showNewTab;
+	
 	public String query(){
 		String year = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
 		role = (Role) getSession().getAttribute("LOGON_ROLE");
@@ -116,7 +118,7 @@ public class ApplyAction extends BaseAction {
 						case -1:allliedMessage+=as.getYear()+"年申请未通过<br/>";break;
 						case 0:allliedMessage+=as.getYear()+"年审核未审批<br/>";break;
 						case 1:allliedMessage+=as.getYear()+"年通过班主任审批<br/>";break;
-						case 2:allliedMessage+=as.getYear()+"年获得"+a.getScholarship().getCategory()+a.getScholarship().getLevel()+"<br/>";break;
+						case 2:allliedMessage+=as.getYear()+"年-"+as.getScholarship().getCategory()+as.getScholarship().getLevel()+"<br/>";break;
 					}
 				}
 			}
@@ -486,6 +488,14 @@ public class ApplyAction extends BaseAction {
 
 	public void setSelect_status(String select_status) {
 		this.select_status = select_status;
+	}
+
+	public String getShowNewTab() {
+		return showNewTab;
+	}
+
+	public void setShowNewTab(String showNewTab) {
+		this.showNewTab = showNewTab;
 	}
 
 }

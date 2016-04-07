@@ -19,6 +19,8 @@
 		<result property="area" 				column="area" />
 		<result property="address" 				column="address" />
 		<result property="distance" 			column="distance" />
+		<result property="expenses" 			column="expenses" />
+		<result property="isLoan" 				column="isLoan" />
 		<result property="name_grandfather" 	column="name_grandfather" />
 		<result property="name_grandmother" 	column="name_grandmother" />
 		<result property="in_grandfather" 		column="in_grandfather" />
@@ -43,6 +45,9 @@
 		<result	property="score_place"			column="score_place"/>
 		<result	property="quality_place"		column="quality_place"/>
 		<result property="memo" 				column="memo" />
+		<result property="ex1" 					column="ex1" />
+		<result property="ex2" 					column="ex2" />
+		<result property="ex3" 					column="ex3" />
 		<result property="createdate" 			column="createdate" />
 		<result property="updatedate" 			column="updatedate" />
         <association property="account"	column="account_id" javaType="account" select="com.scholarship.dao.account.impl.AccountDaoImpl.account_queryById"/>
@@ -145,6 +150,8 @@
 				area,
 				address,
 				distance,
+				expenses,
+				isLoan,
 				name_grandfather,
 				name_grandmother,
 				in_grandfather,
@@ -169,6 +176,9 @@
 				score_place,
 				quality_place,
 				memo,
+				ex1,
+				ex2,
+				ex3,
 				createdate,
 				updatedate
 			)
@@ -186,6 +196,8 @@
 				#{area},
 				#{address},
 				#{distance},
+				#{expenses},
+				#{isLoan},
 				#{name_grandfather},
 				#{name_grandmother},
 				#{in_grandfather},
@@ -210,6 +222,9 @@
 				#{score_place},
 				#{quality_place},
 				#{memo},
+				#{ex1},
+				#{ex2},
+				#{ex3},
 				now(),
 				now()				
 			)
@@ -235,6 +250,8 @@
 					area=#{area},
 					address=#{address},
 					distance=#{distance},
+					expenses=#{expenses},
+					isLoan=#{isLoan},
 					name_grandfather=#{name_grandfather},
 					name_grandmother=#{name_grandmother},
 					in_grandfather=#{in_grandfather},
@@ -259,6 +276,9 @@
 					score_place=#{score_place},
 					quality_place=#{quality_place},
 					memo=#{memo},
+					ex1=#{ex1},
+					ex2=#{ex2},
+					ex3=#{ex3},
 					updatedate=NOW()
 		WHERE
 			ID=#{id}

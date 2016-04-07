@@ -7,6 +7,7 @@ import java.util.List;
 import com.scholarship.module.account.Account;
 import com.scholarship.module.apply.Apply;
 import com.scholarship.module.college.College;
+import com.scholarship.module.conf.AppConfig;
 import com.scholarship.module.datas.Datas;
 import com.scholarship.module.grade.Grade;
 import com.scholarship.module.role.Role;
@@ -40,6 +41,8 @@ public class DatasAction extends BaseAction {
 	private List<College> collegeList;
 	private List<Grade> gradeList;
 	private int accountId;
+	private String accountName;
+	private String accountSex;
 	private String collegeId;
 	private String gradeId;
 	private String message;
@@ -123,21 +126,27 @@ public class DatasAction extends BaseAction {
 	}
 	
 	public String update(){
+		role = (Role) getSession().getAttribute("LOGON_ROLE");
+		if(role.getId()!=2) return INPUT;
+		
 		account = new Account();
 		account.setId(accountId);
 		datas_old = datasService.queryByAccount(account,"1");//修改前备份对象
 		account = accountService.queryById(accountId);
 		datas.setAccount(account);
 		
+		if(StringUtil.isNotBlank(accountName)&&!accountName.equals(account.getName())){
+			account.setName(accountName);
+		}
+		if(StringUtil.isNotBlank(accountSex)&&!accountSex.equals(account.getSex())){
+			account.setSex(accountSex);
+		}
 		College college = null;
 		if(StringUtil.isNotBlank(collegeId))
 			college = collegeService.queryById(Integer.parseInt(collegeId));
 			//如果选择的学院和提交不一致，更新账户学院
 			if(account.getCollege().getId()!=college.getId()){
 				account.setCollege(college);
-				accountService.update(account);
-				getSession().removeAttribute("LOGON_ACCOUNT");
-				getSession().setAttribute("LOGON_ACCOUNT", account);//更新session
 			}
 		if(college!=null) {
 			datas.setCollege(college.getName());
@@ -149,14 +158,16 @@ public class DatasAction extends BaseAction {
 			//如果选择的学院和提交不一致，更新账户学院
 			if(account.getGrade().getId()!=grade.getId()){
 				account.setGrade(grade);
-				accountService.update(account);
-				getSession().removeAttribute("LOGON_ACCOUNT");
-				getSession().setAttribute("LOGON_ACCOUNT", account);//更新session
 			}
 		if(grade!=null){
 			datas.setGrade(grade.getName());
 			datas.setMajor(grade.getMajor());
 		}
+		
+		//更新账户信息
+		accountService.update(account);
+		getSession().removeAttribute("LOGON_ACCOUNT");
+		getSession().setAttribute("LOGON_ACCOUNT", account);//更新session
 		
 		if(datas==null){
 			this.insert(datas);
@@ -169,14 +180,21 @@ public class DatasAction extends BaseAction {
 	
 	public String apply(){
 		//先保存信息
-		if(this.update().equals(SUCCESS)){
+		if(this.update().equals(SUCCESS)&&AppConfig.APPLY==1){
 			apply = new Apply();
-			apply.setAccount(datas.getAccount());
+			Account a = new Account();
+			a.setId(datas.getAccount().getId());//使account name 为空  否则sql会以keyword查询
+			apply.setAccount(a);
 			apply.setStatus(0);
 			apply.setYear(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
-			if(applyService.query(null, apply,null,null,null,null).size()>0) message = "您已提交申请，请勿重复提交。";
-			else applyService.inert(apply);message = "申请已提交成功，请等待审批";
+			if(applyService.query(null, apply,null,null,null,null).size()>0) {
+				message = "您已提交申请，请勿重复提交。";
+			}else {
+				applyService.inert(apply);
+				message = "申请已提交成功，请等待审批";
+			}
 		}
+		if(AppConfig.APPLY==0)message = "审批未开启，请练习管理员";
 		//查询数据 返回页面
 		this.query();
 		return SUCCESS;
@@ -272,6 +290,22 @@ public class DatasAction extends BaseAction {
 
 	public void setApply(Apply apply) {
 		this.apply = apply;
+	}
+
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public String getAccountSex() {
+		return accountSex;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+
+	public void setAccountSex(String accountSex) {
+		this.accountSex = accountSex;
 	}
 
 	public void setDatas_old(Datas datas_old) {

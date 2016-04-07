@@ -2,11 +2,15 @@ package com.scholarship.webapp.action.account;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.scholarship.module.account.Account;
+import com.scholarship.module.account.OnlineUser;
+import com.scholarship.module.role.Role;
 import com.scholarship.service.account.AccountService;
 import com.scholarship.service.account.LoginService;
 import com.scholarship.service.audit.AuditService;
@@ -28,18 +32,36 @@ public class LoginAction extends BaseAction{
 	
 	public void checkSingle(){
 		List<Account> list = accountService.queryByAccno(loginAccno.trim());
+		int userId = 0;
 		if(list.size()>0){
-			try {
-				getResponse().getWriter().write("");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				log.info(e.getMessage());
+			List<OnlineUser> userList = (List<OnlineUser>)super.getServletContext().getAttribute("ONLINE_ACCOUNTLIST");
+			
+			for(OnlineUser user : userList) {
+				if(user.getUserId() == list.get(0).getId() && user.getFlag() == 1) {
+					userId = user.getUserId();
+					break;
+				}
 			}
+		}
+		
+		try {
+			getResponse().setContentType("text/html;charset=UTF-8");
+			getResponse().setCharacterEncoding("UTF-8");
+			getResponse().setHeader("Cache-Control", "no-cache");
+			if(userId != 0) {
+				getResponse().getWriter().write("true");
+			}else{
+				getResponse().getWriter().write("flase");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			log.info(e.getMessage());
 		}
 	}
 	
 	public String check(){
 		HttpSession session = getSession();
+		HttpServletRequest request = getRequest();
 		if(StringUtil.isBlank(loginAccno)||StringUtil.isBlank(loginPassword)) {
 			super.addActionMessage("账号密码不能为空！");
 			return INPUT;
@@ -65,6 +87,32 @@ public class LoginAction extends BaseAction{
 			//审计
 			fieldList.add(account.getName() + "("+ account.getAccno() + ")");
 			auditService.insertByLoginOperator(true,account.getId(),this.getRequest().getRemoteAddr(),fieldList);
+			
+			// 单一登录判断 
+			synchronized(this) {
+				List<OnlineUser> userList = (List<OnlineUser>)super.getServletContext().getAttribute("ONLINE_ACCOUNTLIST");
+				boolean flag = false;
+				for(OnlineUser user : userList) {
+					if(user.getUserId() == account.getId()) {
+						if(user.getFlag() == 1)
+							user.setFlag(0);
+					}
+				}
+				
+				OnlineUser newUser = new OnlineUser();
+				newUser.setFlag(1);
+				newUser.setUserId(account.getId());
+				newUser.setUserName(account.getName());
+				newUser.setUserIp(request.getRemoteAddr());
+				newUser.setLoginTime(new Date());
+				newUser.setSessionId(session.getId());
+				userList.add(newUser);
+			}
+			
+			//菜单  非学生默认审批模块
+			Role role = account.getRole();
+			if(role.getId()!=2) session.setAttribute("MENU", "1");
+			
 		}else{
 			super.addActionMessage(loginService.getActionMessage());
 			//审计
@@ -74,13 +122,13 @@ public class LoginAction extends BaseAction{
 			}
 			return INPUT;
 		}
+		
 		return SUCCESS;
 	}
 
 	public String logout(){
-		HttpSession session = getSession();
-		session.removeAttribute("LOGON_ACCOUNT");
-		session.removeAttribute("LOGON_ROLE");
+		HttpSession session = this.getRequest().getSession();
+		session.invalidate();
 		return SUCCESS;
 	}
 	

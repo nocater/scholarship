@@ -12,6 +12,8 @@
 			<result name="input">/pages/login.jsp</result>
 		</action>
 		
+		<action name="checkSingle" class="loginAction" method="checkSingle"/>
+		
 		<action name="logout" class="loginAction" method="logout">
 			<result name="success">/pages/logout.jsp</result>
 		</action>

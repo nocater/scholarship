@@ -123,9 +123,25 @@
 			}
 			$("#roleNames").html(role);
 		}
+		function load(){
+			if(document.all)
+			{
+				if(undefined==window.opener)
+				{
+					window.open(window.location,"","fullScreen=no;scrollbar=no,resizable=yes,menubar=no,toolbar=no,location=no,status=yes");
+					window.opener=null;
+					window.close();
+				}
+				else
+				{
+					self.moveTo(0,0);
+					self.resizeTo(screen.availWidth,screen.availHeight);
+				}
+			}
+		}
 	</script>
 </head>
-<body onload="subRoleName();">
+<body nload="load()">
 	<center>
 		<!-- banner area -->
 
@@ -193,7 +209,7 @@
 			</tr>
 		</table>
 		<!-- banner area -->
-		<%@ include file="/pages/apply/applyList.jsp"%>
+			<%@ include file="/pages/apply/applyList.jsp"%>
 	</center>
 	<div class="ui-overlay">
 		<div id="mack"></div>

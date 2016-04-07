@@ -53,5 +53,9 @@
 		<action name="frameBottom">
 			<result type="tiles">scholarship.frameBottom</result>
 		</action>
+		
+		<action name="frameContext" class="frameAction" method="frameContext">
+			<result name="success" type="tiles">scholarship.frameContext</result>
+		</action>
 	</package>
 </struts>    

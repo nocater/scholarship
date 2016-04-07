@@ -5,6 +5,7 @@
 <html>
   <head>
     <title></title>
+    <link href="${ctx}/styles/css.css" rel="stylesheet" type="text/css">
     <link href="${ctx}/styles/style.css" rel="stylesheet" type="text/css">
     <link href="${ctx}/styles/right.css" rel="stylesheet" type="text/css">
     <link href="${ctx}/styles/jquery-ui.custom.css" rel="stylesheet" type="text/css">
@@ -94,12 +95,77 @@
 			var status = $("#select-status").val();
 			var collegeId = $("#select-college").val();
 			var gradeId = $("#select-grade").val();
-			location.href="${ctx}/apply/query.action?collegeId="+collegeId+"&gradeId="+gradeId;
+			var showNewTab = $("#showNewTab").val();
+			location.href="${ctx}/apply/query.action?collegeId="+collegeId+"&gradeId="+gradeId+"&showNewTab="+showNewTab;
+		}
+		
+		function logout() {
+			if (confirm("你确认要注销吗？")) {
+				location.href = '${ctx}/login/logout.action';
+			}
 		}
 	</script>
   </head>
   
   <body>
+  	<s:hidden name="showNewTab" id="showNewTab"/><!-- 是否显示TopFrame -->
+  	<s:if test="showNewTab eq 1">
+  	<div>
+  		<!-- TopFrame -->
+		<table width="99%" height="65px" border="0" cellpadding="0"
+			cellspacing="0" background="${ctx}/images/topRbj.jpg">
+			<tr>
+				<td>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0"
+						height="65px;">
+						<tr>
+							<td><table width="100%" border="0" cellspacing="0"
+									cellpadding="0">
+									<tr>
+										<td valign="top" align="left">
+											<!-- LOGO --> <%-- <img src="${ctx}/images/logo.jpg" alt="" name="topLogo" width="300" height="65" id="topLogo" style="" /> --%>
+										</td>
+										<td align="right">
+											<div class="topinfo" id="topinfo">
+												<table width="100%" border="0" cellpadding="0"
+													cellspacing="0">
+													<tr>
+														<td><div id="workMes" onclick="showMes()">
+																<span id="span1" class="topL0"></span>
+															</div></td>
+														<td class="topL1">
+															<table width="75%" border="0" align="right"
+																cellpadding="0" cellspacing="0">
+																<tr>
+																	<td align="left">帐&nbsp;&nbsp;号：${sessionScope.LOGON_ACCOUNT.name}</td>
+																</tr>
+																<tr>
+																	<td align="left"
+																		title="${sessionScope.LOGON_ROLE.name}">
+																		角&nbsp;&nbsp;色：<span id="roleNames">${sessionScope.LOGON_ROLE.name}</span> 
+																	</td>
+																</tr>
+															</table>
+														</td>
+														<%-- <td><input name="" type="button" class="topL2"
+															value="个人设置"
+															onclick="parent.mainFrame.location.href='${ctx}/employee/personSeting.action';" /></td>
+														<td><input name="input" type="button" class="topL3"
+															value="注销" onclick="logout()" /></td> --%>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
+								</table></td>
+							<td width="1%">&nbsp;</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+  	</div>
+  	</s:if>
   	<s:form action="query" namespace="/apply" method="post" theme="simple">
     <s:hidden name="order" id="order"/>
   	<div>
@@ -135,7 +201,7 @@
 			  				<td width="1%"/>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;"colspan="1"><img src="${ctx}/images/search.jpg"  class="hand" onclick="querys();" /></td>
 			  				<td	width="1%"/>
-			  				<td width="5%" valign="middle" align="center"><input type="button"  value="宽屏" class="btnstyle1" onclick="window.open('${ctx}/pages/apply/applyListNewTab.jsp');" style="padding-top:1px;"/></td>
+			  				<td width="5%" valign="middle" align="center"><input type="button"  value="宽屏" class="btnstyle1" onclick="window.open('${ctx}/apply/query.action?showNewTab=1');" style="padding-top:1px;"/></td>
 			  				<td/>
 			  				<!-- <td valign="top"><span><a href="#">高级</a></span></td> -->
 			  				<!-- <td width="" valign="middle" style="padding-top:2px;"><span class="spanred">内置角色不可更改</span></td> -->
@@ -150,13 +216,13 @@
 			  				<td/>
 			  				<td valign="middle" align="left" style="padding-top:0px;">
 			  					<select style="width:100%;" id="sel-role">
-				  					<option value="0">--所有---</option>
-				  					<option value="-1"
+				  					<option value="0">--今年---</option>
+				  				<%-- <option value="-1"
 				  						<c:if test="${onlyStudent eq -1}">selected=""</c:if>
 				  					>学生</option>
 				  					<option value="1"
 				  						<c:if test="${onlyStudent eq 1}">selected=""</c:if>
-				  					>非学生</option>
+				  					>非学生</option> --%>
 			  					</select>	
 			  				</td>
 			  				<td/>
@@ -205,9 +271,9 @@
 		    				<th width="10%" align="center" class="biaoti">母亲</th>
 		    				<th width="10%" align="center" class="biaoti">爷爷奶奶</th>
 		    				<th width="10%" align="center" class="biaoti">兄弟姐妹</th>
-		    				<th width="5%" align="center" class="biaoti">家庭年收入</th>
-		    				<th width="10%" align="center" class="biaoti">主要支出项</th>
 		    				<th width="10%" align="center" class="biaoti">家庭变故</th>
+		    				<th width="5%"  align="center" class="biaoti">家庭年收入</th>
+		    				<th width="10%" align="center" class="biaoti">主要支出项</th>
 		    				<th width="10%" align="center" class="biaoti">主要困难原因</th>
 		    				<th width="10%" align="center" class="biaoti">资助历史</th>
 		    			</tr>
@@ -248,36 +314,36 @@
 		    						<span>${datasList[stat.index].name}</span>
 		    					</td> --%>
 		    					<td align="center">
-		    						姓名:<span>${datasList[stat.index].name_father}</span><br/>
-		    						职业:<span>${datasList[stat.index].career_father}</span><br/>
-		    						收入:<span>${datasList[stat.index].health_father}</span><br/>
-		    						健康:<span>${datasList[stat.index].in_father}</span>
+		    						<font color="green">姓名:</font><span>${datasList[stat.index].name_father}</span><br/>
+		    						<font color="green">职业:</font><span>${datasList[stat.index].career_father}</span><br/>
+		    						<font color="green">收入:</font><span>${datasList[stat.index].in_father}</span><br/>
+		    						<font color="green">健康:</font><span>${datasList[stat.index].health_father}</span>
 		    					</td>
 		    					<td align="center">
-									姓名:<span>${datasList[stat.index].name_mother}</span><br/>
-		    						职业:<span>${datasList[stat.index].career_mother}</span><br/>
-		    						收入:<span>${datasList[stat.index].health_mother}</span><br/>
-		    						健康:<span>${datasList[stat.index].in_mother}</span>
+									<font color="green">姓名:</font><span>${datasList[stat.index].name_mother}</span><br/>
+		    						<font color="green">职业:</font><span>${datasList[stat.index].career_mother}</span><br/>
+		    						<font color="green">收入:</font><span>${datasList[stat.index].in_mother}</span><br/>
+		    						<font color="green">健康:</font><span>${datasList[stat.index].health_mother}</span>
 								</td>
 		    					<td align="center">
-		    						爷爷:<span>${datasList[stat.index].name_grandfather}</span><br/>
-		    						收入:<span>${datasList[stat.index].in_grandfather}</span><br/>
-		    						健康:<span>${datasList[stat.index].health_grandfather}</span><br/>
-		    						奶奶:<span>${datasList[stat.index].name_grandmother}</span><br/>
-		    						收入:<span>${datasList[stat.index].in_grandmother}</span><br/>
-		    						健康:<span>${datasList[stat.index].health_grandmother}</span>
+		    						<font color="green">爷爷:</font><span>${datasList[stat.index].name_grandfather}</span><br/>
+		    						<font color="green">收入:</font><span>${datasList[stat.index].in_grandfather}</span><br/>
+		    						<font color="green">健康:</font><span>${datasList[stat.index].health_grandfather}</span><br/>
+		    						<font color="green">奶奶:</font><span>${datasList[stat.index].name_grandmother}</span><br/>
+		    						<font color="green">收入:</font><span>${datasList[stat.index].in_grandmother}</span><br/>
+		    						<font color="green">健康:</font><span>${datasList[stat.index].health_grandmother}</span>
 		    					</td>
 		    					<td align="center">
 		    						<span>${datasList[stat.index].others}</span>
+		    					</td>
+		    					<td align="center">
+		    						<span>${datasList[stat.index].accident}</span>
 		    					</td>
 		    					<td align="center">
 		    						<span>${datasList[stat.index].in_family}</span>
 		    					</td>
 		    					<td align="center">
 		    						<span>${datasList[stat.index].out_main}</span>
-		    					</td>
-		    					<td align="center">
-		    						<span>${datasList[stat.index].accident}</span>
 		    					</td>
 		    					<td align="center">
 		    						<span>${datasList[stat.index].descripe}</span>

@@ -18,6 +18,7 @@
 		
 		<action name="update" class="datasAction" method="update">
 			<result name="success" type="redirect">/datas/query.action</result>
+			<result name="input" type="redirect">/datas/query.action</result>
 		</action>
 		
 		<action name="apply" class="datasAction" method="apply">

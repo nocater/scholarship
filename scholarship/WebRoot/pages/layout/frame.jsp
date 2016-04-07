@@ -40,13 +40,13 @@
 			title="topFrame" />
 		<frameset cols="190,0,*" frameborder="no" border="0" framespacing="0">
 			<frame 
-				src="<tiles:getAsString name="leftFrame" />"
+				src="<tiles:getAsString name="leftFrame${sessionScope.MENU}" />"
 				name="leftFrame" id="leftFrame" frameborder="0" noresize="noresize"
 				title="leftFrame" />
 			<frame src="" frameborder="0" name="mapFrame" scrolling="NO"
 				noresize="noresize" title="mapFrame" />
 			<frame
-				src="<tiles:getAsString name="mainFrame" />"
+				src="<tiles:getAsString name="mainFrame${sessionScope.MENU}" />"
 				name="mainFrame" id="mainFrame" frameborder="0" title="mainFrame" />
 		</frameset>
 		<frame src="<tiles:getAsString name="bottomFrame"/>" name="bottomFrame"

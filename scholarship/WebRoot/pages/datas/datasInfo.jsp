@@ -49,8 +49,7 @@
 		
 		/* 提交表单  */
 		function save(){
-			$("#collegeId").val($("#select-college option:selected").val());
-			$("#gradeId").val($("#select-grade option:selected").val());
+			deal();
 			if($("#datasForm").validationEngine("validate")){ //校验通过禁用按钮防止二次提交
 				$("#btnSave").attr("disabled",true);
 				$("#datasForm").submit();
@@ -58,13 +57,22 @@
 		}
 		/* 提交表单  */
 		function apply(){
-			$("#collegeId").val($("#select-college option:selected").val());
-			$("#gradeId").val($("#select-grade option:selected").val());
+			deal();
 			if($("#datasForm").validationEngine("validate")){ //校验通过禁用按钮防止二次提交
 				$("#datasForm").prop("action","apply");
 				$("#btnSave").attr("disabled",true);
 				$("#datasForm").submit();
 			}
+		}
+		
+		function deal(){
+			$("#collegeId").val($("#select-college option:selected").val());
+			$("#gradeId").val($("#select-grade option:selected").val());
+			$("#datasArea").val($("#select-area").val());
+			$("#datasIsLoan").val($("#select-isLoan").val());
+			$("#datasSex").val($("#select-sex").val());
+			$("#accountSex").val($("#select-sex").val());
+			$("#accountName").val($("#datasName").val());
 		}
 	</script>
   </head>
@@ -112,10 +120,11 @@
 										<tr>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>姓名:</td>
 											<td style="padding-left: 20px">
+												<s:hidden name="accountName" id="accountName"/>
 												<input type="text" name="datas.name" id="datasName" value="${account.name}"/><span id="">
 											</span></td>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>学号:</td>
-											<td style="padding-left: 20px"><input type="text" name="account.accno" id="accountAccno" value="${account.accno}"/><span id=""></td>
+											<td style="padding-left: 20px"><input type="text" readonly="readonly" id="accountAccno" value="${account.accno}"/><span id=""></td>
 										</tr>
 										
 										<!-- 空行 -->
@@ -170,6 +179,8 @@
 										<tr>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>性别:</td>
 											<td style="padding-left: 20px">
+												<s:hidden name="datas.sex" id="datasSex"/>
+												<s:hidden name="accountSex" id="accountSex"/>
 												<select style="width: 137px" id="select-sex">
 													<option  value="男"
 														<c:if test="${datas.sex eq '男'}">selected=""</c:if>
@@ -179,8 +190,8 @@
 													>女</option>
 												</select><span id="">
 											</span></td>
-											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>申请:</td>
-											<td style="padding-left: 20px"><input type="text"/><span id=""></td>
+											<td align="right" style="font-size: 12px;"></td>
+											<td style="padding-left: 20px"><span id=""></td>
 										</tr>
 										
 										<!-- 空行 -->
@@ -358,22 +369,25 @@
 										
 										<!-- 地区 -->
 										<tr>
-											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>地区:</td>
+											<td align="right" style="font-size: 12px;">地区:</td>
 											<td style="padding-left: 20px">
+												<s:hidden name="datas.area" id="datasArea"/>
 												<select style="width: 137px" id="select-area">
 													<option value="东部"
 														<c:if test="${datas.area eq '东部'}"> selected="" </c:if>
 													>东部</option>
 													<option	value="中部"
-														<c:if test="${datas.area eq '东部'}"> selected="" </c:if>
+														<c:if test="${datas.area eq '中部'}"> selected="" </c:if>
 													>中部</option>
 													<option	value="西部"
-														<c:if test="${datas.area eq '东部'}"> selected="" </c:if>
+														<c:if test="${datas.area eq '西部'}"> selected="" </c:if>
 													>西部</option>
 												</select>
 											</td>
-											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>离县城距离:</td>
+											<td align="right" style="font-size: 12px;">离县城距离:</td>
 											<td style="padding-left: 20px"><input type="text" name="datas.distance" id="datasDistance" value="${datas.distance}"/><span id=""></td>
+											<td align="right" style="font-size: 12px;">月生活费:</td>
+											<td style="padding-left: 20px"><input type="text" name="datas.expenses" id="datasExpenses" value="${datas.expenses}"/><span id=""></td>
 										</tr>
 										
 										<!-- 空行 -->
@@ -388,8 +402,20 @@
 										<!-- 家庭住址 -->
 										<tr>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>家庭住址:</td>
-											<td style="padding-left: 20px"	colspan="5">
+											<td style="padding-left: 20px"	colspan="3">
 												<input type="text" style="width: 400px" name="datas.address" id="datasAddress" value="${datas.address}"/><span id="">
+											</td>
+											<td align="right" style="font-size: 12px;">生源地贷款:</td>
+											<td style="padding-left: 20px">
+												<s:hidden name="datas.isLoan" id="datasIsLoan"/>
+												<select style="width: 137px" id="select-isLoan">
+													<option value="0"
+														<c:if test="${datas.isLoan eq 0}"> selected="" </c:if>
+													>否</option>
+													<option	value="1"
+														<c:if test="${datas.isLoan eq 1}"> selected="" </c:if>
+													>是</option>
+												</select>
 											</td>
 										</tr>
 										
@@ -520,7 +546,7 @@
 											</span></td>
 											<%-- <c:if test="${datas.id gt 0}"> --%>
 											<c:if test="${true}">
-												<td align="right" style="font-size: 12px;">家庭变故:</td>
+												<td align="right" style="font-size: 12px;">近一年家庭变故:</td>
 												<td style="padding-left: 20px" colspan="3">
 													<s:textarea cols="50" rows="5" style="width: 300px"
 														name="datas.accident" id="dataMemo"
@@ -696,11 +722,14 @@
 						<tr>
 							<td>
 								<input type="button" class="btnyh" id="btnSave"
-									onclick="save();" value="保存信息" />
-								<input type="button" class="btnyh" id="btnSave"
-									onclick="apply();" value="提交申请" />
+									onclick="save();" value="仅保存信息" />
+								<s:if test="@com.scholarship.module.conf.AppConfig@APPLY eq 1">
+									<input type="button" class="btnyh" id="btnSave"
+										onclick="apply();" value="申请奖/助学金" 
+										/>
+								</s:if>
 								<input type="button" class="btnyh" id="btnCancel"
-									onclick="window.location.href='${ctx}/role/query.action?order=${order}';"
+									onclick="history.back();"
 									value="取  消" />
 								&nbsp;&nbsp;
 								<span class="spanred">信息填写请确保完整准确</span>

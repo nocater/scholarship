@@ -23,7 +23,22 @@
 <script type='text/javascript' src="${ctx}/scripts/date.js"></script>
 <script type="text/javascript">
 	function submitForm(){
-		$("#LoginForm").submit();
+		$.ajax({
+			type:"POST",
+			url:"${ctx}/login/checkSingle.action",
+			dataType : "text",
+			data : "loginAccno=" + $('#loginAccno').val(),
+			success : function(result) {
+				if(result=="true"){
+					if(confirm( $('#loginAccno').val()+'已经登录，是否继续？强行登录将导致该用户下线！')) {
+						$("#LoginForm").submit();
+					}
+				} else{
+					$("#LoginForm").submit();
+				}
+			}
+		});
+		
 	}
 	function nameblur(){
 		

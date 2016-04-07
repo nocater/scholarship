@@ -19,6 +19,8 @@ public class Datas {
 	private String	area;//地区
 	private String	address;//家庭地址
 	private String	distance;//离县城远近
+	private String  expenses;//月生活费
+	private String	isLoan;//是否有生源地贷款
 	private	String	name_grandfather;//爷爷
 	private String	name_grandmother;//奶奶
 	private String	in_grandfather;//爷爷收入
@@ -43,6 +45,9 @@ public class Datas {
 	private String	score_place;//成绩排名
 	private	String	quality_place;//素质排名
 	private String	memo;//备注
+	private String  ex1;//扩展字段1
+	private String  ex2;//扩展字段2
+	private String  ex3;//扩展字段3
 	private Date	createdate;
 	private Date	updatedate;
 	
@@ -54,7 +59,8 @@ public class Datas {
 	public Datas(int id, Account account, String college, String major,
 			String grade, String year, int type, String name, String sex,
 			String idnumber, String bankcard, String area, String address,
-			String distance, String name_grandfather, String name_grandmother,
+			String distance, String expenses, String isLoan,
+			String name_grandfather, String name_grandmother,
 			String in_grandfather, String in_grandmother,
 			String health_grandfather, String health_grandmother,
 			String name_father, String name_mother, String in_father,
@@ -62,7 +68,8 @@ public class Datas {
 			String health_father, String health_mother, String others,
 			String in_family, String out_main, String balance, String descripe,
 			String file, String accident, String score_place,
-			String quality_place, String memo, Date createdate, Date updatedate) {
+			String quality_place, String memo, String ex1, String ex2,
+			String ex3, Date createdate, Date updatedate) {
 		super();
 		this.id = id;
 		this.account = account;
@@ -78,6 +85,8 @@ public class Datas {
 		this.area = area;
 		this.address = address;
 		this.distance = distance;
+		this.expenses = expenses;
+		this.isLoan = isLoan;
 		this.name_grandfather = name_grandfather;
 		this.name_grandmother = name_grandmother;
 		this.in_grandfather = in_grandfather;
@@ -102,6 +111,9 @@ public class Datas {
 		this.score_place = score_place;
 		this.quality_place = quality_place;
 		this.memo = memo;
+		this.ex1 = ex1;
+		this.ex2 = ex2;
+		this.ex3 = ex3;
 		this.createdate = createdate;
 		this.updatedate = updatedate;
 	}
@@ -160,6 +172,14 @@ public class Datas {
 
 	public String getDistance() {
 		return distance;
+	}
+
+	public String getExpenses() {
+		return expenses;
+	}
+
+	public String getIsLoan() {
+		return isLoan;
 	}
 
 	public String getName_grandfather() {
@@ -258,6 +278,18 @@ public class Datas {
 		return memo;
 	}
 
+	public String getEx1() {
+		return ex1;
+	}
+
+	public String getEx2() {
+		return ex2;
+	}
+
+	public String getEx3() {
+		return ex3;
+	}
+
 	public Date getCreatedate() {
 		return createdate;
 	}
@@ -320,6 +352,14 @@ public class Datas {
 
 	public void setDistance(String distance) {
 		this.distance = distance;
+	}
+
+	public void setExpenses(String expenses) {
+		this.expenses = expenses;
+	}
+
+	public void setIsLoan(String isLoan) {
+		this.isLoan = isLoan;
 	}
 
 	public void setName_grandfather(String name_grandfather) {
@@ -416,6 +456,18 @@ public class Datas {
 
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+	public void setEx1(String ex1) {
+		this.ex1 = ex1;
+	}
+
+	public void setEx2(String ex2) {
+		this.ex2 = ex2;
+	}
+
+	public void setEx3(String ex3) {
+		this.ex3 = ex3;
 	}
 
 	public void setCreatedate(Date createdate) {

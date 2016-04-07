@@ -40,7 +40,11 @@ public class FrameAction extends BaseAction {
 	public String frame(){
 		return SUCCESS;
 	}
-
+	
+	public String frameContext(){
+		return SUCCESS;
+	}
+	
 	public String getTodayDate() {
 		return todayDate;
 	}

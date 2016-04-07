@@ -31,22 +31,22 @@
 			<tr >
 				<td  align="left">
 					<a href="#" class="hand"
-						onclick="parent.mainFrame.location.href='${ctx}/systemAudit/query.action';">
+						onclick="parent.mainFrame.location.href='${ctx}/audit/query.action';">
 						&nbsp;
 						<img src="${ctx}/images/arrow_03.gif"/>
-						&nbsp;内部审计
+						&nbsp;审计
 					</a>
 				</td>
 			</tr>
 			<tr  align="left">
-				<td >
+				<%-- <td >
 					<a href="#" class="hand"
 						onclick="parent.mainFrame.location.href='${ctx}/conductAudit/query.action';">
 						&nbsp;
 						<img src="${ctx}/images/arrow_03.gif"/>
 						&nbsp;行为审计
 					</a>
-				</td>
+				</td> --%>
 			</tr>
 			<!-- SQL审计和交易审计是新点定制研发，当前版本为：Ver 3.6.1.198
 			<tr  align="left">
