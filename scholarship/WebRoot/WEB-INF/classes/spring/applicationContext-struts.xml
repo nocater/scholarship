@@ -15,47 +15,53 @@
 	
 	<!-- 账户 -->
 	<bean id="accountAction" class="com.scholarship.webapp.action.account.AccountAction" scope="prototype" parent="baseAction">
-		<property name="accountService" ref="accountService"></property>
-		<property name="roleService" ref="roleService"></property>
-		<property name="collegeService" ref="collegeService"></property>
-		<property name="gradeService" ref="gradeService"></property>
-		<property name="auditService" ref="auditService"></property>
+		<property name="accountService" ref="accountService"/>
+		<property name="roleService" ref="roleService"/>
+		<property name="collegeService" ref="collegeService"/>
+		<property name="gradeService" ref="gradeService"/>
+		<property name="auditService" ref="auditService"/>
+		<property name="datasService" ref="datasService"/>
 	</bean>
 	<bean id="loginAction" class="com.scholarship.webapp.action.account.LoginAction" scope="prototype" parent="baseAction">
-		<property name="accountService" ref="accountService"></property>
-		<property name="loginService" ref="loginService"></property>
-		<property name="auditService" ref="auditService"></property>
+		<property name="accountService" ref="accountService"/>
+		<property name="loginService" ref="loginService"/>
+		<property name="auditService" ref="auditService"/>
 	</bean>
 	
 	
 	<!-- Role 角色ACTION -->
 	<bean id="roleAction" class="com.scholarship.webapp.action.role.RoleAction" scope="prototype" parent="baseAction">
-		<property name="roleService" ref="roleService"></property>
+		<property name="roleService" ref="roleService"/>
 	</bean>
 	<bean id="selectCollegeAction" class="com.scholarship.webapp.action.role.SelectCollegeAction" scope="prototype" parent="baseAction">
-		<property name="collegeService" ref="collegeService"></property>
+		<property name="collegeService" ref="collegeService"/>
 	</bean>
 	<bean id="selectGradeAction" class="com.scholarship.webapp.action.role.SelectGradeAction" scope="prototype" parent="baseAction">
-		<property name="gradeService" ref="gradeService"></property>
+		<property name="gradeService" ref="gradeService"/>
 	</bean>
+	
 	<!-- Grade 年级ACTION -->
 	<bean id="gradeAction" class="com.scholarship.webapp.action.grade.GradeAction" scope="prototype" parent="baseAction">
-		<property name="gradeService" ref="gradeService"></property>
-		<property name="collegeService" ref="collegeService"></property>
+		<property name="gradeService" ref="gradeService"/>
+		<property name="collegeService" ref="collegeService"/>
 	</bean>
+	
 	<!-- College 学院ACTION -->
 	<bean id="collegeAction" class="com.scholarship.webapp.action.college.CollegeAction" scope="prototype" parent="baseAction">
-		<property name="collegeService" ref="collegeService"></property>
+		<property name="collegeService" ref="collegeService"/>
 	</bean>
+	
 	<!-- Scholarship 学金ACTION -->
 	<bean id="scholarshipAction" class="com.scholarship.webapp.action.scholarship.ScholarshipAction" scope="prototype" parent="baseAction">
-		<property name="scholarshipService" ref="scholarshipService"></property>
+		<property name="scholarshipService" ref="scholarshipService"/>
 	</bean>
+	
 	<!-- Audit 审计ACTION -->
 	<bean id="auditAction" class="com.scholarship.webapp.action.audit.AuditAction" scope="prototype" parent="baseAction">
 		<property name="auditService" ref="auditService"/>
 		<property name="accountService" ref="accountService"/>
 	</bean>
+	
 	<!-- Datas 数据ACTION -->
 	<bean id="datasAction" class="com.scholarship.webapp.action.datas.DatasAction" scope="prototype" parent="baseAction">
 		<property name="auditService" ref="auditService"/>
@@ -65,6 +71,7 @@
 		<property name="gradeService" ref="gradeService"/>
 		<property name="applyService" ref="applyService"/>
 	</bean>
+	
 	<!-- scope="prototype" 是说线程安全性的 每次请求都是不同的action对象   不配置每次都是同一个action对象 -->
 	<bean id="applyAction" class="com.scholarship.webapp.action.apply.ApplyAction" scope="prototype" parent="baseAction">
 		<property name="applyService" ref="applyService"/>
@@ -76,6 +83,7 @@
 		<property name="collegeService" ref="collegeService"/>
 		<property name="gradeService" ref="gradeService"/>
 	</bean>
+	
 	<!-- 关于 -->
 	<bean id="aboutAction" class="com.scholarship.webapp.action.about.AboutAction" scope="prototype" parent="baseAction">
 	</bean>

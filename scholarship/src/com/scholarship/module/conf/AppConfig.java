@@ -19,4 +19,6 @@ public class AppConfig {
 	public static int APPLY=1;
 	//申请提示信息
 	public static String tip="请确保信息填写真实完整，一经核实失败，后果自负！";
+	//验证码
+	public static int CODES=0;
 }

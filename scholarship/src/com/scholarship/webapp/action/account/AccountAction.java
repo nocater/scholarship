@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.scholarship.module.account.Account;
 import com.scholarship.module.college.College;
+import com.scholarship.module.datas.Datas;
 import com.scholarship.module.grade.Grade;
 import com.scholarship.module.role.Role;
 import com.scholarship.service.account.AccountService;
 import com.scholarship.service.audit.AuditService;
 import com.scholarship.service.college.CollegeService;
+import com.scholarship.service.datas.DatasService;
 import com.scholarship.service.grade.GradeService;
 import com.scholarship.service.role.RoleService;
 import com.scholarship.webapp.action.BaseAction;
@@ -36,6 +38,8 @@ public class AccountAction extends BaseAction {
 	private CollegeService collegeService;
 	private GradeService gradeService;
 	private AuditService auditService;
+	private DatasService datasService;
+	
 	private List<Account> accountList;
 	private List<Role>	roleList;
 	private List<College> collegeList;
@@ -63,6 +67,8 @@ public class AccountAction extends BaseAction {
 	
 	private String ids;
 	private String method;
+	
+	private String returnType;
 	
 	public String query(){
 		HttpServletRequest request = super.getRequest();
@@ -139,6 +145,23 @@ public class AccountAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	public String queryMe(){
+		account = (Account) getSession().getAttribute("LOGON_ACCOUNT");
+		role = (Role) getSession().getAttribute("LOGON_ROLE");
+		
+		account = accountService.queryById(account.getId());
+		role = roleService.queryById(role.getId());
+		
+		getSession().removeAttribute("LOGON_ACCOUNT");
+		getSession().setAttribute("LOGON_ACCOUNT", account);
+		
+		college = account.getCollege();
+		grade = account.getGrade();
+		collegeList = collegeService.queryAll();
+		gradeList = gradeService.queryAll();
+		return SUCCESS;
+	}
+	
 	public String update(){
 		
 		//可以不用判断 直接将input name 设置我对象.属性
@@ -166,7 +189,29 @@ public class AccountAction extends BaseAction {
 				account.setPassword(accountService.queryById(account.getId()).getPassword());
 			this.updateAccount(account);
 		}
+		
 		return SUCCESS;
+	}
+	
+	public String infoset(){
+		role = (Role) getSession().getAttribute("LOGON_ROLE");
+		//角色和账户名不能被修改
+		Account a = accountService.queryById(account.getId());
+		account.setRole(a.getRole());
+		account.setAccno(a.getAccno());
+		
+		if(StringUtil.isNotBlank(accountSex)) account.setSex(accountSex);
+		if(StringUtil.isNotBlank(collegeId)) account.setCollege(collegeService.queryById(Integer.parseInt(collegeId)));
+		if(StringUtil.isNotBlank(gradeId)) account.setGrade(gradeService.queryById(Integer.parseInt(gradeId)));
+		
+		if(StringUtil.isNotBlank(accountPassword)) 
+			account.setPassword(MD5.getMD5Password(accountPassword));
+		else
+			account.setPassword(accountService.queryById(account.getId()).getPassword());
+		this.updateAccount(account);
+		
+		if(role.getId()==2) return "student";
+		else return "apply";
 	}
 	
 	public String execute(){
@@ -286,7 +331,9 @@ public class AccountAction extends BaseAction {
 		}
 		auditService.operator(login_account.getId(), "修改账户", getRequest().getRemoteAddr(), fieldList);
 		
-		return accountService.update(a);
+		int i =accountService.update(a);
+		updateDatas(a);
+		return i;
 	}
 	
 	public void delete(Account a){
@@ -295,6 +342,24 @@ public class AccountAction extends BaseAction {
 		fieldList.add(login_account.getName()+"("+login_account.getAccno()+") 删除账户："+a.getName()+"("+a.getAccno()+")");
 		auditService.operator(login_account.getId(), "删除账户", getRequest().getRemoteAddr(), fieldList);
 		accountService.delete(a);
+	}
+	
+	/***
+	 * 更新申请信息数据
+	 * @param a
+	 */
+	public void updateDatas(Account a){
+		if(a.getRole().getId()==2){
+			Datas d = datasService.queryByAccount(a, "0");
+			if(d!=null){
+				d.setName(a.getName());
+				d.setSex(a.getSex());
+				d.setCollege(a.getCollege().getName());
+				d.setMajor(a.getGrade().getMajor());
+				d.setGrade(a.getGrade().getName());
+				datasService.update(d);
+			}
+		}
 	}
 	
 	public AccountService getAccountService() {
@@ -527,6 +592,22 @@ public class AccountAction extends BaseAction {
 
 	public void setAuditService(AuditService auditService) {
 		this.auditService = auditService;
+	}
+
+	public String getReturnType() {
+		return returnType;
+	}
+
+	public void setReturnType(String returnType) {
+		this.returnType = returnType;
+	}
+
+	public DatasService getDatasService() {
+		return datasService;
+	}
+
+	public void setDatasService(DatasService datasService) {
+		this.datasService = datasService;
 	}
 	
 }

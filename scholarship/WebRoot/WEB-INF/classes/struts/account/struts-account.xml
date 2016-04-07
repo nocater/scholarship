@@ -17,7 +17,7 @@
 		</action>
 		
 		<action name="update" class="accountAction" method="update">
-			<result name="success" type="redirect">/account/query.action</result>
+			<result name="success" type="redirect">/account/query.action?order=UPDATEDATE</result>
 			<result name="input">/pages/account/accountInfo.jsp</result>
 		</action>
 		
@@ -27,6 +27,16 @@
 		</action>
 		
 		<action name="checkAccountAccno" class="accountAction" method="checkAccountAccno"></action>
+		
+		<action name="queryMe" class="accountAction" method="queryMe">
+			<result name="success">/pages/account/accountInfoSet.jsp</result>
+		</action>
+		
+		<action name="infoset" class="accountAction" method="infoset">
+			<!-- 个人设置修改返回页面 -->
+			<result name="student" type="redirect">/datas/query.action</result>
+			<result name="apply" type="redirect">/apply/query.action</result>
+		</action>
 	</package>
 	
 </struts>	

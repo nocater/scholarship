@@ -12,10 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.scholarship.module.account.Account;
+import com.scholarship.module.role.Role;
+
 /**
  * Filter权限设置
  * 
- * @author zsa
+ * @author cs
  * 
  */
 public class RoleFilter implements Filter {
@@ -40,9 +43,56 @@ public class RoleFilter implements Filter {
 		// 下面的页面直接通过
 		if (url.contains("/login/check.action") ||
 				url.contains("/login/checkSingle.action") ||
-				url.contains("/login/logout.action")) {
+				url.contains("/login/logout.action") ||
+				url.contains("/role-selectCollege/queryAllCollegeAjax") ||
+				url.contains("/role-selectGrade/queryAllGradeAjax") ||
+				url.contains("/account/queryMe.action") ||
+				url.contains("/account/infoset.action")) {
 			chain.doFilter(request, response);
 			return;
+		}
+		
+		Account a = (Account) session.getAttribute("LOGON_ACCOUNT");
+		Role r = (Role) session.getAttribute("LOGON_ROLE");
+		String method = httpRequest.getMethod();
+		
+		
+		if(r.getId()==2){
+			if( url.contains("/account/") ||
+				url.contains("/apply/") ||
+				url.contains("/college/") ||
+				url.contains("/grade/") ||
+				url.contains("/role/update") ||
+				url.contains("/audit/")){
+				httpResponse.sendRedirect(ROLE_LIMIT);
+				return;
+			}
+		}
+		
+		if(method.equalsIgnoreCase("GET")){
+			if(url.contains("update")||url.contains("insert")){
+				httpResponse.sendRedirect(ROLE_LIMIT);
+				return;
+			}
+		}
+		
+		//账户模块
+		
+		//审批申请模块
+		
+		//学院模块
+		if(url.contains("/college/update")){
+			if(r.getCollegeList().size()<0){
+				httpResponse.sendRedirect(ROLE_LIMIT);
+				return;
+			}
+		}
+		//学院模块
+		if(url.contains("/grade/update")){
+			if(r.getGradeList().size()<0){
+				httpResponse.sendRedirect(ROLE_LIMIT);
+				return;
+			}
 		}
 		
 		// 待完成

@@ -47,35 +47,14 @@
 				// 审批模块
 				parent.leftFrame.location.href = '${ctx}/pages/apply/applyMenu.jsp';
 				parent.mainFrame.location.href = '${ctx}/apply/query.action';
-				
-			} else if (linkType == 'worksheet') {
-				// 工单模块
-				parent.leftFrame.location.href = '${ctx}/pages/worksheet/worksheetMenu.jsp';
-				parent.mainFrame.location.href = '${ctx}/worksheet/workSheetAction!queryWorkSheetByUserId.action';
-			} else if (linkType == 'sso') {
-				// SSO模块
-				parent.leftFrame.location.href = '${ctx}/sso/displayDeviceMenu.action';
-				parent.mainFrame.location.href = '${ctx}/sso/queryDevice.action';
-			} else if (linkType == 'script') {
-				// 脚本模块
-				parent.leftFrame.location.href = '${ctx}/pages/scriptManager/scriptMenu.jsp';
-				parent.mainFrame.location.href = '${ctx}/script/query.action';
-			} else if (linkType == 'task') {
-				// 任务模块
-				parent.leftFrame.location.href = '${ctx}/pages/task/taskMenu.jsp';
-				parent.mainFrame.location.href = '${ctx}/task/queryUp.action?type=0&status=1&order=task_update_date';
-			} else if (linkType == 'report') {
-				// 组态报表
-				parent.leftFrame.location.href = '${ctx}/pages/reportForm/reportMenu.jsp';
-				parent.mainFrame.location.href = '${ctx}/reportFormQuery.do?method=initPage';
-			} else if (linkType == 'about') {
-				// 关于产品
+			} else if(linkType == 'configure'){
+				// 审批模块
 				parent.leftFrame.location.href = '${ctx}/pages/about/aboutMenu.jsp';
 				parent.mainFrame.location.href = '${ctx}/abouts/about.action';
-			} else if (linkType == 'approve') {
-				// 审批
-				parent.leftFrame.location.href = '${ctx}/pages/approve/approveMenu.jsp';
-				parent.mainFrame.location.href = '${ctx}/approve/query.action';
+			} else if(linkType == 'about'){
+				// 审批模块
+				parent.leftFrame.location.href = '${ctx}/pages/about/aboutMenu.jsp';
+				parent.mainFrame.location.href = '${ctx}/abouts/about.action';
 			}
 		}
 	
@@ -177,7 +156,7 @@
 														</td>
 														<td><input name="" type="button" class="topL2"
 															value="个人设置"
-															onclick="parent.mainFrame.location.href='${ctx}/employee/personSeting.action';" /></td>
+															onclick="parent.mainFrame.location.href='${ctx}/account/queryMe.action';" /></td>
 														<td><input name="input" type="button" class="topL3"
 															value="注销" onclick="logout()" /></td>
 													</tr>
@@ -206,76 +185,25 @@
 							<li><a href="javascript:linkTo('apply');">审批申请</a></li>
 							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
 							<li><a href="javascript:linkTo('account');">账户管理</a></li>
+							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
 								<c:if test="${sessionScope.LOGON_ROLE.id eq 1}">
-									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
 									<li><a href="javascript:linkTo('role');">角色管理</a></li>
 									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
 									<li><a href="javascript:linkTo('college');">学院管理</a></li>
 									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+								</c:if>
+								<c:if test="${sessionScope.SHOWGRADE eq 1}">
 									<li><a href="javascript:linkTo('grade');">班级管理</a></li>
 									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+								</c:if>
+								<c:if test="${sessionScope.LOGON_ROLE.id eq 1}">
 									<li><a href="javascript:linkTo('audit');">审计管理</a></li>
+									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
+									<li><a href="javascript:linkTo('configure');">审计管理</a></li>
 									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
 								</c:if>
 						</c:if>
 						<li><a href="javascript:linkTo('about');">关于产品</a></li>
-
-						<c:if test="${sessionScope.FORT_LOGON_ROLE.empView==1}">
-							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-							<li><a href="javascript:linkTo('employee');"
-								<c:if test="${sessionScope.FORT_LOGON_ROLE.dis==1}">style="color: #faec06;"</c:if>>用户管理</a></li>
-						</c:if>
-						<c:if test="${sessionScope.FORT_LOGON_ROLE.roleView==1}">
-							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-							<li><a href="javascript:linkTo('role');">角色管理</a></li>
-						</c:if>
-						<c:if test="${sessionScope.FORT_LOGON_ROLE.resView==1}">
-							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-							<li><a href="javascript:linkTo('resource');"
-								<c:if test="${sessionScope.FORT_LOGON_ROLE.dis==2}">style="color: #faec06;"</c:if>>资源管理</a></li>
-						</c:if>
-						<c:if test="${sessionScope.FORT_LOGON_ROLE.polView==1}">
-							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-							<li><a href="javascript:linkTo('policy');">策略管理</a></li>
-						</c:if>
-						<c:if test="${sessionScope.FORT_LOGON_ROLE.ruleView==1}">
-							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-							<li><a href="javascript:linkTo('authorization');">授权管理</a></li>
-						</c:if>
-						<c:if
-							test="${sessionScope.FORT_LOGON_ROLE.auditSystem==1||sessionScope.FORT_LOGON_ROLE.auditConduct==1}">
-							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-							<li><a href="javascript:linkTo('audit');"
-								<c:if test="${sessionScope.FORT_LOGON_ROLE.dis==3}">style="color: #faec06;"</c:if>>审计管理</a></li>
-						</c:if>
-						<!--  
-            	<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-           		<li style=""><a href="javascript:linkTo('worksheet');">工单管理</a></li>
-           	-->
-						<c:if
-							test="${sessionScope.FORT_LOGON_ROLE.reportView==1||sessionScope.FORT_LOGON_ROLE.reportManager==1||sessionScope.FORT_LOGON_ROLE.reportCustom==1||sessionScope.FORT_LOGON_ROLE.reportTime==1}">
-							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-							<li><a href="javascript:linkTo('report');">组态报表</a></li>
-						</c:if>
-						<c:if test="${sessionScope.FORT_LOGON_ROLE.scriptView==1}">
-							<li style="width:5px;"><span style="color:#FFFFFF;">|</span></li>
-							<li style=""><a href="javascript:linkTo('script');">脚本管理</a></li>
-						</c:if>
-						<c:if
-							test="${sessionScope.FORT_LOGON_ROLE.taskCmd==1||sessionScope.FORT_LOGON_ROLE.taskTogether==1}">
-							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-							<li style=""><a href="javascript:linkTo('task');">计划任务</a></li>
-						</c:if>
-						<c:if
-							test="${sessionScope.FORT_LOGON_ROLE.sysStatus==1||sessionScope.FORT_LOGON_ROLE.sysUpdate==1||sessionScope.FORT_LOGON_ROLE.sysParams==1||sessionScope.FORT_LOGON_ROLE.sysNetcfg==1}">
-							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-							<li><a href="javascript:linkTo('setting');">系统设置</a></li>
-						</c:if>
-						<c:if
-							test="${sessionScope.FORT_LOGON_ROLE.sysStatus==1||sessionScope.FORT_LOGON_ROLE.sysUpdate==1||sessionScope.FORT_LOGON_ROLE.sysParams==1||sessionScope.FORT_LOGON_ROLE.sysNetcfg==1}">
-							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-							<li><a href="javascript:linkTo('about');">关于产品</a></li>
-						</c:if>
 					</ul>
 				</td>
 			</tr>

@@ -49,23 +49,6 @@
 			}
 	  	}
 		
-		/* 修改班级下拉列表  */
-		function setGrades(id){
-			$.ajax({
-				url:"${ctx}/grade/queryGradesAjax",
-				type:"GET",
-				dataType:"json",
-				data:"id="+id,
-				success:function(result){
-					$("#select-grade").empty();
-					$("#select-grade").append("<option value='0'>--未选择--</option>");
-					for(var i=0;i<result.length;i++){
-						$("#select-grade").append("<option value="+result[i].id+">"+result[i].name+"</option>");
-					}
-				}
-			});
-		}
-	  	
 	  	/* 验证Accno */
 		function checkAccno(accountAccno){
 			var accountId=$("#accountId").val();
@@ -91,9 +74,25 @@
 			});
 		}
 	  	
+		/* 修改班级下拉列表  */
+		function setGrades(id){
+			$.ajax({
+				url:"${ctx}/grade/queryGradesAjax",
+				type:"GET",
+				dataType:"json",
+				data:"id="+id,
+				success:function(result){
+					$("#select-grade").empty();
+					$("#select-grade").append("<option value='0'>--未选择--</option>");
+					for(var i=0;i<result.length;i++){
+						$("#select-grade").append("<option value="+result[i].id+">"+result[i].name+"</option>");
+					}
+				}
+			});
+		}
+	  	
 		/* 提交表单  */
 		function save(){
-			$("#roleId").val($("#select-role option:selected").val());
 			$("#collegeId").val($("#select-college option:selected").val());
 			$("#gradeId").val($("#select-grade option:selected").val());
 			$("#accountSex").val($("#select-sex option:selected").val());
@@ -117,7 +116,7 @@
   </head>
   
   <body>
-	<s:form action="update" namespace="/account" method="post" theme="simple" id="accountForm">
+	<s:form action="infoset" namespace="/account" method="post" theme="simple" id="accountForm">
 		<s:hidden name="account.id" id="accountId"/>
 		<!-- main table -->
 		<table width="99%" border="0" cellspacing="0" cellpadding="0"
@@ -156,7 +155,7 @@
 										<!-- 账户名称 -->
 										<tr>
 											<td align="right" style="font-size: 12px;" width="30%"><span class="spanred">*</span>姓名：</td>
-											<td style="padding-left: 20px"><input name="accountName"
+											<td style="padding-left: 20px"><input name="account.name"
 												type="text" id="accountName" maxlength="255"
 												value="${account.name}"
 												<span id="accountName_msg"></span></td>
@@ -175,21 +174,7 @@
 										<tr>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>角色:</td>
 											<td style="padding-left: 20px">
-												<s:hidden name="roleId" id="roleId"/>
-												<select style="width:135px;" id="select-role">
-													<!-- <option value="0"/> -->
-													<c:forEach items="${roleList}" var="r" varStatus="stat">
-														<option value="${r.id}"
-															<c:if test="${r.id eq role.id}"> selected="" </c:if>
-														>${r.name}</option>
-													</c:forEach>
-													<%-- <s:iterator value="roleList" var="r" status="stat">
-														<option value="${r.id}"
-															<c:if test="${r.id eq role.id}"> selected="" </c:if>
-														>${r.name}</option>
-													</s:iterator>--%>
-												</select>
-												<span id=""></span>
+												<span id="">${role.name}</span>
 											</td>
 										</tr>
 										
@@ -342,7 +327,7 @@
 										<!-- 邮箱 -->
 										<tr>
 											<td align="right" style="font-size: 12px;">邮箱地址:</td>
-											<td style="padding-left: 20px"><input name="accountEmail"
+											<td style="padding-left: 20px"><input name="account.email"
 												type="text" id="accountEmail" maxlength="255"
 												value="${account.email}"
 												<span id="email_msg"></span></td>
@@ -403,8 +388,8 @@
 											<td align="right" style="font-size: 12px;" width="30%"><span class="spanred">*</span>账户名称:</td>
 											<td style="padding-left: 20px"><input name="accountAccno"
 												type="text" id="accountAccno" maxlength="255"
-												value="${account.accno}"
-												readonly = "readonly"/><span id="accountAccno_msg"></span></td>
+												value="${account.accno}" onblur="checkAccno(this.value)"
+												<c:if test="${account.id != null and account.id !=0}">readonly = "readonly"</c:if>/><span id="accountAccno_msg"></span></td>
 										</tr>
 										
 										<!-- 空行 -->
@@ -491,10 +476,6 @@
 							<td>
 								<input type="button" class="btnyh" id="btnSave"
 									onclick="save();" value="保  存" />
-								<input type="button" class="btnyh" id="btnCancel"
-									onclick="window.location.href='${ctx}/account/query.action?order=${order}';"
-									value="取  消" />
-								&nbsp;&nbsp;
 								<span class="spanred"></span>
 							</td>
 						</tr>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.scholarship.module.account.Account;
 import com.scholarship.module.account.OnlineUser;
+import com.scholarship.module.conf.AppConfig;
 import com.scholarship.module.role.Role;
 import com.scholarship.service.account.AccountService;
 import com.scholarship.service.account.LoginService;
@@ -73,11 +74,14 @@ public class LoginAction extends BaseAction{
 		if (ob != null) {
 			relCode = ob.toString();
 		}
+		
 		// 校验验证码
-//		if (StringUtil.isEmpty(imgCode) || !imgCode.toUpperCase().equalsIgnoreCase(relCode)) {
-//			super.addActionMessage("验证码不正确!");
-//			return INPUT;
-//		}
+		if(AppConfig.CODES==1){
+			if (StringUtil.isEmpty(imgCode) || !imgCode.toUpperCase().equalsIgnoreCase(relCode)) {
+				super.addActionMessage("验证码不正确!");
+				return INPUT;
+			}
+		}
 		
 		Account account = loginService.check(loginAccno, loginPassword);
 		List<String> fieldList = new ArrayList<String>();
@@ -112,7 +116,7 @@ public class LoginAction extends BaseAction{
 			//菜单  非学生默认审批模块
 			Role role = account.getRole();
 			if(role.getId()!=2) session.setAttribute("MENU", "1");
-			
+			if(role.getCollegeList().size()>0||role.getId()==1) session.setAttribute("SHOWGRADE", 1);
 		}else{
 			super.addActionMessage(loginService.getActionMessage());
 			//审计
