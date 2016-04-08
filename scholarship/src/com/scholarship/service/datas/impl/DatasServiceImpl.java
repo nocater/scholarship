@@ -71,14 +71,6 @@ public class DatasServiceImpl extends BaseServiceImpl implements DatasService {
 		datasDao.deleteById(id);
 	}
 
-	public DatasDao getDatasDao() {
-		return datasDao;
-	}
-
-	public void setDatasDao(DatasDao datasDao) {
-		this.datasDao = datasDao;
-	}
-
 	@Override
 	public void chengeType(int id,int type) {
 		// TODO Auto-generated method stub
@@ -88,4 +80,17 @@ public class DatasServiceImpl extends BaseServiceImpl implements DatasService {
 		this.datasDao.chengeType(map);
 	}
 
+	@Override
+	public void deleteByAccount(Account account) {
+		// TODO Auto-generated method stub
+		datasDao.deleteByAccount(account);
+	}
+
+	public DatasDao getDatasDao() {
+		return datasDao;
+	}
+
+	public void setDatasDao(DatasDao datasDao) {
+		this.datasDao = datasDao;
+	}
 }

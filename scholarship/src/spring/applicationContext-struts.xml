@@ -21,6 +21,7 @@
 		<property name="gradeService" ref="gradeService"/>
 		<property name="auditService" ref="auditService"/>
 		<property name="datasService" ref="datasService"/>
+		<property name="applyService" ref="applyService"/>
 	</bean>
 	<bean id="loginAction" class="com.scholarship.webapp.action.account.LoginAction" scope="prototype" parent="baseAction">
 		<property name="accountService" ref="accountService"/>
@@ -82,6 +83,10 @@
 		<property name="scholarshipService" ref="scholarshipService"/>
 		<property name="collegeService" ref="collegeService"/>
 		<property name="gradeService" ref="gradeService"/>
+	</bean>
+	
+	<bean id="configAction" class="com.scholarship.webapp.action.config.ConfigAction" scope="prototype" parent="baseAction">
+		<property name="auditService" ref="auditService"/>
 	</bean>
 	
 	<!-- 关于 -->

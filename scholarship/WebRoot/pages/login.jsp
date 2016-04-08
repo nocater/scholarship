@@ -109,15 +109,17 @@
 																<td class="td_detail_separator">
 																</td>
 															</tr>
-															<tr>
-																<td class="lboxleft">验证码：</td>
-																<td class="lboxright"><input name="imgCode"
-																	id="imgCode" maxlength="4" size="4" class="inputtext2" />
-																	<img src="${ctx}/pages/commons/image.jsp"
-																	align="middle" title="点击图片刷新" onclick="change(this)"
-																	style="cursor:pointer;" /> <span class="loginSecurity">点击图片刷新</span>
-																	<input type="hidden" id="para" value="1" /></td>
-															</tr>
+															<s:if test="@com.scholarship.module.conf.AppConfig@CODES eq 1">
+																<tr>
+																	<td class="lboxleft">验证码：</td>
+																	<td class="lboxright"><input name="imgCode"
+																		id="imgCode" maxlength="4" size="4" class="inputtext2" />
+																		<img src="${ctx}/pages/commons/image.jsp"
+																		align="middle" title="点击图片刷新" onclick="change(this)"
+																		style="cursor:pointer;" /> <span class="loginSecurity">点击图片刷新</span>
+																		<input type="hidden" id="para" value="1" /></td>
+																</tr>
+															</s:if>
 															<!-- 空行 -->
 															<tr>
 																<td class="td_detail_separator">
@@ -134,10 +136,9 @@
 																				onclick="submitForm()" />
 																			</td>
 																			<td>
-										                              			<span id="codeMessage" class="actmsg"><s:actionmessage/><c:if test="${requestScope.FailNumber != null}">失败<c:out value="${requestScope.FailNumber}"></c:out>次后账户将被锁定</c:if></span>
-										                              			<s:if test="@com.fort.module.conf.AppConfig@SETTING_CHECKING_USE eq 1">
-										                              				<span id="check_msg"><img src="${ctx}/images/loading.gif" border="0" width="15" height="15" />&nbsp;正在进行安全检查...</span>
-										                              			</s:if>
+										                              			<span id="codeMessage" class="actmsg"><s:actionmessage/></span>
+										                              			
+									                              				<span id="check_msg"></span>
 										                              		</td>
 																		</tr>
 																	</table>

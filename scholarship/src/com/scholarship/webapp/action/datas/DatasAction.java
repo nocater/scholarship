@@ -40,7 +40,7 @@ public class DatasAction extends BaseAction {
 	private Role role;
 	private List<College> collegeList;
 	private List<Grade> gradeList;
-	private int accountId;
+	private String accountId;
 	private String accountName;
 	private String accountSex;
 	private String collegeId;
@@ -58,11 +58,17 @@ public class DatasAction extends BaseAction {
 		datas = datasService.queryByAccount(account,"0");
 		datas_old = datasService.queryByAccount(account,"1");
 		
+		if(datas==null){
+			//防止页面id为空 提交注入id出错
+			datas = new Datas();
+			datas.setId(0);
+		}
+		
 		//获取分配学院及班级
 		collegeList = collegeService.queryAll();
 		gradeList = gradeService.queryAll();
 		
-		accountId = account.getId();
+		accountId = String.valueOf(account.getId());
 		
 		//申请状态
 		List<Apply> applyList = applyService.queryByAccount(account);
@@ -91,7 +97,9 @@ public class DatasAction extends BaseAction {
 	
 	public String queryByAccount(){
 		account = new Account();
-		account.setId(accountId);
+		if(StringUtil.isNotBlank(accountId)){
+			account.setId(Integer.parseInt(accountId));
+		}
 		
 		datas = datasService.queryByAccount(account,"0");
 		datas_old = datasService.queryByAccount(account,"1");
@@ -130,9 +138,11 @@ public class DatasAction extends BaseAction {
 		if(role.getId()!=2) return INPUT;
 		
 		account = new Account();
-		account.setId(accountId);
+		if(StringUtil.isNotBlank(accountId)){
+			account.setId(Integer.parseInt(accountId));
+		}
 		datas_old = datasService.queryByAccount(account,"1");//修改前备份对象
-		account = accountService.queryById(accountId);
+		account = accountService.queryById(account.getId());
 		datas.setAccount(account);
 		
 		if(StringUtil.isNotBlank(accountName)&&!accountName.equals(account.getName())){
@@ -312,11 +322,11 @@ public class DatasAction extends BaseAction {
 		this.datas_old = datas_old;
 	}
 
-	public int getAccountId() {
+	public String getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountId(int accountId) {
+	public void setAccountId(String accountId) {
 		this.accountId = accountId;
 	}
 

@@ -99,9 +99,9 @@
   		<table width="99%" border="0" cellspacing="0" cellpadding="0" style="margin-left: 4px; margin-top: 0px" align="center">
   			<tr>
   				<td>
-  					<div class=caozuobox style="height:70px;">
+  					<div class=caozuobox style="height:75px;">
 		  			<!-- toolbar area -->
-		  			<table width="90%" border="0" cellspacing="0" cellpadding="0">
+		  			<table width="900" border="0" cellspacing="0" cellpadding="0">
 			  			<tr height="30px">
 			  				<td width="2%"></td>
 			  				<td width="10%" valign="middle" align="center" style="padding-top:1px;">
@@ -126,9 +126,13 @@
 			  				<td width="5%" valign="middle"><input type="text" id="keyword" name="keyword" value="${keyword}" /></td>
 			  				<td width="1%"/>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;"colspan="1"><img src="${ctx}/images/search.jpg"  class="hand" onclick="querys();" /></td>
-			  				<td/>
-			  				<td/>
-			  				<td/>
+			  				<td></td>
+			  				<td width="10%"  valign="middle" align="center">
+			  					<%-- <input type="button" class="btnstyle" style="padding-top:1px;" value="账户导入" onclick="location.href='${ctx}/account/queryById.action';" /> --%>
+			  				</td>
+			  				<td width="10%"  valign="middle" align="center">
+			  					<input type="button" class="btnstyle" style="padding-top:1px;" value="账户导入" onclick="location.href='${ctx}/pages/account/accountImport.jsp';" />
+			  				</td>
 			  				<!-- <td valign="top"><span><a href="#">高级</a></span></td> -->
 			  				<!-- <td width="" valign="middle" style="padding-top:2px;"><span class="spanred">内置角色不可更改</span></td> -->
 			  			</tr>

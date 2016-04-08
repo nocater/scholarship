@@ -17,5 +17,6 @@ public interface DatasService {
 	public int update(Datas datas);
 	public void delete(Datas datas);
 	public void deleteById(int id);
+	public void deleteByAccount(Account account);
 	public void chengeType(int id,int type);
 }

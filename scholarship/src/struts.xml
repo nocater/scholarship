@@ -35,6 +35,8 @@
 	<include file="struts/datas/struts-datas.xml"></include>
 	<!-- 审批 apply-struts -->
 	<include file="struts/apply/struts-apply.xml"></include>
+	<!-- 设置  config-struts -->
+	<include file="struts/config/struts-config.xml"></include>
 	<!-- 关于 -->
 	<include file="struts/about/struts-about.xml"></include>
 	

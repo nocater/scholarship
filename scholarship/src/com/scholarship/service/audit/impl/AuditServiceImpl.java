@@ -160,7 +160,7 @@ public class AuditServiceImpl extends BaseServiceImpl implements AuditService {
 		JSONArray jsonArray = (JSONArray) JSONSerializer.toJSON(fieldList
 				.toArray());
 		audit.setNote(jsonArray.toString());
-
+		
 		if (fieldList.size() > 0) {
 			return auditDao.insert(audit);
 		} else {

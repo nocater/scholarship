@@ -1,6 +1,10 @@
 package com.scholarship.webapp.action.account;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,10 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.scholarship.module.account.Account;
 import com.scholarship.module.college.College;
+import com.scholarship.module.conf.AppConfig;
 import com.scholarship.module.datas.Datas;
 import com.scholarship.module.grade.Grade;
 import com.scholarship.module.role.Role;
 import com.scholarship.service.account.AccountService;
+import com.scholarship.service.apply.ApplyService;
 import com.scholarship.service.audit.AuditService;
 import com.scholarship.service.college.CollegeService;
 import com.scholarship.service.datas.DatasService;
@@ -39,6 +45,7 @@ public class AccountAction extends BaseAction {
 	private GradeService gradeService;
 	private AuditService auditService;
 	private DatasService datasService;
+	private ApplyService applyService;
 	
 	private List<Account> accountList;
 	private List<Role>	roleList;
@@ -68,7 +75,12 @@ public class AccountAction extends BaseAction {
 	private String ids;
 	private String method;
 	
-	private String returnType;
+	private List<Account> repeatAccountList;//重复账户
+	private List<String>  errorList;//错误信息
+	private String uploadPath; // 上传文件路径
+	private InputStream in;
+	private String accnos;
+	
 	
 	public String query(){
 		HttpServletRequest request = super.getRequest();
@@ -137,8 +149,13 @@ public class AccountAction extends BaseAction {
 		roleList = roleService.queryAll();
 		collegeList = collegeService.queryAll();
 		gradeList = gradeService.queryAll();
-		if(StringUtil.isBlank(accountId)) return SUCCESS;
+		if(StringUtil.isBlank(accountId)) accountId="0";
 		account = accountService.queryById(Integer.parseInt(accountId));
+		if(account==null){
+			//防止页面id为空 提交注入id出错
+			account = new Account();
+			account.setId(0);
+		}
 		role = account.getRole();
 		college = account.getCollege();
 		grade = account.getGrade();
@@ -283,6 +300,139 @@ public class AccountAction extends BaseAction {
 		}
 	}
 	
+	/***
+	 * 更新申请信息数据
+	 * @param a
+	 */
+	public void updateDatas(Account a){
+		if(a.getRole().getId()==2){
+			Datas d = datasService.queryByAccount(a, "0");
+			if(d!=null){
+				d.setName(a.getName());
+				d.setSex(a.getSex());
+				d.setCollege(a.getCollege().getName());
+				d.setMajor(a.getGrade().getMajor());
+				d.setGrade(a.getGrade().getName());
+				datasService.update(d);
+			}
+		}
+	}
+	
+	/***
+	 * 账户导入(学生)
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public String importAccount(){
+		// 解析上传的xml文件
+		Map<String, Object> map = AnalyzerXML.readXML(new File(uploadPath),accountService,collegeService,gradeService);
+		getSession().removeAttribute("repeatAccountList");
+		
+		// 获得用户集合
+		if (map != null) {
+			repeatAccountList = (List<Account>) map.get("repeatAccountList");
+			accountList = (List<Account>) map.get("accountList");
+			// 获得错误信息集合
+			errorList = (List<String>) map.get("errorList");
+			
+			this.importAndLog(accountList);
+		}
+		
+		if(repeatAccountList==null||repeatAccountList.size()==0)repeatAccountList=null;
+		else getSession().setAttribute("repeatAccountList", repeatAccountList);
+			
+		return SUCCESS;
+	}
+	
+	/***
+	 * 覆盖信息
+	 */
+	@SuppressWarnings("unchecked")
+	public void singleAjax() {
+		try {
+			getResponse().setContentType("text/html;charset=UTF-8");
+			getResponse().setCharacterEncoding("UTF-8");
+			getResponse().setHeader("Cache-Control", "no-cache");
+			
+			repeatAccountList = (List<Account>) getSession().getAttribute("repeatAccountList");
+			
+			for(Account a: repeatAccountList){
+				if(!accnos.contains(String.valueOf(a.getAccno()))){
+					a.setId(-1);
+				}
+			}
+			this.importAndLog(repeatAccountList);
+			
+			getResponse().getWriter().write("refresh");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			try {
+				getResponse().getWriter().write("error");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}finally {
+			// repeatEmpList = null;
+			getSession().removeAttribute("repeatAccountList");
+		}
+	}
+	
+	/**
+	 * 将保存到本地的资源XML提供给下载
+	 */
+	public InputStream getTargetFile() {
+		return in;
+	}
+
+	public String loadTemplate() {
+		return SUCCESS;
+	}
+
+	/**
+	 * 下载用户模板
+	 */
+	public InputStream getLoadTemplateFile() {
+		try {
+			File file = new File(AppConfig.ctx + "csvTemplate/student.xls");
+			in = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return in;
+	}
+	
+	/***
+	 * 导入记录
+	 * @param list
+	 */
+	public void importAndLog(List<Account> list){
+		List<String> fieldList = new ArrayList<String>();
+		Account login_account = (Account) super.getSession().getAttribute("LOGON_ACCOUNT");
+		fieldList.add(login_account.getName()+"("+login_account.getAccno()+") 导入以下账户：");
+		for(Account a:list){
+			if(a.getId()==0){
+				accountService.insert(a);//导入账户
+			}else if(a.getId()!=-1){
+				accountService.update(a);//覆盖账户
+			}
+			if(a.getId()!=-1&&fieldList.size()<10){
+				fieldList.add(a.getName()+"("+a.getAccno()+")");
+			}
+			if(fieldList.size()==10){
+				fieldList.add("...");
+			}
+		}
+		auditService.operator(login_account.getId(), "导入账户", getRequest().getRemoteAddr(), fieldList);
+	}
+	
+	/***
+	 * 新增账户及日志记录
+	 * @param a
+	 * @return
+	 */
 	public int insert(Account a){
 		accountService.insert(a);
 		List<String> fieldList = new ArrayList<String>();
@@ -292,6 +442,11 @@ public class AccountAction extends BaseAction {
 		return a.getId();
 	}
 	
+	/***
+	 * 更新账户及日志记录
+	 * @param a
+	 * @return
+	 */
 	public int updateAccount(Account a){
 		List<String> fieldList = new ArrayList<String>();
 		Account login_account = (Account) super.getSession().getAttribute("LOGON_ACCOUNT");
@@ -336,30 +491,18 @@ public class AccountAction extends BaseAction {
 		return i;
 	}
 	
+	/***
+	 * 删除账户及日志记录
+	 * @param a
+	 */
 	public void delete(Account a){
 		List<String> fieldList = new ArrayList<String>();
 		Account login_account = (Account) super.getSession().getAttribute("LOGON_ACCOUNT");
 		fieldList.add(login_account.getName()+"("+login_account.getAccno()+") 删除账户："+a.getName()+"("+a.getAccno()+")");
 		auditService.operator(login_account.getId(), "删除账户", getRequest().getRemoteAddr(), fieldList);
 		accountService.delete(a);
-	}
-	
-	/***
-	 * 更新申请信息数据
-	 * @param a
-	 */
-	public void updateDatas(Account a){
-		if(a.getRole().getId()==2){
-			Datas d = datasService.queryByAccount(a, "0");
-			if(d!=null){
-				d.setName(a.getName());
-				d.setSex(a.getSex());
-				d.setCollege(a.getCollege().getName());
-				d.setMajor(a.getGrade().getMajor());
-				d.setGrade(a.getGrade().getName());
-				datasService.update(d);
-			}
-		}
+		datasService.deleteByAccount(a);//删除申请信息
+		applyService.deleteByAccount(a);//删除审批信息 
 	}
 	
 	public AccountService getAccountService() {
@@ -594,20 +737,60 @@ public class AccountAction extends BaseAction {
 		this.auditService = auditService;
 	}
 
-	public String getReturnType() {
-		return returnType;
-	}
-
-	public void setReturnType(String returnType) {
-		this.returnType = returnType;
-	}
-
 	public DatasService getDatasService() {
 		return datasService;
 	}
 
 	public void setDatasService(DatasService datasService) {
 		this.datasService = datasService;
+	}
+
+	public List<Account> getRepeatAccountList() {
+		return repeatAccountList;
+	}
+
+	public List<String> getErrorList() {
+		return errorList;
+	}
+
+	public void setRepeatAccountList(List<Account> repeatAccountList) {
+		this.repeatAccountList = repeatAccountList;
+	}
+
+	public void setErrorList(List<String> errorList) {
+		this.errorList = errorList;
+	}
+
+	public String getUploadPath() {
+		return uploadPath;
+	}
+
+	public void setUploadPath(String uploadPath) {
+		this.uploadPath = uploadPath;
+	}
+
+	public InputStream getIn() {
+		return in;
+	}
+
+	public void setIn(InputStream in) {
+		this.in = in;
+	}
+
+	public ApplyService getApplyService() {
+		return applyService;
+	}
+
+	public void setApplyService(ApplyService applyService) {
+		this.applyService = applyService;
+	}
+
+	public String getAccnos() {
+		return accnos;
+	}
+
+	public void setAccnos(String accnos) {
+		this.accnos = accnos;
 	}
 	
 }

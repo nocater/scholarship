@@ -37,6 +37,24 @@
 			<result name="student" type="redirect">/datas/query.action</result>
 			<result name="apply" type="redirect">/apply/query.action</result>
 		</action>
+		
+		<action name="import" class="accountAction" method="importAccount">
+			<result name="success">/pages/account/accountImport.jsp</result>
+		</action>
+		
+		<action name="loadTemplate" class="accountAction" method="loadTemplate">
+		  <!-- 设置文件名参数，由页面上传入 -->
+            <result name="success" type="stream" >
+                 <param name="contentType">application/octet-stream</param>  
+                 <param name="bufferSize">4096</param>
+                 <!-- 下载文件输出流定义 -->
+                 <param name="inputName">loadTemplateFile</param>
+                 <!-- 下载文件处理方法 -->
+                 <param name="contentDisposition">attachment;filename="student.xls"</param>
+            </result>
+		</action>
+		
+		<action name="singleAjax" class="accountAction" method="singleAjax"/>
 	</package>
 	
 </struts>	

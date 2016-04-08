@@ -49,10 +49,10 @@
 				parent.mainFrame.location.href = '${ctx}/apply/query.action';
 			} else if(linkType == 'configure'){
 				// 审批模块
-				parent.leftFrame.location.href = '${ctx}/pages/about/aboutMenu.jsp';
-				parent.mainFrame.location.href = '${ctx}/abouts/about.action';
+				parent.leftFrame.location.href = '${ctx}/pages/config/configMenu.jsp';
+				parent.mainFrame.location.href = '${ctx}/config/queryApplySwitch.action';
 			} else if(linkType == 'about'){
-				// 审批模块
+				// 关于模块
 				parent.leftFrame.location.href = '${ctx}/pages/about/aboutMenu.jsp';
 				parent.mainFrame.location.href = '${ctx}/abouts/about.action';
 			}
@@ -199,7 +199,7 @@
 								<c:if test="${sessionScope.LOGON_ROLE.id eq 1}">
 									<li><a href="javascript:linkTo('audit');">审计管理</a></li>
 									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
-									<li><a href="javascript:linkTo('configure');">审计管理</a></li>
+									<li><a href="javascript:linkTo('configure');">系统设置</a></li>
 									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
 								</c:if>
 						</c:if>

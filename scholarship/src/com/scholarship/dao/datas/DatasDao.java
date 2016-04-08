@@ -3,6 +3,7 @@ package com.scholarship.dao.datas;
 import java.util.List;
 import java.util.Map;
 
+import com.scholarship.module.account.Account;
 import com.scholarship.module.datas.Datas;
 
 public interface DatasDao {
@@ -14,5 +15,6 @@ public interface DatasDao {
 	public int update(Datas datas);
 	public void delete(Datas datas);
 	public void deleteById(int id);
+	public void deleteByAccount(Account account);
 	public void chengeType(Map<?,?> map);
 }

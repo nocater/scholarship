@@ -292,6 +292,10 @@
     	DELETE FROM datas WHERE ID=#{id}
     </delete>
     
+    <delete id="datas_deleteByAccount" parameterType="account">
+    	DELETE FROM datas WHERE ACCOUNT_ID=#{id}
+    </delete>
+    
     <update id="datas_chengeType">
     	UPDATE datas SET TYPE=#{type} WHERE ID=#{id}
     </update>

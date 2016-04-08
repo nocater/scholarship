@@ -20,4 +20,5 @@ public interface ApplyService{
 	public int update(Apply apply);
 	public void delete(Apply apply);
 	public void deleteById(int id);
+	public void deleteByAccount(Account account);
 }

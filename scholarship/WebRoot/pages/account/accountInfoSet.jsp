@@ -388,7 +388,7 @@
 											<td align="right" style="font-size: 12px;" width="30%"><span class="spanred">*</span>账户名称:</td>
 											<td style="padding-left: 20px"><input name="accountAccno"
 												type="text" id="accountAccno" maxlength="255"
-												value="${account.accno}" onblur="checkAccno(this.value)"
+												value="${account.accno}" 
 												<c:if test="${account.id != null and account.id !=0}">readonly = "readonly"</c:if>/><span id="accountAccno_msg"></span></td>
 										</tr>
 										

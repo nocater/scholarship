@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.scholarship.dao.apply.ApplyDao;
 import com.scholarship.dao.mybatis.BaseDaoMyBatis;
+import com.scholarship.module.account.Account;
 import com.scholarship.module.apply.Apply;
 
 public class ApplyDaoImpl extends BaseDaoMyBatis implements ApplyDao {
@@ -59,6 +60,12 @@ public class ApplyDaoImpl extends BaseDaoMyBatis implements ApplyDao {
 	public void deleteById(int id) {
 		// TODO Auto-generated method stub
 		super.sqlSession.delete("apply_deleteById", id);
+	}
+
+	@Override
+	public void deleteByAccount(Account account) {
+		// TODO Auto-generated method stub
+		super.sqlSession.delete("deleteByAccount", account);
 	}
 
 }

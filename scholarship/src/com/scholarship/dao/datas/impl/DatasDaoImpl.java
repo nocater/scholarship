@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.scholarship.dao.datas.DatasDao;
 import com.scholarship.dao.mybatis.BaseDaoMyBatis;
+import com.scholarship.module.account.Account;
 import com.scholarship.module.datas.Datas;
 
 public class DatasDaoImpl extends BaseDaoMyBatis implements DatasDao {
@@ -64,6 +65,12 @@ public class DatasDaoImpl extends BaseDaoMyBatis implements DatasDao {
 	public void chengeType(Map<?,?> map) {
 		// TODO Auto-generated method stub
 		super.sqlSession.update("datas_chengeType", map);
+	}
+
+	@Override
+	public void deleteByAccount(Account account) {
+		// TODO Auto-generated method stub
+		super.sqlSession.delete("datas_deleteByAccount", account);
 	}
 
 }

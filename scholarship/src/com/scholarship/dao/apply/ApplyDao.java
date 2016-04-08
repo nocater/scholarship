@@ -3,6 +3,7 @@ package com.scholarship.dao.apply;
 import java.util.List;
 import java.util.Map;
 
+import com.scholarship.module.account.Account;
 import com.scholarship.module.apply.Apply;
 
 public interface ApplyDao {
@@ -14,4 +15,5 @@ public interface ApplyDao {
 	public int update(Apply apply);
 	public void delete(Apply apply);
 	public void deleteById(int id);
+	public void deleteByAccount(Account account);
 }

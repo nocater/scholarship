@@ -136,6 +136,12 @@ public class ApplyServiceImpl extends BaseServiceImpl implements ApplyService {
 		applyDao.deleteById(id);
 	}
 
+	@Override
+	public void deleteByAccount(Account account) {
+		// TODO Auto-generated method stub
+		applyDao.deleteByAccount(account);
+	}
+	
 	public ApplyDao getApplyDao() {
 		return applyDao;
 	}

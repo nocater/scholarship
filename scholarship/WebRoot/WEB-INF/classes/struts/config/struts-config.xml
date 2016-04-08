@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	
+	<package name="config" extends="struts-default" namespace="/config">
+		<action name="queryApplySwitch" class="configAction" method="queryApplySwitch">
+			<result name="success">/pages/config/applySwitch.jsp</result>
+		</action>
+		
+		<action name="queryCodesSwitch" class="configAction" method="queryCodesSwitch">
+			<result name="success">/pages/config/codesSwitch.jsp</result>
+		</action>
+		
+		<action name="changeApplySwitch" class="configAction" method="changeApplySwitch">
+			<result name="success">/pages/config/applySwitch.jsp</result>
+		</action>
+		
+		<action name="changeCodesSwitch" class="configAction" method="changeCodesSwitch">
+			<result name="success">/pages/config/codesSwitch.jsp</result>
+		</action>
+	</package>
+	
+</struts>	

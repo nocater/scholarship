@@ -250,4 +250,8 @@
     <delete id="apply_deleteById" parameterType="int">
     	DELETE FROM apply WHERE ID=#{id}
     </delete>
+    
+    <delete id="deleteByAccount" parameterType="account">
+    	DELETE FROM apply WHERE ACCOUNT_ID=#{id}
+    </delete>
 </mapper>
