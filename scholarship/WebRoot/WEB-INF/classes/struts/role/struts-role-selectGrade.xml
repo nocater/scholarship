@@ -10,6 +10,8 @@
 		
 		<action name="queryAllGradeAjax" class="selectGradeAction" method="queryAllGradeAjax"/>
 		
+		<action name="queryByCollegeIdAjax" class="selectGradeAction" method="queryGradesByCollegeIdAjax"/>
+		
 		<!-- iframe 显示选择班级方式
 		<action name="queryAll" class="gradeAction" method="queryAll">
 			<result name="success">/pages/role/selectGrade.jsp</result>

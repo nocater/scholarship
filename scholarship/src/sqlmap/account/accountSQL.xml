@@ -49,6 +49,11 @@
    			AND ACCNO LIKE CONCAT('%',#{accno},'%')
    			]]>
    		</if>
+   		<if test="ROLE_ID != null">
+   			<![CDATA[
+   			AND ROLE_ID = #{ROLE_ID}
+   			]]>
+   		</if>
    		<if test="name != null">
    			<![CDATA[
    			OR NAME LIKE CONCAT('%',#{name},'%')
@@ -132,7 +137,7 @@
 			)
 			
 			or a.grade_id in(
-				select grade_id from grade where college_id in (select college_id from relation rel where rel.role_id = #{id})
+				select id from grade where college_id in (select college_id from relation rel where rel.role_id = #{id})
 			)
     	]]>
     	
@@ -204,6 +209,25 @@
     							UPDATEDATE=NOW()
     		WHERE ID=#{id}
     	]]>
+    </update>
+    
+    <update id="account_resetStudentPwd" parameterType="java.util.HashMap">
+    	UPDATE account a SET PASSWORD=#{password}
+    	WHERE role_id = 2
+    	<if test="roleId != null">
+	    	and (	a.college_id in (
+						select college_id from relation rel where rel.role_id = #{roleId}
+					)
+					
+					or a.grade_id in (
+						select grade_id from relation rel where rel.role_id = #{roleId}
+					)
+					
+					or a.grade_id in(
+						select id from grade where college_id in (select college_id from relation rel where rel.role_id = #{roleId}  )
+					)
+				)
+		</if>
     </update>
     
     <delete id="account_delete" parameterType="account">

@@ -89,6 +89,20 @@
 			var gradeId = $("#sel-grade").val();
 			location.href="${ctx}/account/query.action?onlyStudent="+onlyStudent+"&collegeId="+collegeId+"&gradeId="+gradeId;
 		}
+		
+		/* 重置学生密码 */
+		function resetPWD(){
+			if(confirm("是否重置此角色下所有学生账户密码?")){
+				$.ajax({
+					url:"${ctx}/account/resetPWD.action",
+					type:"POST",
+					dataType:"text",
+					success:function(result){
+						alert(result);
+					}
+				});
+			}
+		}
 	</script>
   </head>
   
@@ -132,6 +146,9 @@
 			  				</td>
 			  				<td width="10%"  valign="middle" align="center">
 			  					<input type="button" class="btnstyle" style="padding-top:1px;" value="账户导入" onclick="location.href='${ctx}/pages/account/accountImport.jsp';" />
+			  				</td>
+			  				<td width="10%"  valign="middle" align="center">
+			  					<input type="button" class="btnstyle" style="padding-top:1px;" value="重置密码" onclick="resetPWD();" />
 			  				</td>
 			  				<!-- <td valign="top"><span><a href="#">高级</a></span></td> -->
 			  				<!-- <td width="" valign="middle" style="padding-top:2px;"><span class="spanred">内置角色不可更改</span></td> -->

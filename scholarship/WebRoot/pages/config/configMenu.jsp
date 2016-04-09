@@ -168,18 +168,37 @@
 						</a>
 					</td>	
 				</tr>
-			<tr>
-			<tr>
-				<td align="left">
-					<a href="#"
-						onclick="parent.mainFrame.location.href='${ctx}/config/queryCodesSwitch.action';">
-						&nbsp;
-						<img src="${ctx}/images/arrow_03.gif"/>
-						&nbsp;&nbsp;验证码
-					</a>
-				</td>
-			</tr>
-		</table>
+				<tr>
+					<td align="left">
+						<a href="#"
+							onclick="parent.mainFrame.location.href='${ctx}/config/queryAlertInfo.action';">
+							&nbsp;
+							<img src="${ctx}/images/arrow_03.gif"/>
+							&nbsp;&nbsp;警告信息
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td align="left">
+						<a href="#"
+							onclick="parent.mainFrame.location.href='${ctx}/config/queryCodesSwitch.action';">
+							&nbsp;
+							<img src="${ctx}/images/arrow_03.gif"/>
+							&nbsp;&nbsp;验证码
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td align="left">
+						<a href="#"
+							onclick="parent.mainFrame.location.href='${ctx}/scholarship/query.action';">
+							&nbsp;
+							<img src="${ctx}/images/arrow_03.gif"/>
+							&nbsp;&nbsp;奖/助学金类别
+						</a>
+					</td>
+				</tr>
+			</table>
 		</div>
 		<div class="ui-overlay">
 			<div id="mack"></div>

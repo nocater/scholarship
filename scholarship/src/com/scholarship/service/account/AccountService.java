@@ -18,6 +18,7 @@ public interface AccountService extends BaseService {
 	public List<Account> queryByAccno(String accno);
 	public int insert(Account account);
 	public int update(Account account);
+	public int resetPWD(Role role,String pwd);
 	public void delete(Account account);
 	public void deleteById(int id);
 }

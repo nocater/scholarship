@@ -55,6 +55,8 @@
 		</action>
 		
 		<action name="singleAjax" class="accountAction" method="singleAjax"/>
+		
+		<action name="resetPWD" class="accountAction" method="resetPWD"/>
 	</package>
 	
 </struts>	

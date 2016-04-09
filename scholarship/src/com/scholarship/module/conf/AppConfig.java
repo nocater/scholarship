@@ -15,10 +15,24 @@ public class AppConfig {
 	
 	// CTX
 	public static String ctx;
-	//申请开关
+	
+	/***
+	 * 是否允许奖助学金申请
+	 */
 	public static int APPLY=1;
-	//申请提示信息
-	public static String tip="请确保信息填写真实完整，一经核实失败，后果自负！";
-	//验证码
+	
+	/***
+	 * 警告信息
+	 */
+	public static String ALERT="请确保信息填写真实完整，一经核实失败，后果自负！";
+	
+	/***
+	 * 登录验证码开关
+	 */
 	public static int CODES=0;
+	
+	/***
+	 * 重置默认密码
+	 */
+	public static String DEFAULT_PWD="123456";
 }

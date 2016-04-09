@@ -60,6 +60,13 @@
     		<![CDATA[
     			AND EDUBG LIKE CONCAT('%',#{edubg},'%')
     		]]>
+    	<if test="roleId != null">
+    		<![CDATA[
+    			AND (	ID IN (SELECT GRADE_ID FROM relation rel WHERE rel.ROLE_ID = #{roleId} )
+					    OR COLLEGE_ID IN (SELECT COLLEGE_ID FROM relation rel WHERE rel.ROLE_ID=#{roleId}  )
+					)
+    		]]>
+    	</if>
     	</if>
     </select> 
      
@@ -90,6 +97,13 @@
     	<if test="edubg !=null ">
     		<![CDATA[
     			AND EDUBG LIKE CONCAT('%',#{edubg},'%')
+    		]]>
+    	</if>
+    	<if test="roleId != null">
+    		<![CDATA[
+    			AND (	ID IN (SELECT GRADE_ID FROM relation rel WHERE rel.ROLE_ID = #{roleId} )
+					    OR COLLEGE_ID IN (SELECT COLLEGE_ID FROM relation rel WHERE rel.ROLE_ID=#{roleId}  )
+					)
     		]]>
     	</if>
     	<if test="order != null">

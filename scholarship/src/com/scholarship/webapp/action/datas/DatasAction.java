@@ -49,8 +49,11 @@ public class DatasAction extends BaseAction {
 	
 	private String allpyMessage="";//当前申请信息
 	private String allliedMessage="";//以往申请信息
+	private String ALERT;
+	
 	
 	public String query(){
+		ALERT = AppConfig.ALERT;
 		account = (Account) getSession().getAttribute("LOGON_ACCOUNT");
 		role = (Role) getSession().getAttribute("LOGON_ROLE");
 //		if(role.getId()!=2)return SUCCESS;//只有学生才能修改申请
@@ -204,7 +207,7 @@ public class DatasAction extends BaseAction {
 				message = "申请已提交成功，请等待审批";
 			}
 		}
-		if(AppConfig.APPLY==0)message = "审批未开启，请练习管理员";
+		if(AppConfig.APPLY==0)message = "审批未开启，请联系管理员";
 		//查询数据 返回页面
 		this.query();
 		return SUCCESS;
@@ -400,6 +403,14 @@ public class DatasAction extends BaseAction {
 
 	public void setAllliedMessage(String allliedMessage) {
 		this.allliedMessage = allliedMessage;
+	}
+
+	public String getALERT() {
+		return ALERT;
+	}
+
+	public void setALERT(String aLERT) {
+		ALERT = aLERT;
 	}
 
 }

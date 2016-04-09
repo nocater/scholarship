@@ -12,6 +12,7 @@ import com.scholarship.module.college.College;
 import com.scholarship.module.grade.Grade;
 import com.scholarship.service.grade.GradeService;
 import com.scholarship.webapp.action.BaseAction;
+import com.util.StringUtil;
 
 public class SelectGradeAction extends BaseAction {
 
@@ -22,6 +23,7 @@ public class SelectGradeAction extends BaseAction {
 	
 	private GradeService gradeService;
 	private List<Grade> gradeList;
+	private String collegeId;
 	
 	public void queryAllGradeAjax(){
 		//JSON java.lang.ClassNotFoundException: net.sf.ezmorph.Morpher 
@@ -51,7 +53,32 @@ public class SelectGradeAction extends BaseAction {
 			e1.printStackTrace();
 		}
 	}
-
+	
+	public void queryGradesByCollegeIdAjax(){
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("status", "1");
+		if(StringUtil.isNotBlank(collegeId)){
+			map.put("collegeId", collegeId);
+		}
+		gradeList = gradeService.query(map);
+		JSONArray jsons = new JSONArray();
+		for(Grade grade:gradeList){
+			JSONObject obj = new JSONObject();
+			obj.put("id", grade.getId());
+			obj.put("name", grade.getName());
+			jsons.add(obj);
+		}
+		try {
+			getResponse().setContentType("text/html;charset=UTF-8");
+			getResponse().setCharacterEncoding("UTF-8");
+			getResponse().setHeader("Cache-Control", "no-cache");
+			getResponse().getWriter().write(jsons.toString());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
 	public GradeService getGradeService() {
 		return gradeService;
 	}
@@ -66,6 +93,14 @@ public class SelectGradeAction extends BaseAction {
 
 	public void setGradeList(List<Grade> gradeList) {
 		this.gradeList = gradeList;
+	}
+
+	public String getCollegeId() {
+		return collegeId;
+	}
+
+	public void setCollegeId(String collegeId) {
+		this.collegeId = collegeId;
 	}
 	
 }

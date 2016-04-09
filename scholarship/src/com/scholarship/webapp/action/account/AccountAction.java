@@ -162,6 +162,10 @@ public class AccountAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/***
+	 * 个人设置
+	 * @return
+	 */
 	public String queryMe(){
 		account = (Account) getSession().getAttribute("LOGON_ACCOUNT");
 		role = (Role) getSession().getAttribute("LOGON_ROLE");
@@ -179,6 +183,10 @@ public class AccountAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/***
+	 * 新增/修改账户
+	 * @return
+	 */
 	public String update(){
 		
 		//可以不用判断 直接将input name 设置我对象.属性
@@ -210,6 +218,10 @@ public class AccountAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/***
+	 * 个人设置
+	 * @return
+	 */
 	public String infoset(){
 		role = (Role) getSession().getAttribute("LOGON_ROLE");
 		//角色和账户名不能被修改
@@ -231,6 +243,9 @@ public class AccountAction extends BaseAction {
 		else return "apply";
 	}
 	
+	/***
+	 * 批量执行
+	 */
 	public String execute(){
 		if(StringUtil.isNotBlank(method)){
 			if(method.equals("-1")){
@@ -270,6 +285,9 @@ public class AccountAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/***
+	 * 查询学号唯一
+	 */
 	public void checkAccountAccno(){
 		String result = "false";
 		if(StringUtil.isNotBlank(accountAccno)){
@@ -294,6 +312,48 @@ public class AccountAction extends BaseAction {
 			getResponse().setCharacterEncoding("UTF-8");
 			getResponse().setHeader("Cache-Control", "no-cache");
 			getResponse().getWriter().write(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void resetPWD(){
+		account = (Account) getSession().getAttribute("LOGON_ACCOUNT");
+		Role role = (Role) getSession().getAttribute("LOGON_ROLE");
+		
+		int num = accountService.resetPWD(role, AppConfig.DEFAULT_PWD);
+		Map<String,String> map = new HashMap<String,String>();
+		if(role.getId()!=1){
+			map.put("roleId", String.valueOf(role.getId()));
+		}
+		map.put("ROLE_ID", "2");
+		int total = accountService.count(map);
+		
+		
+		//日志审计
+		List<String> fieldList = new ArrayList<String>();
+		fieldList.add(account.getName()+"("+account.getAccno()+")已重置 学院 ");
+		List<College> cs = role.getCollegeList();
+		if(cs!=null&&cs.size()>0){
+			for(College c:cs){
+				fieldList.add(c.getName());
+			}
+		}
+		fieldList.add("及班级 ");
+		List<Grade> gs = role.getGradeList();
+		if(gs!=null&&gs.size()>0){
+			for(Grade g:gs){
+				fieldList.add(g.getName());
+			}
+		}
+		fieldList.add("下所有学生账户密码为 "+AppConfig.DEFAULT_PWD);
+		
+		try {
+			getResponse().setContentType("text/html;charset=UTF-8");
+			getResponse().setCharacterEncoding("UTF-8");
+			getResponse().setHeader("Cache-Control", "no-cache");
+			getResponse().getWriter().write("已将"+num+"/"+total+"个学生密码重置为"+AppConfig.DEFAULT_PWD);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

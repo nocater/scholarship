@@ -21,6 +21,11 @@
 	<!-- 验证框架 -->
 	<script type='text/javascript' src="${ctx}/scripts/jquery.validationEngine-en.js"></script>
 	<script type='text/javascript' src="${ctx}/scripts/jquery.validationEngine.js"></script>
+	<!-- 学院树 -->
+	<script type="text/javascript" src="${ctx}/scripts/custom_ui_tree.js"></script>
+	<script type="text/javascript" src="${ctx}/scripts/custom_ui_action.js"></script>
+	<link href="${ctx}/styles/tree.css" rel="stylesheet" type="text/css" />
+	<link type="text/css" rel="stylesheet" href="${ctx}/styles/custom_ui.css" />
 	
 	<script type="text/javascript">
 		$(document).ready(function (){
@@ -43,7 +48,7 @@
 			/* 选择班级对话框  */
 			$("#dialog-selectGrade").dialog({
 				autoOpen : false,
-				width : 400,
+				width : 600,
 				height : 450,
 				buttons : {
 					"确定" : function() {
@@ -54,6 +59,13 @@
 						$(this).dialog("close");
 					}
 				}
+			});
+			/* 创建学院树 */
+			$.create_tree_html( {
+				id : "checkTreeColleges",
+				autoOpen : true,
+				edit : false,
+				chidren : '${collegesTree}'
 			});
 		});
 		
@@ -326,6 +338,51 @@
 						if (roleName != "")
 							$("#RoleName_msg").html("<img border=0 src=\"${ctx}/images/ok.png\" />");
 					}
+				}
+			});
+		}
+		
+		// 学院树点击
+		function custom_action(evn) {
+			changeStyle("checkTreeColleges", evn);
+			var collegeId = $(evn).prev().children().val();
+			$.ajax({
+				type : "GET",
+				url:"${ctx}/role-selectGrade/queryByCollegeIdAjax.action",
+				dataType : "json",
+				data : {"collegeId":collegeId},
+				success : function(result){
+					var grades = $("#select_grades").val();
+					var html = "<table width=\"80%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">"
+							 + "<tr><td class=\"td_detail_separator\">请选择：</td></tr>"
+							 + "<tr height=\"6px\"><td></td></tr>"
+							 + "<tr><td align=\"right\">"
+							 + "<table width=\"80%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"left\">";
+					for(var i = 0; i<result.length;i++){
+						/* alert((result[i].id+"/"+result[i].name+",")); */
+						html += "<tr>";
+						if(grades.indexOf(result[i].id+"/"+result[i].name+",")>-1){
+							html+="<td width=\"5%\"><input type=\"checkbox\" id=\"gradeId\" name=\"gradeId\" onclick=\"dealGrade($(this));\" value=\""+result[i].id+"\" checked=\"checked\" /></td>";
+						}else{
+							html+="<td width=\"5%\"><input type=\"checkbox\" id=\"gradeId\" name=\"gradeId\" onclick=\"dealGrade($(this));\" value=\""+result[i].id+"\" /></td>";
+						}
+						html+="<td>&nbsp;</td>";
+						html+="<td width=\"95%\" id=\"td-"+result[i].id+"\" align=\"left\" style=\"font-family: Lucida Grande,Lucida Sans,Arial,sans-serif;font-size: 1.1em;\">"+result[i].name+"</td>";
+						html += "</tr>";
+					}
+					html += "</table>";
+					html += "</td>";
+					html += "</tr>";
+					html += "</table>";
+					/* $("#frmGradeDiv").empty();
+					$("#frmGradeDiv").append(html);
+					
+					$("#frmEmployee").css("display","none");
+					$("#frmEmployee").css("visibility","hidden"); */
+					
+					$("#frmGradeDiv").empty();
+					$("#frmGradeDiv").append(html);
+					$("#frmGradeDiv").css("display","block");
 				}
 			});
 		}
@@ -606,10 +663,10 @@
 								<div id="checkTreeCol"></div>
 							</div>
 						</div>
-					</td> --%>
+					</td> 
 					<td valign="top" class="myTd">
 					&nbsp;
-					</td>
+					</td>--%>
 					<td valign="top" width="100%">
 					<input type="checkbox" name="ids" id="collegeall" value="" onclick="collegeAll()" class="check-box"/>全选
 						<%-- <iframe src='${ctx}/role-selectCollege/queryAll.action'
@@ -623,7 +680,7 @@
 		</div>
 	</div>
 	
-	<!-- 选择用户/组弹出框 -->
+	<!-- 选择班级弹出框 -->
 	<div id="dialog-selectGrade" title="选择班级">
 		<input type="hidden" id="hid-option-name" />
 		<input type="hidden" id="hid-option-id" />
@@ -632,7 +689,7 @@
 			<table width="100%" height="95%" border="0" cellspacing="3" cellpadding="0" 
 				align="center">
 				<tr>
-					<%-- <td valign="top">
+					<td valign="top">
 						<div class="big">
 							<div class="left">
 								<div style="height:10px;"></div>
@@ -640,23 +697,24 @@
 									&nbsp;&nbsp;&nbsp;
 									<img src="${ctx}/images/node_left.png" />
 									&nbsp;
-									<span id="allRes" onclick="checkCollege('all')">所有班级</span>
+									<input type="hidden" value=""><!-- 显示所有班级 -->
+									<span id="allRes" onclick="custom_action(this)">所有班级</span>
 								</div>
 								<div style="height:5px"></div>
-								<div class="hand" style="margin-left: 10px">
+								<%-- <div class="hand" style="margin-left: 10px">
 									&nbsp;&nbsp;&nbsp;
 									<img src="${ctx}/images/node_left.png" />
 									&nbsp;
 									<span id="noRes" onclick="checkCollege('no')">未分组</span>
-								</div>
-								<div id="checkTreeRes"></div>
+								</div> --%>
+								<div id="checkTreeColleges"></div>
 							</div>
 						</div>
-					</td> --%>
+					</td>
 					<td valign="top" class="myTd">
 					&nbsp;
 					</td>
-					<td valign="top" width="100%" height="100%">
+					<td valign="top" width="60%" height="100%">
 					<input type="checkbox" name="ids" id="gradeall" value="" onclick="gradeAll()" class="check-box"/>全选
 						<%-- <iframe src='${ctx}/role-selectGrade/queryAll.action'
 							id="frmGrade" name="frmGrade" frameborder="0" height="100%" width="100%"

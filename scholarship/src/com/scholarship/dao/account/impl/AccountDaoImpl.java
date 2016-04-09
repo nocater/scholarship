@@ -70,7 +70,13 @@ public class AccountDaoImpl extends BaseDaoMyBatis implements AccountDao{
 		// TODO Auto-generated method stub
 		return super.sqlSession.insert("account_insert", account);
 	}
-
+	
+	@Override
+	public int resetPWD(Map<?, ?> map) {
+		// TODO Auto-generated method stub
+		return super.sqlSession.update("account_resetStudentPwd",map);
+	}
+	
 	@Override
 	public int update(Account account) {
 		// TODO Auto-generated method stub
@@ -88,4 +94,5 @@ public class AccountDaoImpl extends BaseDaoMyBatis implements AccountDao{
 		// TODO Auto-generated method stub
 		super.sqlSession.delete("account_deleteById", id);
 	}
+
 }

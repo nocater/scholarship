@@ -25,9 +25,6 @@
 	<script type="text/javascript">
 		$(document).ready(function (){
 			$("#datasForm").validationEngine();
-			if($("#message").val()!=""){
-				alert($("#message").val());
-			}
 		});
 		
 		/* 修改班级下拉列表  */
@@ -74,14 +71,73 @@
 			$("#accountSex").val($("#select-sex").val());
 			$("#accountName").val($("#datasName").val());
 		}
+		
+		//遮罩
+	    function ALERT(){
+	    	if($("#message").val()!=""){
+				showMessage($("#message").val());
+			}else if($("#ALERT").val()!=""){
+				document.onmousedown = ContextMenu;
+			    document.onmousewheel = scrollFunc;
+		    	showMessage($("#ALERT").val());
+				$("#mack").attr("style","display:block");
+				$("#mack").addClass("ui-widget-overlay");
+				$("#mack").css('height','100%');
+				$("#mack").css('width','99.5%');
+				$("#mack").css('margin-right','2px');
+				parent.frames[0].reload();
+	            parent.frames[1].reload();
+	            parent.frames[4].reload();
+	            setTimeout(cancel,3000);
+			}
+		}
+		
+	    function showMessage(test){
+  	        var docHe =  ($(document).height()/2)-60;
+  	        var docWi =  ($(document).width()/2)-200;
+  	        $("#tipDiv").css({top:60,left:docWi});
+  	        $("#msg").text(test);
+  	        $("#tipDiv").show();
+         }
+         
+         //遮罩取消
+         function cancel(){
+        	//取消绑定事件
+        	document.onmousedown = null;
+ 	        document.onmousewheel=null;
+         	//$("#tipDiv").hide();
+            parent.frames[0].cancel();
+            parent.frames[1].cancel();
+            parent.frames[4].cancel();
+            //当前Frame
+            //document.onmousedown=cancelContext;
+ 			$("#mack").removeClass("ui-widget-overlay");
+         }
+         
+         function ContextMenu() {
+ 	        if (event.button==1 || event.button==0 || event.button == 2 || event.button == 3) {
+ 	            alert("无法进行操作");
+ 	            return false;
+ 	        }
+ 	    }
+ 	    function cancelContext(){
+ 	    	if(event.button==1 || event.button==0 || event.button == 2 || event.button == 3){
+ 	    	}
+ 	    }
+ 	  	//设置滚轮滑动
+ 		var scrollFunc = function() {
+ 			alert("无法进行操作");
+ 			return false;
+ 		};
 	</script>
   </head>
   
-  <body>
+  <body onload="ALERT();">
 	<s:form action="update" namespace="/datas" method="post" theme="simple" id="datasForm">
 		<s:hidden name="datas.id" id="datasId"/>
 		<s:hidden name="accountId" id="accountId"/>
 		<s:hidden name="message" id="message"/>
+		<s:hidden name="ALERT" id="ALERT"/>
 		<!-- main table -->
 		<table width="99%" border="0" cellspacing="0" cellpadding="0"
 				style="margin-left: 4px; margin-top: 0px">
@@ -741,5 +797,40 @@
 			</tr>
 		</table>
 	</s:form>
+	
+	
+	<div class="framDiv" id="tipDiv" onclick="this.style.display='none';"
+		style="width:40%; display: none;position: absolute;z-index:10;background-color: white;">
+		<table width="100%" border="0" cellspacing="1" cellpadding="0">
+			<tr>
+				<td class="r2titler">提示信息</td>
+			</tr>
+			<tr>
+				<td class="td_detail_separator"></td>
+			</tr>
+			<tr>
+				<td class="td_detail_separator"></td>
+			</tr>
+			<tr>
+				<td align="center"><font style="font-size:16px;color: #538DC2"><b
+						id="msg"></b> </font></td>
+			</tr>
+			<tr>
+				<td class="td_detail_separator"></td>
+			</tr>
+			<tr>
+				<td class="td_detail_separator"></td>
+			</tr>
+			<tr>
+				<td align="right" id="button"></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+		
+	<div class="ui-overlay">
+	<div id="mack"></div>
   </body>
 </html>

@@ -15,14 +15,17 @@
 		<script type='text/javascript' src="${ctx}/scripts/jquery-1.7.2.min.js"></script>
 		<script type='text/javascript' src="${ctx}/scripts/jquery.validationEngine-en.js"></script>
 		<script type='text/javascript' src="${ctx}/scripts/jquery.validationEngine.js"></script>
-		<script type='text/javascript' src="${ctx}/scripts/My97DatePicker/WdatePicker.js"></script>
+		<%-- <script type='text/javascript' src="${ctx}/scripts/My97DatePicker/WdatePicker.js"></script>
 		<script type='text/javascript' src="${ctx}/scripts/jquery.select.js"></script>
 		<script type='text/javascript' src="${ctx}/scripts/paging.js"></script>
-		<script type='text/javascript' src="${ctx}/scripts/popuplayer.js"></script>
+		<script type='text/javascript' src="${ctx}/scripts/popuplayer.js"></script> --%>
 		<script type='text/javascript' src="${ctx}/scripts/jquery-ui.custom.min.js"></script>
 		<script type='text/javascript' src="${ctx}/scripts/util.js"></script>
 
 		<SCRIPT type="text/javascript">
+			$(document).ready(function (){
+				cancel();
+			});
             function sub(){
                 var fileval=$("#upFile").val();
                 if(fileval.substring(fileval.lastIndexOf(".")+1)!="xls"){
@@ -33,7 +36,10 @@
                     alert("请选择需要上传的资源文件...");
                     return;
                 }else{
-                    
+                	parent.frames[0].reload(); //top Frame
+        			parent.frames[1].reload();
+        			parent.frames[3].reload(); //main 右边frame
+        			parent.frames[4].reload(); //foot frame
                     $("#accountForm").submit();
                 }
             }
@@ -53,7 +59,6 @@
  	    					"取消[Esc]" : function() {
  	    						$(this).dialog("close");
  	    						//accountInfo("esc");
- 	    						//session.removAttribute("repeatEmpList");%>
  	    					}
  	    				}
  	    			});
@@ -74,6 +79,11 @@
                 	}
             	}
             	
+            	parent.frames[0].reload(); //top Frame
+    			parent.frames[1].reload();
+    			parent.frames[3].reload(); //main 右边frame
+    			parent.frames[4].reload(); //foot frame
+            	
            		$.ajax({
                    	type : "post",
        				url :"${ctx}/account/singleAjax.action",
@@ -81,26 +91,18 @@
        				dataType : "text",
        				data : "accnos="+accnos+"&operateType="+operateType,
        				success : function(result) {
+       					cancel();
        					$('#dialog-account').dialog('close');
        					if(result == "refresh"){
        						alert("成功覆盖");
+       						window.location.href="${ctx}/account/query.action?order=UPDATEDATE";
        					}else if(result == "error"){
        						alert("操作失败");
+       						cancel();
        					}
        				}
-                   	
                    }); 
             }
-            
-            /* $("#chkAll-account").live("click",function(event){
-            	if($("#chkAll-account").hasClass('not_checked')){
-            		$("#chkAll-account").removeClass('not_checked');
-            		$(".check-box").attr('checked',true);
-            	}else{
-            		$("#chkAll-account").addClass('not_checked');
-        			$(".check-box").attr('checked',false);
-            	}
-           }); */
             
             /*全选*/
     		function checkAll(){
@@ -117,7 +119,36 @@
     			}else{
     				$("#"+id).prop("checked",true);
     			}
-    		}  
+    		}
+            
+            //遮罩
+            function reload(){
+				openSuccess();
+				$("#mack").attr("style","display:block");
+				$("#mack").addClass("ui-widget-overlay");
+				$("#mack").css('height','100%');
+				$("#mack").css('width','99.5%');
+				$("#mack").css('margin-right','2px');
+			}
+            function openSuccess()
+            {
+     	        var docHe =  ($(document).height()/2)-60;
+     	        var docWi =  ($(document).width()/2)-200;
+     	        $("#openSuccess").css({top:docHe,left:docWi});
+     	        $("#msg").text("正在导入，请稍后...");
+     	        $("#openSuccess").show();
+            }
+            
+            //遮罩取消
+            function cancel(){
+            	$("#openSuccess").hide();
+                parent.frames[0].cancel();
+                parent.frames[1].cancel();
+                parent.frames[4].cancel();
+                //当前Frame
+                //document.onmousedown=cancelContext;
+    			$("#mack").removeClass("ui-widget-overlay");
+            }
         </SCRIPT>
 		<STYLE type="text/css">
 .filestyle {
@@ -291,5 +322,39 @@
 				</div>
 			</c:if>
 		</s:form>
+		
+		<div class="framDiv" id="openSuccess"
+		style="width:40%; display: none;position: absolute;z-index:10;background-color: white;">
+		<table width="100%" border="0" cellspacing="1" cellpadding="0">
+			<tr>
+				<td class="r2titler">提示信息</td>
+			</tr>
+			<tr>
+				<td class="td_detail_separator"></td>
+			</tr>
+			<tr>
+				<td class="td_detail_separator"></td>
+			</tr>
+			<tr>
+				<td align="center"><font style="font-size:16px;color: #538DC2"><b
+						id="msg"></b> </font></td>
+			</tr>
+			<tr>
+				<td class="td_detail_separator"></td>
+			</tr>
+			<tr>
+				<td class="td_detail_separator"></td>
+			</tr>
+			<tr>
+				<td align="right" id="button"></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+		
+		<div class="ui-overlay">
+		<div id="mack"></div>
 	</body>
 </html>

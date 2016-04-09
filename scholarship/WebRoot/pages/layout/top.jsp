@@ -7,7 +7,16 @@
 <html>
   <head>
 	<link href="${ctx}/styles/css.css" rel="stylesheet" type="text/css">
-	<script type='text/javascript' src="${ctx}/scripts/jquery-2.1.0.min.js"></script>
+	<%-- <script type='text/javascript' src="${ctx}/scripts/jquery-2.1.0.min.js"></script> --%>
+	<link href="${ctx}/styles/custom_ui.css" type="text/css" rel="stylesheet"/>
+		<link href="${ctx}/styles/jquery-ui.custom.css" rel="stylesheet" type="text/css">
+		<link href="${ctx}/styles/tree.css" rel="stylesheet" type="text/css">
+		<link href="${ctx}/styles/left.css" rel="stylesheet" type="text/css">
+		<script type='text/javascript' src="${ctx}/scripts/jquery-1.7.2.min.js"></script>
+		<script type='text/javascript' src="${ctx}/scripts/jquery-ui.custom.min.js"></script>
+		<%-- <script type="text/javascript" src="${ctx}/scripts/custom_ui_action.js"></script>
+		<script type="text/javascript" src="${ctx}/scripts/custom_ui_tree.js"></script> --%>
+		
 	<script language="javascript">
 		$(document).ready(function() {
 			

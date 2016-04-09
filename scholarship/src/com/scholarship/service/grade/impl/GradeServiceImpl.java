@@ -26,6 +26,7 @@ public class GradeServiceImpl extends BaseServiceImpl implements GradeService {
 	public SearchResult<Grade> query(Role role, Map<String, String> map, Page page) {
 		// TODO Auto-generated method stub
 		//角色处理
+		if(role.getId()!=1)map.put("roleId", String.valueOf(role.getId()));
 		//查询数据
 		int rowsCount = gradeDao.count(map);
 		page.setTotalCount(rowsCount);

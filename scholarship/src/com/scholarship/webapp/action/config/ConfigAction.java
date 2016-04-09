@@ -7,6 +7,7 @@ import com.scholarship.module.account.Account;
 import com.scholarship.module.conf.AppConfig;
 import com.scholarship.service.audit.AuditService;
 import com.scholarship.webapp.action.BaseAction;
+import com.util.StringUtil;
 
 public class ConfigAction extends BaseAction {
 
@@ -19,6 +20,7 @@ public class ConfigAction extends BaseAction {
 	
 	private String applySwitch;
 	private String codesSwitch;
+	private String alertInfo;
 	
 	public String queryApplySwitch(){
 		applySwitch = String.valueOf(AppConfig.APPLY);
@@ -60,6 +62,23 @@ public class ConfigAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	public String queryAlertInfo(){
+		alertInfo = AppConfig.ALERT;
+		return SUCCESS;
+	}
+	
+	public String changeAlertInfo(){
+		Account account = (Account) getSession().getAttribute("LOGON_ACCOUNT");
+		if(StringUtil.isNotBlank(alertInfo)){
+			AppConfig.ALERT = alertInfo;
+			addActionMessage("已修改");
+			List<String> list = new ArrayList<>();
+			list.add(account.getName()+"("+account.getId()+")已修改申请警告信息");
+			auditService.operator(account.getId(), "修改警告信息", getRequest().getRemoteAddr(),list);
+		}
+		return SUCCESS;
+	}
+	
 	public AuditService getAuditService() {
 		return auditService;
 	}
@@ -82,6 +101,14 @@ public class ConfigAction extends BaseAction {
 
 	public void setCodesSwitch(String codesSwitch) {
 		this.codesSwitch = codesSwitch;
+	}
+
+	public String getAlertInfo() {
+		return alertInfo;
+	}
+
+	public void setAlertInfo(String alertInfo) {
+		this.alertInfo = alertInfo;
 	}
 	
 }

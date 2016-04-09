@@ -9,9 +9,20 @@
 	<package name="scholarship" extends="struts-default" namespace="/scholarship">
 	
 		<action name="query" class="scholarshipAction" method="query">
-			<result name="success">/index.jsp</result>
+			<result name="success">/pages/scholarship/scholarshipList.jsp</result>
 		</action>
 		
+		<action name="queryById" class="scholarshipAction" method="queryById">
+			<result name="success">/pages/scholarship/scholarshipInfo.jsp</result>
+		</action>
+		
+		<action name="update" class="scholarshipAction" method="update">
+			<result name="success" type="redirect">/scholarship/query.action?order=UPDATEDATE</result>
+		</action>
+		
+		<action name="execute" class="scholarshipAction" method="execute">
+			<result name="success" type="redirect">/scholarship/query.action?order=UPDATEDATE</result>
+		</action>
 	</package>
 	
 </struts>	

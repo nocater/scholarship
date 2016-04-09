@@ -20,6 +20,7 @@ public interface AccountDao {
 	public List<Account> queryByAccno(String accno);
 	public int insert(Account account);
 	public int update(Account account);
+	public int resetPWD(Map<?,?> map);
 	public void delete(Account account);
 	public void deleteById(int id);
 }

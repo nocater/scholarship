@@ -77,7 +77,12 @@ public class RoleFilter implements Filter {
 		}
 		
 		//账户模块
-		
+		if(url.contains("/account/resetPWD.action")){
+			if(r.getId()==2){
+				httpResponse.sendRedirect(ROLE_LIMIT);
+				return;
+			}
+		}
 		//审批申请模块
 		
 		//学院模块
@@ -94,6 +99,12 @@ public class RoleFilter implements Filter {
 				return;
 			}
 		}
+		//设置模块
+		if(url.contains("/config/")&&r.getId()!=1){
+			httpResponse.sendRedirect(ROLE_LIMIT);
+			return;
+		}
+		
 		
 		// 待完成
 		chain.doFilter(request, response);

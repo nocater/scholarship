@@ -2,7 +2,6 @@ package com.scholarship.webapp.action.role;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import com.scholarship.module.college.College;
 import com.scholarship.module.grade.Grade;
 import com.scholarship.module.role.Role;
+import com.scholarship.service.audit.AuditService;
+import com.scholarship.service.college.CollegeService;
+import com.scholarship.service.grade.GradeService;
 import com.scholarship.service.role.RoleService;
 import com.scholarship.webapp.action.BaseAction;
 import com.util.StringUtil;
 import com.util.page.Page;
 import com.util.page.SearchResult;
+import com.util.treeview.CollegeTree;
 
 public class RoleAction extends BaseAction{
 	/**
@@ -24,6 +27,10 @@ public class RoleAction extends BaseAction{
 	 */
 	private static final long serialVersionUID = 1L;
 	private RoleService roleService;
+	private CollegeService collegeService;
+	private AuditService auditService;
+	private GradeService gradeService;
+	
 	private String roleId;
 	private Role role;
 	private String roleName;
@@ -39,6 +46,8 @@ public class RoleAction extends BaseAction{
 	private String order;
 	private String ids="";
 	private String method="";//-1为删除角色 1为复制角色
+	
+	private String collegesTree;
 	
 	/***
 	 * 查询所有角色
@@ -82,6 +91,14 @@ public class RoleAction extends BaseAction{
 	public String queryById(){
 		if(StringUtil.isNotBlank(roleId))
 			role = roleService.queryById(Integer.parseInt(roleId));
+		
+		try {
+			CollegeTree collegetree = new CollegeTree(collegeService, super.getRequest().getContextPath());
+			collegesTree = collegetree.displayTree();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -376,6 +393,38 @@ public class RoleAction extends BaseAction{
 
 	public void setRoleId(String roleId) {
 		this.roleId = roleId;
+	}
+
+	public CollegeService getCollegeService() {
+		return collegeService;
+	}
+
+	public AuditService getAuditService() {
+		return auditService;
+	}
+
+	public void setCollegeService(CollegeService collegeService) {
+		this.collegeService = collegeService;
+	}
+
+	public void setAuditService(AuditService auditService) {
+		this.auditService = auditService;
+	}
+
+	public String getCollegesTree() {
+		return collegesTree;
+	}
+
+	public void setCollegesTree(String collegesTree) {
+		this.collegesTree = collegesTree;
+	}
+
+	public GradeService getGradeService() {
+		return gradeService;
+	}
+
+	public void setGradeService(GradeService gradeService) {
+		this.gradeService = gradeService;
 	}
 	
 }

@@ -22,6 +22,14 @@
 		<action name="changeCodesSwitch" class="configAction" method="changeCodesSwitch">
 			<result name="success">/pages/config/codesSwitch.jsp</result>
 		</action>
+		
+		<action name="queryAlertInfo" class="configAction" method="queryAlertInfo">
+			<result name="success">/pages/config/alertInfo.jsp</result>
+		</action>
+		
+		<action name="changeAlertInfo" class="configAction" method="changeAlertInfo">
+			<result name="success">/pages/config/alertInfo.jsp</result>
+		</action>
 	</package>
 	
 </struts>	

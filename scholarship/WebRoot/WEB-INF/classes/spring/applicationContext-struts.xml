@@ -29,10 +29,12 @@
 		<property name="auditService" ref="auditService"/>
 	</bean>
 	
-	
 	<!-- Role 角色ACTION -->
 	<bean id="roleAction" class="com.scholarship.webapp.action.role.RoleAction" scope="prototype" parent="baseAction">
 		<property name="roleService" ref="roleService"/>
+		<property name="collegeService" ref="collegeService"/>
+		<property name="gradeService" ref="gradeService"/>
+		<property name="auditService" ref="auditService"/>
 	</bean>
 	<bean id="selectCollegeAction" class="com.scholarship.webapp.action.role.SelectCollegeAction" scope="prototype" parent="baseAction">
 		<property name="collegeService" ref="collegeService"/>
@@ -55,6 +57,7 @@
 	<!-- Scholarship 学金ACTION -->
 	<bean id="scholarshipAction" class="com.scholarship.webapp.action.scholarship.ScholarshipAction" scope="prototype" parent="baseAction">
 		<property name="scholarshipService" ref="scholarshipService"/>
+		<property name="auditService" ref="auditService"/>
 	</bean>
 	
 	<!-- Audit 审计ACTION -->

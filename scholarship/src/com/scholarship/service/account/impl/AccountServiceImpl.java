@@ -1,18 +1,15 @@
 package com.scholarship.service.account.impl;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import com.scholarship.dao.account.AccountDao;
 import com.scholarship.module.account.Account;
 import com.scholarship.module.role.Role;
 import com.scholarship.service.account.AccountService;
 import com.scholarship.service.impl.BaseServiceImpl;
-import com.util.StringUtil;
+import com.util.MD5;
 import com.util.page.Page;
 import com.util.page.SearchResult;
 
@@ -94,6 +91,17 @@ public class AccountServiceImpl extends BaseServiceImpl implements AccountServic
 	}
 
 	@Override
+	public int resetPWD(Role role, String pwd) {
+		// TODO Auto-generated method stub
+		Map<String,String> map = new HashMap<String,String>();
+		if(role.getId()!=1){
+			map.put("roleId", String.valueOf(role.getId()));
+		}
+		map.put("password", MD5.getMD5Password(pwd));
+		return accountDao.resetPWD(map);
+	}
+
+	@Override
 	public void delete(Account account) {
 		// TODO Auto-generated method stub
 		accountDao.delete(account);
@@ -112,5 +120,4 @@ public class AccountServiceImpl extends BaseServiceImpl implements AccountServic
 	public void setAccountDao(AccountDao accountDao) {
 		this.accountDao = accountDao;
 	}
-
 }
