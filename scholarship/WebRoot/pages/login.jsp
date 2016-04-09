@@ -22,6 +22,15 @@
 <script type='text/javascript' src="${ctx}/scripts/popuplayer.js"></script>
 <script type='text/javascript' src="${ctx}/scripts/date.js"></script>
 <script type="text/javascript">
+	document.onkeydown = function(e){
+		e=e?e:(window.event?window.event:null);
+	   	if(e.keyCode == 13){
+	   		submitForm();
+	   	}
+	}
+	$(document).ready(function(){
+		$("#loginAccno").focus();		
+	});
 	function submitForm(){
 		$.ajax({
 			type:"POST",
