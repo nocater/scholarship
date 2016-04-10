@@ -16,6 +16,7 @@
 		<result property="sex" 					column="sex" />
 		<result property="idnumber" 			column="idnumber" />
 		<result property="bankcard" 			column="bankcard" />
+		<result property="nation" 				column="nation" />
 		<result property="area" 				column="area" />
 		<result property="address" 				column="address" />
 		<result property="distance" 			column="distance" />
@@ -147,6 +148,7 @@
 				sex,
 				idnumber,
 				bankcard,
+				nation,
 				area,
 				address,
 				distance,
@@ -193,6 +195,7 @@
 				#{sex},
 				#{idnumber},
 				#{bankcard},
+				#{nation},
 				#{area},
 				#{address},
 				#{distance},
@@ -247,6 +250,7 @@
 					sex=#{sex},
 					idnumber=#{idnumber},
 					bankcard=#{bankcard},
+					nation=#{nation},
 					area=#{area},
 					address=#{address},
 					distance=#{distance},

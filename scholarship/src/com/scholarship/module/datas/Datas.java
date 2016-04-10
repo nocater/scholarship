@@ -16,6 +16,7 @@ public class Datas {
 	private String 	sex;//性别
 	private String	idnumber;//身份证
 	private String	bankcard;//银行卡
+	private String	nation;//民族
 	private String	area;//地区
 	private String	address;//家庭地址
 	private String	distance;//离县城远近
@@ -58,8 +59,8 @@ public class Datas {
 
 	public Datas(int id, Account account, String college, String major,
 			String grade, String year, int type, String name, String sex,
-			String idnumber, String bankcard, String area, String address,
-			String distance, String expenses, String isLoan,
+			String idnumber, String bankcard, String nation, String area,
+			String address, String distance, String expenses, String isLoan,
 			String name_grandfather, String name_grandmother,
 			String in_grandfather, String in_grandmother,
 			String health_grandfather, String health_grandmother,
@@ -82,6 +83,7 @@ public class Datas {
 		this.sex = sex;
 		this.idnumber = idnumber;
 		this.bankcard = bankcard;
+		this.nation = nation;
 		this.area = area;
 		this.address = address;
 		this.distance = distance;
@@ -160,6 +162,10 @@ public class Datas {
 
 	public String getBankcard() {
 		return bankcard;
+	}
+
+	public String getNation() {
+		return nation;
 	}
 
 	public String getArea() {
@@ -342,6 +348,10 @@ public class Datas {
 		this.bankcard = bankcard;
 	}
 
+	public void setNation(String nation) {
+		this.nation = nation;
+	}
+
 	public void setArea(String area) {
 		this.area = area;
 	}
@@ -477,4 +487,5 @@ public class Datas {
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
 	}
+
 }

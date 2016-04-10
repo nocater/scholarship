@@ -10,6 +10,7 @@ public interface ApplyDao {
 	public int count(Map<?,?> map);
 	public List<Apply> query(Map<?,?> map, int startRow, int pageSize);
 	public List<Apply> query(Map<?,?> map);
+	public List<Account> queryAccountList(Map<?,?> map);
 	public Apply queryById(int id);
 	public int insert(Apply apply);
 	public int update(Apply apply);

@@ -5,6 +5,7 @@
 <!-- 这里的namespace名字必须为执行该sql的dao地址  -->
 <mapper namespace="com.scholarship.dao.account.impl.AccountDaoImpl">
 	
+	<!-- 如有修改请一并修改Apply中此ResultMap -->
 	<resultMap type="com.scholarship.module.account.Account" id="account">
         <result property="id" 			column="id"			/>
 		<result property="accno"		column="accno"		/>

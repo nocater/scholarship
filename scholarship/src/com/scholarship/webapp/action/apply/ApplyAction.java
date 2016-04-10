@@ -1,5 +1,6 @@
 package com.scholarship.webapp.action.apply;
 
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,6 +27,8 @@ import com.scholarship.service.role.RoleService;
 import com.scholarship.service.scholarship.ScholarshipService;
 import com.scholarship.webapp.action.BaseAction;
 import com.util.StringUtil;
+import com.util.export.ExportXSL;
+import com.util.export.impl.ExportType1;
 import com.util.page.Page;
 import com.util.page.SearchResult;
 
@@ -70,6 +73,11 @@ public class ApplyAction extends BaseAction {
 	private String gradeId;
 	private String select_year;
 	private String select_status;
+	private String scholarshipId;
+	
+	private String template;//导出模板
+	private String exportYear;//导出年份
+	private InputStream in;
 	
 	private String showNewTab;
 	
@@ -134,6 +142,9 @@ public class ApplyAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/***
+	 * 执行
+	 */
 	public String execute(){
 		Account a = (Account) getSession().getAttribute("LOGON_ACCOUNT");
 		Role r = (Role) getSession().getAttribute("LOGON_ROLE");
@@ -184,6 +195,10 @@ public class ApplyAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/***
+	 * 查询-所有模块
+	 * @return
+	 */
 	public String queryAllYears(){
 		HttpServletRequest request = super.getRequest();
 		Page page = null;
@@ -227,6 +242,9 @@ public class ApplyAction extends BaseAction {
 		if(StringUtil.isNotBlank(select_status)){
 			map.put("status", select_status);
 		}
+		if(StringUtil.isNotBlank(scholarshipId)){
+			map.put("scholarshipId", scholarshipId);
+		}
 		
 		//查询结果
 		SearchResult<Apply> sr = applyService.query(role, map, page);
@@ -251,9 +269,45 @@ public class ApplyAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/***
+	 * 执行-全部模块
+	 * @return
+	 */
 	public String executeAllYears(){
 		this.execute();
 		return SUCCESS;
+	}
+	
+	/***
+	 * 导出
+	 * @return
+	 */
+	public String export(){
+		if(StringUtil.isNotBlank(template)){
+			account = (Account) getSession().getAttribute("LOGON_ACCOUNT");
+			ExportXSL export = null;
+			switch (template) {
+			case "1":
+				export = new ExportType1(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
+				break;
+
+			default:
+				break;
+			}
+			if(StringUtil.isYear(exportYear)){
+				in = export.export(exportYear);
+			}else{
+				addActionMessage("年份输入正确");
+			}
+		}
+		return SUCCESS;
+	}
+	
+	/**
+	 * 将保存到本地的资源XML提供给用户下载
+	 */
+	public InputStream getTargetFile() {
+		return in;
 	}
 	
 	public AccountService getAccountService() {
@@ -496,6 +550,38 @@ public class ApplyAction extends BaseAction {
 
 	public void setShowNewTab(String showNewTab) {
 		this.showNewTab = showNewTab;
+	}
+
+	public String getScholarshipId() {
+		return scholarshipId;
+	}
+
+	public void setScholarshipId(String scholarshipId) {
+		this.scholarshipId = scholarshipId;
+	}
+
+	public String getTemplate() {
+		return template;
+	}
+
+	public String getExportYear() {
+		return exportYear;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
+	}
+
+	public void setExportYear(String exportYear) {
+		this.exportYear = exportYear;
+	}
+
+	public InputStream getIn() {
+		return in;
+	}
+
+	public void setIn(InputStream in) {
+		this.in = in;
 	}
 
 }

@@ -16,6 +16,22 @@
     	<association property="approve_Account"	column="approve_account_id" javaType="account" 		select="com.scholarship.dao.account.impl.AccountDaoImpl.account_queryById"/>
     	<association property="scholarship"		column="scholarship_id" 	javaType="scholarship" 	select="com.scholarship.dao.scholarship.impl.ScholarshipDaoImpl.scholarship_queryById"></association>
     </resultMap>
+     <!-- 与Account中保持一致 -->
+    <resultMap type="com.scholarship.module.account.Account" id="account">
+        <result property="id" 			column="id"			/>
+		<result property="accno"		column="accno"		/>
+        <result property="name" 		column="name"		/>
+		<result property="password" 	column="password"	/>
+		<result property="sex" 			column="sex"		/>
+		<result	property="qq"			column="qq"			/>
+		<result	property="phone"		column="phone"		/>
+        <result property="email" 		column="email"		/>
+        <result property="createDate"	column="createdate"	/>
+        <result property="updateDate"	column="updatedate"	/>
+        <association property="role"	column="role_id" 	javaType="role" 	select="com.scholarship.dao.role.impl.RoleDaoImpl.role_queryById"/>
+        <association property="college"	column="college_id" javaType="college" 	select="com.scholarship.dao.college.impl.CollegeDaoImpl.college_queryById"/>
+        <association property="grade"	column="grade_id" 	javaType="grade" 	select="com.scholarship.dao.grade.impl.GradeDaoImpl.grade_queryById"/>
+    </resultMap> 
      
     <select id="apply_count" parameterType="java.util.HashMap" resultType="int">
     	<![CDATA[
@@ -76,6 +92,9 @@
     	</if>
     	<if test="gradeId != null">
     		AND (SELECT GRADE_ID FROM account a WHERE a.id=ap.account_id) = #{gradeId}
+    	</if>
+    	<if test="scholarshipId != null">
+    		AND SCHOLARSHIP_ID = #{scholarshipId}
     	</if>
     </select>
 	
@@ -139,6 +158,9 @@
     	<if test="gradeId != null">
     		AND (SELECT GRADE_ID FROM account a WHERE a.id=ap.account_id) = #{gradeId}
     	</if>
+    	<if test="scholarshipId != null">
+    		AND SCHOLARSHIP_ID = #{scholarshipId}
+    	</if>
     	<if test="order != null">
     		<![CDATA[
     			ORDER BY ${order} DESC
@@ -146,7 +168,37 @@
     	</if>
     </select>
     
-    <!-- 未使用已扩展 -->
+    <!-- 查询账户列表 -->
+    <select id="apply_queryAccountList" parameterType="java.util.HashMap" resultMap="account">
+		 select * from account a  where 1=1
+		  		and a.id in (
+						  		select ap.account_id from apply ap where 1=1
+						  		<if test="year != null">
+								AND ap.year LIKE CONCAT('%',#{year},'%')
+								</if>
+								<if test="status != null">
+								AND STATUS = #{status}
+								</if>
+								<if test="scholarshipId != null">
+								and scholarship_id = #{scholarshipId}
+								</if>
+								<if test="roleId != null">
+				 				and (
+					     			ap.account_id in(
+					    					
+					 				SELECT id from account a where 
+									
+					 				a.college_id in (select college_id from relation rel where rel.role_id = #{roleId} )
+					 				
+									or a.grade_id in (select grade_id from relation rel where rel.role_id = #{roleId} )
+					 				
+					 				or a.grade_id in(select id from grade where college_id in (select college_id from relation rel where rel.role_id = #{roleId}  )  )
+					 			)
+					 			</if>
+					)
+    </select>
+    
+    <!-- 未使用以扩展 -->
     <select id="apply_queryAllYears" parameterType="java.util.HashMap" resultMap="apply">
     	<![CDATA[
     		SELECT * FROM apply ap WHERE 1=1

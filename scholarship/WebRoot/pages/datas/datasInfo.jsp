@@ -246,8 +246,10 @@
 													>女</option>
 												</select><span id="">
 											</span></td>
-											<td align="right" style="font-size: 12px;"></td>
-											<td style="padding-left: 20px"><span id=""></td>
+											<td align="right" style="font-size: 12px;">民族:</td>
+											<td style="padding-left: 20px">
+												<input type="text" name="datas.nation" id="datasNation" value="${datas.nation}"/><span id="">
+											</td>
 										</tr>
 										
 										<!-- 空行 -->

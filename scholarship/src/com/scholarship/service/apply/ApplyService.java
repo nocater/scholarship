@@ -14,6 +14,8 @@ public interface ApplyService{
 	public SearchResult<Apply> query(Role role,Map<String,String> map,Page page);
 	public List<Apply> query(Role role,Apply apply, Integer collegeId, Integer gradeId, Integer statusMax, Integer statusMin);
 	public SearchResult<Apply> queryAllYears(Role role,Map<String,String> map,Page page);
+	public List<Apply> query(Map<String,String> map);
+	public List<Account> queryAccountList(Map<?,?> map);
 	public List<Apply> queryByAccount(Account account);
 	public Apply queryById(int id);
 	public int inert(Apply apply);

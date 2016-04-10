@@ -17,11 +17,29 @@ import java.util.regex.Pattern;
 /**
  * 字符串处理类
  * 
- * @author Yuan wenyu
- * @version 1.0 2007.11.19
+ * @author ChenShuai
+ * @version 1.0 2016.04.01
  * @copyright founder Ltd. (2007)
  */
 public class StringUtil {
+	
+	/***
+	 * 判断字符串是否为四位年份
+	 * @param str
+	 * @return
+	 */
+	public static boolean isYear(String str){
+		if(str.length()!=4) return false;
+		try {
+			int year = Integer.parseInt(str);
+			if(year>0&&year<9999)return true;
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
 	
 	/**
 	 * 判断字符串是否为空

@@ -98,6 +98,10 @@ public class DatasAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/***
+	 * 通过账户查询申请信息
+	 * @return
+	 */
 	public String queryByAccount(){
 		account = new Account();
 		if(StringUtil.isNotBlank(accountId)){
@@ -136,6 +140,10 @@ public class DatasAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/***
+	 * 添加与修改
+	 * @return
+	 */
 	public String update(){
 		role = (Role) getSession().getAttribute("LOGON_ROLE");
 		if(role.getId()!=2) return INPUT;
@@ -191,6 +199,10 @@ public class DatasAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/***
+	 * 保存信息及提交申请
+	 * @return
+	 */
 	public String apply(){
 		//先保存信息
 		if(this.update().equals(SUCCESS)&&AppConfig.APPLY==1){

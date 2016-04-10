@@ -12,6 +12,7 @@ import com.util.page.SearchResult;
 public interface AccountService extends BaseService {
 	public int count(Map<String,String> map);
 	public SearchResult<Account> query(Role role,Map<String,String> map,Page page);
+	public List<Account> query(Map<String,String> map);
 	public List<Account> queryAll();
 	public Account queryById(int id);
 	public List<Account> queryByName(String name);

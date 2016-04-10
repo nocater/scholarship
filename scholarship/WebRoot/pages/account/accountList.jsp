@@ -145,7 +145,7 @@
 			  					<%-- <input type="button" class="btnstyle" style="padding-top:1px;" value="账户导入" onclick="location.href='${ctx}/account/queryById.action';" /> --%>
 			  				</td>
 			  				<td width="10%"  valign="middle" align="center">
-			  					<input type="button" class="btnstyle" style="padding-top:1px;" value="账户导入" onclick="location.href='${ctx}/pages/account/accountImport.jsp';" />
+			  					<input type="button" class="btnstyle" style="padding-top:1px;" value="账户导入" onclick="location.href='${ctx}/account/queryImport.action';" />
 			  				</td>
 			  				<td width="10%"  valign="middle" align="center">
 			  					<input type="button" class="btnstyle" style="padding-top:1px;" value="重置密码" onclick="resetPWD();" />

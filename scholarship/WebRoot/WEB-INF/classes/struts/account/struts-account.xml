@@ -38,6 +38,10 @@
 			<result name="apply" type="redirect">/apply/query.action</result>
 		</action>
 		
+		<action name="queryImport" class="accountAction" method="queryImport">
+			<result name="success">/pages/account/accountImport.jsp</result>
+		</action>
+		
 		<action name="import" class="accountAction" method="importAccount">
 			<result name="success">/pages/account/accountImport.jsp</result>
 		</action>

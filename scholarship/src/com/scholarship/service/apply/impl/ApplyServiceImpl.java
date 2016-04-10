@@ -99,6 +99,18 @@ public class ApplyServiceImpl extends BaseServiceImpl implements ApplyService {
 	}
 	
 	@Override
+	public List<Apply> query(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return applyDao.query(map);
+	}
+	
+	@Override
+	public List<Account> queryAccountList(Map<?, ?> map) {
+		// TODO Auto-generated method stub
+		return applyDao.queryAccountList(map);
+	}
+	
+	@Override
 	public List<Apply> queryByAccount(Account account) {
 		// TODO Auto-generated method stub
 		Map<String,String> map = new HashMap<String, String>();
@@ -149,4 +161,5 @@ public class ApplyServiceImpl extends BaseServiceImpl implements ApplyService {
 	public void setApplyDao(ApplyDao applyDao) {
 		this.applyDao = applyDao;
 	}
+
 }

@@ -32,6 +32,13 @@ public class ApplyDaoImpl extends BaseDaoMyBatis implements ApplyDao {
 		return super.sqlSession.selectList("apply_query", map);
 	}
 	
+
+	@Override
+	public List<Account> queryAccountList(Map<?, ?> map) {
+		// TODO Auto-generated method stub
+		return super.sqlSession.selectList("apply_queryAccountList", map);
+	}
+	
 	@Override
 	public Apply queryById(int id) {
 		// TODO Auto-generated method stub

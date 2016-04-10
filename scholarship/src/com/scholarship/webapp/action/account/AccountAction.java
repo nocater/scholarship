@@ -27,6 +27,7 @@ import com.scholarship.service.datas.DatasService;
 import com.scholarship.service.grade.GradeService;
 import com.scholarship.service.role.RoleService;
 import com.scholarship.webapp.action.BaseAction;
+import com.util.AnalyzerXML;
 import com.util.MD5;
 import com.util.StringUtil;
 import com.util.page.Page;
@@ -376,6 +377,15 @@ public class AccountAction extends BaseAction {
 				datasService.update(d);
 			}
 		}
+	}
+	
+	/***
+	 * 账户导入前清除session中的重复账户数组
+	 * @return
+	 */
+	public String queryImport(){
+		getSession().removeAttribute("repeatAccountList");
+		return SUCCESS;
 	}
 	
 	/***

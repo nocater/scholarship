@@ -22,7 +22,6 @@ public class AccountServiceImpl extends BaseServiceImpl implements AccountServic
 		// TODO Auto-generated method stub
 		return accountDao.count(map);
 	}
-	
 
 	@Override
 	public SearchResult<Account> query(Role role, Map<String, String> map, Page page) {
@@ -52,6 +51,12 @@ public class AccountServiceImpl extends BaseServiceImpl implements AccountServic
 		sr.setPage(page);
 		
 		return sr;
+	}
+	
+	@Override
+	public List<Account> query(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return accountDao.query(map);
 	}
 	
 	@Override
@@ -120,4 +125,5 @@ public class AccountServiceImpl extends BaseServiceImpl implements AccountServic
 	public void setAccountDao(AccountDao accountDao) {
 		this.accountDao = accountDao;
 	}
+
 }

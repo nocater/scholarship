@@ -95,7 +95,20 @@
 			var select_year = $("#select_year").val();
 			var collegeId = $("#select-college").val();
 			var gradeId = $("#select-grade").val();
-			location.href="${ctx}/apply/queryAllYears.action?select_status="+select_status+"&select_year="+select_year+"&collegeId="+collegeId+"&gradeId="+gradeId;
+			var scholarshipId = $("#filter-scholarship").val();
+			location.href="${ctx}/apply/queryAllYears.action?select_status="+select_status+"&select_year="+select_year+"&collegeId="+collegeId+"&gradeId="+gradeId+"&scholarshipId="+scholarshipId;
+		}
+		
+		function exportXLS(){
+			var template = $("#select-exportType").val();
+			var exportYear = $("#exportYear").val();
+			if(exportYear==""||template==""){
+				alert("请先选择年份和模板");
+				return;
+			}
+			if(confirm("确定执行此操作？")){
+	    		location.href="${ctx}/apply/export.action?template="+template+"&exportYear="+exportYear;
+	    	}
 		}
 	</script>
   </head>
@@ -107,12 +120,12 @@
   		<table width="99%" border="0" cellspacing="0" cellpadding="0" style="margin-left: 4px; margin-top: 0px" align="center">
   			<tr>
   				<td>
-  					<div class=caozuobox style="height:70px;">
+  					<div class=caozuobox style="height:110px;">
 		  			<!-- toolbar area -->
-		  			<table width="90%" border="0" cellspacing="0" cellpadding="0">
+		  			<table width="99%" border="0" cellspacing="0" cellpadding="0">
 			  			<tr height="30px">
 			  				<td width="2%"></td>
-			  				<td width="10%" valign="middle" align="center" style="padding-top:1px;">
+			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;">
 			  					<span>操&nbsp;&nbsp;作：</span>
 			  				</td>
 			  				<td width="1%"/>
@@ -129,14 +142,15 @@
 			  				<td width="1%"/>
 			  				<td width="5%" valign="middle" align="center"><input type="button"  value="执 行" class="btnstyle1" onclick="execute()" style="padding-top:1px;"/></td>
 			  				<td width="1%"/>
-			  				<td width="12%" valign="middle" align="center" style="padding-top:3px;">搜索(账号/姓名):</td>
+			  				<td width="15%" valign="middle" align="center" style="padding-top:3px;">搜索(账号/姓名):</td>
 			  				<td width="1%"/>
 			  				<td width="5%"/>
-			  				<td width="5%" valign="middle"><input type="text" id="keyword" name="keyword" value="${keyword}" /></td>
+			  				<td width="5%" valign="middle" align="center"><input type="text" style="width: 90px" id="keyword" name="keyword" value="${keyword}" /></td>
 			  				<td width="1%"/>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;"colspan="1"><img src="${ctx}/images/search.jpg"  class="hand" onclick="querys();" /></td>
 			  				<td	width="5%"><input type="button"  value="宽屏" class="btnstyle1" onclick="window.open('${ctx}/apply/queryAllYears.action');" style="padding-top:1px;"/></td>
 			  				<td width="5%" valign="middle" align="center"></td>
+			  				<td/>
 			  				<td/>
 			  				<!-- <td valign="top"><span><a href="#">高级</a></span></td> -->
 			  				<!-- <td width="" valign="middle" style="padding-top:2px;"><span class="spanred">内置角色不可更改</span></td> -->
@@ -169,8 +183,8 @@
 			  				<td/>
 			  				<td valign="middle" align="center" style="padding-top:3px;">学院:</td>
 			  				<td/></td>
-			  				<td width="105px" valign="middle" align="left" style="padding-top:0px;">
-			  					<select style="width:100%;" id="select-college" onchange="setGrades(this.value)">
+			  				<td width="10%" valign="middle" align="center" style="padding-top:0px;">
+			  					<select style="width:90%;" id="select-college" onchange="setGrades(this.value)">
 				  					<option value="0">--未选择--</option>
 				  					<c:forEach items="${collegeList}" var="c" varStatus="stat">
 				  						<option value="${c.id}"
@@ -181,8 +195,8 @@
 			  				</td>
 			  				<td/>
 			  				<td valign="middle" align="center" style="padding-top:3px;">班级:</td>
-			  				<td width="90px" valign="middle" align="left" style="padding-top:0px;">
-			  					<select style="width:100%;" id="select-grade">
+			  				<td width="10%" valign="middle" align="center" style="padding-top:0px;">
+			  					<select style="width:90" id="select-grade">
 				  					<option value="0">--未选择--</option>
 				  					<c:forEach items="${gradeList}" var="g" varStatus="stat">
 				  						<option value="${g.id}"
@@ -194,8 +208,53 @@
 			  				<td/>
 			  				<td valign="middle" align="center"><span>年:</span></td>
 			  				<td valign="middle" align="center"><input style="width: 70px" id="select_year" value="${select_year}"></td>
+			  				<td width="5%" valign="middle" align="center" style="padding-top:3px;"><span>奖项:</span></td>
+			  				<td width="5%" valign="middle" align="center" style="padding-top:3px;">
+			  					<select id="filter-scholarship">
+	    							<option value="">所有</option>
+	    							<c:forEach items="${scholarshipList}" var="s" varStatus="stats">
+	    								<option value="${s.id}"
+	    									<c:if test="${s.id eq scholarshipId}">selected="selected"</c:if>
+	    								>${s.category}${s.level}</option>
+	    							</c:forEach>
+	    						</select>
+			  				</td>
 			  				<td valign="middle" align="center"><input type="button"  value="筛 选" class="btnstyle1" onclick="filter()" style="padding-top:1px;"/></td>
 			  			</tr>
+			  			<td width="2%"></td>
+			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;">
+			  					<span>导&nbsp;&nbsp;出：</span>
+			  				</td>
+			  				<td width="1%"/>
+			  				<td width="5%" valign="middle" align="center" style="padding-top:3px;"><span>年:</span></td>
+			  				<td width="1%"/>
+			  				<td	width="10%" valign="middle" align="left" style="padding-top:0px;">
+			  					<input id="exportYear" value="${exportYear}">
+			  				</td>
+			  				<td width="1%"/>
+			  				<td width="5%" valign="middle" align="center"><span>模板:</span></td>
+			  				<td width="1%"/>
+			  				<td width="10%" valign="middle" align="center" style="padding-top:3px;">
+			  					<select style="width:90%;" id="select-exportType">
+				  					<option value="1">国家奖励志学金初审表</option>
+				  					<option value="2">国家助学金备案表</option>
+				  					<option value="3">中行卡号登记表</option>
+				  					<option value="4"></option>
+				  					<option value="5">明珠奖学金登记表</option>
+				  					<option value="6">明珠奖学金发放登记表</option>
+			  					</select>
+			  				</td>
+			  				<td width="1%"/>
+			  				<td width="5%"  valign="middle">
+			  					<input type="button"  value="导  出" class="btnstyle1" onclick="exportXLS();"/>
+			  				</td>
+			  				<td width="5%">
+			  				</td>
+			  				<td width="1%"/>
+			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;"colspan="1"></td>
+			  				<td	width="5%"></td>
+			  				<td width="5%" valign="middle" align="center"></td>
+			  				<td/>
 	  				</table>
 	  			</div>
   				</td>

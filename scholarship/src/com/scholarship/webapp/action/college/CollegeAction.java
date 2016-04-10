@@ -31,18 +31,14 @@ public class CollegeAction extends BaseAction{
 	
 	private String ids;
 	private String method;
-	
-	public String getCollegeName() {
-		return collegeName;
-	}
-
-	public void setCollegeName(String collegeName) {
-		this.collegeName = collegeName;
-	}
 
 	private String keyword;
 	private String order;
 	
+	/***
+	 * 查询所有
+	 * @return
+	 */
 	public String queryAll(){
 		collegeList = collegeService.queryAll();
 		return SUCCESS;
@@ -92,6 +88,10 @@ public class CollegeAction extends BaseAction{
 		return SUCCESS;
 	}
 	
+	/***
+	 * 新增与修改
+	 * @return
+	 */
 	public String update(){
 		
 		if(college.getId()==0){
@@ -105,6 +105,9 @@ public class CollegeAction extends BaseAction{
 		return SUCCESS;
 	}
 	
+	/***
+	 * 检查学院名称唯一性
+	 */
 	public void checkCollegeName(){
 		String result = "false";
 		if(StringUtil.isNotBlank(collegeName)){
@@ -135,6 +138,9 @@ public class CollegeAction extends BaseAction{
 		}
 	}
 	
+	/***
+	 * 执行
+	 */
 	public String execute(){
 		if(StringUtil.isNotBlank(method)){
 			if(method.equals("-1")){
@@ -152,6 +158,11 @@ public class CollegeAction extends BaseAction{
 		return SUCCESS;
 	}
 	
+	/***
+	 * 可提供审计
+	 * @param college
+	 * @return
+	 */
 	public int insert(College college){
 		collegeService.insert(college);
 		return college.getId();
@@ -248,4 +259,11 @@ public class CollegeAction extends BaseAction{
 		this.method = method;
 	}
 	
+	public String getCollegeName() {
+		return collegeName;
+	}
+
+	public void setCollegeName(String collegeName) {
+		this.collegeName = collegeName;
+	}
 }

@@ -23,6 +23,17 @@
 		<action name="executeAllYears" class="applyAction" method="executeAllYears">
 			<result name="success" type="redirect">/apply/queryAllYears.action</result>
 		</action>
+		
+		<action name="export" class="applyAction" method="export">
+			<result name="success" type="stream" >
+                 <param name="contentType">application/octet-stream</param>  
+                 <param name="bufferSize">4096</param>
+                 <!-- 下载文件输出流定义  在Action中定义getX 下面参数填写X-->
+                 <param name="inputName">TargetFile</param>
+                 <!-- 下载文件处理方法 -->
+                 <param name="contentDisposition">attachment;filename="ExportFile.xls"</param>
+            </result>
+		</action>
 	</package>
 	
 </struts>	
