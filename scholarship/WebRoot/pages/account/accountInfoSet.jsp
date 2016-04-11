@@ -107,6 +107,12 @@
 			} else if($("#accountId").val()==0){
 				alert("密码未填写！");
 			}
+			
+			if($("#roleId").val()==2&&($("#collegeId").val()=='0'||
+					$("#gradeId").val()=='0')){
+				alert("请选择学生所属学院及班级");return;
+			}
+			
 			if($("#accountForm").validationEngine("validate")){ //校验通过禁用按钮防止二次提交
 				$("#btnSave").attr("disabled",true);
 				$("#accountForm").submit();
@@ -158,6 +164,7 @@
 											<td style="padding-left: 20px"><input name="account.name"
 												type="text" id="accountName" maxlength="255"
 												value="${account.name}"
+												class="validate[required] text-input"
 												<span id="accountName_msg"></span></td>
 										</tr>
 										
@@ -174,7 +181,8 @@
 										<tr>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>角色:</td>
 											<td style="padding-left: 20px">
-												<span id="">${role.name}</span>
+												<input type="hidden" value="${role.id}" id="roleId">
+												<span id="roleName">${role.name}</span>
 											</td>
 										</tr>
 										
@@ -290,6 +298,7 @@
 											<td style="padding-left: 20px"><input name="account.phone"
 												type="text" id="accountPhone" maxlength="255"
 												value="${account.phone}"
+												class="validate[required,custom[phone]] text-input"
 												<span id="phone_msg"></span></td>
 										</tr>
 										

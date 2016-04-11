@@ -47,6 +47,9 @@
 		/* 提交表单  */
 		function save(){
 			deal();
+			if($("#collegeId").val()=='0'||$("#gradeId").val()=='0'){
+				alert("学院班级不能为空");return;
+			}
 			if($("#datasForm").validationEngine("validate")){ //校验通过禁用按钮防止二次提交
 				$("#btnSave").attr("disabled",true);
 				$("#datasForm").submit();
@@ -55,6 +58,9 @@
 		/* 提交表单  */
 		function apply(){
 			deal();
+			if($("#collegeId").val()=='0'||$("#gradeId").val()=='0'){
+				alert("学院班级不能为空");return;
+			}
 			if($("#datasForm").validationEngine("validate")){ //校验通过禁用按钮防止二次提交
 				$("#datasForm").prop("action","apply");
 				$("#btnSave").attr("disabled",true);
@@ -177,10 +183,12 @@
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>姓名:</td>
 											<td style="padding-left: 20px">
 												<s:hidden name="accountName" id="accountName"/>
-												<input type="text" name="datas.name" id="datasName" value="${account.name}"/><span id="">
+												<input type="text" name="datas.name" id="datasName" value="${account.name}" 
+												class="validate[required,custom[onlyLetterNumber],custom[checkname]] text-input"/><span id="">
 											</span></td>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>学号:</td>
-											<td style="padding-left: 20px"><input type="text" readonly="readonly" id="accountAccno" value="${account.accno}"/><span id=""></td>
+											<td style="padding-left: 20px"><input type="text" readonly="readonly" id="accountAccno" value="${account.accno}"
+											class="validate[required,custom[onlyNumberSp]] text-input"/><span id=""></td>
 										</tr>
 										
 										<!-- 空行 -->
@@ -264,9 +272,11 @@
 										<!-- 身份证银行卡 -->
 										<tr>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>身份证号:</td>
-											<td style="padding-left: 20px"><input type="text" name="datas.idnumber" id="datasIdnumber" value="${datas.idnumber}"/><span id=""></td>
+											<td style="padding-left: 20px"><input type="text" name="datas.idnumber" id="datasIdnumber" value="${datas.idnumber}"
+											class="validate[required] text-input"/><span id=""></td>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>银行卡号:</td>
-											<td style="padding-left: 20px"><input type="text" name="datas.bankcard" id="datasBankcard" value="${datas.bankcard}"/><span id=""></td>
+											<td style="padding-left: 20px"><input type="text" name="datas.bankcard" id="datasBankcard" value="${datas.bankcard}"
+											class="validate[required,custom[bankNumber]] text-input"/><span id=""></td>
 										</tr>
 										
 										<!-- 空行 -->
@@ -781,7 +791,7 @@
 							<td>
 								<input type="button" class="btnyh" id="btnSave"
 									onclick="save();" value="仅保存信息" />
-								<s:if test="@com.scholarship.module.conf.AppConfig@APPLY eq 1">
+								<s:if test="@com.scholarship.module.conf.AppConfig@APPLY eq 1 ">
 									<input type="button" class="btnyh" id="btnSave"
 										onclick="apply();" value="申请奖/助学金" 
 										/>

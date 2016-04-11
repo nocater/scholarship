@@ -145,8 +145,9 @@ public class DatasAction extends BaseAction {
 	 * @return
 	 */
 	public String update(){
+		Account logon_acccount = (Account) getSession().getAttribute("LOGON_ACCOUNT");
 		role = (Role) getSession().getAttribute("LOGON_ROLE");
-		if(role.getId()!=2) return INPUT;
+//		if(role.getId()!=2) return INPUT;
 		
 		account = new Account();
 		if(StringUtil.isNotBlank(accountId)){
@@ -158,15 +159,17 @@ public class DatasAction extends BaseAction {
 		
 		if(StringUtil.isNotBlank(accountName)&&!accountName.equals(account.getName())){
 			account.setName(accountName);
+			datas.setName(accountName);
 		}
 		if(StringUtil.isNotBlank(accountSex)&&!accountSex.equals(account.getSex())){
 			account.setSex(accountSex);
+			datas.setSex(accountSex);
 		}
 		College college = null;
 		if(StringUtil.isNotBlank(collegeId))
 			college = collegeService.queryById(Integer.parseInt(collegeId));
 			//如果选择的学院和提交不一致，更新账户学院
-			if(account.getCollege().getId()!=college.getId()){
+			if(account.getCollege()==null||account.getCollege().getId()!=college.getId()){
 				account.setCollege(college);
 			}
 		if(college!=null) {
@@ -177,7 +180,7 @@ public class DatasAction extends BaseAction {
 		if(StringUtil.isNotBlank(gradeId))
 			grade = gradeService.queryById(Integer.parseInt(gradeId));
 			//如果选择的学院和提交不一致，更新账户学院
-			if(account.getGrade().getId()!=grade.getId()){
+			if(account.getGrade()==null||account.getGrade().getId()!=grade.getId()){
 				account.setGrade(grade);
 			}
 		if(grade!=null){
@@ -187,14 +190,18 @@ public class DatasAction extends BaseAction {
 		
 		//更新账户信息
 		accountService.update(account);
-		getSession().removeAttribute("LOGON_ACCOUNT");
-		getSession().setAttribute("LOGON_ACCOUNT", account);//更新session
+		if(logon_acccount.getId()==account.getId()){//自己修改自己的信息更新session
+			getSession().removeAttribute("LOGON_ACCOUNT");
+			getSession().setAttribute("LOGON_ACCOUNT", account);//更新session
+		}
 		
 		if(datas==null){
 			this.insert(datas);
 		}else{
 			this.updateDatas(datas,datas_old);
 		}
+		
+		message = "信息已修改成功！";
 		
 		return SUCCESS;
 	}

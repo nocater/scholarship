@@ -17,7 +17,7 @@
 		</action>
 		
 		<action name="update" class="datasAction" method="update">
-			<result name="success" type="redirect">/datas/query.action</result>
+			<result name="success" type="redirect">/datas/query.action?message=${message}</result>
 			<result name="input" type="redirect">/datas/query.action</result>
 		</action>
 		

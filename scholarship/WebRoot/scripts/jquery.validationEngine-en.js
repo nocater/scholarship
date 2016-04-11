@@ -72,7 +72,7 @@
                     // credit: jquery.h5validate.js / orefalo
                     //"regex": /^([\+][0-9]{1,3}[ \.\-])?([\(]{1}[0-9]{2,6}[\)])?([0-9 \.\-\/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$/,
                 	//"regex": /^(130|131|132|133|134|135|136|137|138|139|15[189])\d{8}$/,
-                	  "regex": /^1[3|5|8]\d{9}$/, 
+                	  "regex": /^1[3|5|8|7]\d{9}$/, 
                     "alertText": "* 请输入正确的手机号码..."
                 },
                 "tel": {
@@ -93,9 +93,9 @@
                     "regex": /^[\-\+]?(([0-9]+)([\.,]([0-9]+))?|([\.,]([0-9]+))?)$/,
                     "alertText": "* Invalid floating decimal number"
                 },
-                "dateBasePortNumber": {
-                	"regex": /^\d{1,4}$/,
-                    "alertText": "* 请输入有效的数据库端口号..."
+                "bankNumber": {
+                	 "regex":/^\d{19}$/,
+                    "alertText": "* 请输入19位银行卡号..."
                 },
                 "date": {
                     // Date in ISO format. Credit: bassistance

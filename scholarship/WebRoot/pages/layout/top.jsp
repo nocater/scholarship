@@ -187,8 +187,10 @@
 			<tr>
 				<td class="frameDh">
 					<ul>
+						<c:if test="${sessionScope.LOGON_ROLE.id eq 2}">
 						<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
 						<li><a href="javascript:linkTo('datas');">奖/助学金</a></li>
+						</c:if>
 						<c:if test="${sessionScope.LOGON_ROLE.id != 2}">
 							<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
 							<li><a href="javascript:linkTo('apply');">审批申请</a></li>
