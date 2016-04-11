@@ -29,6 +29,7 @@ import com.scholarship.webapp.action.BaseAction;
 import com.util.StringUtil;
 import com.util.export.ExportXSL;
 import com.util.export.impl.ExportType1;
+import com.util.export.impl.ExportType2;
 import com.util.page.Page;
 import com.util.page.SearchResult;
 
@@ -290,7 +291,11 @@ public class ApplyAction extends BaseAction {
 			case "1":
 				export = new ExportType1(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
 				break;
-
+				
+			case "2":
+				export = new ExportType2(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
+				break;
+				
 			default:
 				break;
 			}

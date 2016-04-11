@@ -87,7 +87,7 @@
 			var status = $("#select-status option:selected").val();
 			var collegeId = $("#select-college option:selected").val();
 			var gradeGrade = $("#select-grade").val();
-			var gradeEdubg = $("#select-edubg option:selected").val();;
+			var gradeEdubg = $("#select-edubg option:selected").val();
 			location.href="${ctx}/grade/query.action?status="+status+"&collegeId="+collegeId+"&gradeGrade="+gradeGrade+"&gradeEdubg="+gradeEdubg;
 		}
 	</script>
@@ -176,7 +176,7 @@
 			  				<td/>
 			  				<td valign="middle" align="center" style="padding-top:3px;">年级:</td>
 			  				<td width="90px" valign="middle" align="left" style="padding-top:0px;">
-			  					<input type="text" id="select-grade" name="gradeGrade" value="${gradeGrade}" />
+			  					<input type="text" id="select-grade" value="${gradeGrade}" />
 			  					<%-- <select style="width:100%;" id="sel-grade">
 				  					<option value="0">--未选择--</option>
 				  					<c:forEach items="${gradeList}" var="g" varStatus="stat">

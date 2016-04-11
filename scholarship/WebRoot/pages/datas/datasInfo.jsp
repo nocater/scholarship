@@ -188,7 +188,7 @@
 											</span></td>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>学号:</td>
 											<td style="padding-left: 20px"><input type="text" readonly="readonly" id="accountAccno" value="${account.accno}"
-											class="validate[required,custom[onlyNumberSp]] text-input"/><span id=""></td>
+											/><span id=""></td>
 										</tr>
 										
 										<!-- 空行 -->

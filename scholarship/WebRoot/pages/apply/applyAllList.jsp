@@ -99,6 +99,7 @@
 			location.href="${ctx}/apply/queryAllYears.action?select_status="+select_status+"&select_year="+select_year+"&collegeId="+collegeId+"&gradeId="+gradeId+"&scholarshipId="+scholarshipId;
 		}
 		
+		/* 导出  */
 		function exportXLS(){
 			var template = $("#select-exportType").val();
 			var exportYear = $("#exportYear").val();
@@ -114,10 +115,13 @@
   </head>
   
   <body>
-  	<s:form action="query" namespace="/account" method="post" theme="simple">
+  	<s:form action="queryAllYears" namespace="/apply" method="post" theme="simple">
     <s:hidden name="order" id="order"/>
     <s:hidden name="collegeId" id="collegeId"/>
     <s:hidden name="gradeId" id="gradeId"/>
+    <s:hidden name="select_year"/>
+    <s:hidden name="select_status" id="select_status"/>
+    <s:hidden name="scholarshipId" id="scholarshipId"/>
   	<div>
   		<table width="99%" border="0" cellspacing="0" cellpadding="0" style="margin-left: 4px; margin-top: 0px" align="center">
   			<tr>
@@ -169,16 +173,16 @@
 			  					<select style="width:100%;" id="sel-role">
 				  					<option value="">--所有---</option>
 				  					<option value="2"
-				  						<c:if test="${selectStatus eq 2}">selected=""</c:if>
+				  						<c:if test="${select_status eq 2}">selected=""</c:if>
 				  					>已完成</option>
 				  					<option value="1"
-				  						<c:if test="${selectStatus eq 1}">selected=""</c:if>
+				  						<c:if test="${select_status eq 1}">selected=""</c:if>
 				  					>已审批</option>
 				  					<option value="0"
-				  						<c:if test="${selectStatus eq 0}">selected=""</c:if>
+				  						<c:if test="${select_status eq 0}">selected=""</c:if>
 				  					>未审批</option>
 				  					<option value="-1"
-				  						<c:if test="${selectStatus eq -1}">selected=""</c:if>
+				  						<c:if test="${select_status eq -1}">selected=""</c:if>
 				  					>已废弃</option>
 			  					</select>	
 			  				</td>
