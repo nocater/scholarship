@@ -96,6 +96,10 @@
   <body>
   	<s:form action="query" namespace="/grade" method="post" theme="simple">
     <s:hidden name="order" id="order"/>
+    <s:hidden name="status" id="status"/>
+    <s:hidden name="collegeId" id="collegeId"/>
+    <s:hidden name="gradeGrade" id="gradeGrade"/>
+    <s:hidden name="gradeEdubg" id="gradeEdubg"/>
   	<div>
   		<table width="99%" border="0" cellspacing="0" cellpadding="0" style="margin-left: 4px; margin-top: 0px" align="center">
   			<tr>

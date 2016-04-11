@@ -151,6 +151,7 @@
 											<td style="padding-left: 20px"><input name="grade.major"
 												type="text" id="gradeMajor" maxlength="255"
 												value="${grade.major}"
+												class="validate[required,custom[onlyLetterNumber],custom[checkname]] text-input"
 												<span id="major_msg"></span></td>
 										</tr>
 										
@@ -194,6 +195,7 @@
 											<td style="padding-left: 20px"><input name="grade.grade"
 												type="text" id="gradeGrade" maxlength="255"
 												value="${grade.grade}"
+												class="validate[required] text-input"
 												<span id="grade_msg"></span></td>
 										</tr>
 										
@@ -212,6 +214,7 @@
 											<td style="padding-left: 20px"><input name="grade.stay"
 												type="text" id="gradeStay" maxlength="255"
 												value="${grade.stay}"
+												class="validate[required,custom[onlyNumberSp]] text-input"
 												<span id="stay_msg"></span></td>
 										</tr>
 										

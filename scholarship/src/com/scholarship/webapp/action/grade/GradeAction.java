@@ -141,6 +141,8 @@ public class GradeAction extends BaseAction{
 	public String queryById(){
 		if(StringUtil.isNotBlank(gradeId)){
 			grade = gradeService.queryById(Integer.parseInt(gradeId));
+		}else{
+			grade = new Grade();
 		}
 		collegeList = collegeService.queryAll();
 		return SUCCESS;
