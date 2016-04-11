@@ -44,7 +44,28 @@
 			)
    			]]>
    		</if>
-   		
+   		<if test="onlyStudent != null">
+   			<if test="onlyStudent==-1">
+   				<![CDATA[
+   					AND ROLE_ID = 2
+   				]]>
+   			</if>
+   			<if test="onlyStudent==1">
+   				<![CDATA[
+   					AND ROLE_ID != 2
+   				]]>
+   			</if>
+   		</if>
+   		<if test="collegeId != null and gradeId != 0">
+   			<![CDATA[
+   				AND COLLEGE_ID =#{collegeId}
+   			]]>
+   		</if>
+   		<if test="gradeId != null and gradeId != 0">
+   			<![CDATA[
+   				AND GRADE_ID =#{gradeId}
+   			]]>
+   		</if>
    		<if test="accno != null">
    			<![CDATA[
    			AND ACCNO LIKE CONCAT('%',#{accno},'%')

@@ -109,6 +109,9 @@
   <body>
   	<s:form action="query" namespace="/account" method="post" theme="simple">
     <s:hidden name="order" id="order"/>
+    <s:hidden name="onlyStudent" id="onlyStudent"/>
+    <s:hidden name="collegeId" id="collegeId"/>
+    <s:hidden name="gradeId" id="gradeId"/>
   	<div>
   		<table width="99%" border="0" cellspacing="0" cellpadding="0" style="margin-left: 4px; margin-top: 0px" align="center">
   			<tr>

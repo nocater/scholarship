@@ -85,16 +85,14 @@ public class AnalyzerXML
 				Cell no = sheet.getCell(0,i);
 				//判断是否为空
 				if(no.getType() !=CellType.EMPTY){
-					num = (NumberCell)no;
-					double accno = num.getValue();
-					int accnoINT = (int)accno;
+					String accno = no.getContents();
 					//判断数据库是否已经存在该ID
-					List<Account> list = accountService.queryByAccno(String.valueOf(accnoINT));
+					List<Account> list = accountService.queryByAccno(accno);
 					if(list!=null&&list.size()>0){
 						repeat = true;
 						account.setId(list.get(0).getId());
 					}
-					account.setAccno(String.valueOf(accnoINT));
+					account.setAccno(accno);
 				}else{
 					dispute = false;
 					errorList.add("第"+i+"行学生学号丢失");

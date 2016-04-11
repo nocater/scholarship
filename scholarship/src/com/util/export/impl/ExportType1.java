@@ -133,12 +133,12 @@ public class ExportType1 extends Export {
 				
 				Datas d = datasService.queryByAccount(a, "0");
 				//序号
-				number = new Number(0, row, row-5);
+				label = new Label(0, row, String.valueOf(row-5));
 				cellFormat = new WritableCellFormat();
 		        cellFormat.setFont(wf_content);
 		        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框
-		        number.setCellFormat(cellFormat);
-		        sheet.addCell(number);
+		        label.setCellFormat(cellFormat);
+		        sheet.addCell(label);
 				//姓名
 				label = new Label(1, row, a.getName());
 				cellFormat = new WritableCellFormat();
