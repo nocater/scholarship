@@ -16,6 +16,9 @@
 	<script type='text/javascript' src="${ctx}/scripts/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			if($("#message").val()!=''){
+				alert($("#message").val());
+			}
 		});
 		
 		/*全选*/
@@ -103,8 +106,8 @@
 		function exportXLS(){
 			var template = $("#select-exportType").val();
 			var exportYear = $("#exportYear").val();
-			if(exportYear==""||template==""){
-				alert("请先选择年份和模板");
+			if(exportYear==""||template==""||exportYear.length!=4){
+				alert("请输入正确4位年份及选择模板");
 				return;
 			}
 			if(confirm("确定执行此操作？")){
@@ -122,6 +125,7 @@
     <s:hidden name="select_year"/>
     <s:hidden name="select_status" id="select_status"/>
     <s:hidden name="scholarshipId" id="scholarshipId"/>
+    <s:hidden name="message" id="message"/>
   	<div>
   		<table width="99%" border="0" cellspacing="0" cellpadding="0" style="margin-left: 4px; margin-top: 0px" align="center">
   			<tr>
@@ -171,7 +175,7 @@
 			  				<td/>
 			  				<td valign="middle" align="left" style="padding-top:0px;">
 			  					<select style="width:100%;" id="sel-role">
-				  					<option value="">--所有---</option>
+				  					<option value="100">--所有---</option>
 				  					<option value="2"
 				  						<c:if test="${select_status eq 2}">selected=""</c:if>
 				  					>已完成</option>
@@ -244,10 +248,9 @@
 			  					<select style="width:90%;" id="select-exportType">
 				  					<option value="1">国家奖励志学金初审表</option>
 				  					<option value="2">国家助学金备案表</option>
-				  					<option value="3">中行卡号登记表</option>
-				  					<option value="4"></option>
-				  					<option value="5">明珠奖学金登记表</option>
-				  					<option value="6">明珠奖学金发放登记表</option>
+				  					<option value="3">助学金中行卡号登记表</option>
+				  					<option value="4">明珠励志奖学金名单登记表</option>
+				  					<option value="5">明珠奖学金发放登记表</option>
 			  					</select>
 			  				</td>
 			  				<td width="1%"/>

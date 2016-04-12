@@ -37,6 +37,9 @@ public class ExportType2 extends Export {
 	private final String SCHOLARSHIP_ID2 = "3";//国家助学金ID 2 3 4
 	private final String SCHOLARSHIP_ID3 = "4";//国家助学金ID 2 3 4
 	
+	/***
+	 * 导出【附表5湖北省普通高校国家助学金名单备案表】
+	 */
 	public ExportType2(Account account, AccountService accountService,
 			ApplyService applyService, CollegeService collegeService,
 			GradeService gradeService, DatasService datasService,
@@ -46,7 +49,11 @@ public class ExportType2 extends Export {
 		
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
+	/***
+	 * 导出【附表5湖北省普通高校国家助学金名单备案表】
+	 */
 	@SuppressWarnings({ "resource", "finally" })
 	@Override
 	public InputStream export(String year) {
@@ -197,7 +204,7 @@ public class ExportType2 extends Export {
 			
 			Datas d = datasService.queryByAccount(a, "0");
 			//序号
-			label = new Label(0, row, String.valueOf(row-6));
+			label = new Label(0, row, String.valueOf(row-5));
 			cellFormat = new WritableCellFormat();
 	        cellFormat.setFont(wf_content);
 	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框

@@ -30,6 +30,9 @@ import com.util.StringUtil;
 import com.util.export.ExportXSL;
 import com.util.export.impl.ExportType1;
 import com.util.export.impl.ExportType2;
+import com.util.export.impl.ExportType3;
+import com.util.export.impl.ExportType4;
+import com.util.export.impl.ExportType5;
 import com.util.page.Page;
 import com.util.page.SearchResult;
 
@@ -81,6 +84,7 @@ public class ApplyAction extends BaseAction {
 	private InputStream in;
 	
 	private String showNewTab;
+	private String message;
 	
 	public String query(){
 		String year = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
@@ -240,10 +244,10 @@ public class ApplyAction extends BaseAction {
 		if(StringUtil.isNotBlank(select_year)){
 			map.put("year", select_year);
 		}
-		if(StringUtil.isNotBlank(select_status)){
+		if(StringUtil.isNotBlank(select_status)&&!select_status.trim().equals("100")){
 			map.put("status", select_status);
 		}
-		if(StringUtil.isNotBlank(scholarshipId)){
+		if(StringUtil.isNotBlank(scholarshipId)&&!scholarshipId.trim().equals("0")){
 			map.put("scholarshipId", scholarshipId);
 		}
 		
@@ -296,13 +300,26 @@ public class ApplyAction extends BaseAction {
 				export = new ExportType2(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
 				break;
 				
+			case "3":
+				export = new ExportType3(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
+				break;	
+				
+			case "4":
+				export = new ExportType4(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
+				break;	
+			
+			case "5":
+				export = new ExportType5(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
+				break;
+				
 			default:
 				break;
 			}
-			if(StringUtil.isYear(exportYear)){
+			if(StringUtil.isYear(exportYear)&&export!=null){
 				in = export.export(exportYear);
 			}else{
-				addActionMessage("年份输入正确");
+				message = "年份输入不正确或其它原因导出失败！";
+				return INPUT;
 			}
 		}
 		return SUCCESS;
@@ -587,6 +604,14 @@ public class ApplyAction extends BaseAction {
 
 	public void setIn(InputStream in) {
 		this.in = in;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

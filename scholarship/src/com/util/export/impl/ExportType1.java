@@ -35,6 +35,9 @@ public class ExportType1 extends Export {
 	
 	private final String SCHOLARSHIP_ID = "5";//国家励志奖学金ID
 	
+	/***
+	 * 导出【附表4湖北省高校国家励志奖学金获奖学生初审名单表】
+	 */
 	public ExportType1(Account account, AccountService accountService,
 			ApplyService applyService, CollegeService collegeService,
 			GradeService gradeService, DatasService datasService,
@@ -44,7 +47,10 @@ public class ExportType1 extends Export {
 		
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	/***
+	 * 导出【附表4湖北省高校国家励志奖学金获奖学生初审名单表】
+	 */
 	@SuppressWarnings({ "resource", "finally" })
 	@Override
 	public InputStream export(String year) {
@@ -129,11 +135,11 @@ public class ExportType1 extends Export {
 			}
 	        row++;
 			for(Account a : accountList){
-				System.out.println(a.getName());
+//				System.out.println(a.getName());
 				
 				Datas d = datasService.queryByAccount(a, "0");
 				//序号
-				label = new Label(0, row, String.valueOf(row-5));
+				label = new Label(0, row, String.valueOf(row-4));
 				cellFormat = new WritableCellFormat();
 		        cellFormat.setFont(wf_content);
 		        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框
@@ -182,7 +188,7 @@ public class ExportType1 extends Export {
 		        label.setCellFormat(cellFormat);
 				sheet.addCell(label);
 				//民族
-				label = new Label(7, row, "汉族");
+				label = new Label(7, row, d.getNation());
 				cellFormat = new WritableCellFormat();
 		        cellFormat.setFont(wf_content);
 		        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框

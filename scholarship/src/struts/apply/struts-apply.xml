@@ -33,6 +33,7 @@
                  <!-- 下载文件处理方法 -->
                  <param name="contentDisposition">attachment;filename="ExportFile.xls"</param>
             </result>
+            <result name="input">/pages/apply/applyAllList.jsp</result>
 		</action>
 	</package>
 	
