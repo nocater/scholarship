@@ -70,7 +70,7 @@ public class RoleFilter implements Filter {
 		}
 		
 		if(method.equalsIgnoreCase("GET")){
-			if(url.contains("update")||url.contains("insert")){
+			if(url.contains("update.action")||url.contains("insert")){
 				httpResponse.sendRedirect(ROLE_LIMIT);
 				return;
 			}
