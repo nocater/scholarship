@@ -470,8 +470,25 @@
 										<!-- 家庭住址 -->
 										<tr>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>家庭住址:</td>
-											<td style="padding-left: 20px"	colspan="3">
+											<td style="padding-left: 20px"	colspan="5">
 												<input type="text" style="width: 400px" name="datas.address" id="datasAddress" value="${datas.address}"/><span id="">
+											</td>
+										</tr>
+										
+										<!-- 空行 -->
+										<tr>
+											<td class="td_detail_separator">
+											</td>
+										</tr>
+										<tr>
+											<td class="td_detail_separator"></td>
+										</tr>
+										
+										<!-- 家庭住址 -->
+										<tr>
+											<td align="right" style="font-size: 12px;" colspan="2"><span class="spanred">*</span>简明地址(五个字以内如：湖北英山):</td>
+											<td style="padding-left: 20px"	colspan="2">
+												<input type="text" style="width: 100px" name="datas.addressX" id="datasAddressX" value="${datas.addressX}"/><span id="">
 											</td>
 											<td align="right" style="font-size: 12px;">生源地贷款:</td>
 											<td style="padding-left: 20px">
@@ -550,11 +567,11 @@
 											<td style="padding-left: 20px">
 												<input type="text" name="datas.name_father" id="datasNameFather" value="${datas.name_father}"/><span id="">
 											</span></td>
-											<td align="right" style="font-size: 12px;">职业:</td>
-											<td style="padding-left: 20px">
+											<td align="right" style="font-size: 12px;">职业及工作地点:</td>
+											<td style="padding-left: 10px">
 												<input type="text" name="datas.career_father" id="datasCareerFather" value="${datas.career_father}"/><span id="">
 											</td>
-											<td align="right" style="font-size: 12px;">月收入:</td>
+											<td align="right" style="font-size: 12px;">年收入:</td>
 											<td style="padding-left: 20px">
 												<input type="text" style="width: 100px" name="datas.in_father" id="datasInFather" value="${datas.in_father}"/><span id="">
 											</td>
@@ -579,11 +596,11 @@
 											<td style="padding-left: 20px">
 												<input type="text" name="datas.name_mother" id="datasNameMother" value="${datas.name_mother}"/><span id="">
 											</span></td>
-											<td align="right" style="font-size: 12px;">职业:</td>
+											<td align="right" style="font-size: 12px;">职业及工作地点:</td>
 											<td style="padding-left: 20px">
 												<input type="text" name="datas.career_mother" id="datasCareerMother" value="${datas.career_mother}"/><span id="">
 											</td>
-											<td align="right" style="font-size: 12px;">月收入:</td>
+											<td align="right" style="font-size: 12px;">年收入:</td>
 											<td style="padding-left: 20px">
 												<input type="text" style="width: 100px" name="datas.in_mother" id="datasInMother" value="${datas.in_mother}"/><span id="">
 											</td>

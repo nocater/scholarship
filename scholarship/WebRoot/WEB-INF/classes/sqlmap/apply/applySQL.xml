@@ -193,6 +193,7 @@
 									or a.grade_id in (select grade_id from relation rel where rel.role_id = #{roleId} )
 					 				
 					 				or a.grade_id in(select id from grade where college_id in (select college_id from relation rel where rel.role_id = #{roleId}  )  )
+					 				)	
 					 			)
 					 			</if>
 					)

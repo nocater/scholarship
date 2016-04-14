@@ -266,21 +266,21 @@
   				<td>
   				<div class="sbox">   
   				<div class="cont">
-  				<table width="100%" border="0" cellspacing="1" cellpadding="0" class="tab2">
+  				<table width="100%" border="1" frame="below" cellspacing="1" cellpadding="0" class="tab2">
 		    		<thead>
 		    			<tr>
 		    				<th width="3%" onclick="checkAll()" align="center" class="biaoti"><input type="checkbox" id="chkAll" onclick="checkAll()"/></th>
-		    				<th width="12%" align="center" class="biaoti">状态</th>
+		    				<th width="8%" align="center" class="biaoti">状态</th>
 		    				<!-- <th width="5%" align="center" class="biaoti">姓名</th> -->
 		    				<th width="10%" align="center" class="biaoti">父亲</th>
 		    				<th width="10%" align="center" class="biaoti">母亲</th>
-		    				<th width="10%" align="center" class="biaoti">爷爷奶奶</th>
+		    				<th width="15%" align="center" class="biaoti">爷爷奶奶</th>
 		    				<th width="10%" align="center" class="biaoti">兄弟姐妹</th>
 		    				<th width="10%" align="center" class="biaoti">家庭变故</th>
 		    				<th width="5%"  align="center" class="biaoti">家庭年收入</th>
-		    				<th width="10%" align="center" class="biaoti">主要支出项</th>
-		    				<th width="10%" align="center" class="biaoti">主要困难原因</th>
-		    				<th width="10%" align="center" class="biaoti">资助历史</th>
+		    				<th width="8%" align="center" class="biaoti">主要支出项</th>
+		    				<th width="8%" align="center" class="biaoti">主要困难原因</th>
+		    				<th width="8%" align="center" class="biaoti">资助历史</th>
 		    			</tr>
 		    		</thead>
 		    		<tbody>
@@ -290,12 +290,12 @@
 		    						<input type="checkbox" name="ids" id="${id}" value="${id}" onclick="checkOne(${id})"/>
 		    					</td>
 		    					<td align="center">
-		    						<span>${datasList[stat.index].grade}</span><br/>
+		    						<span>${datasList[stat.index].addressX}</span><br/>
 		    						<span>
 		    							<a href="${ctx}/datas/queryByAccount.action?AccountId=${account.id}">
 		    							${datasList[stat.index].name}</a>
 		    						</span><br/>
-		    						<select name="select-scholarship">
+		    						<select name="select-scholarship" style="width: 80px">
 		    							<option value="0">无</option>
 		    							<c:forEach items="${scholarshipList}" var="s" varStatus="stats">
 		    								<option value="${s.id}"
@@ -318,19 +318,19 @@
 		    						<span>${datasList[stat.index].grade}</span><br/>
 		    						<span>${datasList[stat.index].name}</span>
 		    					</td> --%>
-		    					<td align="center">
+		    					<td align="left">
 		    						<font color="green">姓名:</font><span>${datasList[stat.index].name_father}</span><br/>
-		    						<font color="green">职业:</font><span>${datasList[stat.index].career_father}</span><br/>
-		    						<font color="green">收入:</font><span>${datasList[stat.index].in_father}</span><br/>
+		    						<font color="green">职业&地点:</font><span>${datasList[stat.index].career_father}</span><br/>
+		    						<font color="green">年收入:</font><span>${datasList[stat.index].in_father}</span><br/>
 		    						<font color="green">健康:</font><span>${datasList[stat.index].health_father}</span>
 		    					</td>
-		    					<td align="center">
+		    					<td align="left">
 									<font color="green">姓名:</font><span>${datasList[stat.index].name_mother}</span><br/>
-		    						<font color="green">职业:</font><span>${datasList[stat.index].career_mother}</span><br/>
-		    						<font color="green">收入:</font><span>${datasList[stat.index].in_mother}</span><br/>
+		    						<font color="green">职业&地点:</font><span>${datasList[stat.index].career_mother}</span><br/>
+		    						<font color="green">年收入:</font><span>${datasList[stat.index].in_mother}</span><br/>
 		    						<font color="green">健康:</font><span>${datasList[stat.index].health_mother}</span>
 								</td>
-		    					<td align="center">
+		    					<td align="left">
 		    						<font color="green">爷爷:</font><span>${datasList[stat.index].name_grandfather}</span><br/>
 		    						<font color="green">收入:</font><span>${datasList[stat.index].in_grandfather}</span><br/>
 		    						<font color="green">健康:</font><span>${datasList[stat.index].health_grandfather}</span><br/>
@@ -338,14 +338,14 @@
 		    						<font color="green">收入:</font><span>${datasList[stat.index].in_grandmother}</span><br/>
 		    						<font color="green">健康:</font><span>${datasList[stat.index].health_grandmother}</span>
 		    					</td>
-		    					<td align="center">
+		    					<td align="left">
 		    						<span>${datasList[stat.index].others}</span>
 		    					</td>
 		    					<td align="center">
 		    						<span>${datasList[stat.index].accident}</span>
 		    					</td>
 		    					<td align="center">
-		    						<span>${datasList[stat.index].in_family}</span>
+		    						<span>${datasList[stat.index].in_family}万</span>
 		    					</td>
 		    					<td align="center">
 		    						<span>${datasList[stat.index].out_main}</span>

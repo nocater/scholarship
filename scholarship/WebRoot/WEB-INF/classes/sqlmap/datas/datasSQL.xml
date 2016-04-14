@@ -19,6 +19,7 @@
 		<result property="nation" 				column="nation" />
 		<result property="area" 				column="area" />
 		<result property="address" 				column="address" />
+		<result property="addressX" 			column="addressx" />
 		<result property="distance" 			column="distance" />
 		<result property="expenses" 			column="expenses" />
 		<result property="isLoan" 				column="isLoan" />
@@ -151,6 +152,7 @@
 				nation,
 				area,
 				address,
+				addressx,
 				distance,
 				expenses,
 				isLoan,
@@ -198,6 +200,7 @@
 				#{nation},
 				#{area},
 				#{address},
+				#{addressX},
 				#{distance},
 				#{expenses},
 				#{isLoan},
@@ -253,6 +256,7 @@
 					nation=#{nation},
 					area=#{area},
 					address=#{address},
+					addressx=#{addressX},
 					distance=#{distance},
 					expenses=#{expenses},
 					isLoan=#{isLoan},

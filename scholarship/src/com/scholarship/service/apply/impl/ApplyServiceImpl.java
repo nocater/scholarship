@@ -30,6 +30,9 @@ public class ApplyServiceImpl extends BaseServiceImpl implements ApplyService {
 		if(role!=null&&role.getId()!=1){
 			map.put("roleId", Integer.toString(role.getId()));
 		}
+		
+		map.put("order", "CREATEDATE");
+		
 		//查询数据
 		int rowsCount = applyDao.count(map);
 		page.setTotalCount(rowsCount);
@@ -65,6 +68,7 @@ public class ApplyServiceImpl extends BaseServiceImpl implements ApplyService {
 				map.put("keyword", apply.getAccount().getName());
 			}
 		}
+		
 		//控制审批状态
 		if(statusMax!=null){
 			map.put("statusMax", statusMax.toString());

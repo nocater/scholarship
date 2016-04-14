@@ -314,7 +314,7 @@
 		    						</select>
 		    					</td>
 		    					<td align="center">${year}</td>
-		    					<td align="center"><span>${approve_Account.name}</span></td>
+		    					<td align="center"><span>${approve_Account.name}(${updateDate})</span></td>
 		    				</tr>
 		    			</s:iterator>
 		    		</tbody>
