@@ -198,6 +198,16 @@
 						</a>
 					</td>
 				</tr>
+				<tr>
+					<td align="left">
+						<a href="#"
+							onclick="parent.mainFrame.location.href='${ctx}/pages/config/tipFile.jsp';">
+							&nbsp;
+							<img src="${ctx}/images/arrow_03.gif"/>
+							&nbsp;&nbsp;申请说明文件
+						</a>
+					</td>
+				</tr>
 			</table>
 		</div>
 		<div class="ui-overlay">

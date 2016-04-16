@@ -237,22 +237,27 @@ public class DatasAction extends BaseAction {
 	}
 	
 	public int updateDatas(Datas d1, Datas d2){
-		if(d2==null){
-			//第一次修改 添加备份
-			if(d1.getId()==0){
-				datasService.insert(d1);
-			}else{
-				d2 = datasService.queryById(d1.getId());
-				d2.setType(1);
-				datasService.update(d2);
-				datasService.insert(d1);
-			}
+		if(d1.getId()==0){
+			datasService.insert(d1);
 		}else{
-			//修改备份
-			datasService.chengeType(d1.getId(), 1);
-			d1.setId(d2.getId());
 			datasService.update(d1);
 		}
+//		if(d2==null){
+//			//第一次修改 添加备份
+//			if(d1.getId()==0){
+//				datasService.insert(d1);
+//			}else{
+//				d2 = datasService.queryById(d1.getId());
+//				d2.setType(1);
+//				datasService.update(d2);
+//				datasService.insert(d1);
+//			}
+//		}else{
+//			//修改备份
+//			datasService.chengeType(d1.getId(), 1);
+//			d1.setId(d2.getId());
+//			datasService.update(d1);
+//		}
 		return 1;
 	}
 	

@@ -69,6 +69,7 @@
 						<tr>
 			  			</tr>
 			  				<td>
+			  					请下载查看:<a href="javascript:void(0)" onclick="window.location.href='${ctx}/csvTemplate/tipFile.zip'" style="color: blue;">【填写注意】</a><br/>
 			  					<span>
 			  						【近一年家庭变故】请填写去年申请后至今年申请一年时间内的变故
 			  					</span>

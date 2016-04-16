@@ -30,6 +30,10 @@
 		<action name="changeAlertInfo" class="configAction" method="changeAlertInfo">
 			<result name="success">/pages/config/alertInfo.jsp</result>
 		</action>
+		
+		<action name="uploadFile" class="configAction" method="uploadFile">
+			<result name="success">/pages/config/tipFile.jsp</result>
+		</action>
 	</package>
 	
 </struts>	

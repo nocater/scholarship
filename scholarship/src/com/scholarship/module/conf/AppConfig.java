@@ -35,4 +35,9 @@ public class AppConfig {
 	 * 重置默认密码
 	 */
 	public static String DEFAULT_PWD="123456";
+	
+	/***
+	 * 申请说明文档
+	 */
+	public static String TIPFILE="";
 }

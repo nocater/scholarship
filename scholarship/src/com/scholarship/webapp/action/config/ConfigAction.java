@@ -1,7 +1,11 @@
 package com.scholarship.webapp.action.config;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.io.FileUtils;
 
 import com.scholarship.module.account.Account;
 import com.scholarship.module.conf.AppConfig;
@@ -21,6 +25,7 @@ public class ConfigAction extends BaseAction {
 	private String applySwitch;
 	private String codesSwitch;
 	private String alertInfo;
+	private File upFile;
 	
 	public String queryApplySwitch(){
 		applySwitch = String.valueOf(AppConfig.APPLY);
@@ -79,6 +84,24 @@ public class ConfigAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	public String queryTipFile(){
+		
+		return SUCCESS;
+	}
+	
+	public String uploadFile(){
+		File file = new File(AppConfig.ctx+"/csvTemplate/"+"tipFile.zip");
+		try {
+			FileUtils.copyFile(upFile, file);
+			AppConfig.TIPFILE = file.getName();
+			System.out.println(AppConfig.TIPFILE);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
 	public AuditService getAuditService() {
 		return auditService;
 	}
@@ -110,5 +133,13 @@ public class ConfigAction extends BaseAction {
 	public void setAlertInfo(String alertInfo) {
 		this.alertInfo = alertInfo;
 	}
-	
+
+	public File getUpFile() {
+		return upFile;
+	}
+
+	public void setUpFile(File upFile) {
+		this.upFile = upFile;
+	}
+
 }
