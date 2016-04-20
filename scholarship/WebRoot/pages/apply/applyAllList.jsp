@@ -55,21 +55,18 @@
 			if(choose==100){alert("请选择操作...");return;}
 			if($("input[type='checkbox'][name='ids']:checked").size()<1) {alert("请至少选择一条信息...");return;}
 			var ids="";
+			var ss="";
 	    	$("input[type='checkbox'][name=ids]:checked").each(function(){   
-				if(ids!="")   
-					ids+=","+$(this).val();   
-				else 
+				if(ids!="") {
+					ids+=","+$(this).val();
+					ss+=","+$(this).parent().next().next().next().next().children().val();
+				}
+				else {
 					ids=$(this).val();   
-	                   	
+					ss=$(this).parent().next().next().next().next().children().val();
+				}      	
 	    	});
-	    	var ss="";
-	    	$("select[name=select-scholarship]").each(function(){   
-	    		if(ss!="")   
-					ss+=","+$(this).val();
-				else 
-					ss=$(this).val();
-	                   	
-	    	});
+	    	
 	    	if(confirm("确定执行此操作？")){
 	    		location.href="${ctx}/apply/executeAllYears.action?ids="+ids+"&ss="+ss+"&method="+choose;
 	    	}
