@@ -217,6 +217,7 @@ public class ExportType1 extends Export {
 		} catch (IOException | WriteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Export Table has fail--");
 		}finally{
 			return input;
 		}

@@ -88,6 +88,7 @@ public class ExportType4 extends Export {
 	        
 			//	分别写入一等奖 二等奖 三等奖
 			this.werite(accountList1, sheet1, year, "一等奖学金",scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID1)).getMoney());
+			System.out.println(scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID2)).getMoney());
 			this.werite(accountList2, sheet2, year, "二等奖学金", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID2)).getMoney());
 			this.werite(accountList3, sheet3, year, "三等奖学金", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID3)).getMoney());
 	        
@@ -98,6 +99,7 @@ public class ExportType4 extends Export {
 		} catch (IOException | WriteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Export Table has fail--");
 		}finally{
 			return input;
 		}
@@ -170,7 +172,7 @@ public class ExportType4 extends Export {
 		row++;
 		
 		for(Account a : accountList){
-//			System.out.println(a.getName());
+//			System.out.println(a.getId());
 			
 			Datas d = datasService.queryByAccount(a, "0");
 			//序号

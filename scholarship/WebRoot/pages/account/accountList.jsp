@@ -217,7 +217,7 @@
 		    				<th width="5%" onclick="checkAll()" align="center" class="biaoti"><input type="checkbox" id="chkAll" onclick="checkAll()"/></th>
 		    				<th width="10%" align="center" class="biaoti">账户</th>
 		    				<th width="10%" align="center" class="biaoti">角色</th>
-		    				<th width="10%" align="center" class="biaoti">名字</th>
+		    				<!-- <th width="10%" align="center" class="biaoti">名字</th> -->
 		    				<th width="20%" align="center" class="biaoti">学院</th>
 		    				<th width="20%" align="center" class="biaoti">班级</th>
 		    			</tr>
@@ -228,9 +228,9 @@
 		    					<td valign="middle" align="center" class="biaocm" onclick="checkOne(${id})">
 		    						<input type="checkbox" name="ids" id="${id}" value="${id}" onclick="checkOne(${id})"/>
 		    					</td>
-		    					<td align="center"><span><a href="${ctx}/account/queryById?accountId=${id}">${accno}</a></span></td>
+		    					<td align="center"><span><a href="${ctx}/account/queryById?accountId=${id}">${name}(${accno})</a></span></td>
 		    					<td align="center"><span>${role.name}</span></td>
-		    					<td align="center"><span>${name}</span></td>
+		    					<%-- <td align="center"><span>${name}</span></td> --%>
 		    					<td align="center"><span>${college.name}</span></td>
 		    					<td align="center"><span>${grade.name}</span></td>
 		    				</tr>

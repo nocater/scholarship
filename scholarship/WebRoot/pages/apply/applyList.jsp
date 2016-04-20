@@ -277,7 +277,7 @@
 		    				<th width="15%" align="center" class="biaoti">爷爷奶奶</th>
 		    				<th width="10%" align="center" class="biaoti">兄弟姐妹</th>
 		    				<th width="10%" align="center" class="biaoti">家庭变故</th>
-		    				<th width="5%"  align="center" class="biaoti">家庭年收入</th>
+		    				<th width="5%"  align="center" class="biaoti">家庭年收入/结余/贷款</th>
 		    				<th width="8%" align="center" class="biaoti">主要支出项</th>
 		    				<th width="8%" align="center" class="biaoti">主要困难原因</th>
 		    				<th width="8%" align="center" class="biaoti">资助历史</th>
@@ -331,11 +331,11 @@
 		    						<font color="green">健康:</font><span>${datasList[stat.index].health_mother}</span>
 								</td>
 		    					<td align="left">
-		    						<font color="green">爷爷:</font><span>${datasList[stat.index].name_grandfather}</span><br/>
-		    						<font color="green">收入:</font><span>${datasList[stat.index].in_grandfather}</span><br/>
+		    						<%-- <font color="green"></font><span>${datasList[stat.index].name_grandfather}</span><br/> --%>
+		    						<font color="green">爷爷收入:</font><span>${datasList[stat.index].in_grandfather}</span><br/>
 		    						<font color="green">健康:</font><span>${datasList[stat.index].health_grandfather}</span><br/>
-		    						<font color="green">奶奶:</font><span>${datasList[stat.index].name_grandmother}</span><br/>
-		    						<font color="green">收入:</font><span>${datasList[stat.index].in_grandmother}</span><br/>
+		    						<%-- <font color="green">奶奶:</font><span>${datasList[stat.index].name_grandmother}</span><br/> --%>
+		    						<font color="green">奶奶收入:</font><span>${datasList[stat.index].in_grandmother}</span><br/>
 		    						<font color="green">健康:</font><span>${datasList[stat.index].health_grandmother}</span>
 		    					</td>
 		    					<td align="left">
@@ -345,7 +345,10 @@
 		    						<span>${datasList[stat.index].accident}</span>
 		    					</td>
 		    					<td align="center">
-		    						<span>${datasList[stat.index].in_family}万</span>
+		    						<span>${datasList[stat.index].in_family}万/${datasList[stat.index].balance}
+		    								<c:if test="${datasList[stat.index].isLoan eq 1}">/是</c:if>
+		    								<c:if test="${datasList[stat.index].isLoan eq 0}">/否</c:if>
+		    								</span>
 		    					</td>
 		    					<td align="center">
 		    						<span>${datasList[stat.index].out_main}</span>

@@ -133,9 +133,9 @@
 		    			<tr>
 		    				<th width="5%" onclick="checkAll()" align="center" class="biaoti"><input type="checkbox" id="chkAll" onclick="checkAll()"/></th>
 		    				<th width="15%" align="center" class="biaoti">角色</th>
-		    				<th width="15%" align="center" class="biaoti">角色描述</th>
 		    				<th width="30%" align="center" class="biaoti">关联学院</th>
 		    				<th width="30%" align="center" class="biaoti">关联班级</th>
+		    				<th width="15%" align="center" class="biaoti">角色描述</th>
 		    			</tr>
 		    		</thead>
 		    		<tbody>
@@ -145,31 +145,41 @@
 		    						<input type="checkbox" name="ids" id="${id}" value="${id}" onclick="checkOne(${id})"/>
 		    					</td>
 		    					<td align="center"><span><a href="${ctx}/role/queryById?roleId=${id}">${name}</a></span></td>
-		    					<td align="center"><span>${memo}</span></td>
-		    					<td align="center" onclick="changeCollegeDiv(${id})">
+		    					<td align="center"><!-- onclick="changeCollegeDiv(${id})" -->
 		    						<c:if test="${id==1}">所有</c:if>
 		    						<c:if test="${id>2}">
-		    							<span>查看关联学院<spam/>
+		    							<%-- <span>查看关联学院<spam/>
 		    							<div id="showColleges-${id}" style="display: none">
 		    								<hr/>
 		    								<c:forEach items="${collegeList}" var="c" varStatus="cstat">
 		    									<a href="${ctx}/college/queryByid?id=${c.id}">${c.name}</a>&nbsp;&nbsp;
 		    								</c:forEach>
+		    							</div> --%>
+		    							<div id="showColleges-${id}">
+		    								<c:forEach items="${collegeList}" var="c" varStatus="cstat">
+		    									${c.name}&nbsp;
+		    								</c:forEach>
 		    							</div>
 		    						</c:if>
 		    					</td>
-		    					<td align="center" onclick="changeGradeDiv(${id})">
+		    					<td align="center"><!--  onclick="changeGradeDiv(${id})" -->
 		    						<c:if test="${id==1}">所有</c:if>
 		    						<c:if test="${id>2}">
-		    							<span>查看关联班级<spam/>
+		    							<%-- <span>查看关联班级<spam/>
 		    							<div id="showGrades-${id}" style="display: none">
 		    								<hr/>
 		    								<c:forEach items="${gradeList}" var="g" varStatus="cstat">
 		    									<a href="${ctx}/grade/queryById?id=${g.id}">${g.name}</a>&nbsp;&nbsp;
 		    								</c:forEach>
+		    							</div> --%>
+		    							<div id="showGrades-${id}">
+		    								<c:forEach items="${gradeList}" var="g" varStatus="cstat">
+		    									<a href="${ctx}/grade/queryById?id=${g.id}">${g.name}</a>&nbsp;
+		    								</c:forEach>
 		    							</div>
 		    						</c:if>
 		    					</td>
+		    					<td align="center"><span>${memo}</span></td>
 		    				</tr>
 		    			</s:iterator>
 		    		</tbody>
