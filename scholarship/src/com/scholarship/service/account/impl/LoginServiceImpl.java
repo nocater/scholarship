@@ -8,10 +8,21 @@ import com.scholarship.service.account.LoginService;
 import com.scholarship.service.impl.BaseServiceImpl;
 import com.util.MD5;
 
+/***
+ * 登录ServiceImpl
+ * Copyright (c) ${2016.4.1} write by 咖啡里安眠
+ * 
+ * @author chenshuai
+ * @version 1.0 
+ */
 public class LoginServiceImpl extends BaseServiceImpl implements LoginService {
 	
 	private AccountDao accountDao;
 	private String actionMessage;
+	
+	/***
+	 * 登录验证
+	 */
 	@Override
 	public Account check(String loginAccno,String password) {
 		// TODO Auto-generated method stub
@@ -30,6 +41,9 @@ public class LoginServiceImpl extends BaseServiceImpl implements LoginService {
 		return account;
 	}
 
+	/***
+	 * 修改密码
+	 */
 	@Override
 	public Account changePassword() {
 		// TODO Auto-generated method stub

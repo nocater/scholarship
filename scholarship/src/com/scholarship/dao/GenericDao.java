@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /***
- * 
+ * 泛型DAO未使用
  * @author chenshuai
  *
  * @param <T>

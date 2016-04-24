@@ -7,6 +7,13 @@ import com.scholarship.module.scholarship.Scholarship;
 import com.scholarship.service.impl.BaseServiceImpl;
 import com.scholarship.service.scholarship.ScholarshipService;
 
+/***
+ * 奖学金ServiceImpl
+ * Copyright (c) ${2016.4.1} write by 咖啡里安眠
+ * 
+ * @author chenshuai
+ * @version 1.0 
+ */
 public class ScholarshipServiceImpl extends BaseServiceImpl implements ScholarshipService{
 	public ScholarshipDao scholarshipDao;
 	

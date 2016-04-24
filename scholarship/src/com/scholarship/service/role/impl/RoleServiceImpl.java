@@ -15,9 +15,19 @@ import com.util.StringUtil;
 import com.util.page.Page;
 import com.util.page.SearchResult;
 
+/***
+ * 账户ServiceImpl
+ * Copyright (c) ${2016.4.1} write by 咖啡里安眠
+ * 
+ * @author chenshuai
+ * @version 1.0 
+ */
 public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 	private RoleDao roleDao;
 	
+	/***
+	 * 统计
+	 */
 	@Override
 	public int count(Role role){
 		Map<String, String> map = new HashMap<String, String>();
@@ -27,6 +37,9 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 		return roleDao.count(map);
 	}
 	
+	/***
+	 * 查询(分页)
+	 */
 	@Override
 	public SearchResult<Role> query(Role role,String order,Page page) {
 		// TODO Auto-generated method stub
@@ -53,79 +66,113 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 		return sr;
 	}
 	
+	/***
+	 * 查询所有
+	 */
 	@Override
 	public List<Role> queryAll() {
 		// TODO Auto-generated method stub
 		return roleDao.queryAll();
 	}
 	
+	/***
+	 * 查询
+	 */
 	@Override
 	public Role query(Account account) {
 		// TODO Auto-generated method stub
 		return roleDao.queryById(account.getRole().getId());
 	}
 
+	/***
+	 * 查询(ID)
+	 */
 	@Override
 	public Role queryById(int id) {
 		// TODO Auto-generated method stub
 		return roleDao.queryById(id);
 	}
 	
+	/***
+	 * 查询(NAME)
+	 */
 	@Override
 	public List<Role> queryByName(String name) {
 		// TODO Auto-generated method stub
 		return roleDao.queryByName(name);
 	}
 	
+	/***
+	 * 新增
+	 */
 	@Override
 	public int insert(Role role) {
 		// TODO Auto-generated method stub
 		return roleDao.insert(role);
 	}
 
+	/***
+	 * 更新
+	 */
 	@Override
 	public void update(Role role) {
 		// TODO Auto-generated method stub
 		roleDao.update(role);
 	}
 
+	/***
+	 * 删除
+	 */
 	@Override
 	public void delete(Role role) {
 		// TODO Auto-generated method stub
 		roleDao.delete(role);
 	}
 
+	/***
+	 * 删除
+	 */
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		roleDao.deleteById(id);
 	}
 	
+	/***
+	 * 查询角色下学院列表
+	 */
 	@Override
 	public List<College> queryColleges(Role role) {
 		// TODO Auto-generated method stub
 		return roleDao.queryColleges(role);
 	}
 	
+	/***
+	 * 查询角色下班级列表
+	 */
 	@Override
 	public List<Grade> queryGrades(Role role) {
 		// TODO Auto-generated method stub
 		return roleDao.queryGrade(role);
 	}
 
+	/***
+	 * 新增关联
+	 */
 	@Override
 	public int insertRelation(Map<?, ?> map) {
 		// TODO Auto-generated method stub
 		return roleDao.insertRelation(map);
 	}
 
+	/***
+	 * 删除关联
+	 */
 	@Override
 	public void deleteRelation(Role role) {
 		// TODO Auto-generated method stub
 		roleDao.deleteRelation(role);
 	}
-	
-	
 	
 	public RoleDao getRoleDao() {
 		return roleDao;

@@ -17,6 +17,17 @@
 	<constant name="struts.multipart.maxSize" value="200000000" />
 	<constant name="struts.multipart.saveDir" value=" /tmp/" />
 	
+	<!-- 拦截器 -->
+	<package name="struts-interceptor" extends="struts-default">
+		<interceptors>
+			<interceptor name="nullInterceptor" class="com.scholarship.webapp.interceptor.NullInterception"></interceptor>
+			<interceptor-stack name="myInterceptorStack">
+				<interceptor-ref name="nullInterceptor" />
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+	</package>
+	
 	<!-- 账户/登录 -->
 	<include file="struts/account/struts-account.xml"></include>
 	<include file="struts/account/struts-login.xml"></include>

@@ -12,15 +12,28 @@ import com.scholarship.service.impl.BaseServiceImpl;
 import com.util.page.Page;
 import com.util.page.SearchResult;
 
+/***
+ * 学院ServiceImpl
+ * Copyright (c) ${2016.4.1} write by 咖啡里安眠
+ * 
+ * @author chenshuai
+ * @version 1.0 
+ */
 public class CollegeServiceImpl extends BaseServiceImpl implements CollegeService{
 	private CollegeDao collegeDao;
 	
+	/***
+	 * 统计
+	 */
 	@Override
 	public int count(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return collegeDao.count(map);
 	}
 	
+	/***
+	 * 查询(分页)
+	 */
 	@Override
 	public SearchResult<College> query(Role role, Map<String, String> map, Page page) {
 		// TODO Auto-generated method stub
@@ -38,13 +51,18 @@ public class CollegeServiceImpl extends BaseServiceImpl implements CollegeServic
 		return sr;
 	}
 
-	
+	/***
+	 * 查询所有
+	 */
 	@Override
 	public List<College> queryAll() {
 		// TODO Auto-generated method stub
 		return collegeDao.queryAll();
 	}
 	
+	/***
+	 * 查询(ROLE)
+	 */
 	@Override
 	public List<College> queryByRole(Role role) {
 		// TODO Auto-generated method stub
@@ -52,42 +70,63 @@ public class CollegeServiceImpl extends BaseServiceImpl implements CollegeServic
 		return collegeDao.queryByRole(role);
 	}
 	
+	/***
+	 * 查询(ID)
+	 */
 	@Override
 	public College queryById(int id) {
 		// TODO Auto-generated method stub
 		return collegeDao.queryById(id);
 	}
 
+	/***
+	 * 查询(ID)
+	 */
 	@Override
 	public List<College> queryByName(String name) {
 		// TODO Auto-generated method stub
 		return collegeDao.queryByName(name);
 	}
 
+	/***
+	 * 新增
+	 */
 	@Override
 	public int insert(College college) {
 		// TODO Auto-generated method stub
 		return collegeDao.insert(college);
 	}
 
+	/***
+	 * 更新
+	 */
 	@Override
 	public void update(College college) {
 		// TODO Auto-generated method stub
 		collegeDao.update(college);
 	}
 
+	/***
+	 * 删除
+	 */
 	@Override
 	public void delete(College college) {
 		// TODO Auto-generated method stub
 		collegeDao.delete(college);
 	}
 
+	/***
+	 * 删除(ID)
+	 */
 	@Override
 	public void deleteById(int id) {
 		// TODO Auto-generated method stub
 		collegeDao.deleteById(id);
 	}
 	
+	/***
+	 * 删除关联
+	 */
 	@Override
 	public void deleteRelation(College college) {
 		// TODO Auto-generated method stub

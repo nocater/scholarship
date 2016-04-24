@@ -17,6 +17,13 @@ import com.scholarship.service.impl.BaseServiceImpl;
 import com.util.page.Page;
 import com.util.page.SearchResult;
 
+/***
+ * 审计ServiceImpl
+ * Copyright (c) ${2016.4.1} write by 咖啡里安眠
+ * 
+ * @author chenshuai
+ * @version 1.0 
+ */
 public class AuditServiceImpl extends BaseServiceImpl implements AuditService {
 	private AuditDao auditDao;
 	private AccountDao accountDao;

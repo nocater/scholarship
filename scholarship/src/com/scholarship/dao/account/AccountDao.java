@@ -84,5 +84,4 @@ public interface AccountDao {
 	 * @param id
 	 */
 	public void deleteById(int id);
-
 }

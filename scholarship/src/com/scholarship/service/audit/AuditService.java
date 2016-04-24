@@ -8,6 +8,13 @@ import com.scholarship.module.role.Role;
 import com.util.page.Page;
 import com.util.page.SearchResult;
 
+/***
+ * 审计Service
+ * Copyright (c) ${2016.4.1} write by 咖啡里安眠
+ * 
+ * @author chenshuai
+ * @version 1.0 
+ */
 public interface AuditService {
 	public int count(Map<?,?> map);
 	public SearchResult<Audit>query(Role role,Map<String,String> map,Page page);

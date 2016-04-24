@@ -96,6 +96,11 @@
 		</taglib>
 	</jsp-config>
 	
+	<servlet>
+    	<servlet-name>initServlet</servlet-name>
+    	<servlet-class>com.scholarship.webapp.action.init.InitServlet</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+    </servlet>
   	
   	<!-- 监听器 -->
 	<listener>
