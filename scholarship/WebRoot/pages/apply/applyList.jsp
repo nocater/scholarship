@@ -319,13 +319,13 @@
 		    						<span>${datasList[stat.index].name}</span>
 		    					</td> --%>
 		    					<td align="left">
-		    						<font color="green">姓名:</font><span>${datasList[stat.index].name_father}</span><br/>
+		    						<font color="green">年龄:</font><span>${datasList[stat.index].name_father}</span><br/>
 		    						<font color="green">职业&地点:</font><span>${datasList[stat.index].career_father}</span><br/>
 		    						<font color="green">年收入:</font><span>${datasList[stat.index].in_father}</span><br/>
 		    						<font color="green">健康:</font><span>${datasList[stat.index].health_father}</span>
 		    					</td>
 		    					<td align="left">
-									<font color="green">姓名:</font><span>${datasList[stat.index].name_mother}</span><br/>
+									<font color="green">年龄:</font><span>${datasList[stat.index].name_mother}</span><br/>
 		    						<font color="green">职业&地点:</font><span>${datasList[stat.index].career_mother}</span><br/>
 		    						<font color="green">年收入:</font><span>${datasList[stat.index].in_mother}</span><br/>
 		    						<font color="green">健康:</font><span>${datasList[stat.index].health_mother}</span>
@@ -333,10 +333,10 @@
 		    					<td align="left">
 		    						<%-- <font color="green"></font><span>${datasList[stat.index].name_grandfather}</span><br/> --%>
 		    						<font color="green">爷爷收入:</font><span>${datasList[stat.index].in_grandfather}</span><br/>
-		    						<font color="green">健康:</font><span>${datasList[stat.index].health_grandfather}</span><br/>
+		    						<font color="green">健康:</font><span>${datasList[stat.index].name_grandfather}岁&nbsp;${datasList[stat.index].health_grandfather}</span><br/>
 		    						<%-- <font color="green">奶奶:</font><span>${datasList[stat.index].name_grandmother}</span><br/> --%>
 		    						<font color="green">奶奶收入:</font><span>${datasList[stat.index].in_grandmother}</span><br/>
-		    						<font color="green">健康:</font><span>${datasList[stat.index].health_grandmother}</span>
+		    						<font color="green">健康:</font><span>${datasList[stat.index].name_grandfather}岁&nbsp;${datasList[stat.index].health_grandmother}</span>
 		    					</td>
 		    					<td align="left">
 		    						<span>${datasList[stat.index].others}</span>

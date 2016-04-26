@@ -452,10 +452,10 @@
 													>西部</option>
 												</select>
 											</td>
-											<td align="right" style="font-size: 12px;">离县城距离:</td>
-											<td style="padding-left: 20px"><input type="text" name="datas.distance" id="datasDistance" value="${datas.distance}"/><span id=""></td>
-											<td align="right" style="font-size: 12px;">月生活费:</td>
-											<td style="padding-left: 20px"><input type="text" name="datas.expenses" id="datasExpenses" value="${datas.expenses}"/><span id=""></td>
+											<td align="right" style="font-size: 12px;">离县城距离(km):</td>
+											<td style="padding-left: 20px;font-size: 12px;"><input type="text" style="width: 70" name="datas.distance" id="datasDistance" value="${datas.distance}"/>&nbsp;千米<span id=""></td>
+											<td align="right" style="font-size: 12px;">月生活费(元):</td>
+											<td style="padding-left: 20px;font-size: 12px;"><input type="text" style="width: 70" name="datas.expenses" id="datasExpenses" value="${datas.expenses}"/>&nbsp;元<span id=""></td>
 										</tr>
 										
 										<!-- 空行 -->
@@ -513,18 +513,20 @@
 										
 										<!-- 爷爷 -->
 										<tr>
-											<td align="right" style="font-size: 12px;">爷爷:</td>
+											<td align="right" style="font-size: 12px;">爷爷年龄:</td>
 											<td style="padding-left: 20px">
-												<input type="text" name="datas.name_grandfather" id="datasNameGrandfather" value="${datas.name_grandfather}"/><span id="">
+												<input type="text" style="width: 80px;" name="datas.name_grandfather" id="datasNameGrandfather" value="${datas.name_grandfather}"/><span id="">
 											</span></td>
-											<td align="right" style="font-size: 12px;">收入(退休金或其它):</td>
+											<td align="right" style="font-size: 12px;">收入金额及来源:</td>
 											<td style="padding-left: 20px">
 												<input type="text" name="datas.in_grandfather" id="datasInGranfather" value="${datas.in_grandfather}"/><span id="">
 											</td>
 											<td align="right" style="font-size: 12px;">身体状况：</td>
-											<td style="padding-left: 20px" colspan="3">
+											<td style="padding-left: 20px;font-size: 12px;" colspan="3">
 												<s:textarea cols="40" rows="5" name="datas.health_grandfather" id="datasHealthGrandfather">
-											</s:textarea></td>
+												</s:textarea>
+												<br/>患有疾病的请写清楚具体病情
+											</td>
 										</tr>
 										
 										<!-- 空行 -->
@@ -538,17 +540,18 @@
 										
 										<!-- 奶奶 -->
 										<tr>
-											<td align="right" style="font-size: 12px;">奶奶:</td>
+											<td align="right" style="font-size: 12px;">奶奶年龄:</td>
 											<td style="padding-left: 20px">
-												<input type="text" name="datas.name_grandmother" id="datasNameGrandmother" value="${datas.name_grandmother}"/><span id="">
+												<input type="text" style="width: 80px;" name="datas.name_grandmother" id="datasNameGrandmother" value="${datas.name_grandmother}"/><span id="">
 											</span></td>
-											<td align="right" style="font-size: 12px;">收入(退休金或其它):</td>
+											<td align="right" style="font-size: 12px;">收入金额及来源:</td>
 											<td style="padding-left: 20px">
 												<input type="text" name="datas.in_grandmother" id="datasInGrandmother" value="${datas.in_grandmother}"/><span id="">
 											</td>
 											<td align="right" style="font-size: 12px;">身体状况：</td>
-											<td style="padding-left: 20px" colspan="3">
+											<td style="padding-left: 20px;font-size: 12px;" colspan="3">
 												<s:textarea cols="40" rows="5" name="datas.health_grandmother" id="datasHealthGrandmother"></s:textarea>
+												<br/>患有疾病的请写清楚具体病情
 											</td>
 										</tr>
 										
@@ -563,15 +566,15 @@
 										
 										<!-- 父亲 -->
 										<tr>
-											<td align="right" style="font-size: 12px;">父亲:</td>
+											<td align="right" style="font-size: 12px;">父亲年龄:</td>
 											<td style="padding-left: 20px">
-												<input type="text" name="datas.name_father" id="datasNameFather" value="${datas.name_father}"/><span id="">
+												<input type="text" style="width: 80px;" name="datas.name_father" id="datasNameFather" value="${datas.name_father}"/><span id="">
 											</span></td>
 											<td align="right" style="font-size: 12px;">职业及工作地点:</td>
 											<td style="padding-left: 10px">
 												<input type="text" name="datas.career_father" id="datasCareerFather" value="${datas.career_father}"/><span id="">
 											</td>
-											<td align="right" style="font-size: 12px;">年收入:</td>
+											<td align="right" style="font-size: 12px;">年收入(元):</td>
 											<td style="padding-left: 20px">
 												<input type="text" style="width: 100px" name="datas.in_father" id="datasInFather" value="${datas.in_father}"/><span id="">
 											</td>
@@ -592,15 +595,15 @@
 										
 										<!-- 母亲 -->
 										<tr>
-											<td align="right" style="font-size: 12px;">母亲:</td>
+											<td align="right" style="font-size: 12px;">母亲年龄:</td>
 											<td style="padding-left: 20px">
-												<input type="text" name="datas.name_mother" id="datasNameMother" value="${datas.name_mother}"/><span id="">
+												<input type="text" style="width: 80px;" name="datas.name_mother" id="datasNameMother" value="${datas.name_mother}"/><span id="">
 											</span></td>
 											<td align="right" style="font-size: 12px;">职业及工作地点:</td>
-											<td style="padding-left: 20px">
+											<td style="padding-left: 10px">
 												<input type="text" name="datas.career_mother" id="datasCareerMother" value="${datas.career_mother}"/><span id="">
 											</td>
-											<td align="right" style="font-size: 12px;">年收入:</td>
+											<td align="right" style="font-size: 12px;">年收入(元):</td>
 											<td style="padding-left: 20px">
 												<input type="text" style="width: 100px" name="datas.in_mother" id="datasInMother" value="${datas.in_mother}"/><span id="">
 											</td>
@@ -861,5 +864,6 @@
 		
 	<div class="ui-overlay">
 	<div id="mack"></div>
+	<!-- 登录方式-帮助dialog -->
   </body>
 </html>
