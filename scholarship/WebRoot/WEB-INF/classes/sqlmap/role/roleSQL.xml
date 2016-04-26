@@ -46,6 +46,41 @@
         ]]>
 	</select>
 	
+	<!-- 查询角色可选分配角色列表 -->
+	<select id="role_queryRoleList" parameterType="java.util.HashMap" resultMap="role">
+		<![CDATA[ 
+            SELECT
+				*
+			FROM
+				role
+			WHERE
+				id IN (
+					SELECT
+						role_id
+					FROM
+						relation rel
+					WHERE
+						grade_id IN (
+							SELECT
+								id
+							FROM
+								grade
+							WHERE
+								college_id = #{collegeId}
+						)
+					AND (
+						SELECT
+							count(*)
+						FROM
+							relation
+						WHERE
+							college_id IS NOT NULL
+						AND role_id = rel.role_id
+					) = 0
+				)
+        ]]>
+	</select>
+	
 	<select id="role_queryById" resultMap="role">
 		<![CDATA[ 
             SELECT ID,NAME,MEMO,CREATEDATE,UPDATEDATE FROM role WHERE ID=#{id}
