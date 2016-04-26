@@ -45,7 +45,7 @@
 	     	if ((/\'/g).test(keyword)){
 				alert("请不要输入单引号“‘”");
 			}else{
-	    	location.href="${ctx}/account/query.action?keyword=" +encodeURIComponent(encodeURIComponent($("#keyword").val()));
+	    	location.href="${ctx}/apply/queryAllYears.action?keyword=" +encodeURIComponent(encodeURIComponent($("#keyword").val()));
 	    	}
 		}
 		
