@@ -39,6 +39,12 @@ public interface RoleService extends BaseService{
 	 */
 	public List<Role> queryAll();
 	/***
+	 * 查询角色可分配角色
+	 * @param role
+	 * @return
+	 */
+	public List<Role> queryRoleList(Role role);
+	/***
 	 * 查询
 	 * @param account
 	 * @return

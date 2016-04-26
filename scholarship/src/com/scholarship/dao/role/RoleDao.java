@@ -15,6 +15,12 @@ public interface RoleDao {
 	 */
 	public List<Role> queryAll();
 	/***
+	 * 查询角色可分配角色列表
+	 * @param role
+	 * @return
+	 */
+	public List<Role> queryRoleList(Map<?,?> map);
+	/***
 	 * 查询角色ById
 	 * @param id
 	 * @return

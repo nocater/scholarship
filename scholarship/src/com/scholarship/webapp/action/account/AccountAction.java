@@ -147,7 +147,8 @@ public class AccountAction extends BaseAction {
 	}
 	
 	public String queryById(){
-		roleList = roleService.queryAll();
+		role = (Role) getSession().getAttribute("LOGON_ROLE");
+		roleList = roleService.queryRoleList(role);
 		collegeList = collegeService.queryAll();
 		gradeList = gradeService.queryAll();
 		if(StringUtil.isBlank(accountId)) accountId="0";

@@ -58,6 +58,15 @@ public class RoleDaoImpl extends BaseDaoMyBatis implements RoleDao{
 	}
 
 	/***
+	 * 查询角色可分配角色列表
+	 */
+	@Override
+	public List<Role> queryRoleList(Map<?,?> map) {
+		// TODO Auto-generated method stub
+		return super.sqlSession.selectList("role_queryRoleList",map);
+	}
+	
+	/***
 	 * 查询(ID)
 	 */
 	@Override

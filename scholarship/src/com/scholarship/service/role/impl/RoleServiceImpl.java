@@ -1,5 +1,6 @@
 package com.scholarship.service.role.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +74,35 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 	public List<Role> queryAll() {
 		// TODO Auto-generated method stub
 		return roleDao.queryAll();
+	}
+	
+	/***
+	 * 查询所有
+	 */
+	@Override
+	public List<Role> queryRoleList(Role role) {
+		// TODO Auto-generated method stub
+		List<Role> list = new ArrayList<Role>();
+		if(role.getId()==1){
+			return roleDao.queryAll();
+		}else if(role.getId()==2){
+			return null;
+		}else if(role.getCollegeList()==null|role.getCollegeList().size()==0){
+			list.add(roleDao.queryById(2));
+			return list;//
+		}else if(role.getCollegeList()!=null&&role.getCollegeList().size()>0){
+			list.add(roleDao.queryById(2));
+			Map<String,String> map = new HashMap<>();
+			for(College c : role.getCollegeList()){
+				map.put("collegeId", String.valueOf(c.getId()));
+				List<Role> l = new ArrayList<Role>();
+				l = roleDao.queryRoleList(map);
+				for(Role r:l){
+					list.add(r);
+				}
+			}
+		}
+		return list;
 	}
 	
 	/***
