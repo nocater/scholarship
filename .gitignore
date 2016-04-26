@@ -1,2 +1,5 @@
 *.class
 *.class
+scholarship/WebRoot/WEB-INF/classes/com/scholarship/dao/role/impl/RoleDaoImpl.class
+scholarship/WebRoot/WEB-INF/classes/com/scholarship/dao/role/impl/RoleDaoImpl.class
+scholarship/WebRoot/WEB-INF/classes/com/scholarship/service/role/RoleService.class
