@@ -22,7 +22,7 @@
 	   	  <table width="97%" border="0" cellspacing="0" cellpadding="0">
 	          <tr>
 	            <td width="25px"><img src="${ctx}/images/jtTitle.jpg" alt="" width="25" height="28" /></td>
-	            <td class="leftDhxx">审计信息</td>
+	            <td class="leftDhxx">审计信息</td>  
 	          </tr>
 	      </table>       
 	    </div>
