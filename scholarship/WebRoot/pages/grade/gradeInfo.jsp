@@ -189,12 +189,31 @@
 											<td class="td_detail_separator"></td>
 										</tr>
 										
-										<!-- 年级(入学年份) -->
+										<!-- 年级 -->
 										<tr>
-											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>入学年份:</td>
+											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>年级:</td>
 											<td style="padding-left: 20px"><input name="grade.grade"
 												type="text" id="gradeGrade" maxlength="255"
 												value="${grade.grade}"
+												class="validate[required] text-input"
+												<span id="grade_msg"></span></td>
+										</tr>
+										
+										<!-- 空行 -->
+										<tr>
+											<td class="td_detail_separator">
+											</td>
+										</tr>
+										<tr>
+											<td class="td_detail_separator"></td>
+										</tr>
+										
+										<!-- 入学年份 -->
+										<tr>
+											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>入学年份:</td>
+											<td style="padding-left: 20px"><input name="grade.inyear"
+												type="text" id="gradeGrade" maxlength="255"
+												value="${grade.inyear}"
 												class="validate[required] text-input"
 												<span id="grade_msg"></span></td>
 										</tr>

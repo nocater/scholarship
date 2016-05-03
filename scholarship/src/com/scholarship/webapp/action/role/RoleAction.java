@@ -208,21 +208,22 @@ public class RoleAction extends BaseAction{
 	 */
 	public void insert(Role r){
 		roleService.insert(r);
-		Map<String,Integer> map=null;
-		for(College c : r.getCollegeList()){
-			map = new HashMap<String,Integer>();
-			map.put("role_id", r.getId());
-			map.put("college_id", c.getId());
-			map.put("grade_id", null);
-			roleService.insertRelation(map);
-		}
-		for(Grade g:r.getGradeList()){
-			map = new HashMap<String,Integer>();
-			map.put("role_id", r.getId());
-			map.put("college_id", null);
-			map.put("grade_id", g.getId());
-			roleService.insertRelation(map);
-		}
+		//添加关联 已转移到Service实现
+//		Map<String,Integer> map=null;
+//		for(College c : r.getCollegeList()){
+//			map = new HashMap<String,Integer>();
+//			map.put("role_id", r.getId());
+//			map.put("college_id", c.getId());
+//			map.put("grade_id", null);
+//			roleService.insertRelation(map);
+//		}
+//		for(Grade g:r.getGradeList()){
+//			map = new HashMap<String,Integer>();
+//			map.put("role_id", r.getId());
+//			map.put("college_id", null);
+//			map.put("grade_id", g.getId());
+//			roleService.insertRelation(map);
+//		}
 	}
 	
 	/***
@@ -230,7 +231,7 @@ public class RoleAction extends BaseAction{
 	 * @return
 	 */
 	public void delete(Role r){
-		roleService.deleteRelation(r);
+//		roleService.deleteRelation(r);  //已转移到Service实现
 		roleService.delete(r.getId());
 	}
 	

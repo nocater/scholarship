@@ -47,6 +47,7 @@
 	<bean id="gradeAction" class="com.scholarship.webapp.action.grade.GradeAction" scope="prototype" parent="baseAction">
 		<property name="gradeService" ref="gradeService"/>
 		<property name="collegeService" ref="collegeService"/>
+		<property name="roleService" ref="roleService"/>
 	</bean>
 	
 	<!-- College 学院ACTION -->

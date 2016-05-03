@@ -1,7 +1,12 @@
 package com.scholarship.webapp.action.grade;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +17,14 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import com.scholarship.module.college.College;
+import com.scholarship.module.conf.AppConfig;
 import com.scholarship.module.grade.Grade;
 import com.scholarship.module.role.Role;
 import com.scholarship.service.college.CollegeService;
 import com.scholarship.service.grade.GradeService;
+import com.scholarship.service.role.RoleService;
 import com.scholarship.webapp.action.BaseAction;
+import com.util.AnalyzerXML;
 import com.util.StringUtil;
 import com.util.page.Page;
 import com.util.page.SearchResult;
@@ -28,6 +36,7 @@ public class GradeAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	private GradeService gradeService;
 	private CollegeService collegeService;
+	private RoleService roleService;
 	private List<Grade> gradeList;
 	private Grade grade;
 	private Role role;
@@ -45,6 +54,10 @@ public class GradeAction extends BaseAction{
 	private String collegeId;
 	private String gradeGrade;
 	private String gradeEdubg;
+	
+	private InputStream in;
+	private String createRole; //是否创建角色
+	private String uploadPath; // 上传文件路径
 	
 	public String queryAll(){
 		gradeList = gradeService.queryAll();
@@ -228,6 +241,78 @@ public class GradeAction extends BaseAction{
 		return SUCCESS;
 	}
 	
+	/***
+	 * 班级导入前清除session中的重复班级数组
+	 * @return
+	 */
+	public String queryImport(){
+		getSession().removeAttribute("repeatGradeList");
+		return SUCCESS;
+	}
+	
+	/***
+	 * 班级导入()
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public String importGrade(){
+		// 解析上传的xml文件
+		Map<String, Object> map = AnalyzerXML.readXML(new File(uploadPath),collegeService,gradeService);
+		getSession().removeAttribute("repeatGradeList");
+		
+		// 获得用户集合
+		if (map != null) {
+			gradeList = (List<Grade>) map.get("gradeList");
+			for(Grade g : gradeList){
+				if(g.getId()==0){
+					gradeService.insert(g);
+				}else{
+					gradeService.update(g);
+				}
+				
+				if(createRole.equals("1")){
+					List<Role> list = roleService.queryByName("班主任_"+g.getName());
+					if(list == null || list.size()==0){
+						ArrayList<Grade> l = new ArrayList<Grade>();
+						l.add(g);
+						Role r = new Role();
+						r.setMemo("班级导入自动创建");
+						r.setName("班主任_"+g.getName());
+						r.setGradeList(l);
+						roleService.insert(r);
+//						System.out.println("已创建角色"+r.getId()+"-"+r.getName()+"关联班级："+g.getId()+"-"+g.getName());
+					}
+				}
+			}
+		}
+		
+//		if(gradeList!=null)
+//			getSession().setAttribute("repeatAccountList", gradeList);
+			
+		return SUCCESS;
+	}
+	
+	/**
+	 * 将保存到本地的资源XML提供给下载
+	 */
+	public InputStream getTargetFile() {
+		return in;
+	}
+	
+	/**
+	 * 下载用户模板
+	 */
+	public InputStream getLoadTemplateFile() {
+		try {
+			File file = new File(AppConfig.ctx + "csvTemplate/grade.xls");
+			in = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return in;
+	}
+	
 	public int insert(Grade g){
 		return gradeService.insert(g);
 	}
@@ -377,5 +462,29 @@ public class GradeAction extends BaseAction{
 
 	public void setGradeStatus(int gradeStatus) {
 		this.gradeStatus = gradeStatus;
+	}
+
+	public String getCreateRole() {
+		return createRole;
+	}
+
+	public void setCreateRole(String createRole) {
+		this.createRole = createRole;
+	}
+
+	public String getUploadPath() {
+		return uploadPath;
+	}
+
+	public void setUploadPath(String uploadPath) {
+		this.uploadPath = uploadPath;
+	}
+
+	public RoleService getRoleService() {
+		return roleService;
+	}
+
+	public void setRoleService(RoleService roleService) {
+		this.roleService = roleService;
 	}
 }

@@ -48,7 +48,7 @@
 		
 		/* 执行  */
 		function execute(){
-			var choose = $("#status option:selected").val();
+			var choose = $("#method option:selected").val();
 			if(choose==100){alert("请选择操作...");return;}
 			if($("input[type='checkbox'][name='ids']:checked").size()<1) {alert("请至少选择一个角色信息...");return;}
 			var ids="";
@@ -116,7 +116,7 @@
 			  				<td width="5%" valign="middle" align="center" style="padding-top:3px;">操作:</td>
 			  				<td width="1%"/>
 			  				<td	width="10%" valign="middle" align="left" style="padding-top:0px;">
-			  					<select style="width:100%;" id="status">
+			  					<select style="width:100%;" id="method">
 				  					<option value="100">--更多操作--</option>
 				  					<option value="-1">删除班级</option>
 				  					<option value="1">批量激活</option>
@@ -133,7 +133,9 @@
 			  				<td width="1%"/>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;"colspan="1"><img src="${ctx}/images/search.jpg"  class="hand" onclick="querys();" /></td>
 			  				<td width="1%"/>
-			  				<td width="12%"/>
+			  				<td width="10%"  valign="middle" align="center">
+			  					<input type="button" class="btnstyle" style="padding-top:1px;" value="班级导入" onclick="location.href='${ctx}/grade/queryImport.action';" />
+			  				</td>
 			  				<td width="5%"/>
 			  				<td/>
 			  				<td/>
@@ -214,12 +216,12 @@
 		    		<thead>
 		    			<tr>
 		    				<th width="5%" onclick="checkAll()" align="center" class="biaoti"><input type="checkbox" id="chkAll" onclick="checkAll()"/></th>
-		    				<th width="15%" align="center" class="biaoti">班级</th>
-		    				<th width="15%" align="center" class="biaoti">学院</th>
+		    				<th width="20%" align="center" class="biaoti">班级</th>
+		    				<th width="20%" align="center" class="biaoti">学院</th>
 		    				<th width="5%"  align="center" class="biaoti">状态</th>
 		    				<th width="15%" align="center" class="biaoti">专业</th>
-		    				<th width="15%" align="center" class="biaoti">年级</th>
-		    				<th width="15%" align="center" class="biaoti">学历</th>
+		    				<th width="10%" align="center" class="biaoti">年级</th>
+		    				<th width="10%" align="center" class="biaoti">学历</th>
 		    				<th width="15%" align="center" class="biaoti">备注</th>
 		    			</tr>
 		    		</thead>

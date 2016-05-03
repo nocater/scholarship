@@ -177,6 +177,166 @@ public class AnalyzerXML
     }
     
     /**
+     * 班级批量导入xml解析
+     * @param File upFile
+     * @param EmployeeService accountService
+     * @return Map<String, Object>
+     */
+    public static Map<String, Object> readXML(File upFile, CollegeService collegeService, GradeService gradeService)
+    {
+        
+        List<String> errorList = new ArrayList<String>(); //导出信息集合
+        List<Grade> gradeList = new ArrayList<Grade>(); //班级集合
+        List<Grade> repeatGradeList = new ArrayList<Grade>();//重复班级集合
+        Map<String, Object> returnMap = new HashMap<String, Object>(); //用于存储人员集合、导出信息集合
+        try {
+			Workbook workbook = Workbook.getWorkbook(upFile);
+			Sheet sheet = workbook.getSheet(0);
+			int sheetSize = sheet.getRows();
+			NumberCell num;
+			Grade grade;
+//			DateCell date;
+//			Date time;
+//			SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+			for (int i = 1; i < sheetSize; i++) {
+				//用于判断学院是否可添加的标识
+		        boolean dispute = true;
+		        //学院判断用户是否重复的标识
+		        boolean repeat = false;
+		                
+		        grade = new Grade();
+
+		        //名字
+				Cell name = sheet.getCell(0,i);
+				//判断是否为空
+				if(name.getType() !=CellType.EMPTY){
+					String g_name = name.getContents();
+					if(StringUtil.isBlank(g_name)) dispute = false;
+					//判断数据库是否已经存在该ID
+					List<Grade> list = gradeService.queryByName(g_name);
+					if(list!=null&&list.size()>0){
+						repeat = true;
+						grade.setId(list.get(0).getId());
+					}
+					grade.setName(g_name);
+				}else{
+					dispute = false;
+					errorList.add("第"+i+"行班级名字丢失");
+				}
+				
+				//专业
+				Cell major = sheet.getCell(1,i);
+				if(major.getType() != CellType.EMPTY){
+					String g_major = major.getContents();
+					grade.setMajor(g_major);
+				}else{
+					dispute = false;
+					errorList.add("第"+i+"行学院专业丢失");
+				}
+				
+				//学院
+				Cell college = sheet.getCell(2,i);
+				if(college.getType() != CellType.EMPTY){
+					String g_college = college.getContents();
+					List<College> list = collegeService.queryByName(g_college);
+					if(list!=null&&list.size()>0){
+						grade.setCollege(list.get(0));
+					}
+				}else{
+					
+				}
+				
+				//学历
+				Cell edubg = sheet.getCell(3, i);
+				if(edubg.getType() != CellType.EMPTY){
+					String g_edubg = edubg.getContents();
+					if(g_edubg.contains("本科")){
+						grade.setEdubg("本科");
+					}else if(g_edubg.contains("专科")){
+						grade.setEdubg("专科");
+					}
+				}else{
+					dispute = false;
+					errorList.add("第"+i+"行班级学历丢失");
+				}
+				
+				//入学年份
+				Cell _grade = sheet.getCell(4, i);
+				if(_grade.getType() != CellType.EMPTY){
+					String g_grade = _grade.getContents();
+					grade.setGrade(g_grade);
+				}else{
+					dispute = false;
+					errorList.add("第"+i+"行班级入学年份丢失");
+				}
+				
+				//入学年份
+				Cell inyear = sheet.getCell(5, i);
+				if(inyear.getType() != CellType.EMPTY){
+					String g_inyear = inyear.getContents();
+					grade.setInyear(g_inyear);
+				}else{
+					dispute = false;
+					errorList.add("第"+i+"行班级年级丢失");
+				}
+				
+				//学年制
+				Cell stay = sheet.getCell(6, i);
+				if(stay.getType() != CellType.EMPTY){
+					NumberCell n_stay = (NumberCell)stay;
+					double g_stay = n_stay.getValue();
+					grade.setStay((int)g_stay);
+				}else{
+					dispute = false;
+					errorList.add("第"+i+"行班级学年制丢失");
+				}
+				
+				//状态
+				Cell status = sheet.getCell(7, i);
+				if(status.getType() != CellType.EMPTY){
+					String g_status = status.getContents();
+					if(StringUtil.isBlank(g_status)||g_status.contains("激活")||g_status.contains("1")){
+						grade.setStatus(1);
+					}else {
+						grade.setStatus(-1);
+					}
+				}else{
+					grade.setStatus(1);
+				}
+				
+				grade.setMemo("导入创建");
+				
+				//添加重复的
+				if(repeat&&dispute){
+					repeatGradeList.add(grade);
+				}
+				
+				//添加正确的   if(dispute&&repeat == false){
+				if(dispute){
+					gradeList.add(grade);
+				}
+				
+			}
+			
+			returnMap.put("errorList", errorList);
+            returnMap.put("gradeList", gradeList);
+            returnMap.put("repeatGradeList", repeatGradeList);
+            System.out.println();
+            return returnMap;
+            
+		} catch (BiffException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return null;
+        
+    }
+    
+    /**
      * 判断标签和标签里的值是否为null
      */
     public static boolean dealAccount(Element element)

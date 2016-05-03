@@ -138,7 +138,31 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 	@Override
 	public int insert(Role role) {
 		// TODO Auto-generated method stub
-		return roleDao.insert(role);
+		
+		int row = roleDao.insert(role);
+		
+		//添加关联
+		Map<String,Integer> map=null;
+		if(role.getCollegeList()!=null){
+			for(College c : role.getCollegeList()){
+				map = new HashMap<String,Integer>();
+				map.put("role_id", role.getId());
+				map.put("college_id", c.getId());
+				map.put("grade_id", null);
+				this.insertRelation(map);
+			}
+		}
+		if(role.getGradeList()!=null){
+			for(Grade g:role.getGradeList()){
+				map = new HashMap<String,Integer>();
+				map.put("role_id", role.getId());
+				map.put("college_id", null);
+				map.put("grade_id", g.getId());
+				this.insertRelation(map);
+			}
+		}
+		
+		return row;
 	}
 
 	/***
@@ -156,6 +180,9 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 	@Override
 	public void delete(Role role) {
 		// TODO Auto-generated method stub
+		//删除关联
+		this.deleteRelation(role);
+		
 		roleDao.delete(role);
 	}
 
@@ -165,6 +192,11 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
+		//删除关联
+		Role role = new Role();
+		role.setId(id);
+		this.deleteRelation(role);
+		
 		roleDao.deleteById(id);
 	}
 	

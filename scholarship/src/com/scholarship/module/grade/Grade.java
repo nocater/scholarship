@@ -11,7 +11,8 @@ public class Grade {
 	private String major;		//专业
 	private String name;		//班级名字
 	private String edubg;		//学历
-	private String grade;		//入学年份
+	private String grade;		//年级
+	private String inyear;		//入学年份
 	private int    stay;		//学年
 	private String memo;		//备注
 	private Date   createdate;	//创建日期
@@ -23,8 +24,8 @@ public class Grade {
 	}
 
 	public Grade(int id, College college, int status, String major,
-			String name, String edubg, String grade, int stay, String memo,
-			Date createdate, Date updatedate) {
+			String name, String edubg, String grade, String inyear, int stay,
+			String memo, Date createdate, Date updatedate) {
 		super();
 		this.id = id;
 		this.college = college;
@@ -33,6 +34,7 @@ public class Grade {
 		this.name = name;
 		this.edubg = edubg;
 		this.grade = grade;
+		this.inyear = inyear;
 		this.stay = stay;
 		this.memo = memo;
 		this.createdate = createdate;
@@ -65,6 +67,10 @@ public class Grade {
 
 	public String getGrade() {
 		return grade;
+	}
+
+	public String getInyear() {
+		return inyear;
 	}
 
 	public int getStay() {
@@ -109,6 +115,10 @@ public class Grade {
 
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+
+	public void setInyear(String inyear) {
+		this.inyear = inyear;
 	}
 
 	public void setStay(int stay) {

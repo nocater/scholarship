@@ -12,6 +12,7 @@
         <result property="name" 		column="name"			/>
         <result property="edubg" 		column="edubg"			/>
 		<result property="grade" 		column="grade"			/>
+		<result property="inyear" 		column="inyear"			/>
         <result property="stay" 		column="stay"			/>
         <result property="memo" 		column="memo"			/>
         <result	property="createdate" 	column="createdate"		/>
@@ -178,13 +179,14 @@
 	<insert id="grade_insert" parameterType="grade" useGeneratedKeys="true" keyColumn="id">
 		<![CDATA[
 			INSERT INTO grade 
-			(COLLEGE_ID, STATUS, MAJOR, NAME, EDUBG, grade, STAY, MEMO,CREATEDATE,UPDATEDATE) 
+			(COLLEGE_ID, STATUS, MAJOR, NAME, EDUBG, grade, inyear, STAY, MEMO,CREATEDATE,UPDATEDATE) 
 			VALUES (#{college.id},
 					#{status},
 					#{major},
 					#{name},
 					#{edubg},
 					#{grade},
+					#{inyear},
 					#{stay},
 					#{memo},
 					now(),
@@ -205,6 +207,7 @@
 				NAME=#{name},
 				EDUBG=#{edubg},
 				grade=#{grade},
+				inyear=#{inyear},
 				STAY=#{stay},
 				memo=#{memo},
 				UPDATEDATE=now()
