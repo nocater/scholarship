@@ -174,7 +174,7 @@
 		    							</div> --%>
 		    							<div id="showGrades-${id}">
 		    								<c:forEach items="${gradeList}" var="g" varStatus="cstat">
-		    									<a href="${ctx}/grade/queryById?id=${g.id}">${g.name}</a>&nbsp;
+		    									<a href="${ctx}/grade/queryById?gradeId=${g.id}">${g.name}</a>&nbsp;
 		    								</c:forEach>
 		    							</div>
 		    						</c:if>

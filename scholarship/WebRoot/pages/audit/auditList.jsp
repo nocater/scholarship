@@ -19,7 +19,7 @@
     //导出excel
     function exportExcel(){
     	 var ids="";
-    	 $("[name=ids]:checkbox:checked").each(function(){    
+    	 $("[name=ids]:checkbox:checked").each(function(){   
 			if(ids!=""){
 				ids+=","+$(this).val(); 
 			}   
