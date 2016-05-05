@@ -36,7 +36,7 @@
 			<result name="success">/pages/grade/gradeImport.jsp</result>
 		</action>
 		
-		<action name="loadTemplate" class="accountAction" method="loadTemplate">
+		<action name="loadTemplate" class="gradeAction" method="loadTemplate">
 		  <!-- 设置文件名参数，由页面上传入 -->
             <result name="success" type="stream" >
                  <param name="contentType">application/octet-stream</param>  
@@ -44,7 +44,7 @@
                  <!-- 下载文件输出流定义 -->
                  <param name="inputName">loadTemplateFile</param>
                  <!-- 下载文件处理方法 -->
-                 <param name="contentDisposition">attachment;filename="student.xls"</param>
+                 <param name="contentDisposition">attachment;filename="grade.xls"</param>
             </result>
 		</action>
 	</package>

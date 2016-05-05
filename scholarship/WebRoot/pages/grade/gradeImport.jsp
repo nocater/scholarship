@@ -181,7 +181,7 @@
 						style="padding-left: 35px;">
 						<span style="color: red;">请先下载模板,依据模板填写必要的信息</span>——————
 						<b><a style="cursor: pointer;"
-							href="${ctx}/account/loadTemplate.action">班级模板下载</a>
+							href="${ctx}/grade/loadTemplate.action">班级模板下载</a>
 						</b>
 						<!--  左侧table-->
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">

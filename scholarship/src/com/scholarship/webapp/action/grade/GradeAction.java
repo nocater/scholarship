@@ -299,6 +299,10 @@ public class GradeAction extends BaseAction{
 		return in;
 	}
 	
+	public String loadTemplate() {
+		return SUCCESS;
+	}
+	
 	/**
 	 * 下载用户模板
 	 */
