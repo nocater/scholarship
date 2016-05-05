@@ -189,7 +189,7 @@ public class ExportType3 extends Export {
 			sheet.addCell(label);
 			
 			//入学年份
-			label = new Label(3, row, a.getGrade().getGrade());
+			label = new Label(3, row, a.getGrade().getInyear());
 			cellFormat = new WritableCellFormat();
 	        cellFormat.setFont(wf_content);
 	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框
