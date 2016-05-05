@@ -56,17 +56,25 @@
 			if($("input[type='checkbox'][name='ids']:checked").size()<1) {alert("请至少选择一条信息...");return;}
 			var ids="";
 			var ss="";
+			var sid="";
+			var flag=false;//判断选择的是否未分配奖学金
 	    	$("input[type='checkbox'][name=ids]:checked").each(function(){   
 				if(ids!="") {
 					ids+=","+$(this).val();
-					ss+=","+$(this).parent().next().next().next().next().children().val();
+					sid=$(this).parent().next().next().next().next().children().val();
+					if(sid=="0") flag = true;
+					ss+=","+sid;
 				}
 				else {
-					ids=$(this).val();   
-					ss=$(this).parent().next().next().next().next().children().val();
+					ids=$(this).val();
+					sid=$(this).parent().next().next().next().next().children().val();
+					if(sid=="0") flag = true;
+					ss=sid;
 				}      	
 	    	});
 	    	
+			if(choose == 1 && flag){alert("奖助学金未分配不能执行审批通过!");return}
+			
 	    	if(confirm("确定执行此操作？")){
 	    		location.href="${ctx}/apply/executeAllYears.action?ids="+ids+"&ss="+ss+"&method="+choose;
 	    	}
@@ -127,7 +135,7 @@
   		<table width="99%" border="0" cellspacing="0" cellpadding="0" style="margin-left: 4px; margin-top: 0px" align="center">
   			<tr>
   				<td>
-  					<div class=caozuobox style="height:110px;">
+  					<div class=caozuobox style="height:auto;">
 		  			<!-- toolbar area -->
 		  			<table width="99%" border="0" cellspacing="0" cellpadding="0">
 			  			<tr height="30px">
@@ -138,8 +146,8 @@
 			  				<td width="1%"/>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:3px;">审批:</td>
 			  				<td width="1%"/>
-			  				<td	width="10%" valign="middle" align="left" style="padding-top:0px;">
-			  					<select style="width:100%;" id="status">
+			  				<td	width="5%" valign="middle" align="left" style="padding-top:0px;">
+			  					<select id="status">
 				  					<option value="100">--未选择--</option>
 				  					<option value="1">--通过--</option>
 				  					<!-- <option value="0">--驳回--</option> -->
@@ -152,7 +160,7 @@
 			  				<td width="15%" valign="middle" align="center" style="padding-top:3px;">搜索(账号/姓名):</td>
 			  				<td width="1%"/>
 			  				<td width="5%"/>
-			  				<td width="5%" valign="middle" align="center"><input type="text" style="width: 90px" id="keyword" name="keyword" value="${keyword}" /></td>
+			  				<td width="5%" valign="middle" align="center"><input type="text" id="keyword" name="keyword" value="${keyword}" /></td>
 			  				<td width="1%"/>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;"colspan="1"><img src="${ctx}/images/search.jpg"  class="hand" onclick="querys();" /></td>
 			  				<td	width="5%"><input type="button"  value="宽屏" class="btnstyle1" onclick="window.open('${ctx}/apply/queryAllYears.action');" style="padding-top:1px;"/></td>
@@ -171,7 +179,7 @@
 			  				<td valign="middle" align="center" style="padding-top:3px;">状态:</td>
 			  				<td/>
 			  				<td valign="middle" align="left" style="padding-top:0px;">
-			  					<select style="width:100%;" id="sel-role">
+			  					<select id="sel-role">
 				  					<option value="100">--所有---</option>
 				  					<option value="2"
 				  						<c:if test="${select_status eq 2}">selected=""</c:if>
@@ -214,7 +222,10 @@
 			  				</td>
 			  				<td/>
 			  				<td valign="middle" align="center"><span>年:</span></td>
-			  				<td valign="middle" align="center"><input style="width: 70px" id="select_year" value="${select_year}"></td>
+			  				<td valign="middle" align="center">
+			  					<%-- <input type="text" style="width: 70" id="select_year" value="${select_year}"> --%>
+			  					<input type="text" style="width: 70px" id="select_year" name="select_year" value="${select_year}" />
+			  				</td>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:3px;"><span>奖项:</span></td>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:3px;">
 			  					<select id="filter-scholarship">
@@ -228,20 +239,21 @@
 			  				</td>
 			  				<td valign="middle" align="center"><input type="button"  value="筛 选" class="btnstyle1" onclick="filter()" style="padding-top:1px;"/></td>
 			  			</tr>
-			  			<td width="2%"></td>
-			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;">
+			  			<tr>
+			  				<td ></td>
+			  				<td  valign="middle" align="center" style="padding-top:1px;">
 			  					<span>导&nbsp;&nbsp;出：</span>
 			  				</td>
-			  				<td width="1%"/>
-			  				<td width="5%" valign="middle" align="center" style="padding-top:3px;"><span>年:</span></td>
-			  				<td width="1%"/>
-			  				<td	width="10%" valign="middle" align="left" style="padding-top:0px;">
-			  					<input id="exportYear" value="${exportYear}">
+			  				<td />
+			  				<td  valign="middle" align="center" style="padding-top:3px;"><span>年:</span></td>
+			  				<td />
+			  				<td valign="middle" align="left" style="padding-top:0px;">
+			  					<input type="text" style="width: 70px" id="exportYear" name="exportYear" value="${exportYear}" />
 			  				</td>
-			  				<td width="1%"/>
-			  				<td width="5%" valign="middle" align="center"><span>模板:</span></td>
-			  				<td width="1%"/>
-			  				<td width="10%" valign="middle" align="center" style="padding-top:3px;">
+			  				<td/>
+			  				<td  valign="middle" align="center"><span>模板:</span></td>
+			  				<td />
+			  				<td  valign="middle" align="center" style="padding-top:3px;">
 			  					<select style="width:90%;" id="select-exportType">
 				  					<option value="1">国家奖励志学金初审表</option>
 				  					<option value="2">国家助学金备案表</option>
@@ -250,17 +262,18 @@
 				  					<option value="5">明珠奖学金发放登记表</option>
 			  					</select>
 			  				</td>
-			  				<td width="1%"/>
-			  				<td width="5%"  valign="middle">
+			  				<td />
+			  				<td   valign="middle">
 			  					<input type="button"  value="导  出" class="btnstyle1" onclick="exportXLS();"/>
 			  				</td>
-			  				<td width="5%">
+			  				<td >
 			  				</td>
-			  				<td width="1%"/>
-			  				<td width="5%" valign="middle" align="center" style="padding-top:1px;"colspan="1"></td>
-			  				<td	width="5%"></td>
-			  				<td width="5%" valign="middle" align="center"></td>
+			  				<td />
+			  				<td  valign="middle" align="center" style="padding-top:1px;"colspan="1"></td>
+			  				<td	></td>
+			  				<td  valign="middle" align="center"></td>
 			  				<td/>
+			  			</tr>
 	  				</table>
 	  			</div>
   				</td>
