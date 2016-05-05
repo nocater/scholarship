@@ -224,7 +224,7 @@
 			  				<td valign="middle" align="center"><span>年:</span></td>
 			  				<td valign="middle" align="center">
 			  					<%-- <input type="text" style="width: 70" id="select_year" value="${select_year}"> --%>
-			  					<input type="text" style="width: 70px" id="select_year" name="select_year" value="${select_year}" />
+			  					<input type="text" style="width: 70px" id="select_year" value="${select_year}" />
 			  				</td>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:3px;"><span>奖项:</span></td>
 			  				<td width="5%" valign="middle" align="center" style="padding-top:3px;">
@@ -260,6 +260,8 @@
 				  					<option value="3">助学金中行卡号登记表</option>
 				  					<option value="4">明珠励志奖学金名单登记表</option>
 				  					<option value="5">明珠奖学金发放登记表</option>
+				  					<option value="6">明珠助学金发放登记表</option>
+				  					<option value="7">明珠助学金发放备案表</option>
 			  					</select>
 			  				</td>
 			  				<td />
