@@ -27,6 +27,7 @@ import com.scholarship.service.role.RoleService;
 import com.scholarship.service.scholarship.ScholarshipService;
 import com.scholarship.webapp.action.BaseAction;
 import com.util.StringUtil;
+import com.util.export.ExportFactory;
 import com.util.export.ExportXSL;
 import com.util.export.impl.ExportType1;
 import com.util.export.impl.ExportType2;
@@ -290,31 +291,7 @@ public class ApplyAction extends BaseAction {
 	public String export(){
 		if(StringUtil.isNotBlank(template)){
 			account = (Account) getSession().getAttribute("LOGON_ACCOUNT");
-			ExportXSL export = null;
-			switch (template) {
-			case "1":
-				export = new ExportType1(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
-				break;
-				
-			case "2":
-				export = new ExportType2(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
-				break;
-				
-			case "3":
-				export = new ExportType3(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
-				break;	
-				
-			case "4":
-				export = new ExportType4(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
-				break;	
-			
-			case "5":
-				export = new ExportType5(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
-				break;
-				
-			default:
-				break;
-			}
+			ExportXSL export = ExportFactory.getInstance(template, account, accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
 			if(StringUtil.isYear(exportYear)&&export!=null){
 				in = export.export(exportYear);
 			}else{
