@@ -76,7 +76,7 @@ public class ExportType5 extends Export {
 //		accountList.add(accountService.queryById(28));
 		
 		
-		String filePath = AppConfig.ctx+"csvTemplate\\附表6 获奖受助学生资助资金发放中行卡号登记表"+year+".xls";
+		String filePath = AppConfig.ctx+"csvTemplate\\附表5  获奖受助学生资助资金发放中行卡号登记表"+year+".xls";
 		InputStream input = null;
 		try {
 			OutputStream os = new FileOutputStream(filePath);

@@ -75,7 +75,7 @@ public class ExportType2 extends Export {
 //		accountList.add(accountService.queryById(28));
 		
 		String[] title = {"序号","学生姓名","性别","出生年月","民族","入学年份","身份证号","专业","一等","二等","三等","东部","中部","西部","联系方式"};
-		String filePath = AppConfig.ctx+"csvTemplate\\附表5湖北省普通高校国家助学金名单备案表"+year+".xls";
+		String filePath = AppConfig.ctx+"csvTemplate\\附表2 湖北省普通高校国家助学金名单备案表"+year+".xls";
 		InputStream input = null;
 		try {
 			OutputStream os = new FileOutputStream(filePath);

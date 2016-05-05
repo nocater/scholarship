@@ -68,7 +68,7 @@ public class ExportType1 extends Export {
 //		accountList.add(accountService.queryById(28));
 		
 		String[] title = {"序号","学生姓名","公民身份证号","院系","专业","学号","性别","民族","入学年份","联系方式"};
-		String filePath = AppConfig.ctx+"csvTemplate\\附表4湖北省高校国家励志奖学金获奖学生初审名单表"+year+".xls";
+		String filePath = AppConfig.ctx+"csvTemplate\\附表1 湖北省高校国家励志奖学金获奖学生初审名单表"+year+".xls";
 		InputStream input = null;
 		try {
 			OutputStream os = new FileOutputStream(filePath);
