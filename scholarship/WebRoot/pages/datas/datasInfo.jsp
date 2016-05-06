@@ -271,6 +271,28 @@
 										
 										<!-- 身份证银行卡 -->
 										<tr>
+											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>手机号:</td>
+											<td style="padding-left: 20px">
+												<input type="text" name="accountPhone" id="accountPhone" value="${account.phone}"
+												class="validate[required] text-input"/><span id="">
+											</td>
+											<td align="right" style="font-size: 12px;"><span class="spanred"></span>QQ号:</td>
+											<td style="padding-left: 20px">
+												<input type="text" name="accountQq" id="accountQq" value="${account.qq}"
+											/><span id=""></td>
+										</tr>
+										
+										<!-- 空行 -->
+										<tr>
+											<td class="td_detail_separator">
+											</td>
+										</tr>
+										<tr>
+											<td class="td_detail_separator"></td>
+										</tr>
+										
+										<!-- 身份证银行卡 -->
+										<tr>
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>身份证号:</td>
 											<td style="padding-left: 20px"><input type="text" name="datas.idnumber" id="datasIdnumber" value="${datas.idnumber}"
 											class="validate[required] text-input"/><span id=""></td>

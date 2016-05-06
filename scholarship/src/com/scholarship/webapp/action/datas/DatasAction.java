@@ -43,6 +43,8 @@ public class DatasAction extends BaseAction {
 	private String accountId;
 	private String accountName;
 	private String accountSex;
+	private String accountPhone;
+	private String accountQq;
 	private String collegeId;
 	private String gradeId;
 	private String message;
@@ -157,14 +159,25 @@ public class DatasAction extends BaseAction {
 		account = accountService.queryById(account.getId());
 		datas.setAccount(account);
 		
+		//姓名
 		if(StringUtil.isNotBlank(accountName)&&!accountName.equals(account.getName())){
 			account.setName(accountName);
 			datas.setName(accountName);
 		}
+		//性别
 		if(StringUtil.isNotBlank(accountSex)&&!accountSex.equals(account.getSex())){
 			account.setSex(accountSex);
 			datas.setSex(accountSex);
 		}
+		//手机
+		if(StringUtil.isNotBlank(accountPhone)&&!accountPhone.equals(account.getPhone())){
+			account.setPhone(accountPhone);
+		}
+		//QQ
+		if(StringUtil.isNotBlank(accountQq)&&!accountQq.equals(account.getQq())){
+			account.setQq(accountQq);
+		}
+		
 		College college = null;
 		if(StringUtil.isNotBlank(collegeId))
 			college = collegeService.queryById(Integer.parseInt(collegeId));
@@ -435,6 +448,22 @@ public class DatasAction extends BaseAction {
 
 	public void setALERT(String aLERT) {
 		ALERT = aLERT;
+	}
+
+	public String getAccountPhone() {
+		return accountPhone;
+	}
+
+	public String getAccountQq() {
+		return accountQq;
+	}
+
+	public void setAccountPhone(String accountPhone) {
+		this.accountPhone = accountPhone;
+	}
+
+	public void setAccountQq(String accountQq) {
+		this.accountQq = accountQq;
 	}
 
 }
