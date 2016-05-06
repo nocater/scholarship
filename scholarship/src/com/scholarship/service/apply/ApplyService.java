@@ -43,6 +43,18 @@ public interface ApplyService{
 	 */
 	public List<Apply> query(Role role,Apply apply, Integer collegeId, Integer gradeId, Integer statusMax, Integer statusMin);
 	/***
+	 * 查询本年未处理(分页)(角色、审批参数，学院、班级、状态范围值)
+	 * @param role
+	 * @param apply
+	 * @param collegeId
+	 * @param gradeId
+	 * @param statusMax
+	 * @param statusMin
+	 * @return
+	 */
+	public SearchResult<Apply> queryCurrent(Page page, Role role,Apply apply, Integer collegeId, Integer gradeId, Integer statusMax, Integer statusMin);
+	
+	/***
 	 * 查询所有审批记录(分页)
 	 * @param role
 	 * @param map

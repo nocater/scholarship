@@ -53,21 +53,27 @@
 			if(choose==100){alert("请选择操作...");return;}
 			if($("input[type='checkbox'][name='ids']:checked").size()<1) {alert("请至少选择一条信息...");return;}
 			var ids="";
+			var ss="";
+			var sid="";
+			var flag = false;
 	    	$("input[type='checkbox'][name=ids]:checked").each(function(){   
-				if(ids!="")   
-					ids+=","+$(this).val();   
-				else 
-					ids=$(this).val();   
-	                   	
+				if(ids!=""){ 
+					ids+=","+$(this).val();  
+					sid = $("#select-scholarship-"+$(this).val()).val();
+					if(sid=="0") flag = true;
+					ss+=","+sid;
+				} else {
+					ids=$(this).val();  
+					sid = $("#select-scholarship-"+$(this).val()).val();
+					if(sid=="0") flag = true;
+					ss=sid;
+				}
 	    	});
-	    	var ss="";
-	    	$("select[name=select-scholarship]").each(function(){   
-	    		if(ss!="")   
-					ss+=","+$(this).val();
-				else 
-					ss=$(this).val();
-	                   	
-	    	});
+	    	
+	    	if(flag){
+	    		alert("奖助学金未分配不能执行审批通过!");return;
+	    	}
+	    	
 	    	if(confirm("确定执行此操作？")){
 	    		location.href="${ctx}/apply/execute.action?ids="+ids+"&ss="+ss+"&method="+choose;
 	    	}
@@ -295,7 +301,7 @@
 		    							<a href="${ctx}/datas/queryByAccount.action?AccountId=${account.id}">
 		    							${datasList[stat.index].name}</a>
 		    						</span><br/>
-		    						<select name="select-scholarship" style="width: 80px">
+		    						<select name="select-scholarship" id="select-scholarship-${id}" style="width: 80px">
 		    							<option value="0">无</option>
 		    							<c:forEach items="${scholarshipList}" var="s" varStatus="stats">
 		    								<option value="${s.id}"

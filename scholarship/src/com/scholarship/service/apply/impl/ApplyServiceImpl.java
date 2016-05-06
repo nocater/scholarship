@@ -44,7 +44,7 @@ public class ApplyServiceImpl extends BaseServiceImpl implements ApplyService {
 			map.put("roleId", Integer.toString(role.getId()));
 		}
 		
-		map.put("order", "CREATEDATE");
+		map.put("order", "UPDATEDATE");
 		
 		//查询数据
 		int rowsCount = applyDao.count(map);
@@ -100,6 +100,59 @@ public class ApplyServiceImpl extends BaseServiceImpl implements ApplyService {
 			map.put("gradeId", gradeId.toString());
 		}
 		return applyDao.query(map);
+	}
+	
+	/***
+	 * 查询(角色、审批参数，学院、班级、状态范围值)
+	 */
+	@Override
+	public SearchResult<Apply> queryCurrent(Page page, Role role, Apply apply, Integer collegeId, Integer gradeId,Integer statusMax, Integer statusMin) {
+		// TODO Auto-generated method stub
+		Map<String,String> map = new HashMap<String, String>();
+		if(role!=null&&role.getId()!=1){
+			map.put("roleId", Integer.toString(role.getId()));
+		}
+		if(apply!=null){
+			if(apply.getAccount()!=null&&apply.getAccount().getId()!=0){
+				map.put("accountId", Integer.toString(apply.getAccount().getId()));
+			}
+			if(StringUtil.isNotBlank(apply.getYear())){
+				map.put("year", apply.getYear());
+			}
+			if(apply.getStatus()!=0){
+				map.put("status", Integer.toString(apply.getStatus()));
+			}
+			if(apply.getAccount()!=null&&StringUtil.isNotBlank(apply.getAccount().getName())){
+				map.put("keyword", apply.getAccount().getName());
+			}
+		}
+		
+		//控制审批状态
+		if(statusMax!=null){
+			map.put("statusMax", statusMax.toString());
+		}
+		if(statusMin!=null){
+			map.put("statusMin", statusMin.toString());
+		}
+		//筛选学院班级
+		if(collegeId!=null){
+			map.put("collegeId", collegeId.toString());
+		}
+		if(gradeId!=null){
+			map.put("gradeId", gradeId.toString());
+		}
+		
+		//查询数据
+		int rowsCount = applyDao.count(map);
+		page.setTotalCount(rowsCount);
+		
+		List<Apply> list = applyDao.query(map, page.getStartIndex(), page.getPageSize());
+		// 处理分页
+		SearchResult<Apply> sr = new SearchResult<Apply>();
+		sr.setList(list);
+		sr.setPage(page);
+		
+		return sr;
 	}
 	
 	/***

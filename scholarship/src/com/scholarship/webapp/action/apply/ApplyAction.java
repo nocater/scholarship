@@ -88,8 +88,19 @@ public class ApplyAction extends BaseAction {
 	private String message;
 	
 	public String query(){
+		HttpServletRequest request = super.getRequest();
 		String year = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
 		role = (Role) getSession().getAttribute("LOGON_ROLE");
+		
+		Page page = null;
+		// 处理数据分页的起始条数
+		String startIndex = request.getParameter("startIndex");
+		if (StringUtil.isNotBlank(startIndex)) {
+			page = new Page(Page.DEFAULT_PAGE_SIZE, Integer.valueOf(startIndex));
+		} else {
+			page = new Page(Page.DEFAULT_PAGE_SIZE, 0);
+		}
+		
 		//根据角色查询未审批
 		apply = new Apply();
 		apply.setYear(year);
@@ -113,8 +124,11 @@ public class ApplyAction extends BaseAction {
 		if(StringUtil.isNotBlank(gradeId)&&!gradeId.trim().equals("0")){
 			gid=Integer.parseInt(gradeId);
 		}
-		applyList = applyService.query(role, apply,cid,gid,1,0);
-		
+//		applyList = applyService.query(role, apply,cid,gid,1,0);
+		//查询及分页
+		SearchResult<Apply> sr = applyService.queryCurrent(page,role, apply,cid,gid,1,0);
+		applyList = sr.getList();
+		request.setAttribute("Page", sr.getPage());
 		
 		accountList = new ArrayList<>();
 		datasList = new ArrayList<>();
