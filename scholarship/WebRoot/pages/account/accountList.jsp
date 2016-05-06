@@ -116,7 +116,7 @@
   		<table width="99%" border="0" cellspacing="0" cellpadding="0" style="margin-left: 4px; margin-top: 0px" align="center">
   			<tr>
   				<td>
-  					<div class=caozuobox style="height:75px;">
+  					<div class=caozuobox style="height:auto;">
 		  			<!-- toolbar area -->
 		  			<table width="900" border="0" cellspacing="0" cellpadding="0">
 			  			<tr height="30px">
