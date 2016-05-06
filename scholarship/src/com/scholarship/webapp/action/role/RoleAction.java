@@ -2,12 +2,14 @@ package com.scholarship.webapp.action.role;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.scholarship.module.account.Account;
 import com.scholarship.module.college.College;
 import com.scholarship.module.grade.Grade;
 import com.scholarship.module.role.Role;
@@ -111,9 +113,9 @@ public class RoleAction extends BaseAction{
 		if(role.getId()==1||role.getId()==2) return SUCCESS;
 		//ID为0 为新增角色 否则为修改角色
 		if(role.getId()==0){
-			roleService.insert(role);
+			this.insert(role);
 		}else{
-			roleService.update(role);
+			this.updateRole(role);
 		}
 		
 		//重置关联信息
@@ -224,6 +226,22 @@ public class RoleAction extends BaseAction{
 //			map.put("grade_id", g.getId());
 //			roleService.insertRelation(map);
 //		}
+		List<String> fieldList = new ArrayList<String>();
+		Account login_account = (Account) super.getSession().getAttribute("LOGON_ACCOUNT");
+		fieldList.add(login_account.getName()+"("+login_account.getAccno()+") 添加角色："+r.getName());
+		auditService.operator(login_account.getId(), "新增角色", getRequest().getRemoteAddr(), fieldList);
+	}
+	
+	/***
+	 * 更新角色
+	 * @param r
+	 */
+	public void updateRole(Role r){
+		roleService.update(r);
+		List<String> fieldList = new ArrayList<String>();
+		Account login_account = (Account) super.getSession().getAttribute("LOGON_ACCOUNT");
+		fieldList.add(login_account.getName()+"("+login_account.getAccno()+") 更新角色："+r.getName());
+		auditService.operator(login_account.getId(), "更新角色", getRequest().getRemoteAddr(), fieldList);
 	}
 	
 	/***

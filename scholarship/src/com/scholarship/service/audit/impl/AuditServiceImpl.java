@@ -157,7 +157,7 @@ public class AuditServiceImpl extends BaseServiceImpl implements AuditService {
 		// 操作者名称
 		if(accountId!=0){
 			Account account = accountDao.queryById(accountId);
-			audit.setAccountName(account.getName());
+			audit.setAccountName(account.getName()+"("+account.getAccno()+")");
 		}
 		// 行为时间
 		audit.setOperationTime(new Date());

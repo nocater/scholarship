@@ -81,12 +81,12 @@ public class RoleDaoImpl extends BaseDaoMyBatis implements RoleDao{
 	@Override
 	public int insert(Role role) {
 		// TODO Auto-generated method stub
-		int id = 0;
-		Object obj = sqlSession.insert("role_insert", role);
-		if(obj!=null){
-			id=Integer.parseInt(obj.toString());
-		}
-		return id;
+//		int id = 0;
+//		Object obj = sqlSession.insert("role_insert", role);
+//		if(obj!=null){
+//			id=Integer.parseInt(obj.toString());
+//		}
+		return sqlSession.insert("role_insert", role);
 	}
 
 	/***
