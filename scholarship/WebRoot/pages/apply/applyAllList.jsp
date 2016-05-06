@@ -64,8 +64,7 @@
 					sid=$(this).parent().next().next().next().next().children().val();
 					if(sid=="0") flag = true;
 					ss+=","+sid;
-				}
-				else {
+				} else {
 					ids=$(this).val();
 					sid=$(this).parent().next().next().next().next().children().val();
 					if(sid=="0") flag = true;
@@ -73,7 +72,7 @@
 				}      	
 	    	});
 	    	
-			if(choose == 1 && flag){alert("奖助学金未分配不能执行审批通过!");return}
+			if(choose == 1 && flag){alert("奖助学金未分配不能执行审批通过!");return;}
 			
 	    	if(confirm("确定执行此操作？")){
 	    		location.href="${ctx}/apply/executeAllYears.action?ids="+ids+"&ss="+ss+"&method="+choose;
