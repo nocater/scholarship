@@ -141,7 +141,7 @@
 	
 	<select id="grade_queryByCollege" parameterType="college" resultMap="grade">
 		<![CDATA[
-			SELECT * FROM grade WHERE COLLEGE_ID=#{id} AND STATUS != -1
+			SELECT * FROM grade WHERE COLLEGE_ID=#{id} AND STATUS != -1 order by name
 		]]>
 	</select>
 	

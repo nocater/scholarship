@@ -1,4 +1,4 @@
-﻿package com.scholarship.webapp.action.apply;
+package com.scholarship.webapp.action.apply;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -166,7 +166,14 @@ public class ApplyAction extends BaseAction {
 		
 		//获取分配学院及班级
 		collegeList = collegeService.queryByRole(role);
-		gradeList = gradeService.queryByRole(role);
+		if(StringUtil.isNotBlank(collegeId)&&!collegeId.trim().equals("0")){
+			College c = new College();
+			c.setId(Integer.parseInt(collegeId));
+			gradeList = gradeService.queryByCollege(c);
+		} else {
+			gradeList = gradeService.queryByRole(role);
+		}
+		
 		//获取奖学金		
 		scholarshipList = scholarshipService.queryAll();
 		
@@ -293,7 +300,14 @@ public class ApplyAction extends BaseAction {
 		
 		//获取分配学院及班级
 		collegeList = collegeService.queryByRole(role);
-		gradeList = gradeService.queryByRole(role);
+		if(StringUtil.isNotBlank(collegeId)&&!collegeId.trim().equals("0")){
+			College c = new College();
+			c.setId(Integer.parseInt(collegeId));
+			gradeList = gradeService.queryByCollege(c);
+		} else {
+			gradeList = gradeService.queryByRole(role);
+		}
+		
 		//获取奖学金		
 		scholarshipList = scholarshipService.queryAll();
 		

@@ -68,6 +68,7 @@ public class GradeAction extends BaseAction{
 	 * 查询分配的班级AJAX
 	 */
 	public void queryGradesAjax(){
+		role = (Role) getSession().getAttribute("LOGON_ROLE");
 		String collegeId = (String)getRequest().getParameter("id");
 		if(StringUtil.isNotBlank(collegeId)&&!collegeId.equals("0")){
 			College college = new College();
@@ -76,7 +77,9 @@ public class GradeAction extends BaseAction{
 		}else{
 			Map<String,String> map = new HashMap<String,String>();
 			map.put("status", "1");
-			gradeList = gradeService.query(map);
+			map.put("order", "name");
+//			gradeList = gradeService.query(map);
+			gradeList = gradeService.queryByRole(role);
 		}
 		
 		//JSON
