@@ -141,7 +141,13 @@ public class AccountAction extends BaseAction {
 		
 		//获取分配学院及班级
 		collegeList = collegeService.queryByRole(role);
-		gradeList = gradeService.queryByRole(role);
+		if(StringUtil.isNotBlank(collegeId)&&!collegeId.trim().equals("0")){
+			College c = new College();
+			c.setId(Integer.parseInt(collegeId));
+			gradeList = gradeService.queryByCollege(c);
+		} else {
+			gradeList = gradeService.queryByRole(role);
+		}
 		
 		return SUCCESS;
 	}
