@@ -83,14 +83,36 @@ public class DatasAction extends BaseAction {
 					case -1:allliedMessage+=a.getYear()+"年申请未通过<br/>";break;
 					case 0:allliedMessage+=a.getYear()+"年审核未审批<br/>";break;
 					case 1:allliedMessage+=a.getYear()+"年通过班主任审批<br/>";break;
-					case 2:allliedMessage+=a.getYear()+"年获得"+a.getScholarship().getCategory()+a.getScholarship().getLevel()+"<br/>";break;
+					case 2:
+						if(a.getScholarship()!=null){
+							allliedMessage+=a.getYear()+"年-";
+							if(a.getScholarship().getCategory()!=null){
+								allliedMessage+=a.getScholarship().getCategory();
+								if(a.getScholarship().getLevel()!=null){
+									allliedMessage+=a.getScholarship().getLevel();
+								}
+							}
+						}
+						allliedMessage+="<br/>";
+						break;
 				}
 			}else{
 				switch(a.getStatus()){
 				case -1:allpyMessage="未通过";break;
 				case 0:allpyMessage="未审批";break;
 				case 1:allpyMessage="已通过班主任审批："+a.getScholarship().getCategory()+a.getScholarship().getLevel();break;
-				case 2:allpyMessage="已审批为"+a.getScholarship().getCategory()+a.getScholarship().getLevel();break;
+				case 2:
+					if(a.getScholarship()!=null){
+						allliedMessage+=a.getYear()+"年-";
+						if(a.getScholarship().getCategory()!=null){
+							allliedMessage+=a.getScholarship().getCategory();
+							if(a.getScholarship().getLevel()!=null){
+								allliedMessage+=a.getScholarship().getLevel();
+							}
+						}
+					}
+					allliedMessage+="<br/>";
+					break;
 				}
 			}
 		}

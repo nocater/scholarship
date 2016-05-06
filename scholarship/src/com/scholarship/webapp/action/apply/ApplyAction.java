@@ -1,4 +1,4 @@
-package com.scholarship.webapp.action.apply;
+﻿package com.scholarship.webapp.action.apply;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -146,7 +146,18 @@ public class ApplyAction extends BaseAction {
 						case -1:allliedMessage+=as.getYear()+"年申请未通过<br/>";break;
 						case 0:allliedMessage+=as.getYear()+"年审核未审批<br/>";break;
 						case 1:allliedMessage+=as.getYear()+"年通过班主任审批<br/>";break;
-						case 2:allliedMessage+=as.getYear()+"年-"+as.getScholarship().getCategory()+as.getScholarship().getLevel()+"<br/>";break;
+						case 2:
+							if(as.getScholarship()!=null){
+								allliedMessage+=as.getYear()+"年-";
+								if(as.getScholarship().getCategory()!=null){
+									allliedMessage+=as.getScholarship().getCategory();
+									if(as.getScholarship().getLevel()!=null){
+										allliedMessage+=as.getScholarship().getLevel();
+									}
+								}
+							}
+							allliedMessage+="<br/>";
+							break;
 					}
 				}
 			}
