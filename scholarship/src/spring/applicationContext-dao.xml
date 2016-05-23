@@ -36,11 +36,11 @@
 	<bean id="scholarshipDao" class="com.scholarship.dao.scholarship.impl.ScholarshipDaoImpl" parent="baseDaoMyBatis"/>
 	<!-- 账户DAO -->
 	<bean id="accountDao" 	class="com.scholarship.dao.account.impl.AccountDaoImpl" parent="baseDaoMyBatis"/>
-	<!-- 审计DAO -->
-	<bean id="auditDao"		class="com.scholarship.dao.audit.impl.AuditDaoImpl" parent="baseDaoMyBatis"></bean>
 	<!-- 数据DAO -->
 	<bean id="datasDao"		class="com.scholarship.dao.datas.impl.DatasDaoImpl" parent="baseDaoMyBatis"></bean>
 	<!-- 申请DAO -->
 	<bean id="applyDao"		class="com.scholarship.dao.apply.impl.ApplyDaoImpl" parent="baseDaoMyBatis"></bean>
 	<!-- <bean id="Dao"		class="com.scholarship.dao." parent="baseDaoMyBatis"></bean> -->
+	<!-- 审计DAO
+	<bean id="auditDao"		class="com.scholarship.dao.audit.impl.AuditDaoImpl" parent="baseDaoMyBatis"></bean> -->
 </beans>

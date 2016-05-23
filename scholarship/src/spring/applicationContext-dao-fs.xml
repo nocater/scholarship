@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+	default-lazy-init="true">
+	
+	<!-- 创建SqlSessionFactory，同时指定数据源-->
+	<bean id="sqlSessionFactory-fs" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+		<!--dataSource属性指定要用到的连接池--> 
+		<property name="dataSource" ref="dataSource-fs"/>
+		<!--configLocation属性指定mybatis的核心配置文件-->
+		<property name="configLocation" value="classpath:sql-map-config.xml"/>
+  	</bean> 
+  	
+	<bean id="sqlSession-fs"	class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory-fs"/>
+	</bean>
+  	
+	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager"	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource"	ref="dataSource-fs" />
+    </bean>
+	
+	<!-- BaseDao-fs 所有DAO继承此DAO -->
+	<bean id="baseDaoMyBatis-fs" class="com.scholarship.dao.mybatis.BaseDaoMyBatis">
+		<property name="sqlSession" ref="sqlSession-fs"></property>
+	</bean>
+	
+	<!-- 审计DAO -->
+	<bean id="auditDao" 	class="com.scholarship.dao.audit.impl.AuditDaoImpl" parent="baseDaoMyBatis-fs"/>
+</beans>
