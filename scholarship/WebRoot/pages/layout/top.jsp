@@ -130,15 +130,15 @@
 										<td valign="top" align="left">
 											<!-- LOGO --> <%-- <img src="${ctx}/images/logo.jpg" alt="" name="topLogo" width="300" height="65" id="topLogo" style="" /> --%>
 										</td>
-										<%-- <s:if test="@com.fort.module.conf.AppConfig@DIS_USE_NUM >= 90">
-			                <td>
+										<%-- <s:if test="@com.fort.module.conf.AppConfig@DIS_USE_NUM >= 90"> </s:if> --%>
+			                <!-- <td>
 			                <marquee direction=left behavior=scroll scrolldelay=150 onmouseover=this.stop() onmouseout=this.start()>
-			                	<font color="red">
-			                		<b>磁盘空间已占用<s:property value="@com.fort.module.conf.AppConfig@DIS_USE_NUM"/>%，请联系系统管理员及时清理！</b>
+			                	<font color="red" size="5">
+			                		<b>系统提示：系统将于5-6 23：30-23：40升级 届时网站不能登录请注意</b>
 			                	</font>
 			                	</marquee>
-			                </td>
-		                </s:if> --%>
+			                </td> -->
+		               
 										<td align="right">
 											<div class="topinfo" id="topinfo">
 												<table width="100%" border="0" cellpadding="0"
