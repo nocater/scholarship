@@ -68,6 +68,9 @@
 					<table width="99%" border="0" cellspacing="10" cellpadding="10" >
 						<!-- 空行 -->
 						<tr>
+			  				<td align="left"><a href="#" class="hand" class="hand" onclick="newrole('NAME');">&nbsp;<img src="${ctx}/images/arrow_03.gif"/>&nbsp;&nbsp;按名字排序</div></td>
+			  			</tr>
+						<tr>
 			  				<td align="left"><a href="#" class="hand" class="hand" onclick="newrole('CREATEDATE');">&nbsp;<img src="${ctx}/images/arrow_03.gif"/>&nbsp;&nbsp;最近新增班级</div></td>
 			  			</tr>
 			  			<tr>
