@@ -91,8 +91,15 @@ public class RoleAction extends BaseAction{
 	 * @return
 	 */
 	public String queryById(){
-		if(StringUtil.isNotBlank(roleId))
+		if(StringUtil.isNotBlank(roleId)){
 			role = roleService.queryById(Integer.parseInt(roleId));
+		}
+		
+		if(role==null){
+			//防止页面id为空 提交注入id出错
+			role = new Role();
+			role.setId(0);
+		}
 		
 		try {
 			CollegeTree collegetree = new CollegeTree(collegeService, super.getRequest().getContextPath());
@@ -226,6 +233,7 @@ public class RoleAction extends BaseAction{
 //			map.put("grade_id", g.getId());
 //			roleService.insertRelation(map);
 //		}
+		//审计
 		List<String> fieldList = new ArrayList<String>();
 		Account login_account = (Account) super.getSession().getAttribute("LOGON_ACCOUNT");
 		fieldList.add(login_account.getName()+"("+login_account.getAccno()+") 添加角色："+r.getName());
@@ -238,6 +246,8 @@ public class RoleAction extends BaseAction{
 	 */
 	public void updateRole(Role r){
 		roleService.update(r);
+		
+		//审计
 		List<String> fieldList = new ArrayList<String>();
 		Account login_account = (Account) super.getSession().getAttribute("LOGON_ACCOUNT");
 		fieldList.add(login_account.getName()+"("+login_account.getAccno()+") 更新角色："+r.getName());
@@ -250,6 +260,13 @@ public class RoleAction extends BaseAction{
 	 */
 	public void delete(Role r){
 //		roleService.deleteRelation(r);  //已转移到Service实现
+		
+		//审计
+		List<String> fieldList = new ArrayList<String>();
+		Account login_account = (Account) super.getSession().getAttribute("LOGON_ACCOUNT");
+		fieldList.add(login_account.getName()+"("+login_account.getAccno()+") 删除角色："+r.getName());
+		auditService.operator(login_account.getId(), "删除角色", getRequest().getRemoteAddr(), fieldList);
+		
 		roleService.delete(r.getId());
 	}
 	
