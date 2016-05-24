@@ -261,6 +261,7 @@
 				  					<option value="5">明珠奖学金发放登记表</option>
 				  					<option value="6">明珠助学金发放登记表</option>
 				  					<option value="7">明珠助学金发放备案表</option>
+				  					<option value="10">自定义所有数据表格</option>
 			  					</select>
 			  				</td>
 			  				<td />

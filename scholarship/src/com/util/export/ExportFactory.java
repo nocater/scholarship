@@ -14,6 +14,7 @@ import com.util.export.impl.ExportType4;
 import com.util.export.impl.ExportType5;
 import com.util.export.impl.ExportType6;
 import com.util.export.impl.ExportType7;
+import com.util.export.impl.ExportTypeCustom;
 
 public class ExportFactory {
 	public static ExportXSL getInstance(String type,Account account, AccountService accountService, ApplyService applyService,
@@ -47,6 +48,10 @@ public class ExportFactory {
 			
 		case "7":
 			export = new ExportType7(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
+			break;
+		
+		case "10":
+			export = new ExportTypeCustom(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
 			break;
 			
 		default:
