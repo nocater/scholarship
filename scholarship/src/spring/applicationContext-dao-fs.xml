@@ -9,7 +9,7 @@
 		<!--dataSource属性指定要用到的连接池--> 
 		<property name="dataSource" ref="dataSource-fs"/>
 		<!--configLocation属性指定mybatis的核心配置文件-->
-		<property name="configLocation" value="classpath:sql-map-config.xml"/>
+		<property name="configLocation" value="classpath:sql-map-config-fs.xml"/>
   	</bean> 
   	
 	<bean id="sqlSession-fs"	class="org.mybatis.spring.SqlSessionTemplate">
@@ -28,4 +28,6 @@
 	
 	<!-- 审计DAO -->
 	<bean id="auditDao" 	class="com.scholarship.dao.audit.impl.AuditDaoImpl" parent="baseDaoMyBatis-fs"/>
+	<!-- 设置DAO -->
+	<bean id="settingDao" 	class="com.scholarship.dao.setting.impl.SettingDaoImpl" parent="baseDaoMyBatis-fs"/>
 </beans>

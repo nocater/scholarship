@@ -32,23 +32,13 @@
 			type="com.wotao.taotao.persist.test.dataobject.TestBean" />
 	</typeAliases> -->
 	<typeAliases>
-		<typeAlias alias="account" 		type="com.scholarship.module.account.Account" />
-		<typeAlias alias="role" 		type="com.scholarship.module.role.Role" />
-		<typeAlias alias="college" 		type="com.scholarship.module.college.College" />
-		<typeAlias alias="grade" 		type="com.scholarship.module.grade.Grade" />
-		<typeAlias alias="scholarship" 	type="com.scholarship.module.scholarship.Scholarship" />
-		<typeAlias alias="apply"		type="com.scholarship.module.apply.Apply"/>
-		<typeAlias alias="datas"		type="com.scholarship.module.datas.Datas"/>
+		<typeAlias alias="audit"	type="com.scholarship.module.audit.Audit"/>
+		<typeAlias alias="setting"	type="com.scholarship.module.conf.setting.Setting"/>
 	</typeAliases>
 	
 	<!-- 非注解的sql映射文件配置，如果使用mybatis注解，该mapper无需配置，但是如果mybatis注解中包含@resultMap注解，则mapper必须配置，给resultMap注解使用 -->
 	<mappers>
-		<mapper resource="sqlmap/account/accountSQL.xml" />
-		<mapper resource="sqlmap/role/roleSQL.xml"/>
-		<mapper resource="sqlmap/college/collegeSQL.xml"/>
-		<mapper resource="sqlmap/grade/gradeSQL.xml"/>
-		<mapper resource="sqlmap/scholarship/scholarshipSQL.xml"/>
-		<mapper	resource="sqlmap/apply/applySQL.xml"/>
-		<mapper resource="sqlmap/datas/datasSQL.xml"/>
+		<mapper	resource="sqlmap/audit/auditSQL.xml"/>
+		<mapper resource="sqlmap/setting/settingSQL.xml"/>
 	</mappers>
 </configuration>
