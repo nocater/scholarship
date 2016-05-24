@@ -216,11 +216,17 @@ public class AccountAction extends BaseAction {
 			//新增账户
 			insert(account);
 		}else{
-			if(StringUtil.isNotBlank(accountPassword)) 
+			if(StringUtil.isNotBlank(accountPassword)) {
 				account.setPassword(MD5.getMD5Password(accountPassword));
-			else
+			} else {
 				account.setPassword(accountService.queryById(account.getId()).getPassword());
+			}
 			this.updateAccount(account);
+			
+			//修改学生信息更新资料中学院班级   保持同步
+			Datas d = datasService.queryByAccount(account, "0");
+			d.setCollege(account.getCollege().getName());
+			d.setGrade(account.getGrade().getName());
 		}
 		
 		return SUCCESS;
