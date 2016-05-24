@@ -56,7 +56,7 @@
 				if(ids!="")   
 					ids+=","+$(this).val();   
 				else 
-					ids=$(this).val();   
+					ids=$(this).val();
 	                   	
 	    	});
 	    	
