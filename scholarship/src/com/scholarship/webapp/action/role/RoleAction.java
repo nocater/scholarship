@@ -182,7 +182,7 @@ public class RoleAction extends BaseAction{
 					for(int i = 0;i< arrays.length;i++){
 						if(!arrays[i].equals("1")&&!arrays[i].equals("2")){//1 2为管理员和学生 内置角色
 							role = roleService.queryById(Integer.parseInt(arrays[i]));
-							delete(role);
+							this.delete(role);
 						}
 					}
 				}

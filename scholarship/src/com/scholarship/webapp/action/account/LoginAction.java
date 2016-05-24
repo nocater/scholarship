@@ -115,6 +115,7 @@ public class LoginAction extends BaseAction{
 			
 			//菜单  非学生默认审批模块
 			Role role = account.getRole();
+			if(role == null ){super.addActionMessage("角色为空!");return INPUT;}
 			if(role.getId()!=2) session.setAttribute("MENU", "1");
 			if(role.getCollegeList().size()>0||role.getId()==1) session.setAttribute("SHOWGRADE", 1);
 		}else{
