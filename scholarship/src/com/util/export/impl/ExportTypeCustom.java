@@ -1,10 +1,11 @@
-﻿package com.util.export.impl;
+package com.util.export.impl;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,12 +65,19 @@ public class ExportTypeCustom extends Export {
 		map.put("year", year);//年份
 		map.put("status", "2");//审批已通过
 		
-//		String ids = es.getIds();
-		String ids = "12";
-		String[] l = null;
-		if(StringUtil.isNotBlank(ids)){
-			l = ids.split(",");
+
+		int i =1;
+		List<String> l = new ArrayList<>();
+		while(null!=scholarshipServie.queryById(i)){
+			l.add(String.valueOf(i++));
 		}
+		
+//		String ids = es.getIds();
+//		String ids ="1,2,3,4,5,6,7,8,9,10,11"
+//		String[] l;
+//		if(StringUtil.isNotBlank(ids)){
+//			l = ids.split(",");
+//		}
 		
 		String filePath = AppConfig.ctx+"csvTemplate\\自定义表格"+year+".xls";
 		InputStream input = null;
@@ -78,6 +86,7 @@ public class ExportTypeCustom extends Export {
 			WritableWorkbook wwb = Workbook.createWorkbook(os);
 			
 			if(l!=null){
+				System.out.println("==============Start ExportCustomerTable");
 				for(String id : l){
 					Scholarship s = scholarshipServie.queryById(Integer.parseInt(id));
 					String tip = s.getCategory()+s.getLevel();
@@ -87,6 +96,7 @@ public class ExportTypeCustom extends Export {
 					WritableSheet sheet = wwb.createSheet(tip, 0);
 					this.werite(accountList, sheet, year, tip,s);
 				}
+				System.out.println("==============End ExportCustomerTable");
 			}
 	        
 			wwb.write();
