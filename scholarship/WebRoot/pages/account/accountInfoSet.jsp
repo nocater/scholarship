@@ -200,7 +200,15 @@
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>学院:</td>
 											<td style="padding-left: 20px">
 												<s:hidden name="collegeId" id="collegeId"/>
+												
+												<c:if test="${sessionScope.LOGON_ROLE.id != 2}">
 												<select style="width:135px;" id="select-college" onchange="setGrades(this.value)">
+												</c:if>
+												
+												<c:if test="${sessionScope.LOGON_ROLE.id eq 2}">
+												<select style="width:135px;" id="select-college" disabled="disabled">
+												</c:if>
+												
 													<option value="0">无</option>
 													<c:forEach items="${collegeList}" var="c" varStatus="stat">
 														<option value="${c.id}"
@@ -231,7 +239,14 @@
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>班级:</td>
 											<td style="padding-left: 20px">
 												<s:hidden name="gradeId" id="gradeId"/>
-												<select style="width:135px;" id="select-grade">
+												
+												<c:if test="${sessionScope.LOGON_ROLE.id != 2}">
+													<select style="width:135px;" id="select-grade">
+												</c:if>
+												
+												<c:if test="${sessionScope.LOGON_ROLE.id eq 2}">
+													<select style="width:135px;" id="select-grade" disabled="disabled">
+												</c:if>
 													<option value="0">无</option>
 													<c:forEach items="${gradeList}" var="g" varStatus="stat">
 														<option value="${g.id}"

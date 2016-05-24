@@ -205,7 +205,7 @@
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>学院:</td>
 											<td style="padding-left: 20px">
 												<s:hidden name="collegeId" id="collegeId"/>
-												<select style="width: 137px" id="select-college" onchange="setGrades(this.value)">
+												<select style="width: 137px" id="select-college" onchange="setGrades(this.value)" disabled="disabled">
 								  					<option value="0">--未选择--</option>
 								  					<c:forEach items="${collegeList}" var="c" varStatus="stat">
 								  						<option value="${c.id}"
@@ -217,7 +217,7 @@
 											<td align="right" style="font-size: 12px;"><span class="spanred">*</span>班级:</td>
 											<td style="padding-left: 20px">
 												<s:hidden name="gradeId" id="gradeId"/>
-												<select style="width: 137px" id="select-grade">
+												<select style="width: 137px" id="select-grade" disabled="disabled">
 								  					<option value="0">--未选择--</option>
 								  					<c:forEach items="${gradeList}" var="g" varStatus="stat">
 								  						<option value="${g.id}"
