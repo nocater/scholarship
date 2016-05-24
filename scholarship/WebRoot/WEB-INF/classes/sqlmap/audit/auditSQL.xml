@@ -13,7 +13,7 @@
 		<result property="operation" 		column="operation"		/>
 		<result	property="note"				column="note"			/>
         <result property="sourceIP" 		column="source_ip"		/>
-        <association property="account"		column="account_id" javaType="account" 	select="com.scholarship.dao.account.impl.AccountDaoImpl.account_queryById"/>
+        <!-- <association property="account"		column="account_id" javaType="account" 	select="com.scholarship.dao.account.impl.AccountDaoImpl.account_queryById"/> -->
     </resultMap>
      
 	<select id="audit_count" parameterType="java.util.HashMap" resultType="int">

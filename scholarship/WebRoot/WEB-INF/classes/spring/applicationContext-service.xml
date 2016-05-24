@@ -71,6 +71,12 @@
 		parent="baseService">
 		<property name="datasDao" ref="datasDao"/>
 	</bean>
+	
+	<bean id="settingService"
+		class="com.scholarship.service.setting.impl.SettingServiceImpl"
+		parent="baseService">
+		<property name="settingDao" ref="settingDao"/>
+	</bean>
 	<!-- <bean id="Service"
 		class="com.scholarship.service."
 		parent="baseService">

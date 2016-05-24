@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 这里的namespace名字必须为执行该sql的dao地址  -->
+<mapper namespace="com.scholarship.dao.setting.impl.SettingDaoImpl">
+	
+	<resultMap type="com.scholarship.module.conf.setting.Setting" id="setting">
+   		<result property="id" 				column="id" 			/>
+   		<result property="key" 				column="setkey" 		/>
+   		<result property="value" 			column="setvalue"		/>
+   		<result property="type" 			column="settype" 		/>
+   	</resultMap>
+	
+	<!-- 查询 -->
+	<select id="setting_query" parameterType="java.util.HashMap" resultMap="setting">
+		SELECT * FROM setting s WHERE 1=1
+		<if test="key != null">
+			s.setkey = #{key}
+		</if>
+		<if test="value != null">
+			s.setvalue = #{value}
+		</if>
+		<if test="type != null">
+			s.settype = #{type}
+		</if>
+	</select>
+	
+	<!-- 查询ById -->
+	<select id="setting_queryById" resultMap="setting">
+		SELECT * FROM setting s WHERE s.id=#{id}
+	</select>
+	
+	<!-- 统计Key -->
+	<select id="setting_countKey" resultType="int" parameterType="String">
+		SELECT count(setkey) FROM setting s WHERE s.setkey=#{key}
+	</select>
+	
+	<!-- 查询Value ByKey -->
+	<select id="setting_queryByKey" resultType="String">
+		<![CDATA[
+			SELECT s.setValue FROM setting s WHERE s.setkey = #{key}
+		]]>
+	</select>
+	
+	<!-- 新增 -->
+	<!-- 添加如下代码会自动覆盖传如对象ID值   方法直接返回影响行数(如返回-2147482646 请修改defaultExecutorType不为BATCH)-->
+	<insert id="setting_insert" parameterType="setting" useGeneratedKeys="true" keyColumn="id">
+		INSERT INTO setting 
+				( setkey, setvalue, settype )		 
+		VALUES 
+				( #{key}, #{value}, #{type} )
+		<selectKey resultType="int" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<!-- 更新 -->
+	<update id="setting_update" parameterType="setting">
+		<![CDATA[
+			UPDATE setting s SET 
+				s.setvalue = #{value},s.settype=#{type} 
+			WHERE s.setkey = #{key}
+		]]>
+	</update>
+	
+	<!-- 更新ById -->
+	<update id="setting_updateById" parameterType="setting">
+		<![CDATA[
+			UPDATE setting s SET 
+				s.setkey = #{key},s.setvalue = #{value},s.settype=#{type} 
+			WHERE s.id = #{id}
+		]]>
+	</update>
+	
+	<!-- 根据Key删除 -->
+	<delete id="setting_deleteByKey">
+		DELETE FROM setting s WHERE s.setkey=#{key}
+	</delete>
+	
+	<!-- 根据Key删除 -->
+	<delete id="setting_deleteById">
+		DELETE FROM setting s WHERE s.id = #{id}
+	</delete>
+	
+	<!-- 根据Key删除 -->
+	<delete id="setting_deleteByType" >
+		DELETE FROM setting s WHERE s.settype = #{type}
+	</delete>
+	
+	<!-- 根据Key&Type删除 -->
+	<delete id="setting_deleteByKeyAndType" parameterType="java.util.HashMap">
+		DELETE FROM setting s WHERE s.setkey = #{key} AND s.settype = #{type}
+	</delete>
+</mapper>

@@ -91,7 +91,11 @@
 	
 	<bean id="configAction" class="com.scholarship.webapp.action.config.ConfigAction" scope="prototype" parent="baseAction">
 		<property name="auditService" ref="auditService"/>
+		<property name="settingService" ref="settingService"/>
 	</bean>
+	
+	<!-- 设置Action -->
+	<bean id="settingAction" class="com.scholarship.webapp.action.setting.SettingAction" scope="prototype" parent="baseAction"></bean>
 	
 	<!-- 关于 -->
 	<bean id="aboutAction" class="com.scholarship.webapp.action.about.AboutAction" scope="prototype" parent="baseAction">
