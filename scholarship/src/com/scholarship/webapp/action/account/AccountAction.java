@@ -267,7 +267,7 @@ public class AccountAction extends BaseAction {
 				if(StringUtil.isNotBlank(ids)){
 					String[] arrays = ids.split(",");
 					for(int i = 0;i< arrays.length;i++){
-						if(!arrays[i].equals("1")&&!arrays[i].equals("2")){//1 2为管理员和学生 内置角色
+						if(!arrays[i].equals("1")){//管理员不能被删除
 							account = accountService.queryById(Integer.parseInt(arrays[i]));
 							this.delete(account);
 						}
