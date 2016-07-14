@@ -225,8 +225,10 @@ public class AccountAction extends BaseAction {
 			
 			//修改学生信息更新资料中学院班级   保持同步
 			Datas d = datasService.queryByAccount(account, "0");
-			d.setCollege(account.getCollege().getName());
-			d.setGrade(account.getGrade().getName());
+			if(d!=null){
+				if(d.getCollege()!=null){d.setCollege(account.getCollege().getName());}
+				if(d.getGrade()!=null){d.setGrade(account.getGrade().getName());}
+			}
 		}
 		
 		return SUCCESS;

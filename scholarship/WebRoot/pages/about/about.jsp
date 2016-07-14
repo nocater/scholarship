@@ -17,25 +17,25 @@
     		<div class="aboutInfo">
     			<table width="100%" border="0" cellpadding="15" cellspacing="0">
     			<tr>
-    				<td>版本类型：内测版本</td>
+    				<td>版本类型：正式版本</td>
     			</tr>
     			<tr>
-    				<td>版本号：5月6 22:00</td>
+    				<td>版本号：V1.528</td>
     			</tr>
     			
     			<tr>
-    				<td>增加功能 <br/>
+    				<td><br/>
     					<br/>
     				</td>
     			</tr>
     			<tr>
-    				<td>修复：审批奖项不匹配
-    					<br/>优化 下拉班级排序  等
+    				<td>
+    					<br/>
     				</td>
     			</tr>
     			<tr>
-    				<td>备注：如有问题请与意见可截图发送至 cs781503542@qq.com 
-    					<br/>美队三蛮好看的~
+    				<td>
+    					<br/>
     				</td>
     			</tr>
     			<tr>

@@ -10,13 +10,13 @@ html{
 body{
 	margin:0px auto;
 	padding: 0px 0px;
-	background:url("/fort/images/login_img/login.jpg") 10% 10% repeat;
+	background:url("/scholarship/images/login_img/login.jpg") 10% 10% repeat;
 	overflow:hidden;
 	}
 .login_con{
 	margin:200px auto;
 	padding:0px 0px;
-	background:url("/fort/images/login_img/log.png") 0% 0% no-repeat;
+	background:url("/scholarship/images/login_img/log.png") 0% 0% no-repeat;
 	width:800px;
 	height:260px;
 	border:none;}
@@ -94,7 +94,7 @@ body{
 	width:80px;
 	height:27px;
 	border:none;
-	background:url(/fort/images/login_img/button.png) 0% 0% no-repeat;}
+	background:url(/scholarship/images/login_img/button.png) 0% 0% no-repeat;}
 .inputsubmit_g{
 	border:none;
 	float:right;
@@ -102,7 +102,7 @@ body{
 	padding:0px 0px;
 	width:82px;
 	height:29px;
-	background:url(/fort/images/login_img/button_bg.png) 0% 0% no-repeat;
+	background:url(/scholarship/images/login_img/button_bg.png) 0% 0% no-repeat;
 	}
 .login_button:hover{
 	cursor:hand ;
@@ -121,7 +121,7 @@ body{
     padding: 0px 0px 0px 4px;
     height:27px;
     line-height: 25px; 
-    background:url(/fort/images/login_img/input_b.png) 0% 0%  no-repeat; 
+    background:url(/scholarship/images/login_img/input_b.png) 0% 0%  no-repeat; 
     border:medium none transparent;
     width:190px;
     font-family:"幼圆","黑体", "宋体","Comic Sans MS",sans-serif;
@@ -134,14 +134,14 @@ body{
     padding:0px 0px;
     width:200px;
     height:30px;
-    background:url(/fort/images/login_img/input_bg_b_b.png) 0% 0% no-repeat;
+    background:url(/scholarship/images/login_img/input_bg_b_b.png) 0% 0% no-repeat;
     }
 .login_input_click_input_code{
 	margin: 1px 1px 1px 1px;
     padding: 0px 0px 0px 4px;
     height:27px;
     line-height: 25px;
-    background:url(/fort/images/login_img/code_b_b.png) 0% 0% no-repeat; 
+    background:url(/scholarship/images/login_img/code_b_b.png) 0% 0% no-repeat; 
     border:none medium  transparent;
     width:195px;
     font-family:"幼圆","黑体", "宋体","Comic Sans MS",sans-serif;
@@ -160,10 +160,10 @@ body{
     cursor:pointer;
 }
 .li_bg{
-	background:url(/fort/images/login_img/_input_bg_.png) 0% 0% no-repeat;
+	background:url(/scholarship/images/login_img/_input_bg_.png) 0% 0% no-repeat;
 }
 .li_bg_code{
-	background:url(/fort/images/login_img/code_b_bg.png) 0% 0% no-repeat;
+	background:url(/scholarship/images/login_img/code_b_bg.png) 0% 0% no-repeat;
 }
 
 .label_input{
@@ -206,7 +206,7 @@ body{
     background: #FFFFFF;
     display: none;
     z-index: 10;
-    background:  url(/fort/images/login_img/dynamic_OTP.png) 0 0 repeat;
+    background:  url(/scholarship/images/login_img/dynamic_OTP.png) 0 0 repeat;
 }
 
 .over_Day{
@@ -221,7 +221,7 @@ body{
     background: #FFFFFF;
     display: none;
     z-index: 10;
-    background:  url(/fort/images/login_img/overDay_OTP.png) 0 0 repeat;
+    background:  url(/scholarship/images/login_img/overDay_OTP.png) 0 0 repeat;
 }
 
 
@@ -241,7 +241,7 @@ body{
 }
 
 .dynamic_li_bg{
-	background:url(/fort/images/login_img/dynamic_input.png) 0% 0% no-repeat;
+	background:url(/scholarship/images/login_img/dynamic_input.png) 0% 0% no-repeat;
 	width:200px;
     height:30px;
     
@@ -254,7 +254,7 @@ body{
     border:none medium  transparent;
 }
 .dynamic_button{
-	background:url(/fort/images/login_img/dynamic_button.png) 0% 0% no-repeat;
+	background:url(/scholarship/images/login_img/dynamic_button.png) 0% 0% no-repeat;
 	padding:0px 0px;
 	margin:0px auto;
 	border:none medium transparent;
@@ -317,7 +317,7 @@ body{
 	border:none;
 	width:58px;
 	height:21px;
-	background: url(/fort/images/dy_button.png) 0 0 repeat;
+	background: url(/scholarship/images/dy_button.png) 0 0 repeat;
 	cursor:hand ;
     cursor:pointer;
 }
@@ -329,7 +329,7 @@ body{
     top:0px;
     left:0px; 
     z-index:1;
-    background:#666666 url("/fort/images/ui_40x40-.png") 0 0 repeat;
+    background:#666666 url("/scholarship/images/ui_40x40-.png") 0 0 repeat;
     opacity: .50;
     filter:Alpha(Opacity=50); 
     display: none;
