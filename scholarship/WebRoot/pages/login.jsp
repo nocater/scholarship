@@ -30,7 +30,6 @@
 	}
 	$(document).ready(function(){
 		console.log("作者：黄冈师范学院-计科1302  陈帅 ");
-		window.open('${ctx}/pages/introduce.jsp');
 		$("#loginAccno").focus();		
 	});
 	function submitForm(){
