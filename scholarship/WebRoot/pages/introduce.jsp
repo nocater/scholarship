@@ -26,8 +26,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<tr>
   			<td width="200"></td>
   			<td>
-  				</br>
-  				</br>
   				账号：本人学号</br>
 				初始密码：本人学号</br>
 				<font color="red">退出时请务必点击右上角“注销”后再关闭网页</font></br>
