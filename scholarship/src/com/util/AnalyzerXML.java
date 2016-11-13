@@ -267,7 +267,7 @@ public class AnalyzerXML
 					grade.setGrade(g_grade);
 				}else{
 					dispute = false;
-					errorList.add("第"+i+"行班级入学年份丢失");
+					errorList.add("第"+i+"行班级年级丢失");
 				}
 				
 				//入学年份
@@ -277,7 +277,7 @@ public class AnalyzerXML
 					grade.setInyear(g_inyear);
 				}else{
 					dispute = false;
-					errorList.add("第"+i+"行班级年级丢失");
+					errorList.add("第"+i+"行班级入学年份丢失");
 				}
 				
 				//学年制

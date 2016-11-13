@@ -6,7 +6,7 @@
 	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
 	<constant name="struts.i18n.reload" value="false" />
 	<!-- 开发模式 true 在页面显示错误 -->
-	<constant name="struts.devMode" value="false" />
+	<constant name="struts.devMode" value="true" />
 	<constant name="struts.configuration.xml.reload" value="false" />
 	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
 	<constant name="struts.serve.static" value="true" />

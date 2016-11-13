@@ -287,7 +287,7 @@
 			g.empty();
 			g.append("<option value=\"\" disabled=\"true\">已选择班级：</option>");
 			var grades = $("#select_grades").val();	
-			console.log(grades);
+			//console.log(grades);
 			var t_gra = grades.split(",");
 			for(var i=0;i<t_gra.length-1;i++){
 				g.append("<option class='selectEmployee' value=\""
