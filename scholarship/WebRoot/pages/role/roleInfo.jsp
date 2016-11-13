@@ -16,6 +16,8 @@
 	<!-- dialog -->
 	<script type='text/javascript' src="${ctx}/scripts/jquery-1.7.2.min.js"></script>
 	<script type='text/javascript' src="${ctx}/scripts/jquery-ui.custom.min_2.js"></script>
+	<!-- dialog 已引用 <link href="${ctx}/styles/jquery-ui.custom.css" rel="stylesheet" type="text/css"> -->
+	
 	<!-- 工具JS -->
 	<script type="text/javascript" src="${ctx}/scripts/util.js"></script>
 	<!-- 验证框架 -->
