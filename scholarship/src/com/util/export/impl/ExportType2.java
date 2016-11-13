@@ -74,7 +74,7 @@ public class ExportType2 extends Export {
 //		List<Account> accountList = new ArrayList<Account>();
 //		accountList.add(accountService.queryById(28));
 		
-		String[] title = {"序号","学生姓名","性别","出生年月","民族","入学年份","身份证号","专业","一等","二等","三等","湖北省生源","外省生源","联系方式"};
+		String[] title = {"序号","学生姓名","性别","出生年月","民族","入学年份","身份证号","专业","一等","二等","三等","东部","中部","西部","联系方式"};
 		String filePath = AppConfig.ctx+"csvTemplate\\附表2 湖北省普通高校国家助学金名单备案表"+year+".xls";
 		InputStream input = null;
 		try {
@@ -97,10 +97,10 @@ public class ExportType2 extends Export {
 	        sheet.setColumnView(8, 5); // 设置列的宽度 
 	        sheet.setColumnView(9, 5); // 设置列的宽度 
 	        sheet.setColumnView(10, 5); // 设置列的宽度 
-	        sheet.setColumnView(11, 10); // 设置列的宽度 
-	        sheet.setColumnView(12, 10); // 设置列的宽度 
-	        sheet.setColumnView(13, 15); // 设置列的宽度 
-//	        sheet.setColumnView(14, 15); // 设置列的宽度 
+	        sheet.setColumnView(11, 5); // 设置列的宽度 
+	        sheet.setColumnView(12, 5); // 设置列的宽度 
+	        sheet.setColumnView(13, 5); // 设置列的宽度 
+	        sheet.setColumnView(14, 15); // 设置列的宽度 
 	        
 	        
 	        WritableFont wf_table = new WritableFont(WritableFont.ARIAL, 18,  
@@ -118,7 +118,7 @@ public class ExportType2 extends Export {
 	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框  
 	        label.setCellFormat(cellFormat);
 	        sheet.addCell(label);
-	        sheet.mergeCells(0, 1, 13, 1);
+	        sheet.mergeCells(0, 1, 14, 1);
 	        
 	        label = new Label(0, 3, "学校公章");
 	        cellFormat = new WritableCellFormat();
@@ -126,7 +126,7 @@ public class ExportType2 extends Export {
 	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框
 	        label.setCellFormat(cellFormat);
 	        sheet.addCell(label);
-	        sheet.mergeCells(0, 3, 13, 3);
+	        sheet.mergeCells(0, 3, 14, 3);
 	        
 	        //表头
 	        for (int i = 0; i < 8; i++) {
@@ -147,25 +147,25 @@ public class ExportType2 extends Export {
 	        sheet.addCell(label);
 	        sheet.mergeCells(8, row, 10, row);
 	        
-	        label = new Label(11, row, "建档立卡情况");
+	        label = new Label(11, row, "学生生源地");
 			cellFormat = new WritableCellFormat();
 	        cellFormat.setFont(wf_content);
 	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框
 	        label.setCellFormat(cellFormat);
 	        sheet.addCell(label);
-	        sheet.mergeCells(11, row, 12, row);
+	        sheet.mergeCells(11, row, 13, row);
 	        
 	        //联系方式
-	        label = new Label(13,row,title[13]);
+	        label = new Label(14,row,title[14]);
         	cellFormat = new WritableCellFormat();
 	        cellFormat.setFont(wf_title);
 	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框
 	        label.setCellFormat(cellFormat);
 			sheet.addCell(label);
-			sheet.mergeCells(13, row, 13, row+1);
+			sheet.mergeCells(14, row, 14, row+1);
 			 
 	        row++;
-	        for(int i = 8;i<13;i++){
+	        for(int i = 8;i<14;i++){
 	        	label = new Label(i,row,title[i]);
 	        	cellFormat = new WritableCellFormat();
 		        cellFormat.setFont(wf_content);
@@ -300,9 +300,9 @@ public class ExportType2 extends Export {
 	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框
 	        number.setCellFormat(cellFormat);
 			sheet.addCell(number);
-			//东部 改为 省内生源
+			//东部
 			number = new Number(11, row, 0);
-			if(d.getArea().contains("省内")){
+			if(d.getArea().contains("东")){
 				number = new Number(11, row, 1);
 			}
 			cellFormat = new WritableCellFormat();
@@ -310,9 +310,9 @@ public class ExportType2 extends Export {
 	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框
 	        number.setCellFormat(cellFormat);
 			sheet.addCell(number);
-			//中部  改为 省外生源
+			//中部
 			number = new Number(12, row, 0);
-			if(d.getArea().contains("省外")){
+			if(d.getArea().contains("中")){
 				number = new Number(12, row, 1);
 			}
 			cellFormat = new WritableCellFormat();
@@ -321,18 +321,18 @@ public class ExportType2 extends Export {
 	        number.setCellFormat(cellFormat);
 			sheet.addCell(number);
 			//西部
-//			number = new Number(13, row, 0);
-//			if(d.getArea().contains("西")){
-//				number = new Number(13, row, 1);
-//			}
-//			cellFormat = new WritableCellFormat();
-//			cellFormat.setFont(wf_content);
-//	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框
-//	        number.setCellFormat(cellFormat);
-//			sheet.addCell(number);
+			number = new Number(13, row, 0);
+			if(d.getArea().contains("西")){
+				number = new Number(13, row, 1);
+			}
+			cellFormat = new WritableCellFormat();
+			cellFormat.setFont(wf_content);
+	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框
+	        number.setCellFormat(cellFormat);
+			sheet.addCell(number);
 			
 			//联系方式
-			label = new Label(13, row, a.getPhone());
+			label = new Label(14, row, a.getPhone());
 			cellFormat = new WritableCellFormat();
 	        cellFormat.setFont(wf_content);
 	        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框

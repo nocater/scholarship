@@ -23,14 +23,13 @@
 <script type='text/javascript' src="${ctx}/scripts/date.js"></script>
 <script type="text/javascript">
 	document.onkeydown = function(e){
+		console.log("作者：黄冈师范学院-计科1302  陈帅 ");
 		e=e?e:(window.event?window.event:null);
 	   	if(e.keyCode == 13){
 	   		submitForm();
 	   	}
 	}
 	$(document).ready(function(){
-		console.log("作者：黄冈师范学院-计科1302  陈帅 ");
-		window.open('${ctx}/pages/introduce.jsp');
 		$("#loginAccno").focus();		
 	});
 	function submitForm(){
