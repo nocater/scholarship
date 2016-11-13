@@ -463,15 +463,15 @@
 											<td style="padding-left: 20px">
 												<s:hidden name="datas.area" id="datasArea"/>
 												<select style="width: 137px" id="select-area">
-													<option value="东部"
-														<c:if test="${datas.area eq '东部'}"> selected="" </c:if>
-													>东部</option>
-													<option	value="中部"
-														<c:if test="${datas.area eq '中部'}"> selected="" </c:if>
-													>中部</option>
-													<option	value="西部"
+													<option value="省内"
+														<c:if test="${datas.area eq '省内'}"> selected="" </c:if>
+													>湖北省生源</option>
+													<option	value="省外"
+														<c:if test="${datas.area eq '省外'}"> selected="" </c:if>
+													>外省生源</option>
+													<%-- <option	value="西部"
 														<c:if test="${datas.area eq '西部'}"> selected="" </c:if>
-													>西部</option>
+													>西部</option> --%>
 												</select>
 											</td>
 											<td align="right" style="font-size: 12px;">离县城距离(km):</td>
