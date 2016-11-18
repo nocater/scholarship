@@ -5,6 +5,8 @@ import java.util.List;
 public class Page {
 	public static final int DEFAULT_PAGE_SIZE = 15;
 	
+	public static final int DEFAULT_PAGE_SIZE40 = 40;
+	
 	public static final int DEFAULT_RULE_PAGE_SIZE = 50;
 	
 	private int pageSize = 15;

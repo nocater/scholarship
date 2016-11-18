@@ -245,9 +245,9 @@ public class ApplyAction extends BaseAction {
 		// 处理数据分页的起始条数
 		String startIndex = request.getParameter("startIndex");
 		if (StringUtil.isNotBlank(startIndex)) {
-			page = new Page(Page.DEFAULT_PAGE_SIZE, Integer.valueOf(startIndex));
+			page = new Page(Page.DEFAULT_PAGE_SIZE40, Integer.valueOf(startIndex));
 		} else {
-			page = new Page(Page.DEFAULT_PAGE_SIZE, 0);
+			page = new Page(Page.DEFAULT_PAGE_SIZE40, 0);
 		}
 		
 		Map<String,String> map = new HashMap<String, String>();
