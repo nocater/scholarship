@@ -301,7 +301,7 @@
 		    							<a href="${ctx}/datas/queryByAccount.action?AccountId=${account.id}">
 		    							${datasList[stat.index].name}</a>
 		    						</span><br/>
-		    						<select name="select-scholarship" id="select-scholarship-${id}" style="width: 80px">
+		    						<select name="select-scholarship" id="select-scholarship-${id}" style="width: 120px">
 		    							<option value="0">无</option>
 		    							<c:forEach items="${scholarshipList}" var="s" varStatus="stats">
 		    								<option value="${s.id}"

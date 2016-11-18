@@ -25,7 +25,7 @@
 								height="28" />
 						</td>
 						<td class="leftDhxx">
-							关于产品
+							说明
 						</td>
 					</tr>
 				</table>
@@ -38,7 +38,7 @@
 						onclick="parent.mainFrame.location.href='${ctx}/abouts/about.action';">
 						&nbsp;
 						<img src="${ctx}/images/arrow_03.gif"/>
-						&nbsp;&nbsp;关于产品
+						&nbsp;&nbsp;说明
 					</a>
 				</td>
 			</tr>

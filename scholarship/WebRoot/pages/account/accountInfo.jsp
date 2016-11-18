@@ -491,8 +491,11 @@
 							<td>
 								<input type="button" class="btnyh" id="btnSave"
 									onclick="save();" value="保  存" />
-								<input type="button" class="btnyh" id="btnCancel"
+								<%-- <input type="button" class="btnyh" id="btnCancel"
 									onclick="window.location.href='${ctx}/account/query.action?order=${order}';"
+									value="取  消" /> --%>
+									<input type="button" class="btnyh" id="btnCancel"
+									onclick="history.back();"
 									value="取  消" />
 								&nbsp;&nbsp;
 								<span class="spanred"></span>

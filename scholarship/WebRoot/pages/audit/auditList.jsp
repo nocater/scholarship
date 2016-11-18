@@ -217,10 +217,10 @@
   			<table width="100%" border="0" cellspacing="1" cellpadding="0" class="tab2">
   			<tr height="28">
 	  				<td width="6%" align="center" class="biaoti"><input type="checkbox" id="chkAll" name="chkAll" class="check-box not_checked" /></td>
-	  				<td width="16%" align="center" class="biaoti">登录名</td>
+	  				<td width="20%" align="center" class="biaoti">登录名</td>
 	  				<td width="18%" align="center" class="biaoti">源IP</td>
 	  				<td width="21%" align="center" class="biaoti">时间</td>
-	  				<td width="25%" align="center" class="biaoti">操作日志</td>
+	  				<td width="20%" align="center" class="biaoti">操作日志</td>
 	  				<td width="14%" align="center" class="biaoti">操作类型</td>
 	  			</tr>
 	  			<c:set value="1" var="data" />

@@ -254,13 +254,14 @@
 			  				<td />
 			  				<td  valign="middle" align="center" style="padding-top:3px;">
 			  					<select style="width:90%;" id="select-exportType">
-				  					<option value="1">国家奖励志学金初审表</option>
+				  					<option value="1">国家励志奖学金初审表</option>
 				  					<option value="2">国家助学金备案表</option>
-				  					<option value="3">助学金中行卡号登记表</option>
+				  					<option value="3">国家奖助金中行卡号登记表</option>
 				  					<option value="4">明珠励志奖学金名单登记表</option>
 				  					<option value="5">明珠奖学金发放登记表</option>
 				  					<option value="6">明珠助学金发放登记表</option>
 				  					<option value="7">明珠助学金发放备案表</option>
+				  					<option value="8">明珠奖助金中行卡号登记表</option>
 				  					<option value="10">自定义所有数据表格</option>
 			  					</select>
 			  				</td>
@@ -292,8 +293,8 @@
 		    				<th width="12%" align="center" class="biaoti">学院班级</th>
 		    				<th width="10%" align="center" class="biaoti">审批状态</th>
 		    				<th width="10%" align="center" class="biaoti">奖项</th>
-		    				<th width="10%" align="center" class="biaoti">审批年份</th>
-		    				<th width="10%" align="center" class="biaoti">审批人</th>
+		    				<th width="10%" align="center" class="biaoti">申请日期</th>
+		    				<th width="10%" align="center" class="biaoti">审批人及日期</th>
 		    			</tr>
 		    		</thead>
 		    		<tbody>
@@ -325,7 +326,7 @@
 		    							</c:forEach>
 		    						</select>
 		    					</td>
-		    					<td align="center">${year}</td>
+		    					<td align="center">${year}|${createDate}</td>
 		    					<td align="center"><span>${approve_Account.name}(${updateDate})</span></td>
 		    				</tr>
 		    			</s:iterator>
@@ -336,7 +337,7 @@
   				</td>
   			</tr>
   			<tr>
-  				<td colspan="5" width="100%"><jsp:include page="../commons/page.jsp"></jsp:include></td>
+  				<td colspan="5" width="100%"><jsp:include page="../commons/page40.jsp"></jsp:include></td>
   			</tr>
   		</table>
     </div>

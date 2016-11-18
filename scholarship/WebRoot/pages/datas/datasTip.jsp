@@ -73,6 +73,7 @@
 			  					&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="window.location.href='${ctx}/csvTemplate/tipFile.zip'" style="color: blue;">【填写注意】</a><br/>
 			  					<br/>
 			  					<span>
+			  						<font color="red">申请提交后可随时修改信息，然后保存信息，而不必再次提交申请</font>
 			  						【近一年家庭变故】<br/>请填写去年申请后至今年申请一年时间内的变故
 			  					</span>
 			  				</td>

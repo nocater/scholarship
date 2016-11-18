@@ -214,7 +214,7 @@
 									<li style="width:5px"><span style="color:#FFFFFF;">|</span></li>
 								</c:if>
 						</c:if>
-						<li><a href="javascript:linkTo('about');">关于产品</a></li>
+						<li><a href="javascript:linkTo('about');">说&nbsp;明</a></li>
 					</ul>
 				</td>
 			</tr>
