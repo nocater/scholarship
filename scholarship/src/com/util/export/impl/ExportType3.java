@@ -53,7 +53,7 @@ public class ExportType3 extends Export {
 	}
 	
 	/***
-	 * 导出【附表6 获奖受助学生资助资金发放中行卡号登记表】
+	 * 导出【附表6 获(国家)奖受助学生资助资金发放中行卡号登记表】
 	 */
 	@SuppressWarnings({ "resource", "finally" })
 	@Override
@@ -85,16 +85,16 @@ public class ExportType3 extends Export {
 			OutputStream os = new FileOutputStream(filePath);
 			WritableWorkbook wwb = Workbook.createWorkbook(os);
 			WritableSheet sheet1 = wwb.createSheet("国家励志奖学金", 0);
-			WritableSheet sheet2 = wwb.createSheet("助学金一等", 0);
-			WritableSheet sheet3 = wwb.createSheet("助学金二等", 0);
-			WritableSheet sheet4 = wwb.createSheet("助学金三等", 0);
+			WritableSheet sheet2 = wwb.createSheet("国家助学金一等", 0);
+			WritableSheet sheet3 = wwb.createSheet("国家助学金二等", 0);
+			WritableSheet sheet4 = wwb.createSheet("国家助学金三等", 0);
 			
 	        
 			//	分别写入一等奖 二等奖 三等奖
 			this.werite(accountList1, sheet1, year, "国家励志奖学金",scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID1)).getMoney());
-			this.werite(accountList2, sheet2, year, "一等", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID2)).getMoney());
-			this.werite(accountList3, sheet3, year, "二等", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID3)).getMoney());
-			this.werite(accountList4, sheet4, year, "三等", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID4)).getMoney());
+			this.werite(accountList2, sheet2, year, "国家助学金一等", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID2)).getMoney());
+			this.werite(accountList3, sheet3, year, "国家助学金二等", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID3)).getMoney());
+			this.werite(accountList4, sheet4, year, "国家助学金三等", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID4)).getMoney());
 	        
 			wwb.write();
 	        wwb.close();

@@ -164,7 +164,7 @@ public class ExportType1 extends Export {
 				
 				Datas d = datasService.queryByAccount(a, "0");
 				//序号
-				label = new Label(0, row, String.valueOf(row-4));
+				label = new Label(0, row, String.valueOf(row-5));
 				cellFormat = new WritableCellFormat();
 		        cellFormat.setFont(wf_content);
 		        cellFormat.setBorder(jxl.format.Border.ALL, jxl.format.BorderLineStyle.THIN,jxl.format.Colour.BLACK); //设置边框

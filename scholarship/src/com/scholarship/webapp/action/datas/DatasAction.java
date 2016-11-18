@@ -254,8 +254,9 @@ public class DatasAction extends BaseAction {
 			apply.setAccount(a);
 			apply.setStatus(0);
 			apply.setYear(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
-			if(applyService.query(null, apply,null,null,null,null).size()>0) {
-				message = "您已提交申请，请勿重复提交。";
+			//时间在60天内大于一次不能提交
+			if(applyService.query(null, apply,null,null,null,null,-60).size()>0) {
+				message = "近期申请已经提交成功，请等待老师审批";
 			}else {
 				applyService.inert(apply);
 				message = "申请已提交成功，请等待审批";

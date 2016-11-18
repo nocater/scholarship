@@ -34,12 +34,12 @@ import com.scholarship.service.scholarship.ScholarshipService;
 
 public class ExportType5 extends Export {
 	
-	private final String SCHOLARSHIP_ID1 = "6";	//明珠学子助学金ID 6 7 8
-	private final String SCHOLARSHIP_ID2 = "7";	//明珠学子助学金ID 6 7 8
-	private final String SCHOLARSHIP_ID3 = "8";	//明珠学子助学金ID 6 7 8
+	private final String SCHOLARSHIP_ID1 = "9";	//明珠学子励志奖学金ID 9 10 11
+	private final String SCHOLARSHIP_ID2 = "10";//明珠学子励志奖学金ID 9 10 11
+	private final String SCHOLARSHIP_ID3 = "11";//明珠学子励志奖学金ID 9 10 11
 	
 	/***
-	 * 导出【附件4：黄冈师范学院明珠学子助学金发放登记表】
+	 * 导出【附件4：黄冈师范学院明珠学子奖学金发放登记表】
 	 */
 	public ExportType5(Account account, AccountService accountService,
 			ApplyService applyService, CollegeService collegeService,
@@ -52,7 +52,7 @@ public class ExportType5 extends Export {
 	}
 	
 	/***
-	 * 导出【附件4：黄冈师范学院明珠学子助学金发放登记表】
+	 * 导出【附件4：黄冈师范学院明珠学子奖学金发放登记表】
 	 */
 	@SuppressWarnings({ "resource", "finally" })
 	@Override
@@ -81,15 +81,15 @@ public class ExportType5 extends Export {
 		try {
 			OutputStream os = new FileOutputStream(filePath);
 			WritableWorkbook wwb = Workbook.createWorkbook(os);
-			WritableSheet sheet1 = wwb.createSheet("一等助学金", 0);
-			WritableSheet sheet2 = wwb.createSheet("二等助学金", 0);
-			WritableSheet sheet3 = wwb.createSheet("三等助学金", 0);
+			WritableSheet sheet1 = wwb.createSheet("一等明珠奖学金", 0);
+			WritableSheet sheet2 = wwb.createSheet("二等明珠奖学金", 0);
+			WritableSheet sheet3 = wwb.createSheet("三等明珠奖学金", 0);
 			
 	        
 			//	分别写入一等奖 二等奖 三等奖
-			this.werite(accountList1, sheet1, year, "一等助学金",scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID1)).getMoney());
-			this.werite(accountList2, sheet2, year, "二等助学金", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID2)).getMoney());
-			this.werite(accountList3, sheet3, year, "三等助学金", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID3)).getMoney());
+			this.werite(accountList1, sheet1, year, "一等奖学金",scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID1)).getMoney());
+			this.werite(accountList2, sheet2, year, "二等奖学金", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID2)).getMoney());
+			this.werite(accountList3, sheet3, year, "三等奖学金", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID3)).getMoney());
 	        
 			wwb.write();
 	        wwb.close();
