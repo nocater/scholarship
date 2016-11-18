@@ -14,6 +14,7 @@ import com.util.export.impl.ExportType4;
 import com.util.export.impl.ExportType5;
 import com.util.export.impl.ExportType6;
 import com.util.export.impl.ExportType7;
+import com.util.export.impl.ExportType8;
 import com.util.export.impl.ExportTypeCustom;
 
 public class ExportFactory {
@@ -50,6 +51,10 @@ public class ExportFactory {
 			export = new ExportType7(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
 			break;
 		
+		case "8":
+			export = new ExportType8(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
+			break;
+			
 		case "10":
 			export = new ExportTypeCustom(account,accountService, applyService, collegeService, gradeService, datasService, scholarshipService);
 			break;
