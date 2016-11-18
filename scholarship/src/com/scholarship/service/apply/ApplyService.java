@@ -41,7 +41,7 @@ public interface ApplyService{
 	 * @param statusMin
 	 * @return
 	 */
-	public List<Apply> query(Role role,Apply apply, Integer collegeId, Integer gradeId, Integer statusMax, Integer statusMin);
+	public List<Apply> query(Role role,Apply apply, Integer collegeId, Integer gradeId, Integer statusMax, Integer statusMin, Integer limitDays);
 	/***
 	 * 查询本年未处理(分页)(角色、审批参数，学院、班级、状态范围值)
 	 * @param role

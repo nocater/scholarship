@@ -64,7 +64,7 @@ public class ApplyServiceImpl extends BaseServiceImpl implements ApplyService {
 	 * 查询(角色、审批参数，学院、班级、状态范围值)
 	 */
 	@Override
-	public List<Apply> query(Role role, Apply apply, Integer collegeId, Integer gradeId,Integer statusMax, Integer statusMin) {
+	public List<Apply> query(Role role, Apply apply, Integer collegeId, Integer gradeId,Integer statusMax, Integer statusMin, Integer limitDays) {
 		// TODO Auto-generated method stub
 		Map<String,String> map = new HashMap<String, String>();
 		if(role!=null&&role.getId()!=1){
@@ -98,6 +98,10 @@ public class ApplyServiceImpl extends BaseServiceImpl implements ApplyService {
 		}
 		if(gradeId!=null){
 			map.put("gradeId", gradeId.toString());
+		}
+		//查询当前日期之前的 < ADDDATE(NOW(), #{limitDays});
+		if(limitDays!=null){
+			map.put("limitDays", limitDays.toString());
 		}
 		return applyDao.query(map);
 	}

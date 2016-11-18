@@ -161,6 +161,11 @@
     	<if test="scholarshipId != null">
     		AND SCHOLARSHIP_ID = #{scholarshipId}
     	</if>
+    	<if test="limitDays">
+    		<![CDATA[
+    		AND createdate > ADDDATE(NOW(), #{limitDays});
+    		]]>
+    	</if>
     	<if test="order != null">
     		<![CDATA[
     			ORDER BY ${order} DESC
