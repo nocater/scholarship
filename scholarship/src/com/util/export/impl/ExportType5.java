@@ -87,9 +87,9 @@ public class ExportType5 extends Export {
 			
 	        
 			//	分别写入一等奖 二等奖 三等奖
-			this.werite(accountList1, sheet1, year, "一等奖学金",scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID1)).getMoney());
-			this.werite(accountList2, sheet2, year, "二等奖学金", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID2)).getMoney());
-			this.werite(accountList3, sheet3, year, "三等奖学金", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID3)).getMoney());
+			this.werite(accountList1, sheet1, year, "明珠奖学金一等",scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID1)).getMoney());
+			this.werite(accountList2, sheet2, year, "明珠奖学金二等", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID2)).getMoney());
+			this.werite(accountList3, sheet3, year, "明珠奖学金三等", scholarshipServie.queryById(Integer.parseInt(SCHOLARSHIP_ID3)).getMoney());
 	        
 			wwb.write();
 	        wwb.close();

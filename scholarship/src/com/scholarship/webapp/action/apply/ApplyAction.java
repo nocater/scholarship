@@ -205,9 +205,15 @@ public class ApplyAction extends BaseAction {
 						apply.setScholarship(s);
 						
 						//更新审批状态
-						if(apply.getStatus()==-1)continue;
-						//班主任只能审批为1
-						if(collegeService.queryByRole(r).size()==0){
+						if(apply.getStatus()==-1){
+							if(a.getRole().getId()==1){
+								//仅管理员可以将废弃申请改为未审批状态
+								apply.setStatus(0);
+							}else{
+								continue;
+							}
+						}else if(collegeService.queryByRole(r).size()==0){
+							//班主任只能审批为1
 							apply.setStatus(1);
 						}else{
 							apply.setStatus(2);

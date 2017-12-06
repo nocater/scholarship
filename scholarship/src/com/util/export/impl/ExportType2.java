@@ -201,7 +201,7 @@ public class ExportType2 extends Export {
 				String ss,
 				int row) throws WriteException{
 		for(Account a : accountList){
-//			System.out.println(a.getName());
+//			System.out.println(a.getName()+a.getAccno());
 			
 			Datas d = datasService.queryByAccount(a, "0");
 			//序号

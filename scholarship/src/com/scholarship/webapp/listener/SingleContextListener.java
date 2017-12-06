@@ -26,6 +26,6 @@ public class SingleContextListener implements ServletContextListener {
     //Notification that the servlet context is about to be shut down
     public void contextDestroyed(ServletContextEvent event) {
     	ServletContext context = event.getServletContext();
-        context.removeAttribute("FORT_ONLINE_USERLIST");
+        context.removeAttribute("ONLINE_ACCOUNTLIST");
     }
 }
